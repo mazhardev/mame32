@@ -38,6 +38,10 @@ interface ResultState extends GameOverPayload {
  * and talk to the shell through `useGameShell()`.
  */
 export function GameShell({ game }: Props) {
+  return <GameSession key={game.id} game={game} />;
+}
+
+function GameSession({ game }: Props) {
   const navigate = useNavigate();
   const [prefs, setPrefs] = usePreferences();
   const shellRef = useRef<HTMLDivElement>(null);
@@ -56,6 +60,9 @@ export function GameShell({ game }: Props) {
   const restartRef = useRef<(() => void) | null>(null);
   const roundStartRef = useRef<number | null>(null);
   const accumulatedRef = useRef(0);
+  const roundActiveRef = useRef(false);
+  const roundVersionRef = useRef(0);
+  const finishingRef = useRef(false);
 
   // Restore this game's saved difficulty, falling back to the global preference.
   useEffect(() => {
@@ -100,7 +107,9 @@ export function GameShell({ game }: Props) {
   }, []);
 
   const resumeTimer = useCallback(() => {
-    if (roundStartRef.current === null) roundStartRef.current = Date.now();
+    if (roundActiveRef.current && roundStartRef.current === null) {
+      roundStartRef.current = Date.now();
+    }
   }, []);
 
   // Tab hidden -> always pause. Never run a loop off-screen.
@@ -108,7 +117,7 @@ export function GameShell({ game }: Props) {
     if (hidden) {
       setPausedState(true);
       pauseTimer();
-    } else if (!manualPause && !result) {
+    } else if (!manualPause && !result && !finishingRef.current) {
       setPausedState(false);
       resumeTimer();
     }
@@ -116,10 +125,11 @@ export function GameShell({ game }: Props) {
 
   // Flush any unsaved play time when leaving the page.
   useEffect(() => {
-    const onLeave = () => flushPlayTime();
+    const onLeave = () => { flushPlayTime(); };
     window.addEventListener('pagehide', onLeave);
     return () => {
       window.removeEventListener('pagehide', onLeave);
+      roundVersionRef.current += 1;
       onLeave();
     };
   }, [flushPlayTime]);
@@ -129,9 +139,9 @@ export function GameShell({ game }: Props) {
   const setPaused = useCallback(
     (next: boolean) => {
       setManualPause(next);
-      setPausedState(next || hidden);
+      setPausedState(next || hidden || finishingRef.current);
       if (next) pauseTimer();
-      else if (!hidden) resumeTimer();
+      else if (!hidden && !finishingRef.current) resumeTimer();
     },
     [hidden, pauseTimer, resumeTimer],
   );
@@ -147,29 +157,47 @@ export function GameShell({ game }: Props) {
 
   const setCapabilities = useCallback(
     (next: { pausable?: boolean; restartable?: boolean }) =>
-      setCaps((prev) => ({ ...prev, ...next })),
+      setCaps((prev) => {
+        const updated = { ...prev, ...next };
+        return updated.pausable === prev.pausable && updated.restartable === prev.restartable
+          ? prev
+          : updated;
+      }),
     [],
   );
 
   const requestRestart = useCallback(() => {
     flushPlayTime();
+    roundActiveRef.current = false;
+    roundVersionRef.current += 1;
+    finishingRef.current = false;
     setResult(null);
     setManualPause(false);
-    setPausedState(false);
+    setPausedState(hidden);
     unlockAudio();
     if (restartRef.current) restartRef.current();
     else setInstanceKey((k) => k + 1);
-  }, [flushPlayTime]);
+  }, [flushPlayTime, hidden]);
 
   const startRound = useCallback(() => {
+    if (roundActiveRef.current) return;
     unlockAudio();
+    roundActiveRef.current = true;
+    roundVersionRef.current += 1;
+    finishingRef.current = false;
+    setResult(null);
+    setPausedState(manualPause || hidden);
     accumulatedRef.current = 0;
-    roundStartRef.current = Date.now();
+    roundStartRef.current = manualPause || hidden ? null : Date.now();
     void recordGameStart(game.id);
-  }, [game.id]);
+  }, [game.id, hidden, manualPause]);
 
   const endRound = useCallback(
     (payload: GameOverPayload) => {
+      if (!roundActiveRef.current) return;
+      roundActiveRef.current = false;
+      finishingRef.current = true;
+      const version = roundVersionRef.current;
       const durationMs = flushPlayTime();
       setPausedState(true);
       void (async () => {
@@ -192,7 +220,9 @@ export function GameShell({ game }: Props) {
           completed: true,
         });
         await evaluateGlobalAchievements();
-        setResult({ ...payload, ...outcome, challengeCompleted });
+        if (version === roundVersionRef.current) {
+          setResult({ ...payload, ...outcome, challengeCompleted });
+        }
       })();
       playSound(payload.won ? 'levelComplete' : 'gameOver');
       vibrate(payload.won ? [40, 60, 40] : 120);
@@ -201,6 +231,8 @@ export function GameShell({ game }: Props) {
   );
 
   const clearResult = useCallback(() => {
+    roundVersionRef.current += 1;
+    finishingRef.current = false;
     setResult(null);
     setPausedState(manualPause || hidden);
   }, [hidden, manualPause]);
@@ -252,11 +284,12 @@ export function GameShell({ game }: Props) {
     ],
   );
 
-  // Space / P pause, R restart, F fullscreen — ignored while typing.
+  // P pause, R restart, F fullscreen — ignored while typing or using modifiers.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
-      if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
+      if (e.repeat || e.ctrlKey || e.metaKey || e.altKey || e.defaultPrevented) return;
+      if (target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))) return;
       if (e.key === 'p' || e.key === 'P') {
         if (caps.pausable) togglePause();
       } else if (e.key === 'r' || e.key === 'R') {

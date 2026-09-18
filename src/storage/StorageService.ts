@@ -100,15 +100,32 @@ export function setNickname(nickname: string) {
 
 /* -------------------------------------------------------------- preferences */
 
+/**
+ * Cached so `useSyncExternalStore` sees a stable snapshot; a fresh object on
+ * every read would re-render forever. Invalidated whenever preferences change.
+ */
+let preferencesCache: Preferences | null = null;
+
 export function getPreferences(): Preferences {
-  return { ...DEFAULT_PREFERENCES, ...lsGet<Partial<Preferences>>(LS_KEYS.preferences, {}) };
+  if (!preferencesCache) {
+    preferencesCache = {
+      ...DEFAULT_PREFERENCES,
+      ...lsGet<Partial<Preferences>>(LS_KEYS.preferences, {}),
+    };
+  }
+  return preferencesCache;
 }
 
 export function setPreferences(patch: Partial<Preferences>): Preferences {
   const next = { ...getPreferences(), ...patch };
+  preferencesCache = next;
   lsSet(LS_KEYS.preferences, next);
   emit('preferences');
   return next;
+}
+
+function invalidatePreferencesCache() {
+  preferencesCache = null;
 }
 
 /* ---------------------------------------------------------------- favorites */
@@ -377,11 +394,39 @@ export async function getAllStats(): Promise<GameStatistics[]> {
   return dbGetAll<GameStatistics>('statistics');
 }
 
+/**
+ * Serialises read-modify-write cycles on one game's statistics record.
+ * `recordGameComplete` and `addPlayTime` are commonly fired back to back and
+ * without this the later read could start before the earlier write landed,
+ * silently discarding one of the updates.
+ */
+const statsQueues = new Map<string, Promise<unknown>>();
+
+function withStats<T>(
+  gameId: string,
+  mutate: (stats: GameStatistics) => T | Promise<T>,
+): Promise<T> {
+  const previous = statsQueues.get(gameId) ?? Promise.resolve();
+  const next = previous
+    .catch(() => undefined)
+    .then(async () => {
+      const stats = await getStats(gameId);
+      const outcome = await mutate(stats);
+      await dbPut('statistics', stats);
+      return outcome;
+    });
+  statsQueues.set(
+    gameId,
+    next.catch(() => undefined),
+  );
+  return next;
+}
+
 export async function recordGameStart(gameId: string): Promise<void> {
-  const stats = await getStats(gameId);
-  stats.gamesStarted += 1;
-  stats.lastPlayed = Date.now();
-  await dbPut('statistics', stats);
+  await withStats(gameId, (stats) => {
+    stats.gamesStarted += 1;
+    stats.lastPlayed = Date.now();
+  });
   pushRecentGame(gameId);
   const profile = getProfile();
   setProfile({ totalGamesPlayed: profile.totalGamesPlayed + 1 });
@@ -394,6 +439,11 @@ export interface GameResult {
   lost?: boolean;
   draw?: boolean;
   completed?: boolean;
+  /**
+   * How long this round lasted. Stored on the score-history entry only —
+   * `addPlayTime` is the single funnel that accumulates played time, so passing
+   * a duration here never double-counts against the per-game or profile totals.
+   */
   durationMs?: number;
   timeMs?: number;
   difficulty?: DifficultySetting;
@@ -406,29 +456,30 @@ export async function recordGameComplete(
   gameId: string,
   result: GameResult,
 ): Promise<{ isRecord: boolean; previousBest: number | null }> {
-  const stats = await getStats(gameId);
   const now = Date.now();
-  stats.lastPlayed = now;
-  if (result.completed !== false) stats.gamesCompleted += 1;
-  if (result.won) {
-    stats.wins += 1;
-    stats.currentWinStreak += 1;
-    stats.bestWinStreak = Math.max(stats.bestWinStreak, stats.currentWinStreak);
-  } else if (result.lost) {
-    stats.losses += 1;
-    stats.currentWinStreak = 0;
-  } else if (result.draw) {
-    stats.draws += 1;
-  }
-  if (typeof result.score === 'number') {
-    stats.totalScore += result.score;
-    if (stats.highScore === null || result.score > stats.highScore) stats.highScore = result.score;
-  }
-  if (typeof result.timeMs === 'number' && result.timeMs > 0) {
-    if (stats.bestTime === null || result.timeMs < stats.bestTime) stats.bestTime = result.timeMs;
-  }
-  if (result.durationMs) stats.totalPlayTime += result.durationMs;
-  await dbPut('statistics', stats);
+  await withStats(gameId, (stats) => {
+    stats.lastPlayed = now;
+    if (result.completed !== false) stats.gamesCompleted += 1;
+    if (result.won) {
+      stats.wins += 1;
+      stats.currentWinStreak += 1;
+      stats.bestWinStreak = Math.max(stats.bestWinStreak, stats.currentWinStreak);
+    } else if (result.lost) {
+      stats.losses += 1;
+      stats.currentWinStreak = 0;
+    } else if (result.draw) {
+      stats.draws += 1;
+    }
+    if (typeof result.score === 'number') {
+      stats.totalScore += result.score;
+      if (stats.highScore === null || result.score > stats.highScore) {
+        stats.highScore = result.score;
+      }
+    }
+    if (typeof result.timeMs === 'number' && result.timeMs > 0) {
+      if (stats.bestTime === null || result.timeMs < stats.bestTime) stats.bestTime = result.timeMs;
+    }
+  });
 
   let isRecord = false;
   let previousBest: number | null = null;
@@ -453,12 +504,16 @@ export async function recordGameComplete(
   return { isRecord, previousBest };
 }
 
+/**
+ * The only place played time is accumulated, for both the per-game record and
+ * the profile total. Games and shells must not add duration anywhere else.
+ */
 export async function addPlayTime(gameId: string, ms: number): Promise<void> {
   if (ms <= 0) return;
-  const stats = await getStats(gameId);
-  stats.totalPlayTime += ms;
-  stats.lastPlayed = Date.now();
-  await dbPut('statistics', stats);
+  await withStats(gameId, (stats) => {
+    stats.totalPlayTime += ms;
+    stats.lastPlayed = Date.now();
+  });
   const profile = getProfile();
   setProfile({ totalPlayTime: profile.totalPlayTime + ms });
   emit('stats');
@@ -687,9 +742,12 @@ export async function resetProgress(): Promise<void> {
 }
 
 export async function resetEverything(): Promise<void> {
+  // Drop queued stats writes so a pending mutation cannot resurrect cleared data.
+  statsQueues.clear();
   await dbClearAll();
   lsClearAll();
   lsRemove(LS_KEYS.profile);
+  invalidatePreferencesCache();
   emit('*');
 }
 

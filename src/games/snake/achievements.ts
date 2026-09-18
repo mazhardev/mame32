@@ -1,0 +1,58 @@
+import type { AchievementDefinition } from '@/types';
+
+export const achievements: AchievementDefinition[] = [
+  {
+    id: 'snake.first-bite',
+    gameId: 'snake',
+    name: 'First Bite',
+    description: 'Eat your first piece of food.',
+    target: 1,
+    icon: '🍎',
+    coins: 5,
+  },
+  {
+    id: 'snake.score-10',
+    gameId: 'snake',
+    name: 'Snake Beginner',
+    description: 'Score 10 points in Snake.',
+    target: 10,
+    icon: '🐍',
+    coins: 10,
+  },
+  {
+    id: 'snake.score-25',
+    gameId: 'snake',
+    name: 'Growing Fast',
+    description: 'Score 25 points in Snake.',
+    target: 25,
+    icon: '📏',
+    coins: 20,
+  },
+  {
+    id: 'snake.score-50',
+    gameId: 'snake',
+    name: 'Serpent Master',
+    description: 'Score 50 points in Snake.',
+    target: 50,
+    icon: '👑',
+    coins: 40,
+  },
+  {
+    id: 'snake.hard-20',
+    gameId: 'snake',
+    name: 'No Walls, No Mercy',
+    description: 'Score 20 points on Hard difficulty.',
+    target: 20,
+    icon: '🔥',
+    coins: 35,
+  },
+  {
+    id: 'snake.length-30',
+    gameId: 'snake',
+    name: 'Long Tail',
+    description: 'Grow the snake to 30 segments.',
+    target: 30,
+    icon: '🎗️',
+    coins: 25,
+  },
+];

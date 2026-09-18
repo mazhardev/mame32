@@ -16,6 +16,8 @@ import {
   loadProgress,
   toggleFavorite,
   getFavorites,
+  addPlayTime,
+  getScoreHistory,
 } from './StorageService';
 import { CURRENT_DATA_VERSION } from '@/config/site';
 
@@ -180,5 +182,54 @@ describe('export / import', () => {
   it('clamps negative coin totals from a tampered file', async () => {
     await importData({ dataVersion: CURRENT_DATA_VERSION, profile: { totalCoins: -999 } });
     expect(getCoins()).toBe(0);
+  });
+});
+
+describe('play time accounting', () => {
+  it('does not add round duration to the per-game total', async () => {
+    await recordGameComplete('snake', { score: 10, durationMs: 5_000 });
+    expect((await getStats('snake')).totalPlayTime).toBe(0);
+  });
+
+  it('accumulates time only through addPlayTime', async () => {
+    await addPlayTime('snake', 4_000);
+    await addPlayTime('snake', 6_000);
+    expect((await getStats('snake')).totalPlayTime).toBe(10_000);
+    expect(getProfile().totalPlayTime).toBe(10_000);
+  });
+
+  it('still records the round duration in score history', async () => {
+    await recordGameComplete('snake', { score: 10, durationMs: 5_000 });
+    const history = await getScoreHistory('snake');
+    expect(history[0].durationMs).toBe(5_000);
+  });
+
+  it('ignores non-positive durations', async () => {
+    await addPlayTime('snake', 0);
+    await addPlayTime('snake', -100);
+    expect((await getStats('snake')).totalPlayTime).toBe(0);
+  });
+
+  it('does not lose an update when writes overlap', async () => {
+    // The shell fires these back to back without awaiting the first.
+    await Promise.all([
+      addPlayTime('pong', 3_000),
+      recordGameComplete('pong', { score: 7, won: true, durationMs: 3_000 }),
+      addPlayTime('pong', 2_000),
+    ]);
+    const stats = await getStats('pong');
+    expect(stats.totalPlayTime).toBe(5_000);
+    expect(stats.wins).toBe(1);
+    expect(stats.gamesCompleted).toBe(1);
+  });
+
+  it('keeps concurrent completions from clobbering each other', async () => {
+    await Promise.all(
+      Array.from({ length: 10 }, () => recordGameComplete('pong', { won: true, score: 1 })),
+    );
+    const stats = await getStats('pong');
+    expect(stats.gamesCompleted).toBe(10);
+    expect(stats.wins).toBe(10);
+    expect(stats.totalScore).toBe(10);
   });
 });

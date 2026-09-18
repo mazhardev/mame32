@@ -65,10 +65,12 @@ export class GameLoop {
   }
 
   private schedule() {
+    if (!this.running || this.paused || this.rafId) return;
     this.rafId = requestAnimationFrame(this.tick);
   }
 
   private tick = (now: number) => {
+    this.rafId = 0;
     if (!this.running || this.paused) return;
     const rawDt = (now - this.lastTime) / 1000;
     this.lastTime = now;

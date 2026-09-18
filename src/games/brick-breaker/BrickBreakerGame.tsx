@@ -1,0 +1,2 @@
+import{CanvasRunner}from'../_shared/arcade/CanvasRunner';import{BrickEngine}from'./engine';const create=()=>new BrickEngine();const controls=[{key:'ArrowLeft',label:'Left'},{key:'ArrowRight',label:'Right'}];
+export default function BrickBreakerGame(){return <CanvasRunner create={create} controls={controls} instructions="Move the paddle with Left/Right, buttons, or your pointer. Clear all forty bricks before losing three balls."/>;}

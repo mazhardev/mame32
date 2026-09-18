@@ -1,17 +1,28 @@
 # Project Status
 
-_Last updated: 2026-09-09_
+_Last updated: 2026-09-18_
 
 ## Summary
 
 | Area | Status |
 | --- | --- |
-| Platform (Phase 1) | ✅ 100% complete |
-| Games playable | 0 of 253 catalogued |
+| Platform (Phase 1) | ✅ complete |
+| Games playable | 18 of 253 catalogued |
 | Current phase | Phase 2 — first 20 games |
 
 Games are only marked complete when they genuinely launch and play. Everything
 else appears in the catalog as **Planned** and cannot be started.
+
+## Work split
+
+Two agents are working on this repository. See `COORDINATION.md` for the full
+agreement and the running handoff log.
+
+- **ChatGPT** owns gameplay: `src/games/<game-id>/**` and `src/games/registry.ts`.
+- **Claude** owns the platform: pages, navigation, search, catalog presentation,
+  themes, accessibility, global CSS, storage and save data, statistics, coins,
+  daily challenges, the shared game SDK, `src/games/_shared/**`, PWA/offline,
+  build tooling, and this document.
 
 ---
 
@@ -41,13 +52,17 @@ else appears in the catalog as **Planned** and cannot be started.
 | Daily challenge (deterministic, local) | ✅ |
 | Export / import save data with validation | ✅ |
 | Game SDK: GameShell, loop, input manager, particles, collision | ✅ |
+| Shared card, word and board utilities | ✅ |
 | Responsive canvas with devicePixelRatio handling | ✅ |
 | PWA (manifest, service worker, generated icons) | ✅ |
 | Error boundary per game | ✅ |
 | Storage-failure handling | ✅ |
 | Reset options with confirmation | ✅ |
-| Test suite (Vitest) | ✅ 27 tests |
 | Production build verified | ✅ |
+
+### Platform tests
+
+46 passing across storage, seeded randomness, the game loop and the game shell.
 
 ---
 
@@ -55,26 +70,26 @@ else appears in the catalog as **Planned** and cannot be started.
 
 ### Phase 2 — first 20 games
 
-- [ ] Snake
-- [ ] Block Drop
-- [ ] Pong
-- [ ] Brick Breaker
-- [ ] Minesweeper
-- [ ] Sudoku
-- [ ] Number Merge 2048
-- [ ] Tic-Tac-Toe
-- [ ] Connect Four
-- [ ] Memory Match
-- [ ] Hangman
-- [ ] Word Search
-- [ ] Klondike Solitaire
-- [ ] Blackjack
+- [x] Snake
+- [x] Tic-Tac-Toe
+- [x] Connect Four
+- [x] Number Merge 2048
+- [x] Minesweeper
+- [x] Sudoku
+- [x] Block Drop
+- [x] Pong
+- [x] Brick Breaker
+- [x] Memory Match
+- [x] Hangman
+- [x] Word Search
+- [x] Klondike Solitaire
+- [x] Blackjack
 - [ ] Basketball Shot
 - [ ] Penalty Shootout
-- [ ] Reaction Timer
-- [ ] Aim Trainer
-- [ ] Water Sort
-- [ ] Simon Memory
+- [x] Reaction Timer
+- [x] Aim Trainer
+- [x] Water Sort
+- [x] Simon Memory
 
 ### Later phases
 
@@ -101,14 +116,22 @@ rendered in the app under each category.
 5. **No React state in game loops.** High-frequency values live in refs and
    engine objects; React renders menus, HUD and overlays only.
 6. **Loops stop, not idle.** `GameLoop` cancels its animation frame when paused
-   or when `visibilityState` is `hidden`, so nothing runs off-screen.
-7. **Storage degrades, never throws.** Every IndexedDB call resolves to `null`
+   or when `visibilityState` is `hidden`, so nothing runs off-screen. A loop
+   rebuilt by a resize inherits the current pause state.
+7. **One funnel for played time.** `addPlayTime` is the only function that
+   accumulates play time, for both the per-game record and the profile total.
+   `recordGameComplete` stores its `durationMs` on the score-history entry only,
+   so a shell that reports both cannot double-count.
+8. **Serialised statistics writes.** Every read-modify-write on a statistics
+   record goes through a per-game promise queue, so concurrent updates from a
+   round ending and a play-time flush cannot discard each other.
+9. **Storage degrades, never throws.** Every IndexedDB call resolves to `null`
    when storage is unavailable, and `localStorage` falls back to memory.
    Private-browsing users can still play.
-8. **Audio is synthesised.** All effects are generated with the Web Audio API,
-   so no audio files ship and there are no licensing questions.
-9. **Icons are generated locally.** `scripts/generate-icons.mjs` writes real
-   PNGs with a hand-rolled encoder, keeping every asset original and offline.
+10. **Audio is synthesised.** All effects are generated with the Web Audio API,
+    so no audio files ship and there are no licensing questions.
+11. **Icons are generated locally.** `scripts/generate-icons.mjs` writes real
+    PNGs with a hand-rolled encoder, keeping every asset original and offline.
 
 ---
 
@@ -123,4 +146,18 @@ catalogued once each, giving **253 distinct games**.
 
 ## Known issues
 
-None outstanding.
+- **Thin tests on the newer games.** Aim Trainer, Memory Match, Hangman, Simon
+  Memory, Water Sort, Pong, Brick Breaker, Block Drop, Word Search, Blackjack and
+  Klondike have 2–4 engine tests each. They need rule tests on par with Snake or
+  Minesweeper.
+- **Canvas arcade games are a lighter tier.** Pong, Brick Breaker and Block Drop
+  run on the shared `_shared/arcade/CanvasRunner`. Brick Breaker and Block Drop
+  ignore the difficulty setting, and none of the three saves progress. They are
+  playable but not yet polished to the Phase 2 standard. Their animation was not
+  confirmed in the browser: the preview pane produced no animation frames. All three
+  load and render, and their engine tests pass.
+- **Code style.** Several of those game folders are written in a compressed,
+  one-line-per-function style. Run `npm run format` and split the long lines
+  before extending them.
+- Phase 2 still needs **Basketball Shot** and **Penalty Shootout**.
+- React Router v7 future-flag warnings in the console (harmless).
