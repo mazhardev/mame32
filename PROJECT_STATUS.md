@@ -1,6 +1,6 @@
 # Project Status
 
-_Last updated: 2026-09-18_
+_Last updated: 2026-09-19_
 
 ## Summary
 
@@ -31,7 +31,9 @@ agreement and the running handoff log.
 | Feature | Status |
 | --- | --- |
 | Vite + React + TypeScript (strict) project | ✅ |
-| Routing (hash router for static hosting) | ✅ |
+| Routing (real paths, prerendered static HTML per route) | ✅ |
+| SEO: per-page meta, canonical, JSON-LD, sitemap, robots.txt, llms.txt, OG image | ✅ |
+| Custom domain gamesplayland.online (GitHub Pages) | ✅ |
 | Design system (CSS variables, dark/light/system) | ✅ |
 | Home page (featured, recent, continue, popular, categories) | ✅ |
 | All Games page (filters + sorting) | ✅ |
@@ -101,11 +103,8 @@ rendered in the app under each category.
 
 ## Architecture decisions
 
-1. **Hash routing.** `HashRouter` means deep links work on GitHub Pages,
-   Cloudflare Pages, Netlify, Vercel and plain file hosting with no rewrite
-   rules or 404 fallbacks.
-2. **`base: './'`.** The build is path-independent, so it can be served from a
-   sub-directory such as `user.github.io/repo/`.
+1. **Real paths, prerendered.** `BrowserRouter` plus `scripts/prerender.ts`. Every public route gets its own static HTML with metadata, JSON-LD and readable content, so search engines and AI crawlers that do not run JavaScript still see each page. `404.html` is the SPA fallback. Legacy `/#/` links redirect on load.
+2. **Served from the domain root.** `base: '/'` at https://gamesplayland.online. `siteUrl` in `src/config/site.ts` is the single source for canonical URLs and the sitemap.
 3. **Registry supersedes planned entries.** `plannedGames.ts` lists the whole
    roadmap; `games/registry.ts` lists what is actually implemented. The catalog
    drops a planned entry as soon as a real game with that id is registered, so

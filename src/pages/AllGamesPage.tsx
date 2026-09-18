@@ -122,8 +122,8 @@ export default function AllGamesPage() {
   return (
     <div className="container stack">
       <PageMeta
-        title="All Games"
-        description="Browse and filter the full catalog of browser games by category, difficulty and controls."
+        title="All Free Online Games"
+        description="Browse every free online game on GamesPlayLand. Filter by category, difficulty and controls, then play instantly in your browser with no download."
       />
 
       <div>

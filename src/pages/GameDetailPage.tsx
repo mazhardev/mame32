@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { PageMeta } from '@/components/PageMeta';
+import { gameDescription, gameTitle } from '@/utils/seo';
 import { GameShell } from '@/components/game/GameShell';
 import { GameCard } from '@/components/GameCard';
 import { getGame, getRelatedGames } from '@/data/gameCatalog';
@@ -44,11 +45,11 @@ export default function GameDetailPage() {
   if (!game) {
     return (
       <div className="container">
-        <PageMeta title="Game not found" />
+        <PageMeta title="Game not found" noindex />
         <div className="empty-state">
           <div className="emoji">🎮</div>
           <p>That game does not exist.</p>
-          <Link className="btn btn-primary" style={{ marginTop: 16 }} to="/games">
+          <Link className="btn btn-primary" style={{ marginTop: 16 }} to="/games/">
             Browse games
           </Link>
         </div>
@@ -61,13 +62,14 @@ export default function GameDetailPage() {
   return (
     <div className="container stack">
       <PageMeta
-        title={game.title}
-        description={`${game.shortDescription} Play ${game.title} free in your browser — no download, no account.`}
+        fullTitle={gameTitle(game)}
+        description={gameDescription(game)}
+        noindex={game.status !== 'available'}
       />
 
       <nav className="small muted" aria-label="Breadcrumb">
-        <Link to="/games">Games</Link> ·{' '}
-        <Link to={`/categories/${game.category}`}>{categoryName(game.category)}</Link> ·{' '}
+        <Link to="/games/">Games</Link> ·{' '}
+        <Link to={`/categories/${game.category}/`}>{categoryName(game.category)}</Link> ·{' '}
         <span>{game.title}</span>
       </nav>
 
@@ -83,7 +85,7 @@ export default function GameDetailPage() {
                 This game is in the catalog roadmap but is not playable yet. It is listed so you can
                 see everything that is coming.
               </p>
-              <Link className="btn btn-primary" style={{ marginTop: 16 }} to="/games">
+              <Link className="btn btn-primary" style={{ marginTop: 16 }} to="/games/">
                 Play something else
               </Link>
             </div>

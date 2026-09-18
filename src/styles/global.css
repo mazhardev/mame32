@@ -1026,6 +1026,10 @@ ol {
 .game-toolbar .title {
   font-weight: 620;
   font-size: 0.95rem;
+  line-height: inherit;
+  letter-spacing: normal;
+  margin: 0;
+  min-width: 0;
   margin-right: auto;
   padding-left: 4px;
   overflow: hidden;

@@ -22,7 +22,7 @@ export default function FavoritesPage() {
 
   return (
     <div className="container stack">
-      <PageMeta title="Favorites" description="Your favorite browser games, saved locally." />
+      <PageMeta title="Favorites" description="Your favorite browser games, saved locally." noindex />
       <div>
         <h1 style={{ fontSize: '1.6rem' }}>Favorites</h1>
         <p className="muted small" style={{ marginTop: 4 }}>
@@ -43,7 +43,7 @@ export default function FavoritesPage() {
           <p className="small" style={{ marginTop: 6 }}>
             Tap the heart on any game card to add it here.
           </p>
-          <Link className="btn btn-primary" style={{ marginTop: 16 }} to="/games">
+          <Link className="btn btn-primary" style={{ marginTop: 16 }} to="/games/">
             Browse games
           </Link>
         </div>

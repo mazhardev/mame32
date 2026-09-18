@@ -45,10 +45,10 @@ export default function AboutPage() {
         </div>
 
         <div className="row wrap">
-          <Link className="btn btn-primary" to="/games">
+          <Link className="btn btn-primary" to="/games/">
             Browse games
           </Link>
-          <Link className="btn" to="/privacy">
+          <Link className="btn" to="/privacy/">
             Privacy
           </Link>
         </div>

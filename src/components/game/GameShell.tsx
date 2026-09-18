@@ -309,13 +309,14 @@ function GameSession({ game }: Props) {
       <div className="game-toolbar">
         <button
           className="icon-btn"
-          onClick={() => navigate('/games')}
+          onClick={() => navigate('/games/')}
           aria-label="Back to games"
           title="Back to games"
         >
           ←
         </button>
-        <span className="title">{game.title}</span>
+        {/* The game title is the page heading on /games/:id. */}
+        <h1 className="title">{game.title}</h1>
 
         {caps.restartable && (
           <button
@@ -384,7 +385,7 @@ function GameSession({ game }: Props) {
             resetKey={instanceKey}
             onRetry={() => setInstanceKey((k) => k + 1)}
             fallbackActions={
-              <Link className="btn" to="/games">
+              <Link className="btn" to="/games/">
                 Return to Games
               </Link>
             }
@@ -468,7 +469,7 @@ function GameSession({ game }: Props) {
               <button className="btn btn-primary btn-block" onClick={requestRestart}>
                 Play Again
               </button>
-              <Link className="btn btn-block" to="/games">
+              <Link className="btn btn-block" to="/games/">
                 Return to Games
               </Link>
             </div>

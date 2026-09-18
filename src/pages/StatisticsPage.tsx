@@ -71,6 +71,7 @@ export default function StatisticsPage() {
       <PageMeta
         title="Statistics"
         description="Your local play statistics: games played, play time, best scores and achievements."
+        noindex
       />
       <div>
         <h1 style={{ fontSize: '1.6rem' }}>Statistics</h1>
@@ -164,7 +165,7 @@ export default function StatisticsPage() {
                     <tr key={s.gameId}>
                       <td>
                         {game ? (
-                          <Link to={`/games/${game.id}`} style={{ color: 'var(--brand)' }}>
+                          <Link to={`/games/${game.id}/`} style={{ color: 'var(--brand)' }}>
                             {game.title}
                           </Link>
                         ) : (
@@ -203,7 +204,7 @@ export default function StatisticsPage() {
         <div className="empty-state">
           <div className="emoji">📊</div>
           <p>No statistics yet — play a game to start tracking.</p>
-          <Link className="btn btn-primary" style={{ marginTop: 16 }} to="/games">
+          <Link className="btn btn-primary" style={{ marginTop: 16 }} to="/games/">
             Browse games
           </Link>
         </div>

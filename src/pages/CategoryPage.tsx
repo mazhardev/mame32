@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { PageMeta } from '@/components/PageMeta';
+import { categoryDescription, categoryTitle } from '@/utils/seo';
 import { GameCard } from '@/components/GameCard';
 import { getCategoryBySlug } from '@/data/categories';
 import { getGamesByCategory } from '@/data/gameCatalog';
@@ -13,11 +14,11 @@ export default function CategoryPage() {
   if (!category) {
     return (
       <div className="container">
-        <PageMeta title="Category not found" />
+        <PageMeta title="Category not found" noindex />
         <div className="empty-state">
           <div className="emoji">🤔</div>
           <p>That category does not exist.</p>
-          <Link className="btn" style={{ marginTop: 12 }} to="/categories">
+          <Link className="btn" style={{ marginTop: 12 }} to="/categories/">
             All categories
           </Link>
         </div>
@@ -30,9 +31,13 @@ export default function CategoryPage() {
 
   return (
     <div className="container stack">
-      <PageMeta title={`${category.name} Games`} description={category.description} />
+      <PageMeta
+        fullTitle={categoryTitle(category.name)}
+        description={categoryDescription(category.name, category.description, playable.length)}
+        noindex={playable.length === 0}
+      />
       <div>
-        <Link className="small muted" to="/categories">
+        <Link className="small muted" to="/categories/">
           ← All categories
         </Link>
         <h1 style={{ fontSize: '1.6rem', marginTop: 8 }}>

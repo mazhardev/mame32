@@ -32,7 +32,7 @@ export function SearchBox({ placeholder = 'Search games…', autoFocus, onNaviga
     setOpen(false);
     setQuery('');
     onNavigate?.();
-    navigate(`/games/${id}`);
+    navigate(`/games/${id}/`);
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -40,7 +40,7 @@ export function SearchBox({ placeholder = 'Search games…', autoFocus, onNaviga
       if (e.key === 'Enter' && query.trim()) {
         setOpen(false);
         onNavigate?.();
-        navigate(`/games?q=${encodeURIComponent(query.trim())}`);
+        navigate(`/games/?q=${encodeURIComponent(query.trim())}`);
       }
       return;
     }

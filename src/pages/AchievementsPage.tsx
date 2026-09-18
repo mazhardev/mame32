@@ -51,6 +51,7 @@ export default function AchievementsPage() {
       <PageMeta
         title="Achievements"
         description="Track unlocked and locked achievements across every game, stored locally."
+        noindex
       />
       <div>
         <h1 style={{ fontSize: '1.6rem' }}>Achievements</h1>

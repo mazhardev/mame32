@@ -10,8 +10,8 @@ export default function CategoriesPage() {
   return (
     <div className="container stack">
       <PageMeta
-        title="Categories"
-        description="Browse browser games by category: arcade, puzzle, word, board, card, sports, racing, action, strategy, educational, casual, creative and brain games."
+        title="Game Categories"
+        description="Browse free online games by category: arcade, puzzle, word, board, card, sports, racing, action, strategy, educational, casual, creative and brain games."
       />
       <div>
         <h1 style={{ fontSize: '1.6rem' }}>Categories</h1>
@@ -22,7 +22,7 @@ export default function CategoriesPage() {
 
       <div className="category-grid">
         {CATEGORIES.map((cat) => (
-          <Link key={cat.id} to={`/categories/${cat.slug}`} className="category-card">
+          <Link key={cat.id} to={`/categories/${cat.slug}/`} className="category-card">
             <span className="category-icon" aria-hidden="true">
               {cat.icon}
             </span>

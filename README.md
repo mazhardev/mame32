@@ -1,4 +1,6 @@
-# Browser Arcade
+# GamesPlayLand
+
+Live at **https://gamesplayland.online**. (Earlier builds used the working name "Browser Arcade".)
 
 A production-quality browser gaming portal. Every game runs entirely in the browser — no backend, no database, no accounts, no external APIs. The whole app deploys as a static site.
 
@@ -29,7 +31,7 @@ A production-quality browser gaming portal. Every game runs entirely in the brow
 | --- | --- |
 | UI | React 18 + TypeScript (strict) |
 | Build | Vite 5 |
-| Routing | React Router 6 (hash router, so any static host works) |
+| Routing | React Router 6 with real paths, prerendered to static HTML per route |
 | Rendering | DOM, Canvas 2D and SVG — no game engine dependency |
 | Audio | Web Audio API, all effects synthesised at runtime |
 | Storage | `localStorage` + IndexedDB |
@@ -110,16 +112,15 @@ npm run build
 
 ## Static deployment
 
-The build output in `dist/` is a plain static site. `base` is set to `./` and the app uses a hash router, so it works from any path with no server rewrites.
+The build output in `dist/` is a plain static site served from the domain root (`base: '/'`).
+
+`npm run build` runs `scripts/prerender.ts` after Vite. It writes a real HTML file for every public route (`/games/snake/index.html`, `/categories/puzzle/index.html`, …). Each file has its own title, description, canonical URL, Open Graph tags, JSON-LD and readable content for crawlers. The script also writes `sitemap.xml`, `robots.txt`, `llms.txt` and a `404.html` SPA fallback. Any host that serves `404.html` for unknown paths needs no rewrite rules. Old `/#/…` links are redirected to real paths on load.
+
+The canonical origin lives in `src/config/site.ts` (`siteUrl`). Change it there if the domain changes, and update `public/CNAME`.
 
 ### GitHub Pages
 
-```bash
-npm run build
-npx gh-pages -d dist
-```
-
-Or commit `dist/` to a `gh-pages` branch and enable Pages for that branch.
+`.github/workflows/deploy.yml` lints, tests, builds and deploys on every push. `public/CNAME` sets the custom domain. In the repository settings, Pages must use **GitHub Actions** as its source.
 
 ### Cloudflare Pages
 
@@ -137,7 +138,7 @@ Or commit `dist/` to a `gh-pages` branch and enable Pages for that branch.
 - Build command: `npm run build`
 - Output directory: `dist`
 
-Any other static host works the same way: upload the contents of `dist/`.
+Any other static host works the same way: upload the contents of `dist/`. On Netlify, Cloudflare Pages and Vercel, set the 404 page to `404.html` if it is not picked up automatically.
 
 ---
 

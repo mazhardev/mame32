@@ -4,7 +4,7 @@ import { PageMeta } from '@/components/PageMeta';
 export default function NotFoundPage() {
   return (
     <div className="container">
-      <PageMeta title="Page not found" />
+      <PageMeta title="Page not found" noindex />
       <div className="empty-state">
         <div className="emoji">🕹️</div>
         <h1 style={{ fontSize: '1.4rem' }}>Page not found</h1>
@@ -15,7 +15,7 @@ export default function NotFoundPage() {
           <Link className="btn btn-primary" to="/">
             Go home
           </Link>
-          <Link className="btn" to="/games">
+          <Link className="btn" to="/games/">
             Browse games
           </Link>
         </div>

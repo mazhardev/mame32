@@ -6,7 +6,7 @@ export default function PrivacyPage() {
     <div className="container stack" style={{ maxWidth: 780 }}>
       <PageMeta
         title="Privacy"
-        description="How Browser Arcade stores your data: entirely in your own browser, with no account and no server."
+        description="How GamesPlayLand stores your data: entirely in your own browser, with no account and no server."
       />
       <h1 style={{ fontSize: '1.6rem' }}>Privacy</h1>
 

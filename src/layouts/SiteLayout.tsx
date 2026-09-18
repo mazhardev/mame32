@@ -8,10 +8,10 @@ import { TOTAL_PLAYABLE } from '@/data/gameCatalog';
 
 const NAV = [
   { to: '/', label: 'Home', end: true },
-  { to: '/games', label: 'Games' },
-  { to: '/categories', label: 'Categories' },
-  { to: '/achievements', label: 'Achievements' },
-  { to: '/statistics', label: 'Statistics' },
+  { to: '/games/', label: 'Games' },
+  { to: '/categories/', label: 'Categories' },
+  { to: '/achievements/', label: 'Achievements' },
+  { to: '/statistics/', label: 'Statistics' },
 ];
 
 function useCoins() {
@@ -71,7 +71,7 @@ export default function SiteLayout() {
               <span aria-hidden="true">🪙</span>
               {formatNumber(coins)}
             </span>
-            <Link to="/settings" className="icon-btn" aria-label="Settings">
+            <Link to="/settings/" className="icon-btn" aria-label="Settings">
               ⚙️
             </Link>
             <button
@@ -100,10 +100,10 @@ export default function SiteLayout() {
               {item.label}
             </NavLink>
           ))}
-          <NavLink to="/favorites" className="nav-link">
+          <NavLink to="/favorites/" className="nav-link">
             Favorites
           </NavLink>
-          <NavLink to="/settings" className="nav-link">
+          <NavLink to="/settings/" className="nav-link">
             Settings
           </NavLink>
         </div>
@@ -122,12 +122,12 @@ export default function SiteLayout() {
             </div>
           </div>
           <nav className="footer-links" aria-label="Footer">
-            <Link to="/games">All Games</Link>
-            <Link to="/favorites">Favorites</Link>
-            <Link to="/statistics">Statistics</Link>
-            <Link to="/settings">Settings</Link>
-            <Link to="/privacy">Privacy</Link>
-            <Link to="/about">About</Link>
+            <Link to="/games/">All Games</Link>
+            <Link to="/favorites/">Favorites</Link>
+            <Link to="/statistics/">Statistics</Link>
+            <Link to="/settings/">Settings</Link>
+            <Link to="/privacy/">Privacy</Link>
+            <Link to="/about/">About</Link>
           </nav>
         </div>
       </footer>

@@ -86,18 +86,18 @@ export default function HomePage() {
       <PageMeta />
 
       <section className="hero">
-        <h1>{site.tagline}</h1>
+        <h1>{site.heroTitle}</h1>
         <p>{site.description}</p>
         <div className="hero-actions">
-          <Link className="btn btn-primary btn-lg" to="/games">
+          <Link className="btn btn-primary btn-lg" to="/games/">
             Browse {TOTAL_PLAYABLE} games
           </Link>
           {recent[0] ? (
-            <Link className="btn btn-lg" to={`/games/${recent[0].id}`}>
+            <Link className="btn btn-lg" to={`/games/${recent[0].id}/`}>
               Continue {recent[0].title}
             </Link>
           ) : (
-            <Link className="btn btn-lg" to="/categories">
+            <Link className="btn btn-lg" to="/categories/">
               Explore categories
             </Link>
           )}
@@ -133,7 +133,7 @@ export default function HomePage() {
               </div>
             )}
           </div>
-          <Link className="btn btn-primary" to={`/games/${challenge.gameId}`}>
+          <Link className="btn btn-primary" to={`/games/${challenge.gameId}/`}>
             Play {challenge.game.title}
           </Link>
         </section>
@@ -216,7 +216,7 @@ export default function HomePage() {
       <Section title="Categories" moreHref="/categories">
         <div className="category-grid">
           {CATEGORIES.map((cat) => (
-            <Link key={cat.id} to={`/categories/${cat.slug}`} className="category-card">
+            <Link key={cat.id} to={`/categories/${cat.slug}/`} className="category-card">
               <span className="category-icon" aria-hidden="true">
                 {cat.icon}
               </span>

@@ -1,8 +1,15 @@
 export const site = {
-  siteName: 'Browser Arcade',
+  siteName: 'GamesPlayLand',
+  /** Production origin, no trailing slash. Used for canonical URLs and the sitemap. */
+  siteUrl: 'https://gamesplayland.online',
   tagline: 'Play instantly. No downloads.',
+  /** Home page H1 — keeps the tagline but leads with what people search for. */
+  heroTitle: 'Free online games. Play instantly, no downloads.',
   description:
-    'Classic, puzzle, arcade, strategy and casual games that run directly in your browser.',
+    'Play free online games in your browser: puzzle, arcade, card, board, word and sports games. No downloads, no sign-up, and they work on mobile and offline.',
+  /** Social share image, relative to the site root. */
+  ogImage: '/og-image.png',
+  // Storage keys keep the original prefix so existing players keep their data.
   storagePrefix: 'browserArcade',
   dbName: 'BrowserArcadeDB',
   dbVersion: 1,

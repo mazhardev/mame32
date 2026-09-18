@@ -40,7 +40,7 @@ function GameCardBase({ game, showBest = true, subtitle }: Props) {
 
   return (
     <article className="game-card">
-      <Link to={`/games/${game.id}`} aria-label={`${game.title} — ${categoryName(game.category)}`}>
+      <Link to={`/games/${game.id}/`} aria-label={`${game.title} — ${categoryName(game.category)}`}>
         <div
           className="game-card-art"
           style={{ '--game-accent': game.accent ?? category.accent } as React.CSSProperties}

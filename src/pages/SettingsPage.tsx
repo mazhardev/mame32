@@ -114,7 +114,7 @@ export default function SettingsPage() {
 
   return (
     <div className="container stack" style={{ maxWidth: 780 }}>
-      <PageMeta title="Settings" description="Sound, theme, accessibility and local data controls." />
+      <PageMeta title="Settings" description="Sound, theme, accessibility and local data controls." noindex />
       <div>
         <h1 style={{ fontSize: '1.6rem' }}>Settings</h1>
         <p className="muted small" style={{ marginTop: 4 }}>
