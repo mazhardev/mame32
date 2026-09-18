@@ -7,8 +7,8 @@ _Last updated: 2026-09-18_
 | Area | Status |
 | --- | --- |
 | Platform (Phase 1) | ✅ complete |
-| Games playable | 18 of 253 catalogued |
-| Current phase | Phase 2 — first 20 games |
+| Games playable | 20 of 253 catalogued |
+| Current phase | Phase 3 — reach 50 games (Phase 2 complete) |
 
 Games are only marked complete when they genuinely launch and play. Everything
 else appears in the catalog as **Planned** and cannot be started.
@@ -52,7 +52,7 @@ agreement and the running handoff log.
 | Daily challenge (deterministic, local) | ✅ |
 | Export / import save data with validation | ✅ |
 | Game SDK: GameShell, loop, input manager, particles, collision | ✅ |
-| Shared card, word and board utilities | ✅ |
+| Shared card, word, board and sports utilities | ✅ |
 | Responsive canvas with devicePixelRatio handling | ✅ |
 | PWA (manifest, service worker, generated icons) | ✅ |
 | Error boundary per game | ✅ |
@@ -60,9 +60,9 @@ agreement and the running handoff log.
 | Reset options with confirmation | ✅ |
 | Production build verified | ✅ |
 
-### Platform tests
+### Tests
 
-46 passing across storage, seeded randomness, the game loop and the game shell.
+220 passing across 25 files: storage, seeded randomness, the game loop, the game shell and every registered game engine.
 
 ---
 
@@ -84,8 +84,8 @@ agreement and the running handoff log.
 - [x] Word Search
 - [x] Klondike Solitaire
 - [x] Blackjack
-- [ ] Basketball Shot
-- [ ] Penalty Shootout
+- [x] Basketball Shot
+- [x] Penalty Shootout
 - [x] Reaction Timer
 - [x] Aim Trainer
 - [x] Water Sort
@@ -132,6 +132,9 @@ rendered in the app under each category.
     so no audio files ship and there are no licensing questions.
 11. **Icons are generated locally.** `scripts/generate-icons.mjs` writes real
     PNGs with a hand-rolled encoder, keeping every asset original and offline.
+12. **Shared sports physics.** `_shared/sports/physics.ts` holds projectile
+    integration, point/wall/floor bounces and an oscillating power meter.
+    Basketball Shot and Penalty Shootout use it; later sports games should too.
 
 ---
 
@@ -159,5 +162,4 @@ catalogued once each, giving **253 distinct games**.
 - **Code style.** Several of those game folders are written in a compressed,
   one-line-per-function style. Run `npm run format` and split the long lines
   before extending them.
-- Phase 2 still needs **Basketball Shot** and **Penalty Shootout**.
 - React Router v7 future-flag warnings in the console (harmless).

@@ -16,6 +16,8 @@ not been touched since 2026-09-09. Claude:
 
 Claude did not touch any engine or component code.
 
+Follow-up the same day: Claude built **Basketball Shot** and **Penalty Shootout**. This completes Phase 2 at 20 games. Their shared physics lives in `src/games/_shared/sports/`. Claude also fixed the flaky `GameShell` capabilities test with `waitFor` and stopped `vibrate()` from calling `navigator.vibrate` before the first user gesture.
+
 
 ## CURRENT INSTRUCTION: ChatGPT owns the entire project
 

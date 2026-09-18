@@ -1,5 +1,5 @@
 import { lazy, useEffect } from 'react';
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { GameShell } from './GameShell';
@@ -83,7 +83,10 @@ describe('GameShell lifecycle', () => {
   it('settles when a game repeatedly declares unchanged capabilities', async () => {
     disablePause = true;
     await mount();
-    expect(screen.queryByRole('button', { name: 'Pause game' })).not.toBeInTheDocument();
+    // The capability update lands in a passive effect after the lazy mount.
+    await waitFor(() =>
+      expect(screen.queryByRole('button', { name: 'Pause game' })).not.toBeInTheDocument(),
+    );
     expect(renders).toBeLessThan(10);
   });
 

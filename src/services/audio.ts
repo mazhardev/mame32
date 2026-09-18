@@ -180,6 +180,8 @@ export function playSound(name: SoundName) {
 export function vibrate(pattern: number | number[]) {
   const prefs = getPreferences();
   if (!prefs.vibration) return;
+  // Chrome rejects (and logs) vibration before the user has interacted.
+  if (navigator.userActivation && !navigator.userActivation.hasBeenActive) return;
   try {
     navigator.vibrate?.(pattern);
   } catch {

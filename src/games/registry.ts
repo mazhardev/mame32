@@ -17,6 +17,8 @@ import { blockDropGame } from './block-drop/definition';
 import { wordSearchGame } from './word-search/definition';
 import { blackjackGame } from './blackjack/definition';
 import { klondikeGame } from './klondike-solitaire/definition';
+import { basketballShotGame } from './basketball-shot/definition';
+import { penaltyShootoutGame } from './penalty-shootout/definition';
 
 /**
  * Every implemented game registers its definition here.
@@ -42,4 +44,6 @@ export const GAME_REGISTRY: GameDefinition[] = [
   wordSearchGame,
   blackjackGame,
   klondikeGame,
+  basketballShotGame,
+  penaltyShootoutGame,
 ];
