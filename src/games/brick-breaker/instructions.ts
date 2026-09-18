@@ -14,7 +14,5 @@ export const instructions: GameInstructions = {
     'Hit the ball near the paddle edge to aim it at the sides.',
     'Open a gap and let the ball bounce behind the wall.',
   ],
-  touchNotes: [
-    'Drag across the court or hold the Left/Right buttons',
-  ],
+  touchNotes: ['Drag across the court or hold the Left/Right buttons'],
 };

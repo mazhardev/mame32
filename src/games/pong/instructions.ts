@@ -14,7 +14,5 @@ export const instructions: GameInstructions = {
     'Hit with the edge of the paddle for steep angles.',
     'Drift back to the centre after each return.',
   ],
-  touchNotes: [
-    'Drag across the court or hold the Up/Down buttons',
-  ],
+  touchNotes: ['Drag across the court or hold the Up/Down buttons'],
 };

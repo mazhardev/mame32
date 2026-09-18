@@ -36,7 +36,8 @@ describe('board mechanics', () => {
 
   it('detects a full board', () => {
     const grid = emptyGrid();
-    for (let c = 0; c < COLS; c++) for (let r = 0; r < ROWS; r++) drop(grid, c, ((c + r) % 2 ? 1 : 2) as Disc);
+    for (let c = 0; c < COLS; c++)
+      for (let r = 0; r < ROWS; r++) drop(grid, c, ((c + r) % 2 ? 1 : 2) as Disc);
     expect(isFull(grid)).toBe(true);
     expect(isGameOver(grid)).toBe(true);
   });
@@ -44,13 +45,23 @@ describe('board mechanics', () => {
 
 describe('win detection', () => {
   it('finds a horizontal four', () => {
-    const grid = place(emptyGrid(), [[0, 1], [1, 1], [2, 1], [3, 1]]);
+    const grid = place(emptyGrid(), [
+      [0, 1],
+      [1, 1],
+      [2, 1],
+      [3, 1],
+    ]);
     expect(winner(grid)).toBe(1);
     expect(winningCells(grid)).toHaveLength(4);
   });
 
   it('finds a vertical four', () => {
-    const grid = place(emptyGrid(), [[2, 2], [2, 2], [2, 2], [2, 2]]);
+    const grid = place(emptyGrid(), [
+      [2, 2],
+      [2, 2],
+      [2, 2],
+      [2, 2],
+    ]);
     expect(winner(grid)).toBe(2);
   });
 
@@ -58,9 +69,15 @@ describe('win detection', () => {
     const grid = emptyGrid();
     place(grid, [
       [0, 1],
-      [1, 2], [1, 1],
-      [2, 2], [2, 2], [2, 1],
-      [3, 2], [3, 2], [3, 2], [3, 1],
+      [1, 2],
+      [1, 1],
+      [2, 2],
+      [2, 2],
+      [2, 1],
+      [3, 2],
+      [3, 2],
+      [3, 2],
+      [3, 1],
     ]);
     expect(winner(grid)).toBe(1);
   });
@@ -69,33 +86,58 @@ describe('win detection', () => {
     const grid = emptyGrid();
     place(grid, [
       [3, 1],
-      [2, 2], [2, 1],
-      [1, 2], [1, 2], [1, 1],
-      [0, 2], [0, 2], [0, 2], [0, 1],
+      [2, 2],
+      [2, 1],
+      [1, 2],
+      [1, 2],
+      [1, 1],
+      [0, 2],
+      [0, 2],
+      [0, 2],
+      [0, 1],
     ]);
     expect(winner(grid)).toBe(1);
   });
 
   it('does not report a win for three in a row', () => {
-    const grid = place(emptyGrid(), [[0, 1], [1, 1], [2, 1]]);
+    const grid = place(emptyGrid(), [
+      [0, 1],
+      [1, 1],
+      [2, 1],
+    ]);
     expect(winner(grid)).toBeNull();
     expect(isGameOver(grid)).toBe(false);
   });
 
   it('does not join two players discs into a line', () => {
-    const grid = place(emptyGrid(), [[0, 1], [1, 1], [2, 2], [3, 1]]);
+    const grid = place(emptyGrid(), [
+      [0, 1],
+      [1, 1],
+      [2, 2],
+      [3, 1],
+    ]);
     expect(winner(grid)).toBeNull();
   });
 });
 
 describe('AI', () => {
   it('takes an immediate winning column', () => {
-    const grid = place(emptyGrid(), [[0, 2], [1, 2], [2, 2], [0, 1], [1, 1]]);
+    const grid = place(emptyGrid(), [
+      [0, 2],
+      [1, 2],
+      [2, 2],
+      [0, 1],
+      [1, 1],
+    ]);
     expect(chooseColumn(grid, 2, 'hard')).toBe(3);
   });
 
   it('blocks the opponents immediate win', () => {
-    const grid = place(emptyGrid(), [[0, 1], [1, 1], [2, 1]]);
+    const grid = place(emptyGrid(), [
+      [0, 1],
+      [1, 1],
+      [2, 1],
+    ]);
     expect(chooseColumn(grid, 2, 'hard')).toBe(3);
   });
 
@@ -114,7 +156,11 @@ describe('AI', () => {
   });
 
   it('leaves the grid unchanged after searching', () => {
-    const grid = place(emptyGrid(), [[3, 1], [3, 2], [4, 1]]);
+    const grid = place(emptyGrid(), [
+      [3, 1],
+      [3, 2],
+      [4, 1],
+    ]);
     const before = grid.slice();
     chooseColumn(grid, 2, 'hard');
     expect(grid).toEqual(before);

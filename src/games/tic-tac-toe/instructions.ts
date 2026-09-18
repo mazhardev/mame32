@@ -1,7 +1,8 @@
 import type { GameInstructions } from '@/types';
 
 export const instructions: GameInstructions = {
-  objective: 'Get three of your marks in a row — across, down or diagonally — before your opponent does.',
+  objective:
+    'Get three of your marks in a row — across, down or diagonally — before your opponent does.',
   howToPlay: [
     'X always moves first.',
     'Click or tap any empty square to place your mark.',
@@ -16,5 +17,7 @@ export const instructions: GameInstructions = {
     'Against a perfect opponent, always block a line where they already have two marks.',
     'Corners create two threats at once more often than edges do.',
   ],
-  touchNotes: ['Tap a square to place your mark. Squares are large enough for comfortable tapping.'],
+  touchNotes: [
+    'Tap a square to place your mark. Squares are large enough for comfortable tapping.',
+  ],
 };

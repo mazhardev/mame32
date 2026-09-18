@@ -219,7 +219,12 @@ export default function NumberMergeGame() {
     return () => input.dispose();
   }, [doMove, undo]);
 
-  if (loading) return <div className="loader"><div className="spinner" /></div>;
+  if (loading)
+    return (
+      <div className="loader">
+        <div className="spinner" />
+      </div>
+    );
 
   return (
     <div className="game-canvas-wrap" style={{ flexDirection: 'column', gap: 12, padding: 10 }}>

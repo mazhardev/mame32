@@ -1,7 +1,8 @@
 import type { GameInstructions } from '@/types';
 
 export const instructions: GameInstructions = {
-  objective: 'Fill the nine-by-nine grid so every row, every column and every three-by-three box contains the digits 1 to 9 exactly once.',
+  objective:
+    'Fill the nine-by-nine grid so every row, every column and every three-by-three box contains the digits 1 to 9 exactly once.',
   howToPlay: [
     'Select a cell, then choose a digit from the number pad or type it.',
     'Given clues are shown in bold and cannot be changed.',

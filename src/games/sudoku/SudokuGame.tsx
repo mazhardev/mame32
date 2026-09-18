@@ -54,23 +54,20 @@ export default function SudokuGame() {
     shell.setCapabilities({ pausable: false });
   }, [shell]);
 
-  const buildPuzzle = useCallback(
-    (difficulty: 'easy' | 'normal' | 'hard'): SavedState => {
-      const { puzzle, solution, givens } = generatePuzzle(CLUES[difficulty]);
-      return {
-        puzzle,
-        solution,
-        givens,
-        board: puzzle.slice(),
-        notes: emptyNotes(),
-        elapsed: 0,
-        hints: 0,
-        mistakes: 0,
-        difficulty,
-      };
-    },
-    [],
-  );
+  const buildPuzzle = useCallback((difficulty: 'easy' | 'normal' | 'hard'): SavedState => {
+    const { puzzle, solution, givens } = generatePuzzle(CLUES[difficulty]);
+    return {
+      puzzle,
+      solution,
+      givens,
+      board: puzzle.slice(),
+      notes: emptyNotes(),
+      elapsed: 0,
+      hints: 0,
+      mistakes: 0,
+      difficulty,
+    };
+  }, []);
 
   const startTimer = useCallback(() => {
     if (timerRef.current) return;
@@ -127,17 +124,14 @@ export default function SudokuGame() {
     shell.registerRestart(restart);
   }, [shell, restart]);
 
-  const persist = useCallback(
-    (next: SavedState) => {
-      const percent = percentComplete(next.board, next.givens);
-      void saveProgress(
-        GAME_ID,
-        { ...next, elapsed: elapsedBaseRef.current },
-        { percent, label: `${Math.round(percent)}% complete · ${next.difficulty}` },
-      );
-    },
-    [],
-  );
+  const persist = useCallback((next: SavedState) => {
+    const percent = percentComplete(next.board, next.givens);
+    void saveProgress(
+      GAME_ID,
+      { ...next, elapsed: elapsedBaseRef.current },
+      { percent, label: `${Math.round(percent)}% complete · ${next.difficulty}` },
+    );
+  }, []);
 
   const conflicts = useMemo(
     () => (state ? findConflicts(state.board) : new Set<number>()),
@@ -152,10 +146,7 @@ export default function SudokuGame() {
       const total = elapsedBaseRef.current;
       const base = BASE_SCORE[next.difficulty as 'easy' | 'normal' | 'hard'] ?? 1000;
       const timeBonus = Math.max(0, Math.round(base * 0.4 - total / 1000));
-      const score = Math.max(
-        100,
-        base + timeBonus - next.hints * 120 - next.mistakes * 40,
-      );
+      const score = Math.max(100, base + timeBonus - next.hints * 120 - next.mistakes * 40);
 
       void reportProgress('sudoku.first-solve', 1);
       void reportProgress('sudoku.solve-10', 1);
@@ -369,7 +360,9 @@ export default function SudokuGame() {
           const sameValue = value !== 0 && value === selectedValue;
           const related =
             selected !== null &&
-            (rowOf(i) === rowOf(selected) || colOf(i) === colOf(selected) || boxOf(i) === boxOf(selected));
+            (rowOf(i) === rowOf(selected) ||
+              colOf(i) === colOf(selected) ||
+              boxOf(i) === boxOf(selected));
           const conflict = conflicts.has(i);
           const notes = state.notes[i];
 
@@ -400,11 +393,7 @@ export default function SudokuGame() {
                       : related
                         ? 'var(--surface-2)'
                         : 'var(--surface)',
-                color: conflict
-                  ? 'var(--danger)'
-                  : isGiven
-                    ? 'var(--text)'
-                    : 'var(--brand)',
+                color: conflict ? 'var(--danger)' : isGiven ? 'var(--text)' : 'var(--brand)',
                 fontWeight: isGiven ? 700 : 550,
                 fontSize: 'clamp(0.85rem, 4.2vw, 1.4rem)',
                 fontVariantNumeric: 'tabular-nums',

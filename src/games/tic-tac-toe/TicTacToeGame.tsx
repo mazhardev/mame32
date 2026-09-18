@@ -2,14 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
 import { reportProgress } from '@/achievements/AchievementService';
-import {
-  chooseMove,
-  emptyBoard,
-  isDraw,
-  other,
-  winner,
-  winningLine,
-} from './engine';
+import { chooseMove, emptyBoard, isDraw, other, winner, winningLine } from './engine';
 import type { Board, Mark } from './engine';
 
 type Mode = 'ai' | 'two-player';
@@ -87,9 +80,18 @@ export default function TicTacToeGame() {
         won: mode === 'ai' ? winnerMark === human : !!winnerMark,
         lost: mode === 'ai' && !!winnerMark && winnerMark !== human,
         draw: drew,
-        title: drew ? 'Draw' : mode === 'two-player' ? `${winnerMark} wins!` : playerWon ? 'You win!' : 'Computer wins',
+        title: drew
+          ? 'Draw'
+          : mode === 'two-player'
+            ? `${winnerMark} wins!`
+            : playerWon
+              ? 'You win!'
+              : 'Computer wins',
         details: [
-          { label: 'Mode', value: mode === 'ai' ? `vs Computer (${shell.difficulty})` : 'Two players' },
+          {
+            label: 'Mode',
+            value: mode === 'ai' ? `vs Computer (${shell.difficulty})` : 'Two players',
+          },
         ],
         mode,
       });

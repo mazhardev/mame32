@@ -83,7 +83,12 @@ export function bestMove(board: Board, mark: Mark): number | null {
 
 export type Level = 'easy' | 'normal' | 'hard';
 
-export function chooseMove(board: Board, mark: Mark, level: Level, random = Math.random): number | null {
+export function chooseMove(
+  board: Board,
+  mark: Mark,
+  level: Level,
+  random = Math.random,
+): number | null {
   const moves = availableMoves(board);
   if (!moves.length) return null;
   const blunderChance = level === 'easy' ? 0.75 : level === 'normal' ? 0.2 : 0;

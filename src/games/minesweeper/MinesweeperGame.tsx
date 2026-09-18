@@ -88,7 +88,8 @@ export default function MinesweeperGame() {
         void reportProgress('mines.first-clear', 1);
         if (shell.difficulty === 'normal') void reportProgress('mines.clear-normal', 1);
         if (shell.difficulty === 'hard') void reportProgress('mines.clear-hard', 1);
-        if (shell.difficulty === 'easy' && timeMs < 60_000) void reportProgress('mines.fast-easy', 1);
+        if (shell.difficulty === 'easy' && timeMs < 60_000)
+          void reportProgress('mines.fast-easy', 1);
         if (flagsPlaced === 0) void reportProgress('mines.no-flags', 1);
       }
       void reportProgress('mines.chord', chords);

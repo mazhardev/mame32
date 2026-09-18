@@ -18,7 +18,14 @@ export interface SnakeConfig {
 
 export const DIFFICULTY_CONFIG: Record<DifficultySetting, SnakeConfig> = {
   easy: { cols: 20, rows: 20, stepInterval: 0.16, minInterval: 0.09, speedUpEvery: 5, wrap: true },
-  normal: { cols: 22, rows: 22, stepInterval: 0.13, minInterval: 0.06, speedUpEvery: 4, wrap: false },
+  normal: {
+    cols: 22,
+    rows: 22,
+    stepInterval: 0.13,
+    minInterval: 0.06,
+    speedUpEvery: 4,
+    wrap: false,
+  },
   hard: { cols: 26, rows: 26, stepInterval: 0.1, minInterval: 0.045, speedUpEvery: 3, wrap: false },
 };
 

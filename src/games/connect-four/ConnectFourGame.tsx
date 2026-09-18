@@ -106,7 +106,10 @@ export default function ConnectFourGame() {
               : 'Computer wins',
         details: [
           { label: 'Discs played', value: String(totalMoves) },
-          { label: 'Mode', value: mode === 'ai' ? `vs Computer (${shell.difficulty})` : 'Two players' },
+          {
+            label: 'Mode',
+            value: mode === 'ai' ? `vs Computer (${shell.difficulty})` : 'Two players',
+          },
         ],
         mode,
       });

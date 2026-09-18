@@ -114,7 +114,13 @@ export default function SnakeGame() {
           particlesRef.current.burst(
             (engine.snake[0].x + 0.5) * cell,
             (engine.snake[0].y + 0.5) * cell,
-            { count: 10, colors: ['#f87171', '#fca5a5', '#fbbf24'], speed: 90, life: 0.5, size: 2.5 },
+            {
+              count: 10,
+              colors: ['#f87171', '#fca5a5', '#fbbf24'],
+              speed: 90,
+              life: 0.5,
+              size: 2.5,
+            },
           );
         }
         if (result.dead) {
@@ -260,7 +266,10 @@ export default function SnakeGame() {
               <p className="small muted">
                 {coarse ? 'Swipe or use the pad to start.' : 'Press an arrow key or WASD to start.'}
               </p>
-              <button className="btn btn-primary btn-block" onClick={() => handleDirection('right')}>
+              <button
+                className="btn btn-primary btn-block"
+                onClick={() => handleDirection('right')}
+              >
                 Start
               </button>
             </div>

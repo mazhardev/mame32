@@ -1,19 +1,262 @@
-import{useCallback,useEffect,useRef,useState}from'react';import{useGameShell}from'@/game-engine/context';import{GameHud}from'@/components/game/GameHud';import{PlayingCard}from'../_shared/cards/PlayingCard';import{SUIT_SYMBOL,SUITS}from'../_shared/cards/deck';import{reportProgress}from'@/achievements/AchievementService';import{loadProgress,saveProgress,clearProgress}from'@/storage/StorageService';import{deal,draw,move,complete,hint,validSave}from'./engine';import type{Source,SolitaireState}from'./engine';
-export default function KlondikeGame(){const shell=useGameShell();const[state,setState]=useState(deal);const[selected,setSelected]=useState<Source|null>(null);const[saved,setSaved]=useState<SolitaireState|null>(null);const[loading,setLoading]=useState(true);const[message,setMessage]=useState('Select a face-up card, then its destination.');const started=useRef(false);const finished=useRef(false);const history=useRef<SolitaireState[]>([]);
- const reset=useCallback(()=>{setState(deal());setSelected(null);setSaved(null);history.current=[];started.current=false;finished.current=false;void clearProgress('klondike-solitaire');},[]);useEffect(()=>{shell.registerRestart(reset);},[shell,reset]);
- useEffect(()=>{let alive=true;void loadProgress('klondike-solitaire').then(v=>{if(!alive)return;if(validSave(v)&&!complete(v))setSaved(v);setLoading(false);});return()=>{alive=false;};},[]);
- const disabled=shell.paused||loading||!!saved||finished.current;
- function apply(next:SolitaireState){if(disabled)return;if(!started.current){started.current=true;shell.startRound();}history.current.push(state);setState(next);setSelected(null);shell.play('card');if(complete(next)){finished.current=true;const score=Math.max(100,2000-next.moves*2);void clearProgress('klondike-solitaire');void reportProgress('klondike-solitaire.win',1);void reportProgress('klondike-solitaire.score',score);shell.endRound({won:true,title:'Every card home!',score,details:[{label:'Moves',value:String(next.moves)}]});}else void saveProgress('klondike-solitaire',next,{percent:next.foundations.flat().length/52*100,label:`${next.foundations.flat().length}/52 foundation cards`});}
- function destination(kind:'tableau'|'foundation',pile:number){if(disabled||!selected)return;const next=move(state,selected,{kind,pile});if(next){apply(next);setMessage('Card moved.');}else{setMessage('That move is not legal. Choose another card or destination.');setSelected(null);}}
- const width=36;
- return <div className="game-canvas-wrap" style={{flexDirection:'column',gap:14,padding:8,width:'100%'}}><GameHud items={[{label:'Foundation cards',value:`${state.foundations.flat().length}/52`},{label:'Moves',value:state.moves}]}/>
- {saved&&<div className="card"><p>Saved solitaire game available</p><button className="btn btn-primary" onClick={()=>{setState(saved);setSaved(null);}}>Continue game</button> <button className="btn" onClick={reset}>New game</button></div>}
- <div style={{width:'min(100%,620px)',display:'grid',gridTemplateColumns:'repeat(7,minmax(0,1fr))',gap:4,alignItems:'start'}}>
-  <button className="btn" aria-label={state.stock.length?'Draw card':'Recycle waste'} disabled={disabled||(!state.stock.length&&!state.waste.length)} onClick={()=>apply(draw(state))} style={{padding:2,minHeight:54,fontSize:12}}>{state.stock.length?`Draw ${state.stock.length}`:'↻'}</button>
-  <div>{state.waste.length>0&&<PlayingCard width={width} card={state.waste[state.waste.length-1]} selected={selected?.kind==='waste'} onClick={()=>{if(!disabled)setSelected({kind:'waste',pile:0,index:state.waste.length-1});}}/>}</div><span/>
-  {state.foundations.map((pile,i)=><button key={i} aria-label={`Foundation ${SUITS[i]}, ${pile.length} cards`} disabled={disabled} onClick={()=>{if(selected)destination('foundation',i);else if(pile.length)setSelected({kind:'foundation',pile:i,index:pile.length-1});}} style={{padding:2,minHeight:54,border:'1px dashed var(--border)',borderRadius:6,color:'var(--text)',background:'var(--surface-2)',fontSize:14}}>{SUIT_SYMBOL[SUITS[i]]}<br/>{pile.length||'A'}</button>)}
- </div>
- <div style={{display:'grid',gridTemplateColumns:'repeat(7,minmax(0,1fr))',gap:4,width:'min(100%,620px)',minHeight:260}}>{state.tableau.map((pile,i)=><div key={i} style={{position:'relative',minHeight:Math.max(100,pile.length*24+40)}}><button disabled={disabled} className="btn" aria-label={`Move to column ${i+1}`} onClick={()=>destination('tableau',i)} style={{width:'100%',padding:0,minHeight:44,fontSize:11}}>{i+1}</button>{pile.map((card,j)=><PlayingCard key={card.id} card={card} width={width} selected={selected?.kind==='tableau'&&selected.pile===i&&j>=selected.index} style={{position:'absolute',top:50+j*24,left:'50%',marginLeft:-width/2}} onClick={()=>{if(disabled)return;if(selected){destination('tableau',i);}else if(card.faceUp)setSelected({kind:'tableau',pile:i,index:j});}}/>)}</div>)}</div>
- <div className="row wrap" style={{gap:8,justifyContent:'center'}}><button className="btn" disabled={disabled||!history.current.length} onClick={()=>{const previous=history.current.pop();if(previous){setState(previous);setSelected(null);void saveProgress('klondike-solitaire',previous);}}}>Undo</button><button className="btn" disabled={disabled} onClick={()=>{const h=hint(state);if(h){setSelected(h.from);setMessage(`Move the selected card to ${h.to.kind==='tableau'?'column':'foundation'} ${h.to.pile+1}.`);}else setMessage(state.stock.length||state.waste.length?'Draw or recycle the stock.':'No moves found. Start a new game to try a fresh deal.');}}>Hint</button><button className="btn" disabled={!selected} onClick={()=>setSelected(null)}>Cancel selection</button></div>
- <p className="small muted" role="status" style={{textAlign:'center'}}>{loading?'Loading saved game…':message}</p></div>;
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useGameShell } from '@/game-engine/context';
+import { GameHud } from '@/components/game/GameHud';
+import { PlayingCard } from '../_shared/cards/PlayingCard';
+import { SUIT_SYMBOL, SUITS } from '../_shared/cards/deck';
+import { reportProgress } from '@/achievements/AchievementService';
+import { loadProgress, saveProgress, clearProgress } from '@/storage/StorageService';
+import { deal, draw, move, complete, hint, validSave } from './engine';
+import type { Source, SolitaireState } from './engine';
+export default function KlondikeGame() {
+  const shell = useGameShell();
+  const [state, setState] = useState(deal);
+  const [selected, setSelected] = useState<Source | null>(null);
+  const [saved, setSaved] = useState<SolitaireState | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState('Select a face-up card, then its destination.');
+  const started = useRef(false);
+  const finished = useRef(false);
+  const history = useRef<SolitaireState[]>([]);
+  const reset = useCallback(() => {
+    setState(deal());
+    setSelected(null);
+    setSaved(null);
+    history.current = [];
+    started.current = false;
+    finished.current = false;
+    void clearProgress('klondike-solitaire');
+  }, []);
+  useEffect(() => {
+    shell.registerRestart(reset);
+  }, [shell, reset]);
+  useEffect(() => {
+    let alive = true;
+    void loadProgress('klondike-solitaire').then((v) => {
+      if (!alive) return;
+      if (validSave(v) && !complete(v)) setSaved(v);
+      setLoading(false);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+  const disabled = shell.paused || loading || !!saved || finished.current;
+  function apply(next: SolitaireState) {
+    if (disabled) return;
+    if (!started.current) {
+      started.current = true;
+      shell.startRound();
+    }
+    history.current.push(state);
+    setState(next);
+    setSelected(null);
+    shell.play('card');
+    if (complete(next)) {
+      finished.current = true;
+      const score = Math.max(100, 2000 - next.moves * 2);
+      void clearProgress('klondike-solitaire');
+      void reportProgress('klondike-solitaire.win', 1);
+      void reportProgress('klondike-solitaire.score', score);
+      shell.endRound({
+        won: true,
+        title: 'Every card home!',
+        score,
+        details: [{ label: 'Moves', value: String(next.moves) }],
+      });
+    } else
+      void saveProgress('klondike-solitaire', next, {
+        percent: (next.foundations.flat().length / 52) * 100,
+        label: `${next.foundations.flat().length}/52 foundation cards`,
+      });
+  }
+  function destination(kind: 'tableau' | 'foundation', pile: number) {
+    if (disabled || !selected) return;
+    const next = move(state, selected, { kind, pile });
+    if (next) {
+      apply(next);
+      setMessage('Card moved.');
+    } else {
+      setMessage('That move is not legal. Choose another card or destination.');
+      setSelected(null);
+    }
+  }
+  const width = 36;
+  return (
+    <div
+      className="game-canvas-wrap"
+      style={{ flexDirection: 'column', gap: 14, padding: 8, width: '100%' }}
+    >
+      <GameHud
+        items={[
+          { label: 'Foundation cards', value: `${state.foundations.flat().length}/52` },
+          { label: 'Moves', value: state.moves },
+        ]}
+      />
+      {saved && (
+        <div className="card">
+          <p>Saved solitaire game available</p>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setState(saved);
+              setSaved(null);
+            }}
+          >
+            Continue game
+          </button>{' '}
+          <button className="btn" onClick={reset}>
+            New game
+          </button>
+        </div>
+      )}
+      <div
+        style={{
+          width: 'min(100%,620px)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(7,minmax(0,1fr))',
+          gap: 4,
+          alignItems: 'start',
+        }}
+      >
+        <button
+          className="btn"
+          aria-label={state.stock.length ? 'Draw card' : 'Recycle waste'}
+          disabled={disabled || (!state.stock.length && !state.waste.length)}
+          onClick={() => apply(draw(state))}
+          style={{ padding: 2, minHeight: 54, fontSize: 12 }}
+        >
+          {state.stock.length ? `Draw ${state.stock.length}` : '↻'}
+        </button>
+        <div>
+          {state.waste.length > 0 && (
+            <PlayingCard
+              width={width}
+              card={state.waste[state.waste.length - 1]}
+              selected={selected?.kind === 'waste'}
+              onClick={() => {
+                if (!disabled)
+                  setSelected({ kind: 'waste', pile: 0, index: state.waste.length - 1 });
+              }}
+            />
+          )}
+        </div>
+        <span />
+        {state.foundations.map((pile, i) => (
+          <button
+            key={i}
+            aria-label={`Foundation ${SUITS[i]}, ${pile.length} cards`}
+            disabled={disabled}
+            onClick={() => {
+              if (selected) destination('foundation', i);
+              else if (pile.length)
+                setSelected({ kind: 'foundation', pile: i, index: pile.length - 1 });
+            }}
+            style={{
+              padding: 2,
+              minHeight: 54,
+              border: '1px dashed var(--border)',
+              borderRadius: 6,
+              color: 'var(--text)',
+              background: 'var(--surface-2)',
+              fontSize: 14,
+            }}
+          >
+            {SUIT_SYMBOL[SUITS[i]]}
+            <br />
+            {pile.length || 'A'}
+          </button>
+        ))}
+      </div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(7,minmax(0,1fr))',
+          gap: 4,
+          width: 'min(100%,620px)',
+          minHeight: 260,
+        }}
+      >
+        {state.tableau.map((pile, i) => (
+          <div
+            key={i}
+            style={{ position: 'relative', minHeight: Math.max(100, pile.length * 24 + 40) }}
+          >
+            <button
+              disabled={disabled}
+              className="btn"
+              aria-label={`Move to column ${i + 1}`}
+              onClick={() => destination('tableau', i)}
+              style={{ width: '100%', padding: 0, minHeight: 44, fontSize: 11 }}
+            >
+              {i + 1}
+            </button>
+            {pile.map((card, j) => (
+              <PlayingCard
+                key={card.id}
+                card={card}
+                width={width}
+                selected={
+                  selected?.kind === 'tableau' && selected.pile === i && j >= selected.index
+                }
+                style={{
+                  position: 'absolute',
+                  top: 50 + j * 24,
+                  left: '50%',
+                  marginLeft: -width / 2,
+                }}
+                onClick={() => {
+                  if (disabled) return;
+                  if (selected) {
+                    destination('tableau', i);
+                  } else if (card.faceUp) setSelected({ kind: 'tableau', pile: i, index: j });
+                }}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+      <div className="row wrap" style={{ gap: 8, justifyContent: 'center' }}>
+        <button
+          className="btn"
+          disabled={disabled || !history.current.length}
+          onClick={() => {
+            const previous = history.current.pop();
+            if (previous) {
+              setState(previous);
+              setSelected(null);
+              void saveProgress('klondike-solitaire', previous);
+            }
+          }}
+        >
+          Undo
+        </button>
+        <button
+          className="btn"
+          disabled={disabled}
+          onClick={() => {
+            const h = hint(state);
+            if (h) {
+              setSelected(h.from);
+              setMessage(
+                `Move the selected card to ${h.to.kind === 'tableau' ? 'column' : 'foundation'} ${h.to.pile + 1}.`,
+              );
+            } else
+              setMessage(
+                state.stock.length || state.waste.length
+                  ? 'Draw or recycle the stock.'
+                  : 'No moves found. Start a new game to try a fresh deal.',
+              );
+          }}
+        >
+          Hint
+        </button>
+        <button className="btn" disabled={!selected} onClick={() => setSelected(null)}>
+          Cancel selection
+        </button>
+      </div>
+      <p className="small muted" role="status" style={{ textAlign: 'center' }}>
+        {loading ? 'Loading saved game…' : message}
+      </p>
+    </div>
+  );
 }

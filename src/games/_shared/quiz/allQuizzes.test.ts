@@ -27,7 +27,9 @@ describe('quiz question banks', () => {
         for (const q of qs) {
           expect(q.prompt.trim().length).toBeGreaterThan(0);
           expect(q.choices.length).toBeGreaterThanOrEqual(2);
-          expect(new Set(q.choices).size, `duplicate choice in "${q.prompt}"`).toBe(q.choices.length);
+          expect(new Set(q.choices).size, `duplicate choice in "${q.prompt}"`).toBe(
+            q.choices.length,
+          );
           expect(q.answer).toBeGreaterThanOrEqual(0);
           expect(q.answer).toBeLessThan(q.choices.length);
           for (const c of q.choices) expect(c.trim().length).toBeGreaterThan(0);

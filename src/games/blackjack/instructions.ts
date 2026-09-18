@@ -10,11 +10,6 @@ export const instructions: GameInstructions = {
   ],
   scoring: 'Wins add points and a natural 21 adds a bonus. Points are virtual and have no value.',
   difficultyNotes: 'Rules are the same on every difficulty.',
-  tips: [
-    'Stand on 17 or more.',
-    'Always take a card on 11 or less; you cannot bust.',
-  ],
-  touchNotes: [
-    'Tap Hit, Stand or Next hand',
-  ],
+  tips: ['Stand on 17 or more.', 'Always take a card on 11 or less; you cannot bust.'],
+  touchNotes: ['Tap Hit, Stand or Next hand'],
 };

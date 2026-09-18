@@ -1,0 +1,51 @@
+.typing-text {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  min-height: 7.5em;
+}
+
+.tw {
+  color: var(--text-muted);
+}
+
+.tw.done {
+  color: var(--success);
+}
+
+.tw.miss {
+  color: var(--danger);
+  text-decoration: line-through;
+}
+
+.tw.current {
+  color: var(--text);
+  background: var(--brand-soft);
+  border-radius: 4px;
+  padding: 0 3px;
+}
+
+.tc.ok {
+  color: var(--success);
+}
+
+.tc.bad {
+  color: #fff;
+  background: var(--danger);
+  border-radius: 2px;
+}
+
+.typing-input {
+  width: 100%;
+  max-width: 480px;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+}

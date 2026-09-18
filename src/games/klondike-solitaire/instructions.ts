@@ -14,8 +14,5 @@ export const instructions: GameInstructions = {
     'Turn over face-down tableau cards as early as possible.',
     'Do not empty a column unless a King can move into it.',
   ],
-  touchNotes: [
-    'Tap a card, then tap the destination pile',
-    'Tap the stock to draw',
-  ],
+  touchNotes: ['Tap a card, then tap the destination pile', 'Tap the stock to draw'],
 };

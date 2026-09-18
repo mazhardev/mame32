@@ -9,11 +9,6 @@ export const instructions: GameInstructions = {
   ],
   scoring: 'Points for every word found; finding them all wins the board.',
   difficultyNotes: 'Harder settings use larger grids and more words.',
-  tips: [
-    'Scan for uncommon letters first.',
-    'Check the diagonals once rows and columns are done.',
-  ],
-  touchNotes: [
-    'Tap the first letter, then the last letter of a word',
-  ],
+  tips: ['Scan for uncommon letters first.', 'Check the diagonals once rows and columns are done.'],
+  touchNotes: ['Tap the first letter, then the last letter of a word'],
 };

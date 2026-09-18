@@ -1,9 +1,131 @@
-import{useCallback,useEffect,useRef,useState}from'react';import{useGameShell}from'@/game-engine/context';import{GameHud}from'@/components/game/GameHud';import{PlayingCard}from'../_shared/cards/PlayingCard';import{blackjackValue}from'../_shared/cards/deck';import{reportProgress}from'@/achievements/AchievementService';import{BlackjackHand}from'./engine';
-export default function BlackjackGame(){const shell=useGameShell();const[hand,setHand]=useState<BlackjackHand|null>(null);const[round,setRound]=useState(0);const[score,setScore]=useState(0);const[,paint]=useState(0);const counted=useRef(false);const reset=useCallback(()=>{setHand(null);setRound(0);setScore(0);counted.current=false;},[]);useEffect(()=>{shell.registerRestart(reset);},[shell,reset]);
- function finish(current:BlackjackHand,number:number){if(!current.finished||counted.current)return;counted.current=true;const next=score+current.points;setScore(next);shell.play(current.result==='win'?'success':'card');if(current.result==='win')void reportProgress('blackjack.win',1);if(current.points===150)void reportProgress('blackjack.natural',1);if(number===5){void reportProgress('blackjack.score',next);shell.endRound({title:'Five hands complete',score:next,won:next>=300,details:[{label:'Points',value:String(next)}]});}}
- function deal(){if(shell.paused||round>=5)return;if(round===0)shell.startRound();const next=new BlackjackHand();counted.current=false;setHand(next);setRound(round+1);finish(next,round+1);}
- return <div className="game-canvas-wrap" style={{flexDirection:'column',gap:18,padding:16,width:'100%'}}><GameHud items={[{label:'Hand',value:`${round}/5`},{label:'Points',value:score}]}/><p className="small muted">Practice simulation • virtual points only • no wagers or purchases</p>
- {hand&&<><section style={{width:'100%',textAlign:'center'}}><h3>Dealer {hand.finished?`— ${blackjackValue(hand.dealer).total}`:''}</h3><div className="row wrap" style={{justifyContent:'center',gap:6,marginTop:10}}>{hand.dealer.map((c,i)=><PlayingCard key={c.id} card={{...c,faceUp:hand.finished||i===0}} width={54}/>)}</div></section><section style={{width:'100%',textAlign:'center'}}><h3>You — {blackjackValue(hand.player).total}</h3><div className="row wrap" style={{justifyContent:'center',gap:6,marginTop:10}}>{hand.player.map(c=><PlayingCard key={c.id} card={c} width={54}/>)}</div></section></>}
- <div className="row wrap" style={{justifyContent:'center',gap:10}}>{!hand||hand.finished?<button className="btn btn-primary" disabled={shell.paused||round>=5} onClick={deal}>{round?'Next hand':'Deal first hand'}</button>:<><button className="btn btn-primary" disabled={shell.paused} onClick={()=>{hand.hit();paint(n=>n+1);finish(hand,round);}}>Hit</button><button className="btn" disabled={shell.paused} onClick={()=>{hand.stand();paint(n=>n+1);finish(hand,round);}}>Stand</button></>}</div>
- <p role="status">{hand?.finished?`${hand.result==='push'?'Push':hand.result==='win'?'You win':'Dealer wins'} · ${hand.points} points`:'Get closer to 21 than the dealer without going over.'}</p><p className="small muted">Dealer stands on all 17s. A natural blackjack beats a three-card 21.</p></div>;
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useGameShell } from '@/game-engine/context';
+import { GameHud } from '@/components/game/GameHud';
+import { PlayingCard } from '../_shared/cards/PlayingCard';
+import { blackjackValue } from '../_shared/cards/deck';
+import { reportProgress } from '@/achievements/AchievementService';
+import { BlackjackHand } from './engine';
+export default function BlackjackGame() {
+  const shell = useGameShell();
+  const [hand, setHand] = useState<BlackjackHand | null>(null);
+  const [round, setRound] = useState(0);
+  const [score, setScore] = useState(0);
+  const [, paint] = useState(0);
+  const counted = useRef(false);
+  const reset = useCallback(() => {
+    setHand(null);
+    setRound(0);
+    setScore(0);
+    counted.current = false;
+  }, []);
+  useEffect(() => {
+    shell.registerRestart(reset);
+  }, [shell, reset]);
+  function finish(current: BlackjackHand, number: number) {
+    if (!current.finished || counted.current) return;
+    counted.current = true;
+    const next = score + current.points;
+    setScore(next);
+    shell.play(current.result === 'win' ? 'success' : 'card');
+    if (current.result === 'win') void reportProgress('blackjack.win', 1);
+    if (current.points === 150) void reportProgress('blackjack.natural', 1);
+    if (number === 5) {
+      void reportProgress('blackjack.score', next);
+      shell.endRound({
+        title: 'Five hands complete',
+        score: next,
+        won: next >= 300,
+        details: [{ label: 'Points', value: String(next) }],
+      });
+    }
+  }
+  function deal() {
+    if (shell.paused || round >= 5) return;
+    if (round === 0) shell.startRound();
+    const next = new BlackjackHand();
+    counted.current = false;
+    setHand(next);
+    setRound(round + 1);
+    finish(next, round + 1);
+  }
+  return (
+    <div
+      className="game-canvas-wrap"
+      style={{ flexDirection: 'column', gap: 18, padding: 16, width: '100%' }}
+    >
+      <GameHud
+        items={[
+          { label: 'Hand', value: `${round}/5` },
+          { label: 'Points', value: score },
+        ]}
+      />
+      <p className="small muted">
+        Practice simulation • virtual points only • no wagers or purchases
+      </p>
+      {hand && (
+        <>
+          <section style={{ width: '100%', textAlign: 'center' }}>
+            <h3>Dealer {hand.finished ? `— ${blackjackValue(hand.dealer).total}` : ''}</h3>
+            <div className="row wrap" style={{ justifyContent: 'center', gap: 6, marginTop: 10 }}>
+              {hand.dealer.map((c, i) => (
+                <PlayingCard
+                  key={c.id}
+                  card={{ ...c, faceUp: hand.finished || i === 0 }}
+                  width={54}
+                />
+              ))}
+            </div>
+          </section>
+          <section style={{ width: '100%', textAlign: 'center' }}>
+            <h3>You — {blackjackValue(hand.player).total}</h3>
+            <div className="row wrap" style={{ justifyContent: 'center', gap: 6, marginTop: 10 }}>
+              {hand.player.map((c) => (
+                <PlayingCard key={c.id} card={c} width={54} />
+              ))}
+            </div>
+          </section>
+        </>
+      )}
+      <div className="row wrap" style={{ justifyContent: 'center', gap: 10 }}>
+        {!hand || hand.finished ? (
+          <button className="btn btn-primary" disabled={shell.paused || round >= 5} onClick={deal}>
+            {round ? 'Next hand' : 'Deal first hand'}
+          </button>
+        ) : (
+          <>
+            <button
+              className="btn btn-primary"
+              disabled={shell.paused}
+              onClick={() => {
+                hand.hit();
+                paint((n) => n + 1);
+                finish(hand, round);
+              }}
+            >
+              Hit
+            </button>
+            <button
+              className="btn"
+              disabled={shell.paused}
+              onClick={() => {
+                hand.stand();
+                paint((n) => n + 1);
+                finish(hand, round);
+              }}
+            >
+              Stand
+            </button>
+          </>
+        )}
+      </div>
+      <p role="status">
+        {hand?.finished
+          ? `${hand.result === 'push' ? 'Push' : hand.result === 'win' ? 'You win' : 'Dealer wins'} · ${hand.points} points`
+          : 'Get closer to 21 than the dealer without going over.'}
+      </p>
+      <p className="small muted">
+        Dealer stands on all 17s. A natural blackjack beats a three-card 21.
+      </p>
+    </div>
+  );
 }
