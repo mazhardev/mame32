@@ -7,7 +7,8 @@ export const pongGame: GameDefinition = {
   id: 'pong',
   title: 'Pong',
   shortDescription: 'Classic paddle duel against a local computer opponent.',
-  fullDescription: 'Bounce the ball past the computer paddle. The first side to seven points wins. The computer paddle moves faster on higher difficulties.',
+  fullDescription:
+    'Bounce the ball past the computer paddle. The first side to seven points wins. The computer paddle moves faster on higher difficulties.',
   category: 'arcade',
   difficulty: 'easy',
   tags: ['classic', 'retro', 'paddle', 'ai'],

@@ -11,7 +11,7 @@ if (!('ResizeObserver' in globalThis)) {
   (globalThis as unknown as { ResizeObserver: unknown }).ResizeObserver = ResizeObserverStub;
 }
 
-if (typeof window !== 'undefined' && !('matchMedia' in window)) {
+if (typeof window !== 'undefined' && typeof window.matchMedia !== 'function') {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: (query: string) => ({
@@ -22,5 +22,14 @@ if (typeof window !== 'undefined' && !('matchMedia' in window)) {
       removeEventListener: () => {},
       dispatchEvent: () => false,
     }),
+  });
+}
+
+// Pointer capture is used by drag controls; jsdom does not implement it.
+if (typeof Element !== 'undefined' && !('setPointerCapture' in Element.prototype)) {
+  Object.assign(Element.prototype, {
+    setPointerCapture() {},
+    releasePointerCapture() {},
+    hasPointerCapture: () => false,
   });
 }

@@ -1,0 +1,288 @@
+import type { Rng } from '@/utils/random';
+import type { DifficultySetting } from '@/types';
+import { drawFromBank } from '../_shared/quiz/engine';
+import type { BankItem, QuizQuestion } from '../_shared/quiz/engine';
+
+export const BANK: BankItem[] = [
+  {
+    prompt: 'What does HTML stand for?',
+    correct: 'HyperText Markup Language',
+    wrong: [
+      'HighText Machine Language',
+      'Hyperlink Transfer Markup Language',
+      'Home Tool Markup Language',
+    ],
+    level: 1,
+  },
+  {
+    prompt: 'What does CSS stand for?',
+    correct: 'Cascading Style Sheets',
+    wrong: ['Computer Style Sheets', 'Creative Style System', 'Colorful Style Syntax'],
+    level: 1,
+  },
+  {
+    prompt: 'Which language runs natively in web browsers?',
+    correct: 'JavaScript',
+    wrong: ['Python', 'C++', 'Java'],
+    level: 1,
+  },
+  {
+    prompt: 'What does "bug" mean in programming?',
+    correct: 'An error or flaw in code',
+    wrong: ['A new feature', 'A type of variable', 'A fast algorithm'],
+    level: 1,
+  },
+  {
+    prompt: 'Which symbol starts a single-line comment in JavaScript?',
+    correct: '//',
+    wrong: ['#', '<!--', '--'],
+    level: 1,
+  },
+  {
+    prompt: 'Which symbol starts a comment in Python?',
+    correct: '#',
+    wrong: ['//', '/*', '--'],
+    level: 1,
+  },
+  {
+    prompt: 'What is a loop used for?',
+    correct: 'Repeating a block of code',
+    wrong: ['Storing a single value', 'Styling a web page', 'Ending a program'],
+    level: 1,
+  },
+  {
+    prompt: 'What value does a boolean hold?',
+    correct: 'true or false',
+    wrong: ['Any number', 'A list of words', 'A date'],
+    level: 1,
+  },
+  {
+    prompt: 'In most languages, what index does the first element of an array have?',
+    correct: '0',
+    wrong: ['1', '-1', 'It depends on the length'],
+    level: 1,
+  },
+  {
+    prompt: 'What is the result of 7 % 3 in JavaScript?',
+    correct: '1',
+    wrong: ['2', '2.33', '0'],
+    level: 2,
+    explain: '% gives the remainder: 7 = 2 × 3 + 1.',
+  },
+  {
+    prompt: 'What does typeof null return in JavaScript?',
+    correct: '"object"',
+    wrong: ['"null"', '"undefined"', '"number"'],
+    level: 3,
+    explain: 'A long-standing quirk kept for backward compatibility.',
+  },
+  {
+    prompt: 'What does "===" check in JavaScript?',
+    correct: 'Equal value and equal type',
+    wrong: ['Equal value only', 'Assignment', 'Greater or equal'],
+    level: 2,
+  },
+  {
+    prompt: 'What is the time complexity of binary search on a sorted array?',
+    correct: 'O(log n)',
+    wrong: ['O(n)', 'O(n log n)', 'O(1)'],
+    level: 2,
+  },
+  {
+    prompt: 'What is the average time complexity of quicksort?',
+    correct: 'O(n log n)',
+    wrong: ['O(n²)', 'O(n)', 'O(log n)'],
+    level: 3,
+  },
+  {
+    prompt: 'Which data structure works as Last In, First Out?',
+    correct: 'Stack',
+    wrong: ['Queue', 'Tree', 'Hash map'],
+    level: 2,
+  },
+  {
+    prompt: 'Which data structure works as First In, First Out?',
+    correct: 'Queue',
+    wrong: ['Stack', 'Graph', 'Set'],
+    level: 2,
+  },
+  {
+    prompt: 'What does SQL stand for?',
+    correct: 'Structured Query Language',
+    wrong: ['Simple Question Language', 'Sequential Query Logic', 'Server Query Link'],
+    level: 1,
+  },
+  {
+    prompt: 'Which SQL keyword retrieves data from a table?',
+    correct: 'SELECT',
+    wrong: ['GET', 'FETCH', 'PULL'],
+    level: 1,
+  },
+  {
+    prompt: 'Which HTTP status code means "Not Found"?',
+    correct: '404',
+    wrong: ['200', '301', '500'],
+    level: 1,
+  },
+  {
+    prompt: 'Which HTTP status code means "OK"?',
+    correct: '200',
+    wrong: ['201', '204', '404'],
+    level: 1,
+  },
+  {
+    prompt: 'Which HTTP method is typically used to create a resource?',
+    correct: 'POST',
+    wrong: ['GET', 'DELETE', 'HEAD'],
+    level: 2,
+  },
+  {
+    prompt: 'What does API stand for?',
+    correct: 'Application Programming Interface',
+    wrong: ['Advanced Program Integration', 'Automated Process Input', 'Applied Protocol Index'],
+    level: 1,
+  },
+  {
+    prompt: 'What is recursion?',
+    correct: 'A function calling itself',
+    wrong: ['A loop that never ends', 'Deleting unused memory', 'Running code in parallel'],
+    level: 2,
+  },
+  {
+    prompt: 'What does Git mainly do?',
+    correct: 'Tracks changes to code (version control)',
+    wrong: ['Compiles code', 'Hosts websites', 'Runs databases'],
+    level: 1,
+  },
+  {
+    prompt: 'Which Git command records staged changes?',
+    correct: 'git commit',
+    wrong: ['git push', 'git add', 'git clone'],
+    level: 2,
+  },
+  {
+    prompt: 'What is 1010 in binary as a decimal number?',
+    correct: '10',
+    wrong: ['8', '12', '1010'],
+    level: 2,
+  },
+  { prompt: 'How many bits are in a byte?', correct: '8', wrong: ['4', '16', '10'], level: 1 },
+  {
+    prompt: 'What is the hexadecimal value FF in decimal?',
+    correct: '255',
+    wrong: ['256', '15', '100'],
+    level: 2,
+  },
+  {
+    prompt: 'Which keyword declares a constant in JavaScript?',
+    correct: 'const',
+    wrong: ['let', 'var', 'static'],
+    level: 1,
+  },
+  {
+    prompt: 'What does JSON stand for?',
+    correct: 'JavaScript Object Notation',
+    wrong: ['Java Standard Output Network', 'JavaScript Online Node', 'Joined Syntax Object Name'],
+    level: 1,
+  },
+  {
+    prompt: 'Which language is known for the indentation-based syntax?',
+    correct: 'Python',
+    wrong: ['C', 'JavaScript', 'Rust'],
+    level: 1,
+  },
+  {
+    prompt: 'In object-oriented programming, what is inheritance?',
+    correct: 'A class reusing and extending another class',
+    wrong: ['Copying code between files', 'Deleting an object', 'Running two programs at once'],
+    level: 2,
+  },
+  {
+    prompt: 'What does "DRY" stand for in software design?',
+    correct: 'Don’t Repeat Yourself',
+    wrong: ['Do Repeat Yourself', 'Data Runs Yearly', 'Debug, Refactor, Yield'],
+    level: 2,
+  },
+  {
+    prompt: 'Which of these is NOT a primitive type in JavaScript?',
+    correct: 'Array',
+    wrong: ['String', 'Number', 'Boolean'],
+    level: 2,
+  },
+  {
+    prompt: 'What does "O(1)" mean?',
+    correct: 'Constant time, regardless of input size',
+    wrong: ['One loop over the input', 'One error allowed', 'Runs exactly once per day'],
+    level: 2,
+  },
+  {
+    prompt: 'What is a hash map mainly used for?',
+    correct: 'Fast lookups by key',
+    wrong: ['Sorting numbers', 'Drawing graphics', 'Sending emails'],
+    level: 2,
+  },
+  {
+    prompt: 'What does the "S" in HTTPS stand for?',
+    correct: 'Secure',
+    wrong: ['Simple', 'Standard', 'Server'],
+    level: 1,
+  },
+  {
+    prompt: 'Which company originally created Java?',
+    correct: 'Sun Microsystems',
+    wrong: ['Microsoft', 'Oracle', 'IBM'],
+    level: 3,
+    explain: 'Oracle acquired Sun in 2010.',
+  },
+  {
+    prompt: 'Who is often called the first computer programmer?',
+    correct: 'Ada Lovelace',
+    wrong: ['Alan Turing', 'Grace Hopper', 'Charles Babbage'],
+    level: 2,
+  },
+  {
+    prompt: 'What does "null" usually represent?',
+    correct: 'The intentional absence of a value',
+    wrong: ['The number zero', 'An empty string', 'A syntax error'],
+    level: 2,
+  },
+  {
+    prompt: 'In CSS, which property changes text colour?',
+    correct: 'color',
+    wrong: ['font-color', 'text-color', 'foreground'],
+    level: 1,
+  },
+  {
+    prompt: 'Which HTML tag creates a hyperlink?',
+    correct: '<a>',
+    wrong: ['<link>', '<href>', '<url>'],
+    level: 1,
+  },
+  {
+    prompt: 'What does [1, 2, 3].map(x => x * 2) return?',
+    correct: '[2, 4, 6]',
+    wrong: ['[1, 2, 3]', '12', '[1, 4, 9]'],
+    level: 2,
+  },
+  {
+    prompt: 'What does "compile" mean?',
+    correct: 'Translate source code into another form, such as machine code',
+    wrong: ['Delete temporary files', 'Upload code to a server', 'Format code nicely'],
+    level: 2,
+  },
+  {
+    prompt: 'What is a race condition?',
+    correct: 'A bug where the outcome depends on timing between concurrent operations',
+    wrong: ['Code that runs too slowly', 'A loop without a condition', 'A benchmark competition'],
+    level: 3,
+  },
+  {
+    prompt: 'Which sorting algorithm repeatedly swaps adjacent out-of-order items?',
+    correct: 'Bubble sort',
+    wrong: ['Merge sort', 'Quicksort', 'Heap sort'],
+    level: 2,
+  },
+];
+
+export const makeQuestions = (rng: Rng, d: DifficultySetting): QuizQuestion[] =>
+  drawFromBank(BANK, rng, d, 10);

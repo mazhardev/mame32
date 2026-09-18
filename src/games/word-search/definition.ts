@@ -7,7 +7,8 @@ export const wordSearchGame: GameDefinition = {
   id: 'word-search',
   title: 'Word Search',
   shortDescription: 'Find every hidden word in the letter grid.',
-  fullDescription: 'Words are hidden horizontally, vertically and diagonally. Select the first and last letter of a word to mark it found.',
+  fullDescription:
+    'Words are hidden horizontally, vertically and diagonally. Select the first and last letter of a word to mark it found.',
   category: 'word',
   difficulty: 'easy',
   tags: ['word', 'grid', 'relaxing', 'puzzle'],

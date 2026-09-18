@@ -1,49 +1,28 @@
 import type { GameDefinition } from '@/types';
-import { snakeGame } from './snake/definition';
-import { ticTacToeGame } from './tic-tac-toe/definition';
-import { connectFourGame } from './connect-four/definition';
-import { numberMergeGame } from './number-merge-2048/definition';
-import { minesweeperGame } from './minesweeper/definition';
-import { sudokuGame } from './sudoku/definition';
-import { reactionTimerGame } from './reaction-timer/definition';
-import { game as aimTrainerGame } from './aim-trainer/definition';
-import { game as memoryMatchGame } from './memory-match/definition';
-import { game as hangmanGame } from './hangman/definition';
-import { game as simonMemoryGame } from './simon-memory/definition';
-import { game as waterSortGame } from './water-sort/definition';
-import { pongGame } from './pong/definition';
-import { brickBreakerGame } from './brick-breaker/definition';
-import { blockDropGame } from './block-drop/definition';
-import { wordSearchGame } from './word-search/definition';
-import { blackjackGame } from './blackjack/definition';
-import { klondikeGame } from './klondike-solitaire/definition';
-import { basketballShotGame } from './basketball-shot/definition';
-import { penaltyShootoutGame } from './penalty-shootout/definition';
 
 /**
- * Every implemented game registers its definition here.
- * Adding a game means: create src/games/<id>/, export a definition, add one
- * import + one array entry below. Nothing else in the app needs editing.
+ * Every implemented game lives in src/games/<id>/ and exports its
+ * GameDefinition from definition.ts. They are discovered automatically:
+ * adding a game never requires editing this file. Game code itself is still
+ * lazy-loaded; only the small definition modules are bundled eagerly.
  */
-export const GAME_REGISTRY: GameDefinition[] = [
-  snakeGame,
-  ticTacToeGame,
-  connectFourGame,
-  numberMergeGame,
-  minesweeperGame,
-  sudokuGame,
-  reactionTimerGame,
-  aimTrainerGame,
-  memoryMatchGame,
-  hangmanGame,
-  simonMemoryGame,
-  waterSortGame,
-  pongGame,
-  brickBreakerGame,
-  blockDropGame,
-  wordSearchGame,
-  blackjackGame,
-  klondikeGame,
-  basketballShotGame,
-  penaltyShootoutGame,
-];
+const modules = import.meta.glob<Record<string, unknown>>('./*/definition.ts', { eager: true });
+
+function isDefinition(value: unknown): value is GameDefinition {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'id' in value &&
+    'title' in value &&
+    'status' in value &&
+    (value as GameDefinition).status === 'available'
+  );
+}
+
+export const GAME_REGISTRY: GameDefinition[] = Object.entries(modules)
+  .map(([path, mod]) => {
+    const def = Object.values(mod).find(isDefinition);
+    if (!def) throw new Error(`${path} does not export an available GameDefinition`);
+    return def;
+  })
+  .sort((a, b) => a.title.localeCompare(b.title));

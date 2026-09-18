@@ -6,8 +6,7 @@
 const RAW: Record<string, string> = {
   animals:
     'tiger lion zebra horse mouse whale shark eagle snake camel panda koala otter moose bison sheep goose robin finch heron gecko lemur llama rhino sloth stork viper wolf bear deer crab moth wasp swan hawk toad seal mole lynx bat owl fox ant elk',
-  food:
-    'bread cheese butter tomato potato carrot pepper onion garlic ginger lemon mango grape peach melon berry olive pasta pizza salad soup rice bean corn cake pie jam honey pancake muffin cookie waffle yogurt cereal noodle pretzel almond walnut',
+  food: 'bread cheese butter tomato potato carrot pepper onion garlic ginger lemon mango grape peach melon berry olive pasta pizza salad soup rice bean corn cake pie jam honey pancake muffin cookie waffle yogurt cereal noodle pretzel almond walnut',
   nature:
     'forest desert island valley canyon meadow prairie glacier volcano river stream ocean beach cliff cavern jungle tundra swamp lagoon summit ridge boulder pebble blossom branch leaf root seed storm cloud thunder rainbow sunset sunrise breeze frost',
   science:
@@ -16,8 +15,7 @@ const RAW: Record<string, string> = {
     'soccer tennis cricket hockey rugby boxing rowing skiing surfing cycling running jumping archery bowling curling fencing sailing skating diving relay medal referee stadium athlete striker goalie racket paddle helmet trophy',
   travel:
     'airport station harbour compass luggage passport journey voyage safari cruise hostel cabin ticket border shuttle terminal subway highway bridge tunnel village castle museum market plaza island resort camping backpack itinerary',
-  home:
-    'kitchen bedroom garden window mirror carpet curtain pillow blanket cabinet drawer shelf lantern candle basket teapot kettle ladder garage balcony fireplace doorway staircase cushion wardrobe napkin faucet toaster',
+  home: 'kitchen bedroom garden window mirror carpet curtain pillow blanket cabinet drawer shelf lantern candle basket teapot kettle ladder garage balcony fireplace doorway staircase cushion wardrobe napkin faucet toaster',
   music:
     'guitar violin piano drums trumpet flute cello banjo harp organ melody harmony rhythm chorus lyric tempo octave chord concert album single studio ballad anthem encore',
   technology:

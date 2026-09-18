@@ -15,8 +15,16 @@ export const minesweeperGame: GameDefinition = {
   icon: '💣',
   accent: 'linear-gradient(135deg, #475569, #0ea5e9)',
   controls: {
-    mouse: ['Left click to reveal', 'Right click to flag', 'Left click a satisfied number to chord'],
-    touch: ['Tap to reveal', 'Long-press or use Flag mode to flag', 'Tap a satisfied number to chord'],
+    mouse: [
+      'Left click to reveal',
+      'Right click to flag',
+      'Left click a satisfied number to chord',
+    ],
+    touch: [
+      'Tap to reveal',
+      'Long-press or use Flag mode to flag',
+      'Tap a satisfied number to chord',
+    ],
   },
   supportsTouch: true,
   supportsKeyboard: false,

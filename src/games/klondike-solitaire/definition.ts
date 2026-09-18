@@ -7,7 +7,8 @@ export const klondikeGame: GameDefinition = {
   id: 'klondike-solitaire',
   title: 'Klondike Solitaire',
   shortDescription: 'The classic patience game: build all four foundations.',
-  fullDescription: 'Move cards between seven tableau columns, alternating colours in descending order, and build each suit from Ace to King on the foundations.',
+  fullDescription:
+    'Move cards between seven tableau columns, alternating colours in descending order, and build each suit from Ace to King on the foundations.',
   category: 'card',
   difficulty: 'medium',
   tags: ['cards', 'solitaire', 'classic', 'patience'],

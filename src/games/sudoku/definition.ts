@@ -15,7 +15,12 @@ export const sudokuGame: GameDefinition = {
   icon: '🔢',
   accent: 'linear-gradient(135deg, #0ea5e9, #6366f1)',
   controls: {
-    keyboard: ['1–9 to enter a digit', 'Backspace to clear', 'Arrow keys to move', 'N to toggle notes'],
+    keyboard: [
+      '1–9 to enter a digit',
+      'Backspace to clear',
+      'Arrow keys to move',
+      'N to toggle notes',
+    ],
     mouse: ['Click a cell, then click a digit'],
     touch: ['Tap a cell, then tap a digit on the pad'],
   },

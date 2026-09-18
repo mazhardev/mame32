@@ -1,0 +1,288 @@
+import type { Rng } from '@/utils/random';
+import type { DifficultySetting } from '@/types';
+import { drawFromBank } from '../_shared/quiz/engine';
+import type { BankItem, QuizQuestion } from '../_shared/quiz/engine';
+
+export const BANK: BankItem[] = [
+  {
+    prompt: 'In which year did World War II end?',
+    correct: '1945',
+    wrong: ['1918', '1939', '1950'],
+    level: 1,
+  },
+  {
+    prompt: 'In which year did World War I begin?',
+    correct: '1914',
+    wrong: ['1905', '1918', '1939'],
+    level: 1,
+  },
+  {
+    prompt: 'Who was the first President of the United States?',
+    correct: 'George Washington',
+    wrong: ['Abraham Lincoln', 'Thomas Jefferson', 'John Adams'],
+    level: 1,
+  },
+  {
+    prompt: 'In which year did humans first land on the Moon?',
+    correct: '1969',
+    wrong: ['1957', '1965', '1972'],
+    level: 1,
+  },
+  {
+    prompt: 'Who was the first person to walk on the Moon?',
+    correct: 'Neil Armstrong',
+    wrong: ['Buzz Aldrin', 'Yuri Gagarin', 'John Glenn'],
+    level: 1,
+  },
+  {
+    prompt: 'Who was the first human in space?',
+    correct: 'Yuri Gagarin',
+    wrong: ['Neil Armstrong', 'Alan Shepard', 'Valentina Tereshkova'],
+    level: 2,
+  },
+  {
+    prompt: 'Which ancient civilisation built the pyramids of Giza?',
+    correct: 'Ancient Egyptians',
+    wrong: ['Romans', 'Mayans', 'Greeks'],
+    level: 1,
+  },
+  {
+    prompt: 'Which empire was ruled by Julius Caesar?',
+    correct: 'Roman Republic',
+    wrong: ['Greek Empire', 'Ottoman Empire', 'Persian Empire'],
+    level: 2,
+    explain: 'Caesar ruled at the end of the Roman Republic; the Empire began with Augustus.',
+  },
+  {
+    prompt: 'In which year did the Berlin Wall fall?',
+    correct: '1989',
+    wrong: ['1961', '1979', '1991'],
+    level: 1,
+  },
+  {
+    prompt: 'Which ship sank on its maiden voyage in 1912?',
+    correct: 'Titanic',
+    wrong: ['Lusitania', 'Britannic', 'Queen Mary'],
+    level: 1,
+  },
+  {
+    prompt: 'Who wrote the Declaration of Independence (main author)?',
+    correct: 'Thomas Jefferson',
+    wrong: ['George Washington', 'Benjamin Franklin', 'John Adams'],
+    level: 2,
+  },
+  {
+    prompt: 'In which year did the United States declare independence?',
+    correct: '1776',
+    wrong: ['1789', '1812', '1492'],
+    level: 1,
+  },
+  {
+    prompt: 'In which year did Christopher Columbus first reach the Americas?',
+    correct: '1492',
+    wrong: ['1066', '1588', '1620'],
+    level: 1,
+  },
+  {
+    prompt: 'Which famous battle took place in 1066?',
+    correct: 'Battle of Hastings',
+    wrong: ['Battle of Waterloo', 'Battle of Agincourt', 'Battle of Bosworth'],
+    level: 2,
+  },
+  {
+    prompt: 'Napoleon was finally defeated at which battle in 1815?',
+    correct: 'Waterloo',
+    wrong: ['Trafalgar', 'Austerlitz', 'Leipzig'],
+    level: 2,
+  },
+  {
+    prompt: 'Who was the leader of the Soviet Union during most of World War II?',
+    correct: 'Joseph Stalin',
+    wrong: ['Vladimir Lenin', 'Nikita Khrushchev', 'Leon Trotsky'],
+    level: 2,
+  },
+  {
+    prompt: 'Which document, signed in 1215, limited the power of the English king?',
+    correct: 'Magna Carta',
+    wrong: ['Bill of Rights', 'Domesday Book', 'Act of Union'],
+    level: 2,
+  },
+  {
+    prompt: 'Who was the British Prime Minister for most of World War II?',
+    correct: 'Winston Churchill',
+    wrong: ['Neville Chamberlain', 'Clement Attlee', 'David Lloyd George'],
+    level: 1,
+  },
+  {
+    prompt: 'Which civilisation built Machu Picchu?',
+    correct: 'The Inca',
+    wrong: ['The Aztecs', 'The Maya', 'The Olmec'],
+    level: 2,
+  },
+  {
+    prompt: 'The French Revolution began in which year?',
+    correct: '1789',
+    wrong: ['1776', '1815', '1848'],
+    level: 2,
+  },
+  {
+    prompt: 'Who led India’s non-violent independence movement?',
+    correct: 'Mahatma Gandhi',
+    wrong: ['Jawaharlal Nehru', 'Subhas Chandra Bose', 'B. R. Ambedkar'],
+    level: 1,
+  },
+  {
+    prompt: 'In which year did India gain independence?',
+    correct: '1947',
+    wrong: ['1942', '1950', '1935'],
+    level: 2,
+  },
+  {
+    prompt: 'Who became South Africa’s first democratically elected president in 1994?',
+    correct: 'Nelson Mandela',
+    wrong: ['F. W. de Klerk', 'Thabo Mbeki', 'Desmond Tutu'],
+    level: 1,
+  },
+  {
+    prompt: 'The Renaissance began in which country?',
+    correct: 'Italy',
+    wrong: ['France', 'England', 'Spain'],
+    level: 2,
+  },
+  {
+    prompt: 'Who painted the Mona Lisa?',
+    correct: 'Leonardo da Vinci',
+    wrong: ['Michelangelo', 'Raphael', 'Botticelli'],
+    level: 1,
+  },
+  {
+    prompt: 'Who invented the movable-type printing press in Europe around 1440?',
+    correct: 'Johannes Gutenberg',
+    wrong: ['William Caxton', 'Leonardo da Vinci', 'Galileo Galilei'],
+    level: 2,
+  },
+  {
+    prompt: 'Which wall was built to protect China from northern invasions?',
+    correct: 'The Great Wall',
+    wrong: ['Hadrian’s Wall', 'The Berlin Wall', 'The Wall of Babylon'],
+    level: 1,
+  },
+  {
+    prompt: 'Which Roman wall was built across northern Britain?',
+    correct: 'Hadrian’s Wall',
+    wrong: ['The Antonine Gate', 'Offa’s Dyke', 'The Great Wall'],
+    level: 2,
+  },
+  {
+    prompt: 'The Cold War was mainly between the United States and which country?',
+    correct: 'The Soviet Union',
+    wrong: ['China', 'Germany', 'Japan'],
+    level: 1,
+  },
+  {
+    prompt: 'Who was the first woman to win a Nobel Prize?',
+    correct: 'Marie Curie',
+    wrong: ['Rosalind Franklin', 'Ada Lovelace', 'Florence Nightingale'],
+    level: 2,
+  },
+  {
+    prompt: 'Which explorer’s expedition first sailed around the world (1519–1522)?',
+    correct: 'Ferdinand Magellan',
+    wrong: ['Vasco da Gama', 'James Cook', 'Francis Drake'],
+    level: 2,
+    explain: 'Magellan died on the way; Juan Sebastián Elcano completed the voyage.',
+  },
+  {
+    prompt: 'Which ancient wonder stood in the city of Alexandria?',
+    correct: 'The Lighthouse',
+    wrong: ['The Hanging Gardens', 'The Colossus', 'The Temple of Artemis'],
+    level: 3,
+  },
+  {
+    prompt: 'Which empire built the city of Constantinople into its capital?',
+    correct: 'Byzantine (Eastern Roman) Empire',
+    wrong: ['Persian Empire', 'Mongol Empire', 'Holy Roman Empire'],
+    level: 3,
+  },
+  {
+    prompt: 'Who was the founder of the Mongol Empire?',
+    correct: 'Genghis Khan',
+    wrong: ['Kublai Khan', 'Attila', 'Tamerlane'],
+    level: 2,
+  },
+  {
+    prompt: 'In which year did the Soviet Union dissolve?',
+    correct: '1991',
+    wrong: ['1985', '1989', '1995'],
+    level: 2,
+  },
+  {
+    prompt: 'Which event in 1929 started the Great Depression?',
+    correct: 'The Wall Street Crash',
+    wrong: ['The end of World War I', 'The Dust Bowl', 'The Suez Crisis'],
+    level: 3,
+  },
+  {
+    prompt: 'Who was the Egyptian queen allied with Mark Antony?',
+    correct: 'Cleopatra VII',
+    wrong: ['Nefertiti', 'Hatshepsut', 'Nefertari'],
+    level: 2,
+  },
+  {
+    prompt: 'The Industrial Revolution began in which country?',
+    correct: 'Great Britain',
+    wrong: ['Germany', 'United States', 'France'],
+    level: 2,
+  },
+  {
+    prompt: 'Who invented the telephone (first U.S. patent, 1876)?',
+    correct: 'Alexander Graham Bell',
+    wrong: ['Thomas Edison', 'Nikola Tesla', 'Guglielmo Marconi'],
+    level: 2,
+  },
+  {
+    prompt: 'Who made the first powered, controlled aeroplane flight in 1903?',
+    correct: 'The Wright brothers',
+    wrong: ['Charles Lindbergh', 'Amelia Earhart', 'Louis Blériot'],
+    level: 1,
+  },
+  {
+    prompt: 'Which Chinese dynasty built most of the Great Wall that survives today?',
+    correct: 'Ming',
+    wrong: ['Han', 'Qin', 'Tang'],
+    level: 3,
+  },
+  {
+    prompt: 'Which city was destroyed by the eruption of Mount Vesuvius in AD 79?',
+    correct: 'Pompeii',
+    wrong: ['Rome', 'Athens', 'Carthage'],
+    level: 2,
+  },
+  {
+    prompt: 'Who was the first emperor of Rome?',
+    correct: 'Augustus',
+    wrong: ['Julius Caesar', 'Nero', 'Caligula'],
+    level: 3,
+  },
+  {
+    prompt: 'In what year did the Titanic sink?',
+    correct: '1912',
+    wrong: ['1905', '1915', '1920'],
+    level: 2,
+  },
+  {
+    prompt: 'Which U.S. president issued the Emancipation Proclamation?',
+    correct: 'Abraham Lincoln',
+    wrong: ['George Washington', 'Ulysses S. Grant', 'Andrew Jackson'],
+    level: 2,
+  },
+  {
+    prompt: 'Which ancient Greek city-state was known for its warriors?',
+    correct: 'Sparta',
+    wrong: ['Athens', 'Corinth', 'Thebes'],
+    level: 2,
+  },
+];
+
+export const makeQuestions = (rng: Rng, d: DifficultySetting): QuizQuestion[] =>
+  drawFromBank(BANK, rng, d, 10);

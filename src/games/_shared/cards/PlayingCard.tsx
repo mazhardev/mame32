@@ -47,8 +47,7 @@ function PlayingCardBase({
       <div
         style={{
           ...base,
-          background:
-            'repeating-linear-gradient(45deg, #4f46e5 0 6px, #4338ca 6px 12px)',
+          background: 'repeating-linear-gradient(45deg, #4f46e5 0 6px, #4338ca 6px 12px)',
           border: '2px solid #e6e8f5',
         }}
         onClick={onClick}
