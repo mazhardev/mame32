@@ -1,0 +1,132 @@
+.chess-wrap {
+  position: relative;
+}
+
+.chess-board .sq.light {
+  background: #f0dcb4;
+}
+
+.chess-board .sq.dark {
+  background: #b07a4f;
+}
+
+.chess-board .sq.chess-last {
+  background-image: linear-gradient(rgba(255, 214, 64, 0.45), rgba(255, 214, 64, 0.45));
+}
+
+.chess-board .sq.chess-mark {
+  background-image: linear-gradient(rgba(80, 200, 120, 0.55), rgba(80, 200, 120, 0.55));
+}
+
+.chess-board .sq.chess-check {
+  background-image: radial-gradient(circle, rgba(255, 40, 40, 0.9) 0%, rgba(255, 40, 40, 0.35) 55%, transparent 75%);
+}
+
+.chess-piece {
+  font-size: calc(var(--cell) * 0.78);
+  line-height: 1;
+  font-family: 'Segoe UI Symbol', 'Noto Sans Symbols 2', 'DejaVu Sans', 'Apple Symbols', serif;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+.chess-piece.w {
+  color: #fff;
+  -webkit-text-stroke: 1.2px #1f2937;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.35);
+}
+
+.chess-piece.b {
+  color: #111827;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.chess-board .hint {
+  position: absolute;
+  width: 28%;
+  height: 28%;
+  z-index: 2;
+}
+
+.chess-capture {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  border: calc(var(--cell) * 0.08) solid rgba(20, 20, 20, 0.35);
+  z-index: 2;
+}
+
+.chess-coord {
+  position: absolute;
+  font-size: calc(var(--cell) * 0.2);
+  font-weight: 700;
+  color: rgba(60, 35, 15, 0.7);
+  pointer-events: none;
+}
+
+.chess-coord.file {
+  right: 3px;
+  bottom: 1px;
+}
+
+.chess-coord.rank {
+  left: 3px;
+  top: 1px;
+}
+
+.chess-promo {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
+  display: flex;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg, 0 10px 30px rgba(0, 0, 0, 0.4));
+  z-index: 5;
+}
+
+.chess-promo button {
+  --cell: 52px;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: #d9b98c;
+  display: grid;
+  place-items: center;
+}
+
+.chess-promo .chess-promo-cancel {
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.chess-moves {
+  width: 100%;
+  max-height: 7.5em;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chess-captured {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 1.6em;
+  --cell: 26px;
+}
+
+.chess-captured .chess-piece {
+  font-size: 20px;
+}

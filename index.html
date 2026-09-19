@@ -2,6 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js). Consent Mode: no analytics cookies until the visitor agrees. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z9RT2YH5X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      (function () {
+        var id = 'G-9Z9RT2YH5X';
+        var choice = null;
+        try { choice = localStorage.getItem('browserArcade.analyticsConsent'); } catch (e) {}
+        // Only the live site reports, and visitors who said no send nothing at all.
+        if (!/(^|\.)gamesplayland\.online$/.test(location.hostname) || choice === 'denied') window['ga-disable-' + id] = true;
+        gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: choice === 'granted' ? 'granted' : 'denied'
+        });
+        gtag('js', new Date());
+        gtag('config', id);
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5" />
     <!-- Every tag below is rewritten per page by scripts/prerender.ts at build time. -->
     <title>GamesPlayLand – Free Online Games, No Download</title>

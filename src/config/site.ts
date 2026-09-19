@@ -14,6 +14,8 @@ export const site = {
   dbName: 'BrowserArcadeDB',
   dbVersion: 1,
   repositoryUrl: '',
+  /** Google Analytics 4 measurement ID. The tag itself lives in index.html. */
+  gaMeasurementId: 'G-9Z9RT2YH5X',
   theme: {
     defaultTheme: 'system' as const,
     brand: '#6366f1',

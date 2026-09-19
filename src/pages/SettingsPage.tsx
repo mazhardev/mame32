@@ -15,6 +15,7 @@ import {
 } from '@/storage/StorageService';
 import { invalidateAchievementCache } from '@/achievements/AchievementService';
 import { getPlayableGames } from '@/data/gameCatalog';
+import { getConsent, onConsentChange, setConsent } from '@/services/analytics';
 import { playSound, unlockAudio } from '@/services/audio';
 import { useToast } from '@/app/ToastProvider';
 import { sanitizeNickname } from '@/utils/format';
@@ -42,6 +43,8 @@ function Toggle({
 
 export default function SettingsPage() {
   const [prefs, setPrefs] = usePreferences();
+  const [analytics, setAnalytics] = useState(getConsent);
+  useEffect(() => onConsentChange(() => setAnalytics(getConsent())), []);
   const [nickname, setNick] = useState(() => getProfile().nickname);
   const [resetGameId, setResetGameId] = useState('');
   const [busy, setBusy] = useState(false);
@@ -271,6 +274,21 @@ export default function SettingsPage() {
             <div className="desc">Developer overlay on canvas games.</div>
           </div>
           <Toggle label="Show FPS" checked={prefs.showFps} onChange={(v) => setPrefs({ showFps: v })} />
+        </div>
+      </section>
+
+      <section className="card">
+        <h2 style={{ fontSize: '1.05rem', marginBottom: 'var(--space-2)' }}>Privacy</h2>
+        <div className="settings-row">
+          <div>
+            <div className="label">Usage analytics</div>
+            <div className="desc">Lets Google Analytics use cookies to count visits and popular games. Your game data never leaves this browser.</div>
+          </div>
+          <Toggle
+            label="Usage analytics"
+            checked={analytics === 'granted'}
+            onChange={(v) => setConsent(v ? 'granted' : 'denied')}
+          />
         </div>
       </section>
 

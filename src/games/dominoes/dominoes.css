@@ -1,0 +1,114 @@
+.dom {
+  --h: 30px;
+  display: inline-flex;
+  align-items: stretch;
+  background: #fbfaf5;
+  border: 1px solid #1f2937;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  flex: none;
+}
+
+.dom.v {
+  flex-direction: column;
+}
+
+.dom-half {
+  width: var(--h);
+  height: var(--h);
+  padding: 12%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  place-items: center;
+}
+
+.dom-half i {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+}
+
+.dom-half i.on {
+  background: #111827;
+}
+
+.dom-bar {
+  background: #9ca3af;
+  width: 1px;
+}
+
+.dom.v .dom-bar {
+  width: auto;
+  height: 1px;
+}
+
+.dom.back {
+  background: repeating-linear-gradient(45deg, #1e3a8a, #1e3a8a 4px, #1d4ed8 4px, #1d4ed8 8px);
+}
+
+.dom.back .dom-half {
+  visibility: hidden;
+}
+
+.dom.playable {
+  outline: 3px solid #ffd84d;
+  outline-offset: 1px;
+  cursor: pointer;
+}
+
+.dom:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.dom.playable:disabled {
+  opacity: 1;
+}
+
+.dom-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 80px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: #166534;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.dom-chain .dom {
+  --h: clamp(18px, 4.2vw, 26px);
+}
+
+.dom-hand {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dom-hand .dom {
+  --h: clamp(26px, 7vw, 36px);
+}
+
+.dom-opp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.dom-opp .dom {
+  --h: 16px;
+}
+
+.dom-ends {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}

@@ -19,6 +19,7 @@ import {
   evaluateGlobalAchievements,
   reportHighScoreBeaten,
 } from '@/achievements/AchievementService';
+import { track } from '@/services/analytics';
 import { reportRoundForChallenge } from '@/services/dailyChallenge';
 import { formatClock, formatNumber } from '@/utils/format';
 
@@ -190,7 +191,8 @@ function GameSession({ game }: Props) {
     accumulatedRef.current = 0;
     roundStartRef.current = manualPause || hidden ? null : Date.now();
     void recordGameStart(game.id);
-  }, [game.id, hidden, manualPause]);
+    track('game_start', { game_id: game.id, category: game.category, difficulty });
+  }, [difficulty, game.category, game.id, hidden, manualPause]);
 
   const endRound = useCallback(
     (payload: GameOverPayload) => {
@@ -200,6 +202,13 @@ function GameSession({ game }: Props) {
       const version = roundVersionRef.current;
       const durationMs = flushPlayTime();
       setPausedState(true);
+      track('game_complete', {
+        game_id: game.id,
+        difficulty,
+        score: payload.score,
+        result: payload.won ? 'won' : payload.lost ? 'lost' : payload.draw ? 'draw' : 'finished',
+        seconds: Math.round(durationMs / 1000),
+      });
       void (async () => {
         const outcome = await recordGameComplete(game.id, {
           score: payload.score,
