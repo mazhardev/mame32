@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { B, N, Q, R, moveFrom, movePromo, moveTo, squareName } from './engine';
 import type { Chess } from './engine';
 import '../board/board.css';
@@ -31,6 +31,11 @@ export function ChessBoard({ chess, orientation = 1, movable, onMove, lastMove, 
   const [promo, setPromo] = useState<number[] | null>(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const legal = useMemo(() => chess.moves(), [chess, version]);
+  // A new position clears any half-made selection.
+  useEffect(() => {
+    setSel(null);
+    setPromo(null);
+  }, [version]);
   const side = movable === 'turn' ? chess.turn : movable;
   const canMove = side !== null && side === chess.turn;
   const targets = sel === null ? [] : legal.filter((m) => moveFrom(m) === sel);
