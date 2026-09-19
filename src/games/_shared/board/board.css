@@ -1,0 +1,157 @@
+.board-layout {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  align-self: flex-start;
+}
+
+.board-layout > .hud {
+  width: 100%;
+}
+
+.board-status {
+  min-height: 1.6em;
+  font-weight: 650;
+  text-align: center;
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.seg button {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.seg button.on {
+  background: var(--brand);
+  color: var(--brand-contrast);
+}
+
+/* Square-grid boards (draughts, reversi, gomoku, go…) */
+.sq-board {
+  --cells: 8;
+  --cell: min(calc((100vw - 48px) / var(--cells)), calc(560px / var(--cells)));
+  display: grid;
+  grid-template-columns: repeat(var(--cells), var(--cell));
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.sq {
+  position: relative;
+  width: var(--cell);
+  height: var(--cell);
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+.sq.light {
+  background: #eed9b6;
+}
+
+.sq.dark {
+  background: #a8704a;
+}
+
+.sq.green {
+  background: #2f8f4e;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.sq.sel {
+  box-shadow: inset 0 0 0 3px #ffd84d;
+}
+
+.sq.last {
+  box-shadow: inset 0 0 0 3px rgba(80, 160, 255, 0.85);
+}
+
+.sq .hint {
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.35);
+}
+
+.piece {
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: calc(var(--cell) * 0.38);
+  line-height: 1;
+  box-shadow:
+    inset 0 -4px 0 rgba(0, 0, 0, 0.25),
+    0 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.piece.red {
+  background: radial-gradient(circle at 35% 30%, #ff8a80, #c62828);
+  color: #ffe082;
+}
+
+.piece.black {
+  background: radial-gradient(circle at 35% 30%, #6b7280, #111827);
+  color: #ffe082;
+}
+
+.piece.white {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #cbd5e1);
+  color: #334155;
+}
+
+.piece.stone-black {
+  background: radial-gradient(circle at 35% 30%, #4b5563, #030712);
+}
+
+.piece.stone-white {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #d1d5db);
+}
+
+/* Intersection boards (gomoku, go): stones sit on grid-line crossings. */
+.sq.cross {
+  --line: #5b3d18;
+  background-color: #dcb35c;
+  background-image:
+    linear-gradient(var(--line), var(--line)),
+    linear-gradient(var(--line), var(--line));
+  background-repeat: no-repeat;
+}
+
+.sq.cross .piece {
+  width: 88%;
+  height: 88%;
+  position: relative;
+  z-index: 1;
+}
+
+.sq.cross .star {
+  width: 22%;
+  height: 22%;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.sq.cross.win-cell .piece {
+  box-shadow:
+    0 0 0 3px #ff5252,
+    0 2px 3px rgba(0, 0, 0, 0.35);
+}
