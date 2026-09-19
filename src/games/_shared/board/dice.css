@@ -1,0 +1,46 @@
+.die {
+  --d: 48px;
+  width: var(--d);
+  height: var(--d);
+  padding: calc(var(--d) * 0.14);
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  place-items: center;
+  border-radius: 10px;
+  background: #fff;
+  border: 3px solid #cbd5e1;
+  box-shadow: var(--shadow-sm);
+}
+
+.die i {
+  width: 72%;
+  height: 72%;
+  border-radius: 50%;
+}
+
+.die i.on {
+  background: #111827;
+}
+
+.die.rolling {
+  animation: die-tumble 0.45s ease-out;
+}
+
+@keyframes die-tumble {
+  0% {
+    transform: rotate(0) scale(0.8);
+  }
+  60% {
+    transform: rotate(300deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .die.rolling {
+    animation: none;
+  }
+}

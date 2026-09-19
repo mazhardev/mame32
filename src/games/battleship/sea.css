@@ -1,0 +1,81 @@
+.sea-boards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.sea-board h3 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.sea-grid {
+  --c: min(calc((100vw - 48px) / 10), 32px);
+  display: grid;
+  grid-template-columns: repeat(10, var(--c));
+  gap: 2px;
+  padding: 4px;
+  border-radius: 8px;
+  background: #0b3c5d;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.sea-cell {
+  width: var(--c);
+  height: var(--c);
+  padding: 0;
+  border-radius: 3px;
+  background: #1f6f9f;
+  display: grid;
+  place-items: center;
+  font-size: calc(var(--c) * 0.5);
+  line-height: 1;
+}
+
+.sea-cell.ship {
+  background: #8b98a8;
+}
+
+.sea-cell.miss::after {
+  content: '';
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background: #cfe8ff;
+}
+
+.sea-cell.hit {
+  background: #f97316;
+}
+
+.sea-cell.sunk {
+  background: #7f1d1d;
+}
+
+.sea-cell.target:not(:disabled):hover {
+  background: #3b8fc4;
+}
+
+.sea-cell.last {
+  outline: 2px solid #ffd84d;
+  outline-offset: -2px;
+}
+
+.sea-fleet {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.sea-fleet .gone {
+  text-decoration: line-through;
+  opacity: 0.6;
+}

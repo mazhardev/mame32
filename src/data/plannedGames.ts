@@ -134,7 +134,7 @@ const BOARD: Row[] = [
   ['chinese-checkers', 'Chinese Checkers', 'medium', '⭐', 'strategy jumping'],
   ['gomoku', 'Gomoku', 'medium', '⚫', 'five-in-a-row ai'],
   ['mancala', 'Mancala', 'medium', '🫘', 'sowing strategy ai'],
-  ['battleship', 'Battleship', 'medium', '🚢', 'deduction grid ai'],
+  ['battleship', 'Sea Battle', 'medium', '🚢', 'deduction grid ai'],
   ['hex', 'Hex', 'hard', '⬡', 'connection strategy ai'],
   ['mastermind', 'Mastermind', 'medium', '🎨', 'deduction colors logic'],
   ['peg-solitaire', 'Peg Solitaire', 'medium', '🔘', 'jumping single-player'],

@@ -1,0 +1,77 @@
+.mancala {
+  display: grid;
+  grid-template-columns: 1fr repeat(6, 1fr) 1fr;
+  grid-template-rows: auto auto;
+  gap: clamp(4px, 1.2vw, 10px);
+  width: min(100%, 680px);
+  padding: clamp(8px, 2vw, 16px);
+  border-radius: 48px;
+  background: linear-gradient(180deg, #a86b3c, #7a4a26);
+  box-shadow: var(--shadow-md), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.mancala-store {
+  grid-row: 1 / span 2;
+  border-radius: 999px;
+  background: #5c3519;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  color: #ffe9c7;
+  font-weight: 800;
+  font-size: clamp(1rem, 4vw, 1.6rem);
+}
+
+.mancala-pit {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #5c3519;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5);
+  color: #ffe9c7;
+  font-weight: 750;
+  font-size: clamp(0.85rem, 3.2vw, 1.25rem);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  position: relative;
+}
+
+.mancala-pit:disabled {
+  cursor: default;
+}
+
+.mancala-pit.can {
+  outline: 2px solid #ffd84d;
+  outline-offset: 2px;
+}
+
+.mancala-pit.sown,
+.mancala-store.sown {
+  background: #7a4722;
+}
+
+.mancala-seeds {
+  position: absolute;
+  inset: 18%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 2px;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.mancala-seeds i {
+  width: clamp(4px, 1.1vw, 8px);
+  height: clamp(4px, 1.1vw, 8px);
+  border-radius: 50%;
+  background: #9fe0c7;
+}
+
+.mancala-pit b {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 2px #000;
+}
