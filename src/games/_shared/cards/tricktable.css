@@ -1,0 +1,99 @@
+.trick-table {
+  position: relative;
+  width: min(100%, 560px);
+  height: clamp(250px, 58vw, 340px);
+  margin: 0 auto;
+}
+
+.trick-seat {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.8rem;
+  color: #d1fae5;
+  padding: 4px 6px;
+  border-radius: 8px;
+}
+
+.trick-seat.turn {
+  background: rgba(250, 204, 21, 0.18);
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.6);
+}
+
+.trick-seat.n {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.trick-seat.w {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.trick-seat.e {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.trick-seat.s {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.trick-name {
+  font-weight: 700;
+}
+
+.trick-backs {
+  display: flex;
+}
+
+.trick-backs span {
+  width: 9px;
+  height: 22px;
+  margin-left: -3px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(45deg, #4f46e5 0 3px, #4338ca 3px 6px);
+  border: 1px solid #e6e8f5;
+}
+
+.trick-info {
+  font-variant-numeric: tabular-nums;
+  color: #a7f3d0;
+}
+
+.trick-center {
+  position: absolute;
+  inset: 26% 26%;
+}
+
+.trick-card {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.trick-card.s {
+  left: 50%;
+  top: 72%;
+}
+
+.trick-card.n {
+  left: 50%;
+  top: 28%;
+}
+
+.trick-card.w {
+  left: 22%;
+  top: 50%;
+}
+
+.trick-card.e {
+  left: 78%;
+  top: 50%;
+}
