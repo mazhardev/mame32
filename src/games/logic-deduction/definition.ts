@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Test your reasoning with deduction puzzles. Decide what must follow from a set of statements — and learn when the honest answer is “cannot be determined”.',
   minutes: 5,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Solve ten deduction puzzles.',
     question: 'Read the statements carefully and choose what must be true.',

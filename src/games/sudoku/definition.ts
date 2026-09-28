@@ -32,6 +32,7 @@ export const sudokuGame: GameDefinition = {
   hasHighScore: true,
   hasAchievements: true,
   hasSaveState: true,
+  difficultyPicker: 'in-game',
   status: 'available',
   instructions,
   achievements,

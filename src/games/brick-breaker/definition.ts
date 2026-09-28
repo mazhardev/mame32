@@ -25,6 +25,7 @@ export const brickBreakerGame: GameDefinition = {
   estimatedMinutes: 5,
   hasHighScore: true,
   hasAchievements: true,
+  difficultyPicker: 'none',
   status: 'available',
   instructions,
   achievements,

@@ -1,0 +1,107 @@
+.hanoi {
+  --discs: 5;
+  --disc-h: clamp(16px, calc(220px / var(--discs)), 30px);
+  width: min(100%, 640px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.hanoi-peg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: calc(var(--disc-h) * (var(--discs) + 2.5) + 28px);
+  padding: 0 4px 28px;
+  border-radius: 14px;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+
+.hanoi-peg.goal {
+  background: color-mix(in srgb, var(--success) 7%, var(--surface-2));
+}
+
+.hanoi-peg.sel {
+  border-color: var(--brand);
+}
+
+.hanoi-peg.legal {
+  border-color: color-mix(in srgb, var(--success) 70%, transparent);
+  border-style: dashed;
+}
+
+.hanoi-peg.hint-from,
+.hanoi-peg.hint-to {
+  border-color: #38bdf8;
+  border-style: dashed;
+}
+
+.hanoi-peg:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.hanoi-rod {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  width: 8px;
+  height: calc(var(--disc-h) * (var(--discs) + 1.5));
+  transform: translateX(-50%);
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(90deg, #8a5a2b, #c08850, #8a5a2b);
+}
+
+.hanoi-stack {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.hanoi-stack::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 4%;
+  right: 4%;
+  height: 6px;
+  border-radius: 3px;
+  background: #7a4f25;
+}
+
+.hanoi-disc {
+  position: relative;
+  height: var(--disc-h);
+  display: grid;
+  place-items: center;
+  border-radius: calc(var(--disc-h) / 2);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: calc(var(--disc-h) * 0.55);
+  font-weight: 700;
+  box-shadow:
+    inset 0 -3px 0 rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 140ms ease-out;
+}
+
+.hanoi-disc.lifted {
+  transform: translateY(calc(var(--disc-h) * -1.2));
+}
+
+.hanoi-label {
+  position: absolute;
+  bottom: 4px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--text-muted);
+}

@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Learn colours by name, pick the right swatch from a row, and discover what you get when you mix paints. Harder levels add shades like teal, navy and coral.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten colour questions.',
     question: 'Name a colour swatch, find a named colour among four, or predict a paint mix.',

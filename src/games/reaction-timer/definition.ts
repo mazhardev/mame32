@@ -25,6 +25,7 @@ export const reactionTimerGame: GameDefinition = {
   estimatedMinutes: 1,
   hasHighScore: true,
   hasAchievements: true,
+  difficultyPicker: 'none',
   status: 'available',
   instructions,
   achievements,

@@ -8,7 +8,8 @@ export const instructions: GameInstructions = {
     'A correct selection highlights the word and crosses it off the list.',
   ],
   scoring: 'Points for every word found; finding them all wins the board.',
-  difficultyNotes: 'Harder settings use larger grids and more words.',
+  difficultyNotes:
+    'Easy: 8×8 grid, 5 words, all read forwards. Normal: 10×10, 7 words, some written backwards. Hard: 13×13, 10 words in any direction.',
   tips: ['Scan for uncommon letters first.', 'Check the diagonals once rows and columns are done.'],
   touchNotes: ['Tap the first letter, then the last letter of a word'],
 };

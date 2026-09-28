@@ -1,0 +1,64 @@
+.maze-svg {
+  display: block;
+  width: min(100%, 560px, calc((100vh - 260px) * 1));
+  min-width: min(100%, 280px);
+  height: auto;
+  border-radius: 10px;
+  background: var(--bg-sunken);
+  touch-action: none;
+  user-select: none;
+}
+
+.maze-floor {
+  fill: color-mix(in srgb, var(--surface-2) 70%, #1e293b 10%);
+}
+
+.maze-walls {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 0.12;
+  stroke-linecap: round;
+}
+
+.maze-trail {
+  fill: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+.maze-exit {
+  fill: color-mix(in srgb, var(--success) 35%, transparent);
+  stroke: var(--success);
+  stroke-width: 0.06;
+}
+
+.maze-exit-text {
+  fill: var(--success);
+}
+
+.maze-hint {
+  fill: none;
+  stroke: #38bdf8;
+  stroke-width: 0.16;
+  stroke-dasharray: 0.3 0.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.maze-player {
+  transition: transform 90ms linear;
+}
+
+.maze-player circle {
+  fill: #f43f5e;
+  stroke: #fff;
+  stroke-width: 0.06;
+}
+
+.maze-player .maze-player-shine {
+  fill: rgba(255, 255, 255, 0.55);
+  stroke: none;
+}
+
+.maze-controls {
+  display: flex;
+  justify-content: center;
+}

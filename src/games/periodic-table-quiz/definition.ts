@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Learn the periodic table: match symbols to names, recall atomic numbers of the first twenty elements, and answer questions about famous elements.',
   minutes: 4,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten questions about chemical elements.',
     question: 'Match symbols and names, give atomic numbers, or answer element facts.',

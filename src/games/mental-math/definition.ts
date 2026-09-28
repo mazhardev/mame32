@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Train your mental arithmetic with multi-step calculations, percentages and squares. No paper allowed — just you and the clock.',
   minutes: 4,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Work out ten multi-step calculations in your head.',
     question: 'Questions combine operations, like 6 × 7 + 12, 25% of 80 or 14².',

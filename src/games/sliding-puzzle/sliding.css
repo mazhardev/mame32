@@ -1,0 +1,60 @@
+.slide-board {
+  --n: 4;
+  --size: min(calc(100vw - 48px), 440px);
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.slide-tile {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc((var(--size) - 8px) / var(--n));
+  height: calc((var(--size) - 8px) / var(--n));
+  padding: 3px;
+  transition: transform 110ms ease-out;
+}
+
+.slide-tile span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: var(--tile);
+  color: #fff;
+  font-weight: 750;
+  font-size: calc(var(--size) / var(--n) * 0.38);
+  box-shadow:
+    inset 0 -4px 0 rgba(0, 0, 0, 0.22),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.slide-tile.home span {
+  box-shadow:
+    inset 0 -4px 0 rgba(0, 0, 0, 0.22),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.55),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slide-tile:focus-visible {
+  outline: none;
+}
+
+.slide-tile:focus-visible span {
+  outline: 3px solid var(--brand);
+  outline-offset: 1px;
+}
+
+.slide-tile:disabled {
+  cursor: default;
+}

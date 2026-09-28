@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Expand your English vocabulary. Choose the meaning of a word, or the word that matches a meaning — from everyday words to rare gems like “ephemeral”.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Match ten words and meanings.',
     question: 'Pick the meaning of a word, or the word for a meaning.',

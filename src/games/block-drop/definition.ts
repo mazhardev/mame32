@@ -31,6 +31,7 @@ export const blockDropGame: GameDefinition = {
   estimatedMinutes: 6,
   hasHighScore: true,
   hasAchievements: true,
+  difficultyPicker: 'none',
   status: 'available',
   instructions,
   achievements,

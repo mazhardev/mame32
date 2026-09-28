@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Ten arithmetic questions per round with a timer on each one. Easy sticks to adding and subtracting within 20; Hard mixes all four operations with numbers up to 1,000.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten arithmetic questions correctly before each timer runs out.',
     question:

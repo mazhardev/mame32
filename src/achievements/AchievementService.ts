@@ -44,12 +44,11 @@ export function onAchievementUnlocked(fn: UnlockListener): () => void {
   };
 }
 
-let cache: Map<string, AchievementRecord> | null = null;
+let cache: Promise<Map<string, AchievementRecord>> | null = null;
 
-async function loadRecords(): Promise<Map<string, AchievementRecord>> {
-  if (cache) return cache;
-  const rows = await getAchievementRecords();
-  cache = new Map(rows.map((r) => [r.achievementId, r]));
+// The promise itself is cached so concurrent first calls share one map.
+function loadRecords(): Promise<Map<string, AchievementRecord>> {
+  cache ??= getAchievementRecords().then((rows) => new Map(rows.map((r) => [r.achievementId, r])));
   return cache;
 }
 
@@ -84,13 +83,33 @@ export async function reportProgress(
   achievementId: string,
   progress: number,
 ): Promise<AchievementDefinition | null> {
+  return updateProgress(achievementId, (prev) => Math.max(prev, progress));
+}
+
+/**
+ * Adds to a cumulative achievement ("solve 10 puzzles"). Unlike
+ * reportProgress, the value is a delta rather than a running total.
+ */
+export async function incrementProgress(
+  achievementId: string,
+  by = 1,
+): Promise<AchievementDefinition | null> {
+  return updateProgress(achievementId, (prev) => prev + by);
+}
+
+async function updateProgress(
+  achievementId: string,
+  compute: (previous: number) => number,
+): Promise<AchievementDefinition | null> {
   const def = getAchievementRegistry().get(achievementId);
   if (!def) return null;
   const records = await loadRecords();
+  // No await between reading and records.set below, so concurrent updates
+  // to the same achievement cannot overwrite each other.
   const target = def.target ?? 1;
   const existing = records.get(achievementId);
   if (existing?.unlocked) return null;
-  const nextProgress = Math.max(existing?.progress ?? 0, progress);
+  const nextProgress = compute(existing?.progress ?? 0);
   const unlocked = nextProgress >= target;
   const rec: AchievementRecord = {
     achievementId,

@@ -27,6 +27,12 @@ interface Props {
   game: GameDefinition;
 }
 
+const DIFFICULTY_LABEL: Record<DifficultySetting, string> = {
+  easy: 'Easy',
+  normal: 'Normal',
+  hard: 'Hard',
+};
+
 interface ResultState extends GameOverPayload {
   isRecord: boolean;
   previousBest: number | null;
@@ -57,6 +63,7 @@ function GameSession({ game }: Props) {
   const [personalBest, setPersonalBest] = useState<number | null>(null);
   const [caps, setCaps] = useState({ pausable: true, restartable: true });
   const [instanceKey, setInstanceKey] = useState(0);
+  const [pendingDifficulty, setPendingDifficulty] = useState<DifficultySetting | null>(null);
 
   const restartRef = useRef<(() => void) | null>(null);
   const roundStartRef = useRef<number | null>(null);
@@ -118,11 +125,11 @@ function GameSession({ game }: Props) {
     if (hidden) {
       setPausedState(true);
       pauseTimer();
-    } else if (!manualPause && !result && !finishingRef.current) {
+    } else if (!manualPause && !result && !pendingDifficulty && !finishingRef.current) {
       setPausedState(false);
       resumeTimer();
     }
-  }, [hidden, manualPause, result, pauseTimer, resumeTimer]);
+  }, [hidden, manualPause, result, pendingDifficulty, pauseTimer, resumeTimer]);
 
   // Flush any unsaved play time when leaving the page.
   useEffect(() => {
@@ -254,6 +261,47 @@ function GameSession({ game }: Props) {
     [game.id],
   );
 
+  /** Switches difficulty and remounts the game so it starts fresh on the new setting. */
+  const applyDifficulty = useCallback(
+    (d: DifficultySetting) => {
+      flushPlayTime();
+      roundActiveRef.current = false;
+      roundVersionRef.current += 1;
+      finishingRef.current = false;
+      setPendingDifficulty(null);
+      setResult(null);
+      setManualPause(false);
+      setPausedState(hidden);
+      setDifficulty(d);
+      setInstanceKey((k) => k + 1);
+    },
+    [flushPlayTime, hidden, setDifficulty],
+  );
+
+  // A round in progress would be lost, so ask first; otherwise switch at once.
+  const chooseDifficulty = useCallback(
+    (d: DifficultySetting) => {
+      if (d === difficulty) return;
+      if (!roundActiveRef.current) {
+        applyDifficulty(d);
+        return;
+      }
+      setPendingDifficulty(d);
+      setPausedState(true);
+      pauseTimer();
+    },
+    [applyDifficulty, difficulty, pauseTimer],
+  );
+
+  const cancelDifficulty = useCallback(() => {
+    setPendingDifficulty(null);
+    const stayPaused = manualPause || hidden || finishingRef.current;
+    setPausedState(stayPaused);
+    if (!stayPaused) resumeTimer();
+  }, [hidden, manualPause, resumeTimer]);
+
+  const showDifficulty = (game.difficultyPicker ?? 'toolbar') === 'toolbar';
+
   const api: GameShellApi = useMemo(
     () => ({
       game,
@@ -326,6 +374,20 @@ function GameSession({ game }: Props) {
         </button>
         {/* The game title is the page heading on /games/:id. */}
         <h1 className="title">{game.title}</h1>
+
+        {showDifficulty && (
+          <select
+            className="select toolbar-select"
+            value={pendingDifficulty ?? difficulty}
+            onChange={(e) => chooseDifficulty(e.target.value as DifficultySetting)}
+            aria-label="Difficulty"
+            title="Difficulty"
+          >
+            <option value="easy">Easy</option>
+            <option value="normal">Normal</option>
+            <option value="hard">Hard</option>
+          </select>
+        )}
 
         {caps.restartable && (
           <button
@@ -412,7 +474,25 @@ function GameSession({ game }: Props) {
           </ErrorBoundary>
         </GameShellContext.Provider>
 
-        {paused && !result && caps.pausable && (
+        {pendingDifficulty && (
+          <div className="game-overlay">
+            <div className="overlay-card" role="alertdialog" aria-labelledby="difficulty-confirm">
+              <h3 id="difficulty-confirm">Switch to {DIFFICULTY_LABEL[pendingDifficulty]}?</h3>
+              <p className="small muted">This ends the current game and starts a new one.</p>
+              <button
+                className="btn btn-primary btn-block"
+                onClick={() => applyDifficulty(pendingDifficulty)}
+              >
+                Start new game
+              </button>
+              <button className="btn btn-block" onClick={cancelDifficulty}>
+                Keep playing
+              </button>
+            </div>
+          </div>
+        )}
+
+        {paused && !result && !pendingDifficulty && caps.pausable && (
           <div className="game-overlay">
             <div className="overlay-card">
               <h3>Paused</h3>
@@ -475,7 +555,22 @@ function GameSession({ game }: Props) {
                 )}
               </div>
 
-              <button className="btn btn-primary btn-block" onClick={requestRestart}>
+              {result.next && (
+                <button
+                  className="btn btn-primary btn-block"
+                  onClick={() => {
+                    const { action } = result.next!;
+                    clearResult();
+                    action();
+                  }}
+                >
+                  {result.next.label}
+                </button>
+              )}
+              <button
+                className={`btn btn-block${result.next ? '' : ' btn-primary'}`}
+                onClick={requestRestart}
+              >
                 Play Again
               </button>
               <Link className="btn btn-block" to="/games/">

@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A timed times-tables drill. Wrong answers come from neighbouring rows of the table, so you have to really know it. Hard goes up to 15 × 15.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer fifteen multiplication questions as quickly and accurately as you can.',
     question: 'Each question is a multiplication such as 7 × 8 = ?.',

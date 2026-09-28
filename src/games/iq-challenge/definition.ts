@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A mixed reasoning challenge: verbal analogies, letter and number sequences, classification puzzles and logic. Fifteen questions with explanations. Just for fun — not a real IQ test.',
   minutes: 6,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer fifteen reasoning questions.',
     question:

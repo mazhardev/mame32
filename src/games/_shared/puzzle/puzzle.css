@@ -1,0 +1,115 @@
+/* Shared styles for grid puzzles. Boards size themselves from --n (cells per
+   row) so a 5×5 and a 15×15 grid both fit the stage without overflowing. */
+
+.pz-grid {
+  --n: 5;
+  --gap: 3px;
+  --max: 520px;
+  --cell: min(
+    calc((100vw - 56px - (var(--n) - 1) * var(--gap)) / var(--n)),
+    calc((var(--max) - (var(--n) - 1) * var(--gap)) / var(--n))
+  );
+  display: grid;
+  grid-template-columns: repeat(var(--n), var(--cell));
+  grid-auto-rows: var(--cell);
+  gap: var(--gap);
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.pz-cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--cell);
+  height: var(--cell);
+  padding: 0;
+  border-radius: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: calc(var(--cell) * 0.42);
+  line-height: 1;
+  color: var(--text);
+  transition:
+    background var(--transition),
+    transform var(--transition);
+}
+
+.pz-cell:focus-visible,
+.pz-focus:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 1px;
+  z-index: 1;
+}
+
+.pz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pz-resume {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.pz-start {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.pz-start h2 {
+  font-size: 1.25rem;
+}
+
+.pz-levels {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pz-levels .select {
+  width: auto;
+  min-width: 150px;
+}
+
+.pz-levels .icon-btn:disabled {
+  opacity: 0.4;
+}
+
+.pz-win {
+  animation: pz-pop 420ms ease-out;
+}
+
+@keyframes pz-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pz-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

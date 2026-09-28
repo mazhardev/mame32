@@ -16,6 +16,8 @@ export interface GameOverPayload {
   coins?: number;
   mode?: string;
   message?: string;
+  /** Optional primary action on the result screen, e.g. "Next level". */
+  next?: { label: string; action: () => void };
 }
 
 export interface GameShellApi {

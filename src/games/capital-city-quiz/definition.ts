@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'How well do you know the world’s capitals? Nearly 100 countries, with tricky distractors like Sydney and Toronto that catch out even seasoned travellers.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Name the capital city of ten countries.',
     question: 'Each question names a country. Pick its capital city.',

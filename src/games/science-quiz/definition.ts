@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A general science quiz covering the solar system, human biology, physics, chemistry and the natural world.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten science questions.',
     question: 'Questions come from across the sciences.',

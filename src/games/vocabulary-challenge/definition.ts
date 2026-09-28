@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A fast-paced word challenge. For each word, pick a synonym or an antonym before time runs out — and don’t fall for the opposite!',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Find twelve synonyms and antonyms against the clock.',
     question: 'Each question asks for a SYNONYM (same meaning) or an ANTONYM (opposite).',

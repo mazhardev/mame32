@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Travel through time with questions about ancient civilisations, empires, revolutions, explorers, inventions and the 20th century.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten history questions.',
     question: 'Questions cover world history from ancient times to the modern era.',

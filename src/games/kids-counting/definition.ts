@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A friendly counting game for young children. Count the pictures, compare which group has more, and add two groups together. No timers and big tap-friendly answers.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Count the pictures and choose the right number.',
     question: 'Each question shows pictures: count them, compare two groups or add them together.',

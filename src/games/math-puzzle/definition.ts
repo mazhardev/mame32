@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Each puzzle is an equation with a gap. Find the missing number, or work out which operator (+, −, ×, ÷) makes it true.',
   minutes: 4,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Complete ten equations by finding the missing piece.',
     question: 'Questions look like ? + 7 = 15 or 12 ? 3 = 36. Pick what fills the gap.',

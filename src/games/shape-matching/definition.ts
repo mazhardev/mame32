@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A shapes game: name each shape, find a named shape among four, and count the sides of polygons from triangles to octagons.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten questions about shapes.',
     question: 'Name the shape, pick it from a group of four, or count its sides.',

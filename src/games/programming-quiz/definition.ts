@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A quiz for coders and learners: HTML and CSS, JavaScript and Python basics, data structures, Big-O, HTTP, Git and computing history.',
   minutes: 4,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten programming questions.',
     question: 'Questions range from web basics to algorithms and JavaScript quirks.',

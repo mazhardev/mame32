@@ -35,6 +35,7 @@ export const penaltyShootoutGame: GameDefinition = {
   estimatedMinutes: 3,
   hasHighScore: true,
   hasAchievements: true,
+  difficultyPicker: 'in-game',
   status: 'available',
   instructions,
   achievements,

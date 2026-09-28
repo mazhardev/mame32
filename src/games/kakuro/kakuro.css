@@ -1,0 +1,117 @@
+.kk-grid {
+  --n: 8;
+  --cell: min(calc((100vw - 44px) / var(--n)), 50px);
+  display: grid;
+  grid-template-columns: repeat(var(--n), var(--cell));
+  grid-auto-rows: var(--cell);
+  border: 2px solid #1f2433;
+  background: #1f2433;
+  gap: 1px;
+  user-select: none;
+}
+
+.kk-black {
+  background: #2b3142;
+}
+
+.kk-clue {
+  position: relative;
+  background:
+    linear-gradient(
+      to top right,
+      transparent calc(50% - 0.7px),
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent calc(50% + 0.7px)
+    ),
+    #2b3142;
+  color: #f1f5f9;
+  font-weight: 700;
+  font-size: calc(var(--cell) * 0.3);
+  font-variant-numeric: tabular-nums;
+}
+
+.kk-clue span {
+  position: absolute;
+  line-height: 1;
+}
+
+.kk-a {
+  top: 8%;
+  right: 8%;
+}
+
+.kk-d {
+  bottom: 8%;
+  left: 8%;
+}
+
+.kk-clue .ok {
+  color: #86efac;
+}
+
+.kk-clue .bad {
+  color: #fca5a5;
+}
+
+.kk-cell {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 0;
+  background: #fbfaf5;
+  color: #1d4ed8;
+  font-weight: 700;
+  font-size: calc(var(--cell) * 0.52);
+}
+
+.kk-cell.given {
+  color: #111827;
+  background: #ece9dd;
+}
+
+.kk-cell.run {
+  background: #e7efff;
+}
+
+.kk-cell.sel {
+  background: #fde68a;
+}
+
+.kk-cell.err {
+  color: #dc2626;
+  box-shadow: inset 0 0 0 2px #ef4444;
+}
+
+.kk-cell:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: -3px;
+}
+
+.kk-helper {
+  width: min(100%, 520px);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+  min-height: 2.6em;
+}
+
+.kk-pad {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 54px));
+  gap: 6px;
+  justify-content: center;
+}
+
+.kk-key {
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.kk-key:hover:not(:disabled) {
+  background: var(--surface-hover);
+}

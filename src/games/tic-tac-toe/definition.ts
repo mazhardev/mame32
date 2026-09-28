@@ -25,6 +25,7 @@ export const ticTacToeGame: GameDefinition = {
   estimatedMinutes: 2,
   hasHighScore: true,
   hasAchievements: true,
+  difficultyPicker: 'in-game',
   status: 'available',
   instructions,
   achievements,

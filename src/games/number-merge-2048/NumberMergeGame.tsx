@@ -81,8 +81,9 @@ export default function NumberMergeGame() {
         setScore(saved.score);
         setUndosLeft(saved.undosLeft);
         setUsedUndo(saved.usedUndo);
+        // Leave startedRef unset: the first move after continuing opens a shell
+        // round, otherwise finishing a restored game would never be recorded.
         setRestored(true);
-        startedRef.current = true;
       }
       setLoading(false);
     });

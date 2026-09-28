@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Tackle the most commonly misspelled English words. Each question shows four versions — only one is right. A short meaning is given as a hint.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Choose the correct spelling ten times.',
     question: 'Pick the correctly spelled word from four versions.',

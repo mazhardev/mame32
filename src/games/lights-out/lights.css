@@ -1,0 +1,36 @@
+.lo-grid {
+  --gap: 6px;
+  padding: 10px;
+  border-radius: 16px;
+  background: #0f1422;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.lo-cell {
+  border-radius: 10px;
+  border: 1px solid #2a3350;
+  background: radial-gradient(circle at 50% 40%, #2b3350, #1a2034);
+}
+
+.lo-cell.on {
+  border-color: #fde68a;
+  background: radial-gradient(circle at 50% 40%, #fffbe6, #facc15 55%, #d97706);
+  box-shadow:
+    0 0 14px rgba(250, 204, 21, 0.55),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.18);
+}
+
+.lo-cell.hint::after {
+  content: '';
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  border: 3px dashed #38bdf8;
+  animation: lo-spin 3s linear infinite;
+}
+
+@keyframes lo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

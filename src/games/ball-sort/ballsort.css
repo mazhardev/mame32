@@ -1,0 +1,76 @@
+.bs-rack {
+  --ball: clamp(26px, 8vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 10px;
+  max-width: 640px;
+  padding-top: calc(var(--ball) * 0.9);
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.bs-tube {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2px;
+  width: calc(var(--ball) + 12px);
+  height: calc(var(--ball) * 4 + 26px);
+  padding: 5px 0;
+  border: 3px solid var(--border-strong);
+  border-top: none;
+  border-radius: 0 0 calc(var(--ball) / 2 + 6px) calc(var(--ball) / 2 + 6px);
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  transition:
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.bs-tube.sel {
+  border-color: var(--brand);
+}
+
+.bs-tube.legal {
+  border-color: color-mix(in srgb, var(--success) 75%, transparent);
+}
+
+.bs-tube.hint-from {
+  border-color: #38bdf8;
+}
+
+.bs-tube.hint-to {
+  border-color: #38bdf8;
+  border-style: dashed;
+}
+
+.bs-tube.full {
+  border-color: var(--success);
+}
+
+.bs-tube:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.bs-ball {
+  flex-shrink: 0;
+  width: var(--ball);
+  height: var(--ball);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: calc(var(--ball) * 0.42);
+  line-height: 1;
+  box-shadow:
+    inset -3px -4px 0 rgba(0, 0, 0, 0.18),
+    inset 3px 3px 5px rgba(255, 255, 255, 0.35);
+  transition: transform 130ms ease-out;
+}
+
+.bs-ball.lifted {
+  /* --lift is the number of empty slots above the ball; clear the tube mouth. */
+  transform: translateY(calc(-1 * ((var(--ball) + 2px) * var(--lift, 0) + var(--ball) * 0.75)));
+}

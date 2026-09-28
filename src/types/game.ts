@@ -69,6 +69,12 @@ export interface GameDefinition {
   hasSaveState?: boolean;
   scoreDirection?: 'high' | 'low';
   scoreUnit?: string;
+  /**
+   * Where players choose Easy / Normal / Hard. Defaults to 'toolbar': the game
+   * shell shows a picker and starts a fresh game when it changes. Use 'in-game'
+   * when the game renders its own picker, and 'none' when difficulty has no effect.
+   */
+  difficultyPicker?: 'toolbar' | 'in-game' | 'none';
   status: 'available' | 'planned';
   instructions: GameInstructions;
   achievements?: AchievementDefinition[];

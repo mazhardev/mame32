@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Build vocabulary in three languages. Translate everyday words into English, and on harder levels, from English into Spanish, French and German.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Translate ten words correctly.',
     question: 'Translate a Spanish, French or German word into English — or the other way round.',

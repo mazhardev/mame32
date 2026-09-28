@@ -2,10 +2,12 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { reportProgress } from '@/achievements/AchievementService';
 import { GameHud } from '@/components/game/GameHud';
-import { generate, pathBetween, matchWord, SIZE } from './engine';
+import { LEVELS, generate, pathBetween, matchWord } from './engine';
 export default function WordSearchGame() {
   const shell = useGameShell();
-  const [board, setBoard] = useState(generate);
+  const level = LEVELS[shell.difficulty];
+  const [board, setBoard] = useState(() => generate(level));
+  const size = board.size;
   const [first, setFirst] = useState<number | null>(null);
   const [found, setFound] = useState<string[]>([]);
   const [marked, setMarked] = useState<number[]>([]);
@@ -13,13 +15,13 @@ export default function WordSearchGame() {
   const [message, setMessage] = useState('Choose the first and last letter of a word.');
   const started = useRef(false);
   const reset = useCallback(() => {
-    setBoard(generate());
+    setBoard(generate(level));
     setFirst(null);
     setFound([]);
     setMarked([]);
     setAttempts(0);
     started.current = false;
-  }, []);
+  }, [level]);
   useEffect(() => {
     shell.registerRestart(reset);
   }, [shell, reset]);
@@ -33,7 +35,7 @@ export default function WordSearchGame() {
       setFirst(i);
       return;
     }
-    const path = pathBetween(first, i);
+    const path = pathBetween(first, i, size);
     setFirst(null);
     if (path.length < 2) return;
     setAttempts(attempts + 1);
@@ -68,15 +70,15 @@ export default function WordSearchGame() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: `repeat(${SIZE},minmax(0,1fr))`,
+          gridTemplateColumns: `repeat(${size},minmax(0,1fr))`,
           gap: 2,
-          width: 'min(100%,500px)',
+          width: `min(100%,${size > 10 ? 560 : 500}px)`,
         }}
       >
         {board.grid.map((letter, i) => (
           <button
             key={i}
-            aria-label={`Row ${Math.floor(i / SIZE) + 1} column ${(i % SIZE) + 1}: ${letter}`}
+            aria-label={`Row ${Math.floor(i / size) + 1} column ${(i % size) + 1}: ${letter}`}
             aria-pressed={first === i || marked.includes(i)}
             onClick={() => select(i)}
             disabled={shell.paused}
@@ -84,7 +86,7 @@ export default function WordSearchGame() {
               aspectRatio: '1',
               padding: 0,
               minWidth: 0,
-              fontSize: 'clamp(.7rem,3vw,1.2rem)',
+              fontSize: size > 10 ? 'clamp(.6rem,2.4vw,1.05rem)' : 'clamp(.7rem,3vw,1.2rem)',
               fontWeight: 700,
               color: 'var(--text)',
               background:

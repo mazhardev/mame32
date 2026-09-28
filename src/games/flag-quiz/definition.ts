@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Identify national flags, drawn in their official colours. Watch out for look-alikes: several tricolours differ only in order or shade.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten flag questions.',
     question:

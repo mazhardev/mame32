@@ -33,6 +33,7 @@ export const minesweeperGame: GameDefinition = {
   estimatedMinutes: 6,
   hasHighScore: true,
   hasAchievements: true,
+  difficultyPicker: 'in-game',
   status: 'available',
   instructions,
   achievements,

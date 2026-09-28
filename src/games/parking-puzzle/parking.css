@@ -1,0 +1,147 @@
+.parking-lot {
+  --w: 6;
+  --h: 6;
+  --cell: min(calc((100vw - 56px) / var(--w)), calc(460px / var(--w)));
+  position: relative;
+  width: calc(var(--cell) * var(--w));
+  height: calc(var(--cell) * var(--h));
+  border-radius: 10px;
+  background-color: #3a3f4b;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.14) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.14) 2px, transparent 2px);
+  background-size: var(--cell) var(--cell);
+  border: 4px dashed #facc15;
+  box-sizing: content-box;
+  overflow: hidden;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.parking-bollard {
+  position: absolute;
+  width: calc(100% / var(--w));
+  height: calc(100% / var(--h));
+  display: grid;
+  place-items: center;
+}
+
+.parking-bollard::before {
+  content: '';
+  width: 42%;
+  height: 42%;
+  border-radius: 50%;
+  background: repeating-linear-gradient(45deg, #fbbf24 0 6px, #1f2937 6px 12px);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.parking-car {
+  position: absolute;
+  padding: 5%;
+  transition: transform 380ms cubic-bezier(0.5, 0, 0.9, 0.6);
+}
+
+.parking-car.leaving {
+  z-index: 2;
+}
+
+.parking-car:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -2px;
+  border-radius: 12px;
+}
+
+.parking-body {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: var(--paint);
+  box-shadow:
+    inset 0 -4px 0 rgba(0, 0, 0, 0.25),
+    0 3px 5px rgba(0, 0, 0, 0.35);
+}
+
+/* The windscreen sits at the front of the car. */
+.parking-glass {
+  position: absolute;
+  background: rgba(186, 230, 253, 0.85);
+  border-radius: 4px;
+}
+
+.dir-up .parking-glass {
+  top: 10%;
+  left: 18%;
+  right: 18%;
+  height: 16%;
+}
+
+.dir-down .parking-glass {
+  bottom: 10%;
+  left: 18%;
+  right: 18%;
+  height: 16%;
+}
+
+.dir-left .parking-glass {
+  left: 10%;
+  top: 18%;
+  bottom: 18%;
+  width: 16%;
+}
+
+.dir-right .parking-glass {
+  right: 10%;
+  top: 18%;
+  bottom: 18%;
+  width: 16%;
+}
+
+.parking-arrow {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 800;
+  font-size: calc(var(--cell) * 0.34);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.parking-car.bump.dir-up .parking-body {
+  animation: bump-up 260ms ease-out;
+}
+
+.parking-car.bump.dir-down .parking-body {
+  animation: bump-down 260ms ease-out;
+}
+
+.parking-car.bump.dir-left .parking-body {
+  animation: bump-left 260ms ease-out;
+}
+
+.parking-car.bump.dir-right .parking-body {
+  animation: bump-right 260ms ease-out;
+}
+
+@keyframes bump-up {
+  40% {
+    transform: translateY(-10%);
+  }
+}
+
+@keyframes bump-down {
+  40% {
+    transform: translateY(10%);
+  }
+}
+
+@keyframes bump-left {
+  40% {
+    transform: translateX(-10%);
+  }
+}
+
+@keyframes bump-right {
+  40% {
+    transform: translateX(10%);
+  }
+}

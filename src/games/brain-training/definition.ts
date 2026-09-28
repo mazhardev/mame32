@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A varied brain workout mixing quick maths, number sequences, a colour-word (Stroop) test, fraction comparisons and visual counting — fifteen questions against the clock.',
   minutes: 5,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Complete a mixed set of fifteen quick brain drills.',
     question:

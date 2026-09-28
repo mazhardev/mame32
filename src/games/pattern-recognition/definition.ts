@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Visual pattern puzzles with coloured symbols. Continue repeating sequences, find the odd one out, and fill the gap in a symbol grid.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Solve ten visual pattern puzzles.',
     question: 'Continue a symbol sequence, find the odd one out, or complete a grid.',

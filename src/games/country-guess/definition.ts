@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Each round gives you clues about a mystery country. On Easy you get three clues; on Hard, only the most cryptic one.',
   minutes: 4,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Identify ten countries from their clues.',
     question: 'Read the clues and pick the country they describe.',

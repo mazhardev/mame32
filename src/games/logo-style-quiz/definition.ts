@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A visual logo quiz with original, made-up brands. Read each logo’s symbol and colour to work out what kind of business it belongs to. No real logos are used.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Match ten fictional logos and businesses.',
     question: 'Pick the company or business type a logo suggests, or the right logo for a company.',

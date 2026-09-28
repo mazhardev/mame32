@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A maths race. Each correct answer moves your car along the track, while the computer car drives on at a steady pace. Reach the finish line first to win.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer 12 questions correctly before the computer car reaches the finish line.',
     question: 'Answer arithmetic questions as fast as you can; a wrong answer costs you time.',

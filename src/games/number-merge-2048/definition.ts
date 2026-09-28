@@ -25,6 +25,7 @@ export const numberMergeGame: GameDefinition = {
   hasHighScore: true,
   hasAchievements: true,
   hasSaveState: true,
+  difficultyPicker: 'in-game',
   status: 'available',
   instructions,
   achievements,

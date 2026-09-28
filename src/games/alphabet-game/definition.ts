@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A picture alphabet game for early readers. Match pictures to their first letter, pair capital and small letters, and find which letter comes before or after.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten alphabet questions.',
     question: 'Questions show a picture or a letter. Pick the matching letter, word or picture.',

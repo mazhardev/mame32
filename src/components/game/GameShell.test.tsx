@@ -6,7 +6,7 @@ import { GameShell } from './GameShell';
 import { useGameShell } from '@/game-engine/context';
 import type { GameShellApi } from '@/game-engine/context';
 import type { GameDefinition } from '@/types';
-import { addPlayTime, getGameSettings, getBestHighScore, recordGameComplete, recordGameStart } from '@/storage/StorageService';
+import { addPlayTime, getGameSettings, getBestHighScore, recordGameComplete, recordGameStart, setGameSettings } from '@/storage/StorageService';
 
 vi.mock('@/storage/StorageService', () => ({
   addPlayTime: vi.fn().mockResolvedValue(undefined),
@@ -34,10 +34,14 @@ vi.mock('@/services/dailyChallenge', () => ({ reportRoundForChallenge: vi.fn().m
 let api: GameShellApi;
 let disablePause = false;
 let renders = 0;
+let mounts = 0;
 function TestGame() {
   const shell = useGameShell();
   api = shell;
   renders++;
+  useEffect(() => {
+    mounts++;
+  }, []);
   // Real board games configure capabilities in an effect depending on the API.
   useEffect(() => {
     if (disablePause && renders < 15) shell.setCapabilities({ pausable: false });
@@ -53,8 +57,8 @@ const game: GameDefinition = {
   component: lazy(async () => ({ default: TestGame })),
 };
 
-async function mount() {
-  const view = render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><GameShell game={game} /></MemoryRouter>);
+async function mount(def: GameDefinition = game) {
+  const view = render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><GameShell game={def} /></MemoryRouter>);
   await screen.findByText('Test board');
   return view;
 }
@@ -73,6 +77,7 @@ beforeEach(() => {
   visibility('visible');
   disablePause = false;
   renders = 0;
+  mounts = 0;
 });
 afterEach(() => {
   cleanup();
@@ -169,5 +174,58 @@ describe('GameShell lifecycle', () => {
     expect(restart).not.toHaveBeenCalled();
     fireEvent.keyDown(window, { key: 'r' });
     expect(restart).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('GameShell result screen', () => {
+  it('offers a game-supplied next action that dismisses the result', async () => {
+    await mount();
+    const next = vi.fn();
+    act(() => api.startRound());
+    await act(async () => api.endRound({ won: true, score: 5, next: { label: 'Next level →', action: next } }));
+    const button = await screen.findByRole('button', { name: 'Next level →' });
+    fireEvent.click(button);
+    expect(next).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole('button', { name: 'Next level →' })).not.toBeInTheDocument();
+  });
+});
+
+describe('GameShell difficulty picker', () => {
+  const picker = () => screen.queryByRole('combobox', { name: 'Difficulty' });
+
+  it('switches at once and starts a fresh game when no round is running', async () => {
+    await mount();
+    await waitFor(() => expect(picker()).toHaveValue('normal'));
+    fireEvent.change(picker()!, { target: { value: 'hard' } });
+    expect(api.difficulty).toBe('hard');
+    expect(setGameSettings).toHaveBeenCalledWith('test-game', { difficulty: 'hard' });
+    await waitFor(() => expect(mounts).toBe(2));
+  });
+
+  it('asks before abandoning a round in progress', async () => {
+    await mount();
+    act(() => api.startRound());
+    fireEvent.change(picker()!, { target: { value: 'easy' } });
+    expect(screen.getByText('Switch to Easy?')).toBeInTheDocument();
+    expect(api.paused).toBe(true);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Keep playing' }));
+    expect(api.difficulty).toBe('normal');
+    expect(api.paused).toBe(false);
+    expect(mounts).toBe(1);
+
+    fireEvent.change(picker()!, { target: { value: 'easy' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Start new game' }));
+    expect(api.difficulty).toBe('easy');
+    expect(api.paused).toBe(false);
+    await waitFor(() => expect(mounts).toBe(2));
+  });
+
+  it('is hidden for games with their own picker or no difficulty levels', async () => {
+    await mount({ ...game, difficultyPicker: 'in-game' });
+    expect(picker()).not.toBeInTheDocument();
+    cleanup();
+    await mount({ ...game, difficultyPicker: 'none' });
+    expect(picker()).not.toBeInTheDocument();
   });
 });

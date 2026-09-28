@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'Spot the rule behind each number sequence — adding, multiplying, squares, alternating steps and more — and choose the next number. The rule is explained after every answer.',
   minutes: 4,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Work out the rule and choose the next number in ten sequences.',
     question: 'Each question shows a sequence like 3, 7, 11, 15, ? — pick what comes next.',

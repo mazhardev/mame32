@@ -25,6 +25,7 @@ export const connectFourGame: GameDefinition = {
   estimatedMinutes: 4,
   hasHighScore: true,
   hasAchievements: true,
+  difficultyPicker: 'in-game',
   status: 'available',
   instructions,
   achievements,

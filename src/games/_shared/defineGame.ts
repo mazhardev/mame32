@@ -43,6 +43,7 @@ export interface GameSpec {
   hasLevels?: boolean;
   scoreDirection?: 'high' | 'low';
   scoreUnit?: string;
+  difficultyPicker?: GameDefinition['difficultyPicker'];
 }
 
 /**
@@ -72,6 +73,7 @@ export function defineGame(spec: GameSpec): GameDefinition {
     hasLevels: spec.hasLevels,
     scoreDirection: spec.scoreDirection,
     scoreUnit: spec.scoreUnit,
+    difficultyPicker: spec.difficultyPicker,
     status: 'available',
     instructions: spec.instructions,
     achievements: spec.achievements.map(([key, name, description, target, icon, coins]) => ({

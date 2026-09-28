@@ -25,6 +25,7 @@ export const klondikeGame: GameDefinition = {
   estimatedMinutes: 10,
   hasHighScore: true,
   hasAchievements: true,
+  difficultyPicker: 'none',
   status: 'available',
   instructions,
   achievements,

@@ -12,6 +12,7 @@ export const game = defineGame({
   full: 'A world geography quiz covering oceans, mountain ranges, rivers, deserts, islands and famous landmarks.',
   minutes: 3,
   controls: QUIZ_CONTROLS,
+  difficultyPicker: 'in-game',
   instructions: quizInstructions({
     objective: 'Answer ten geography questions.',
     question: 'Questions cover physical geography and countries around the world.',

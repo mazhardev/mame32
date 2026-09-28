@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
-import { reportProgress } from '@/achievements/AchievementService';
+import { incrementProgress, reportProgress } from '@/achievements/AchievementService';
 import { clearProgress, loadProgress, saveProgress } from '@/storage/StorageService';
 import { formatClock } from '@/utils/format';
 import {
@@ -95,8 +95,9 @@ export default function SudokuGame() {
       if (saved && saved.difficulty === shell.difficulty && Array.isArray(saved.board)) {
         setState(saved);
         elapsedBaseRef.current = saved.elapsed;
+        // Leave startedRef unset: the first entry after continuing opens a shell
+        // round, otherwise solving a restored puzzle would never be recorded.
         setRestored(true);
-        startedRef.current = true;
         startTimer();
       } else {
         setState(buildPuzzle(shell.difficulty));
@@ -149,7 +150,7 @@ export default function SudokuGame() {
       const score = Math.max(100, base + timeBonus - next.hints * 120 - next.mistakes * 40);
 
       void reportProgress('sudoku.first-solve', 1);
-      void reportProgress('sudoku.solve-10', 1);
+      void incrementProgress('sudoku.solve-10');
       if (next.difficulty === 'hard') void reportProgress('sudoku.hard-solve', 1);
       if (next.hints === 0) void reportProgress('sudoku.no-hints', 1);
       if (next.mistakes === 0) void reportProgress('sudoku.no-mistakes', 1);
