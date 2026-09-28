@@ -1,0 +1,76 @@
+.sk-board {
+  --w: 9;
+  --h: 8;
+  --cell: min(calc((100vw - 48px) / var(--w)), calc(480px / var(--w)), calc((100vh - 330px) / var(--h)), 56px);
+  display: grid;
+  grid-template-columns: repeat(var(--w), var(--cell));
+  grid-auto-rows: var(--cell);
+  user-select: none;
+  touch-action: none;
+}
+
+.sk-void {
+  background: transparent;
+}
+
+.sk-wall {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.18) 2px, transparent 2px) 0 0 / 100% 50%,
+    linear-gradient(90deg, rgba(0, 0, 0, 0.18) 2px, transparent 2px) 0 0 / 50% 50%,
+    #7c5a3a;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.sk-floor {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: #d7c9a7;
+  box-shadow: inset 0 0 0 1px rgba(90, 70, 40, 0.12);
+}
+
+.sk-floor.goal::before {
+  content: '';
+  position: absolute;
+  width: 34%;
+  height: 34%;
+  border-radius: 50%;
+  border: 3px solid #16a34a;
+  background: rgba(22, 163, 74, 0.2);
+}
+
+.sk-box {
+  position: relative;
+  width: 84%;
+  height: 84%;
+  border-radius: 6px;
+  background:
+    linear-gradient(45deg, transparent 46%, rgba(0, 0, 0, 0.25) 46% 54%, transparent 54%),
+    linear-gradient(-45deg, transparent 46%, rgba(0, 0, 0, 0.25) 46% 54%, transparent 54%),
+    #d97706;
+  border: 3px solid #92400e;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  transition: background var(--transition);
+}
+
+.sk-box.home {
+  background:
+    linear-gradient(45deg, transparent 46%, rgba(0, 0, 0, 0.2) 46% 54%, transparent 54%),
+    linear-gradient(-45deg, transparent 46%, rgba(0, 0, 0, 0.2) 46% 54%, transparent 54%),
+    #22c55e;
+  border-color: #15803d;
+}
+
+.sk-box.stuck {
+  border-color: #b91c1c;
+}
+
+.sk-keeper {
+  position: absolute;
+  width: 62%;
+  height: 62%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #93c5fd, #1d4ed8);
+  border: 2px solid #1e3a8a;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}

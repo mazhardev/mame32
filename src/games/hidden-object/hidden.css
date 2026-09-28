@@ -1,0 +1,81 @@
+.ho-scene {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  cursor: crosshair;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.ho-scene.blurred {
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.ho-scene text {
+  pointer-events: none;
+}
+
+.ho-found {
+  opacity: 0.45;
+}
+
+.ho-ring {
+  fill: none;
+  stroke: #16a34a;
+  stroke-width: 3;
+}
+
+.ho-pulse {
+  fill: none;
+  stroke: #0ea5e9;
+  stroke-width: 3;
+  animation: ho-pulse 0.8s ease-in-out infinite;
+}
+
+@keyframes ho-pulse {
+  50% {
+    stroke-width: 6;
+    opacity: 0.4;
+  }
+}
+
+.ho-miss line {
+  stroke: #dc2626;
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: ho-fade 1.2s ease-out forwards;
+}
+
+@keyframes ho-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+.ho-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ho-list li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.ho-list li.done {
+  text-decoration: line-through;
+  color: var(--text-faint);
+  background: var(--success-soft);
+}

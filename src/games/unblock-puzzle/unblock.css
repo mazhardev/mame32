@@ -1,0 +1,96 @@
+.ub-frame {
+  --board: min(calc(100vw - 72px), 420px);
+  position: relative;
+  padding: 12px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #6b4423, #4a2f18);
+  box-shadow: var(--shadow-md);
+}
+
+.ub-board {
+  position: relative;
+  width: var(--board);
+  height: var(--board);
+  border-radius: 8px;
+  background-color: #e8d3a9;
+  background-image:
+    linear-gradient(rgba(107, 68, 35, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107, 68, 35, 0.18) 1px, transparent 1px);
+  background-size: calc(var(--board) / 6) calc(var(--board) / 6);
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+}
+
+/* The gap in the frame where the red block leaves. */
+.ub-exit {
+  position: absolute;
+  right: 0;
+  width: 12px;
+  height: calc(var(--board) / 6);
+  margin-top: 12px;
+  background: #e8d3a9;
+}
+
+.ub-block {
+  position: absolute;
+  padding: 3px;
+  transition:
+    left 160ms ease-out,
+    top 160ms ease-out;
+  cursor: grab;
+}
+
+.ub-block.dragging {
+  transition: none;
+  z-index: 2;
+  cursor: grabbing;
+}
+
+.ub-block span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0.07) 0 6px,
+      rgba(0, 0, 0, 0.05) 6px 13px
+    ),
+    var(--wood);
+  box-shadow:
+    inset 0 -4px 0 rgba(0, 0, 0, 0.25),
+    inset 0 2px 0 rgba(255, 255, 255, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: calc(var(--board) / 12);
+  font-weight: 800;
+}
+
+.ub-block.key span {
+  box-shadow:
+    inset 0 -4px 0 rgba(0, 0, 0, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3),
+    0 0 0 2px rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ub-block.hint span {
+  outline: 3px dashed #0ea5e9;
+  outline-offset: -3px;
+}
+
+.ub-block:focus-visible {
+  outline: none;
+}
+
+.ub-block:focus-visible span {
+  outline: 3px solid var(--brand);
+  outline-offset: 1px;
+}
+
+.ub-block:disabled {
+  cursor: default;
+}

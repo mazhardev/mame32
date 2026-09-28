@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
 import { incrementProgress, reportProgress } from '@/achievements/AchievementService';
@@ -32,19 +32,23 @@ export default function ParkingGame() {
   const [done, setDone] = useState(false);
   const { elapsed, read, reset } = useStopwatch(started && !done && !shell.paused);
   const timers = useRef<number[]>([]);
+  // Refs mirror state so the delayed "car has left" step sees current values.
   const remainingRef = useRef(remaining);
-  remainingRef.current = remaining;
+  const dentsRef = useRef(0);
 
   const load = useCallback(
     (index: number) => {
       timers.current.forEach((t) => window.clearTimeout(t));
       timers.current = [];
       const next = generateLevel(pack, index);
+      const all = new Set(next.cars.map((_, k) => k));
       setLot(next);
-      setRemaining(new Set(next.cars.map((_, k) => k)));
+      setRemaining(all);
+      remainingRef.current = all;
       setLeaving(new Set());
       setBump(null);
       setDents(0);
+      dentsRef.current = 0;
       setStarted(false);
       setDone(false);
       reset(0);
@@ -101,7 +105,8 @@ export default function ParkingGame() {
     // Cars already driving away no longer block anyone.
     const present = new Set([...remainingRef.current].filter((j) => !leaving.has(j)));
     if (blocker(lot, present, k) >= 0) {
-      const count = dents + 1;
+      const count = dentsRef.current + 1;
+      dentsRef.current = count;
       setDents(count);
       setBump({ car: k, n: count });
       shell.play('hit');
@@ -111,12 +116,11 @@ export default function ParkingGame() {
     shell.play('whoosh');
     setLeaving((l) => new Set(l).add(k));
     const t = window.setTimeout(() => {
-      setRemaining((r) => {
-        const next = new Set(r);
-        next.delete(k);
-        if (next.size === 0) finish(dents);
-        return next;
-      });
+      const next = new Set(remainingRef.current);
+      next.delete(k);
+      remainingRef.current = next;
+      setRemaining(next);
+      if (next.size === 0) finish(dentsRef.current);
       setLeaving((l) => {
         const next = new Set(l);
         next.delete(k);
@@ -209,30 +213,25 @@ function CarButton({
   const hCells = Math.max(...ys) - y + 1;
   const far = Math.max(lot.w, lot.h) + 3;
   const out = { up: [0, -far], down: [0, far], left: [-far, 0], right: [far, 0] }[car.dir];
-  const style = useMemo(
-    () => ({
-      left: `${(x / lot.w) * 100}%`,
-      top: `${(y / lot.h) * 100}%`,
-      width: `${(wCells / lot.w) * 100}%`,
-      height: `${(hCells / lot.h) * 100}%`,
-      ['--paint' as string]: PAINT[car.color],
-      transform: leaving
-        ? `translate(${(out[0] / wCells) * 100}%, ${(out[1] / hCells) * 100}%)`
-        : undefined,
-    }),
-    [car.color, hCells, leaving, lot.h, lot.w, out, wCells, x, y],
-  );
+  const style = {
+    left: `${(x / lot.w) * 100}%`,
+    top: `${(y / lot.h) * 100}%`,
+    width: `${(wCells / lot.w) * 100}%`,
+    height: `${(hCells / lot.h) * 100}%`,
+    ['--paint' as string]: PAINT[car.color],
+    transform: leaving ? `translate(${(out[0] / wCells) * 100}%, ${(out[1] / hCells) * 100}%)` : undefined,
+  };
   return (
     <button
       type="button"
-      key={bumpKey}
       className={`parking-car dir-${car.dir}${leaving ? ' leaving' : ''}${bumpKey ? ' bump' : ''}`}
       style={style}
       onClick={onClick}
       disabled={disabled}
       aria-label={`${car.cells.length === 3 ? 'Truck' : 'Car'} facing ${car.dir}`}
     >
-      <span className="parking-body">
+      {/* Re-keyed on every bump so the shake animation replays. */}
+      <span className="parking-body" key={bumpKey}>
         <span className="parking-glass" />
         <span className="parking-arrow" aria-hidden="true">
           {ARROW[car.dir]}

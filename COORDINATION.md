@@ -1,5 +1,28 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-09-29
+
+The user asked Claude directly in chat to continue the project, so the
+"ChatGPT owns the entire project" notice further down is historical. Claude:
+
+- **Completed the Puzzle category (28/28).** Added Sliding Puzzle, Lights Out,
+  Tower of Hanoi, Ball Sort, Maze, Escape Maze, Nonogram, Kakuro, Connect the
+  Dots, Flow Connect, Pipe Connect, Parking Puzzle, Unblock Puzzle, Sokoban,
+  Block Puzzle, Match Three, Candy Match, Jigsaw Puzzle, Tangram, Spot the
+  Difference, Hidden Object and Pattern Puzzle. The registry now holds 125 games.
+- **Added shared kits:** `_shared/puzzle` (save/resume, level packs,
+  keyboard grid cursor, stopwatch, path dragging, Hamiltonian paths),
+  `_shared/maze` and `_shared/match3`. Unblock and Sokoban levels come from
+  `scripts/gen-puzzle-levels.ts` and are re-verified by tests.
+- **Platform changes (backwards compatible):** a difficulty picker in the game
+  toolbar (`GameDefinition.difficultyPicker`), an optional `next` action on
+  `endRound` for "Next level", and `incrementProgress` for cumulative
+  achievements.
+- **Fixed existing bugs:** restored Sudoku/2048 saves never started a shell
+  round (so finishing them recorded nothing), Sudoku's "complete 10 puzzles"
+  achievement could never unlock, and Word Search ignored difficulty.
+- Gates: typecheck, lint, 884 tests in 100 files and the production build pass.
+
 ## Claude update — 2026-09-18
 
 The user asked Claude directly in chat to carry on with the project. This file had

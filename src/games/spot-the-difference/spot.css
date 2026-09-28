@@ -1,0 +1,42 @@
+.sd-pair {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 10px;
+}
+
+.sd-pair.blurred .sd-scene {
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.sd-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  cursor: crosshair;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.sd-mark {
+  fill: none;
+  stroke: #16a34a;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 2px #fff);
+}
+
+.sd-miss line {
+  stroke: #dc2626;
+  stroke-width: 4;
+  stroke-linecap: round;
+  animation: sd-fade 1.4s ease-out forwards;
+}
+
+@keyframes sd-fade {
+  to {
+    opacity: 0;
+  }
+}

@@ -52,7 +52,9 @@ src/
   layouts/        Site chrome (header, footer, drawer)
   pages/          Route components
   games/          One self-contained folder per game
-    registry.ts   The single place a finished game is registered
+    registry.ts   Discovers every games/*/definition.ts automatically
+    _shared/      Kits reused across games: cards, board, chess, quiz, words,
+                  sports, maze, match3 and puzzle (save/resume, level packs…)
   game-engine/    Shared game SDK: loop, input, particles, shell context
   hooks/          Cross-cutting React hooks
   services/       Audio, daily challenge
@@ -71,6 +73,7 @@ src/
 - **`GameShell`** owns everything that is not gameplay: toolbar, pause/resume, fullscreen, session timing, statistics recording, the result screen and the error boundary. Games talk to it through `useGameShell()`.
 - **`StorageService`** is the only module that knows whether data lives in `localStorage` or IndexedDB. Games never touch either directly.
 - **Game loops** use `requestAnimationFrame` and stop completely when paused or when the tab is hidden. High-frequency state lives in refs and engine objects, never React state.
+- **Difficulty** is chosen from the game toolbar. Games read `shell.difficulty`; switching mid-round asks for confirmation and restarts the game on the new setting.
 
 ---
 
@@ -193,66 +196,69 @@ Settings → **Export save data** downloads a JSON bundle containing the profile
 
 ## Adding a new game
 
-Everything a game needs lives in its own folder. You should not have to edit unrelated files.
+Everything a game needs lives in its own folder, and games are discovered automatically — you never edit a shared file to add one.
 
-1. **Create the folder** `src/games/<game-id>/` containing:
+1. **Create the folder** `src/games/<game-id>/`. The id must match an entry in `src/data/plannedGames.ts` (the smoke test checks this), and the real game then replaces the "Planned" placeholder in the catalog.
 
    ```
    MyGame.tsx        React component (default export)
-   engine.ts         Pure game logic, no React
-   config.ts         Constants and difficulty tuning
-   definition.ts     The GameDefinition
-   achievements.ts   Game-specific achievements
-   instructions.ts   How to play / controls / tips
+   engine.ts         Pure rules and generation, no React
    engine.test.ts    Rule tests
+   definition.ts     The GameDefinition, built with defineGame()
    ```
 
-2. **Implement `GameDefinition`** in `definition.ts`:
+2. **Write the definition** with `defineGame`, which fills in sensible defaults and namespaces achievement ids as `<game-id>.<key>`:
 
    ```ts
-   import { lazy } from 'react';
-   import type { GameDefinition } from '@/types';
-   import { achievements } from './achievements';
-   import { instructions } from './instructions';
+   import { defineGame } from '../_shared/defineGame';
 
-   export const myGame: GameDefinition = {
+   export const game = defineGame({
      id: 'my-game',
      title: 'My Game',
-     shortDescription: '…',
-     fullDescription: '…',
-     category: 'arcade',
+     category: 'puzzle',
      difficulty: 'medium',
-     tags: ['arcade', 'reflex'],
      icon: '🎮',
-     controls: { keyboard: ['Arrow keys to move'], touch: ['Swipe to move'] },
-     supportsTouch: true,
-     supportsKeyboard: true,
-     multiplayer: 'single',
-     estimatedMinutes: 3,
-     hasHighScore: true,
-     hasAchievements: true,
-     status: 'available',
-     instructions,
-     achievements,
-     component: lazy(() => import('./MyGame')),
-   };
+     tags: ['logic', 'grid'],
+     short: 'One-line description for cards and search.',
+     full: 'A longer description for the game page.',
+     controls: { keyboard: ['Arrow keys move'], mouse: ['Click a cell'], touch: ['Tap a cell'] },
+     instructions: {
+       objective: 'What winning means.',
+       howToPlay: ['Step one', 'Step two'],
+       scoring: 'How points are counted.',
+       difficultyNotes: 'What Easy, Normal and Hard change.',
+       tips: ['A tip'],
+       touchNotes: ['How it works on a phone'],
+     },
+     achievements: [
+       ['first', 'First Win', 'Win once.', 1, '🏆', 10], // [key, name, description, target, icon, coins]
+     ],
+     hasSaveState: true, // if it saves progress
+     load: () => import('./MyGame'),
+   });
    ```
 
-3. **Register it** in `src/games/registry.ts` — one import, one array entry. A planned catalog entry with the same id is superseded automatically.
+   The game toolbar shows an Easy / Normal / Hard picker by default. Set `difficultyPicker: 'in-game'` if the game draws its own picker, or `'none'` if difficulty has no effect.
 
-4. **Use the shared APIs** from inside the component:
+3. **Talk to the shell** from the component:
 
    ```tsx
    const shell = useGameShell();
-   shell.startRound();
-   shell.endRound({ score, won: true });
+   shell.registerRestart(restart);        // toolbar Restart and "Play Again"
+   shell.startRound();                    // on the first real move
+   shell.endRound({ won: true, score });  // shows the result screen and records stats
    ```
 
-   and `saveProgress` / `loadProgress` from `StorageService` for progression.
+   `endRound` also accepts `details` rows and a `next: { label, action }` button (used for "Next level"). Read `shell.difficulty` and `shell.paused`; never bind the P, R or F keys (the shell owns them).
 
-5. **Add tests** for the rules — win/loss detection, board validation, AI move legality.
+4. **Reuse the shared kits** in `src/games/_shared/` instead of re-implementing them:
+   - `puzzle/useSavedGame` — continue/new-game prompts with validated saves; `puzzle/levels` — level packs with unlocks and best results; `useStopwatch`, `useGridCursor` (keyboard grids), `useDirectionKeys`, `useCellDrag` (path drawing), `hamilton` (random Hamiltonian paths).
+   - `maze`, `match3`, `board`, `cards`, `chess`, `quiz`, `words`, `sports` for their genres.
+   - Achievements: `reportProgress(id, value)` records a best value; `incrementProgress(id)` counts towards cumulative goals such as "solve 10 puzzles".
 
-6. **Add achievements** in `achievements.ts`; they are picked up by the achievement registry automatically.
+5. **Add tests** for the rules: move legality, win and loss detection, generator validity (every generated puzzle solvable), and save validation. The shared smoke test automatically mounts every registered game and clicks its first controls.
+
+6. **Update the checklist** with `node scripts/update-status.mjs`.
 
 ---
 
