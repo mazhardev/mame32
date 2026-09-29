@@ -1,0 +1,65 @@
+.arcade {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-self: flex-start;
+}
+
+.arcade-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.arcade-canvas {
+  display: block;
+  border-radius: 14px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  background: #0b1020;
+  box-shadow: var(--shadow-md);
+}
+
+.arcade-start {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(88%, 380px);
+  height: fit-content;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(4px);
+  text-align: center;
+}
+
+.arcade-start-title {
+  font-weight: 750;
+  font-size: 1.05rem;
+}
+
+.arcade-start-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.arcade-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.arcade-vpad {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
