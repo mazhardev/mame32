@@ -1,5 +1,6 @@
 import { lazy, useEffect } from 'react';
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { GameShell } from './GameShell';
 import { useGameShell } from '@/game-engine/context';
@@ -57,7 +58,7 @@ const game: GameDefinition = {
 };
 
 async function mount(def: GameDefinition = game) {
-  const view = render(<GameShell game={def} />);
+  const view = render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><GameShell game={def} /></MemoryRouter>);
   await screen.findByText('Test board');
   return view;
 }

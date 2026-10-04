@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
@@ -14,7 +12,7 @@ export default function CoinTossGame() {
   const [flipping, setFlipping] = useState(false);
   const [face, setFace] = useState<Side | null>(null);
   const [message, setMessage] = useState('Heads or tails?');
-  const timer = useRef<number | undefined>(undefined);
+  const timer = useRef<number>();
   const done = state.lives <= 0;
 
   const restart = useCallback(() => {

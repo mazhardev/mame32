@@ -1,7 +1,5 @@
-'use client';
-
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from '@/components/router';
+import { useNavigate } from 'react-router-dom';
 import { searchGames } from '@/data/gameCatalog';
 import { categoryName } from '@/data/categories';
 

@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from 'react';
 import { useGameShell } from '@/game-engine/context';
@@ -59,7 +57,7 @@ export default function NonogramGame() {
   const drag = useRef<Drag | null>(null);
   const marksRef = useRef(marks);
   marksRef.current = marks;
-  const errorTimer = useRef<number | undefined>(undefined);
+  const errorTimer = useRef<number | undefined>();
   const { cellProps } = useGridCursor(n, n);
 
   const clues = useMemo(() => cluesFor(puzzle.solution, n), [puzzle, n]);

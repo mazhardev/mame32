@@ -1,9 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-import type { ReactNode } from 'react';
-import { usePathname } from 'next/navigation';
-import { Link, NavLink } from '@/components/router';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { ConsentBanner } from '@/components/ConsentBanner';
 import { SearchBox } from '@/components/SearchBox';
 import { site } from '@/config/site';
@@ -20,23 +16,19 @@ const NAV = [
 ];
 
 function useCoins() {
-  // Read after mount: the server-rendered HTML cannot know this browser's coins.
-  const [coins, setCoins] = useState(0);
-  useEffect(() => {
-    setCoins(getProfile().totalCoins);
-    return subscribe('profile', () => setCoins(getProfile().totalCoins));
-  }, []);
+  const [coins, setCoins] = useState(() => getProfile().totalCoins);
+  useEffect(() => subscribe('profile', () => setCoins(getProfile().totalCoins)), []);
   return coins;
 }
 
-export default function SiteLayout({ children }: { children: ReactNode }) {
+export default function SiteLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const location = useLocation();
   const coins = useCoins();
 
   useEffect(() => {
     setMenuOpen(false);
-  }, [pathname]);
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -119,7 +111,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       )}
 
       <main id="main" className="page">
-        {children}
+        <Outlet />
       </main>
 
       <footer className="site-footer">

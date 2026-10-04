@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from 'react';
 import { useGameShell } from '@/game-engine/context';

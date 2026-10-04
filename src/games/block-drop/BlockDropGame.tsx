@@ -1,5 +1,3 @@
-'use client';
-
 import { CanvasRunner } from '../_shared/arcade/CanvasRunner';
 import { BlockEngine } from './engine';
 const create = () => new BlockEngine();

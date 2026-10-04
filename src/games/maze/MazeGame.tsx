@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Direction } from '@/game-engine/InputManager';
 import { useGameShell } from '@/game-engine/context';
@@ -35,7 +33,7 @@ export default function MazeGame() {
   const [started, setStarted] = useState(false);
   const [done, setDone] = useState(false);
   const { elapsed, read, reset } = useStopwatch(started && !done && !shell.paused);
-  const hintTimer = useRef<number | undefined>(undefined);
+  const hintTimer = useRef<number | undefined>();
   // Mirrors of pos/steps so several key events in one frame each see the latest move.
   const posRef = useRef(0);
   const stepsRef = useRef(0);

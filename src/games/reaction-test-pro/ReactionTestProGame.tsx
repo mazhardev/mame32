@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
@@ -26,7 +24,7 @@ export default function ReactionTestProGame() {
   const [responses, setResponses] = useState<Response[]>([]);
   const [note, setNote] = useState('');
   const shownAt = useRef(0);
-  const timer = useRef<number | undefined>(undefined);
+  const timer = useRef<number>();
   const ref = useRef({ partIndex, phase, stim, responses });
   ref.current = { partIndex, phase, stim, responses };
   const part = PARTS[partIndex];

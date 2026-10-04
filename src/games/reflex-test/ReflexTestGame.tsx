@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
@@ -21,7 +19,7 @@ export default function ReflexTestGame() {
   const [lit, setLit] = useState<{ pad: number; decoy: boolean } | null>(null);
   const [message, setMessage] = useState('Press Start, then hit the pad that lights up.');
   const litAt = useRef(0);
-  const timer = useRef<number | undefined>(undefined);
+  const timer = useRef<number>();
   const trialsRef = useRef<Trial[]>([]);
   // record() and schedule() call each other; the ref breaks the cycle.
   const scheduleRef = useRef<() => void>(() => {});

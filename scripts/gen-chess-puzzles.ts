@@ -3,7 +3,7 @@
  * itself with random noise, then classifying each position exactly:
  *   - mate in 1 / 2 / 3 with a unique first move (verified by mate.ts), and
  *   - tactics where one move wins clearly more than every alternative.
- * Run: npx vite-node --config vitest.config.ts scripts/gen-chess-puzzles.ts
+ * Run: npx vite-node scripts/gen-chess-puzzles.ts
  */
 import { writeFileSync } from 'node:fs';
 import { Chess, toUci } from '../src/games/_shared/chess/engine';

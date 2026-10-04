@@ -32,13 +32,13 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
-      - run: npm run typecheck
+      # `build` runs `tsc -b` first, so this also typechecks.
       - run: npm run build
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: dist
 
   deploy:
     needs: build

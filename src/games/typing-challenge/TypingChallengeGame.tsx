@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { useCanvasGame } from '@/game-engine/useCanvasGame';

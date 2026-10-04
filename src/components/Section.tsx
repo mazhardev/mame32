@@ -1,7 +1,5 @@
-'use client';
-
 import type { ReactNode } from 'react';
-import { Link } from '@/components/router';
+import { Link } from 'react-router-dom';
 
 interface Props {
   title: string;

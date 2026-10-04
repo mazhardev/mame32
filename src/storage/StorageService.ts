@@ -64,16 +64,6 @@ export function emit(topic: string) {
 
 /* ------------------------------------------------------------------ profile */
 
-/** Placeholder profile for pre-rendered HTML, before this browser's data loads. */
-export const EMPTY_PROFILE: PlayerProfile = {
-  id: 'local-player',
-  nickname: 'Player',
-  createdAt: 0,
-  totalGamesPlayed: 0,
-  totalPlayTime: 0,
-  totalCoins: 0,
-};
-
 function makeProfile(): PlayerProfile {
   return {
     id: 'local-player',

@@ -4,12 +4,12 @@ This file covers how GamesPlayLand is set up for search engines and AI assistant
 
 ## What the build does automatically
 
-The site is built with Next.js (App Router) as a static export. `npm run build` pre-renders every public URL to a real HTML file in `out/` that contains the complete page: headings, descriptions, how-to-play, controls, FAQs and links. Crawlers that don't run JavaScript (most AI crawlers, social previews) get exactly what visitors see, and browsers hydrate the same markup instead of replacing it. Per-page metadata comes from each route's `metadata` / `generateMetadata` (`src/seo/metadata.ts`), structured data from `src/seo/schema.ts`, and `sitemap.xml`, `robots.txt`, `llms.txt` and `llms-full.txt` from metadata routes and route handlers in `src/app/`.
+`npm run build` runs `scripts/prerender.ts` after Vite. For every public URL it writes a real HTML file. Crawlers that don't run JavaScript (most AI crawlers, social previews) get the full content. Google, which does run JavaScript, sees the same text in the React app.
 
 | Page type | URL | Targets searches like |
 | --- | --- | --- |
 | Home | `/` | "play free online games", "free games no download" |
-| Game (253) | `/games/<id>/` | "play chess online vs computer", "snake game", "sudoku online free" |
+| Game (151) | `/games/<id>/` | "play chess online vs computer", "snake game", "sudoku online free" |
 | Category (13) | `/categories/<slug>/` | "puzzle games", "card games online" |
 | Collection (11) | `/collections/<slug>/` | "2 player games", "games against computer", "offline games", "mobile games", "games for kids", "math games", "solitaire games" |
 
@@ -19,7 +19,7 @@ Every page gets:
 - **A canonical URL** (trailing slash), Open Graph and Twitter tags.
 - **Its own share image** (1200×630) for every game, category and collection, in `public/og/`. Link previews on WhatsApp, X, Facebook, Discord and Slack show it, and the sitemap lists it for Google Images. Pages without one fall back to `/og-image.png`.
 - **JSON-LD structured data**: `WebSite` + `SearchAction` (sitelinks search box), `Organization`, `BreadcrumbList`, `CollectionPage` + `ItemList`, `VideoGame` (with `PlayAction`, player counts and `dateModified`), and `FAQPage`.
-- **A visible FAQ** that matches the FAQ structured data. Search engines ignore FAQ markup that is not shown on the page, so the pages render the same questions from `src/seo/content.ts`.
+- **A visible FAQ** that matches the FAQ structured data. Search engines ignore FAQ markup that is not shown on the page, so the React pages render the same questions from `src/seo/content.ts`.
 - **Internal links** between related games, categories and collections, plus footer links to the main landing pages.
 
 Site-wide files:

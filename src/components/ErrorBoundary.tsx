@@ -1,5 +1,3 @@
-'use client';
-
 import { Component } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
 
@@ -27,7 +25,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (import.meta.env.DEV) {
       console.error('[ErrorBoundary]', error, info.componentStack);
     }
   }
@@ -52,7 +50,7 @@ export class ErrorBoundary extends Component<Props, State> {
         <p className="small" style={{ marginTop: 8 }}>
           Something went wrong while running this game. Your saved data has not been affected.
         </p>
-        {process.env.NODE_ENV !== 'production' && (
+        {import.meta.env.DEV && (
           <pre
             className="mono tiny"
             style={{ marginTop: 12, textAlign: 'left', overflowX: 'auto', color: 'var(--danger)' }}

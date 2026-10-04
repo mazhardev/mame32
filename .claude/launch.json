@@ -4,13 +4,27 @@
     {
       "name": "arcade",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "5178"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5178",
+        "--strictPort"
+      ],
       "port": 5178
     },
     {
       "name": "arcade-prod",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "4178", "--directory", "out"],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "preview",
+        "--",
+        "--port",
+        "4178",
+        "--strictPort"
+      ],
       "port": 4178
     }
   ]

@@ -1,17 +1,11 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-import { Link } from '@/components/router';
+import { Link } from 'react-router-dom';
 import { getConsent, onConsentChange, setConsent } from '@/services/analytics';
 
 /** Small, non-blocking bar asking whether anonymous usage statistics may use cookies. */
 export function ConsentBanner() {
-  // 'unknown' until mounted: the pre-rendered page must not show the banner.
-  const [choice, setChoice] = useState<ReturnType<typeof getConsent> | 'unknown'>('unknown');
-  useEffect(() => {
-    setChoice(getConsent());
-    return onConsentChange(() => setChoice(getConsent()));
-  }, []);
+  const [choice, setChoice] = useState(getConsent);
+  useEffect(() => onConsentChange(() => setChoice(getConsent())), []);
   if (choice !== null) return null;
   return (
     <div className="consent-banner" role="region" aria-label="Analytics consent">

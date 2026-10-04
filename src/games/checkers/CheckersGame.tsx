@@ -1,5 +1,3 @@
-'use client';
-
 import { DraughtsGame } from '../_shared/board/DraughtsGame';
 import { ENGLISH } from '../_shared/board/draughts';
 

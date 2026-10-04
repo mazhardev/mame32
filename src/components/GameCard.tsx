@@ -1,7 +1,5 @@
-'use client';
-
 import { memo, useEffect, useState } from 'react';
-import { Link } from '@/components/router';
+import { Link } from 'react-router-dom';
 import type { GameDefinition } from '@/types';
 import { categoryName, getCategory } from '@/data/categories';
 import { getBestHighScore, isFavorite, subscribe, toggleFavorite } from '@/storage/StorageService';
@@ -15,14 +13,11 @@ interface Props {
 }
 
 function GameCardBase({ game, showBest = true, subtitle }: Props) {
-  const [fav, setFav] = useState(false);
+  const [fav, setFav] = useState(() => isFavorite(game.id));
   const [best, setBest] = useState<number | null>(null);
   const category = getCategory(game.category);
 
-  useEffect(() => {
-    setFav(isFavorite(game.id));
-    return subscribe('favorites', () => setFav(isFavorite(game.id)));
-  }, [game.id]);
+  useEffect(() => subscribe('favorites', () => setFav(isFavorite(game.id))), [game.id]);
 
   useEffect(() => {
     if (!showBest || !game.hasHighScore || game.status !== 'available') return;

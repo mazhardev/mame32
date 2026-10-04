@@ -1,6 +1,6 @@
 # Project Status
 
-_Last updated: 2026-10-05_
+_Last updated: 2026-10-04_
 
 ## Summary
 
@@ -31,8 +31,8 @@ agreement and the running handoff log.
 
 | Feature | Status |
 | --- | --- |
-| Next.js 16 (App Router, static export) + React 19 + TypeScript (strict) | ✅ |
-| Routing (real paths, every page server-rendered to static HTML at build time) | ✅ |
+| Vite + React + TypeScript (strict) project | ✅ |
+| Routing (real paths, prerendered static HTML per route) | ✅ |
 | SEO: per-page meta, canonical, JSON-LD, sitemap, robots.txt, llms.txt, OG image | ✅ |
 | SEO: keyword collection pages, visible FAQs matching FAQPage schema, git-based sitemap lastmod, IndexNow, llms-full.txt (see SEO.md) | ✅ |
 | Custom domain gamesplayland.online (GitHub Pages) | ✅ |
@@ -373,7 +373,7 @@ agreement and the running handoff log.
 
 ## Architecture decisions
 
-1. **Next.js static export for SEO.** Routes live in `src/app/` as server components that export their metadata, render JSON-LD and then a client view from `src/views/`. `next build` (`output: 'export'`, webpack, `trailingSlash`) writes the full HTML of every page, so crawlers see the real page rather than a separate crawler copy. Data that belongs to the visitor (favorites, coins, stats, daily challenge, preferences) is read after hydration so the static HTML never disagrees with the browser. Game components carry `'use client'` and only mount in the browser. Webpack is used instead of Turbopack because Turbopack's static export breaks the chess and Go AI web workers. Legacy `/#/` links redirect on load. Migrated from Vite + React Router on 2026-10-05.
+1. **Real paths, prerendered.** `BrowserRouter` plus `scripts/prerender.ts`. Every public route gets its own static HTML with metadata, JSON-LD and readable content, so search engines and AI crawlers that do not run JavaScript still see each page. `404.html` is the SPA fallback. Legacy `/#/` links redirect on load.
 2. **Served from the domain root.** `base: '/'` at https://gamesplayland.online. `siteUrl` in `src/config/site.ts` is the single source for canonical URLs and the sitemap.
 3. **Registry supersedes planned entries.** `plannedGames.ts` lists the whole
    roadmap; `games/registry.ts` lists what is actually implemented. The catalog
@@ -453,3 +453,4 @@ catalogued once each, giving **252 distinct games**.
 - **Code style.** Several of those game folders are written in a compressed,
   one-line-per-function style. Run `npm run format` and split the long lines
   before extending them.
+- React Router v7 future-flag warnings in the console (harmless).

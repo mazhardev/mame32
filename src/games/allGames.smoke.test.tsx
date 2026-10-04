@@ -1,4 +1,5 @@
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { GameShell } from '@/components/game/GameShell';
 import { GAME_REGISTRY } from './registry';
@@ -68,7 +69,9 @@ describe('every registered game', () => {
     '%s mounts and survives a first interaction',
     async (_id, game) => {
       render(
-        <GameShell game={game} />,
+        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <GameShell game={game} />
+        </MemoryRouter>,
       );
       await waitFor(() => expect(screen.queryByText(/^Loading /)).not.toBeInTheDocument(), {
         timeout: 4000,

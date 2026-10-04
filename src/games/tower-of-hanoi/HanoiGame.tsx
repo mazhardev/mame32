@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { useGameShell } from '@/game-engine/context';
@@ -224,9 +222,7 @@ export default function HanoiGame() {
               key={p}
               type="button"
               data-peg={p}
-              ref={(el) => {
-                pegRefs.current[p] = el;
-              }}
+              ref={(el) => (pegRefs.current[p] = el)}
               className={`hanoi-peg${selected === p ? ' sel' : ''}${legal ? ' legal' : ''}${isFrom ? ' hint-from' : ''}${isTo ? ' hint-to' : ''}${p === 2 ? ' goal' : ''}`}
               onClick={() => choosePeg(p)}
               onPointerDown={(e) => onPointerDown(p, e)}

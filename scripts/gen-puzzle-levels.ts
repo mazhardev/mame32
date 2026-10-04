@@ -9,7 +9,7 @@
  * reverse-playing keeper, which guarantees solvability; a push-optimal BFS
  * then measures each candidate and the most demanding ones are kept.
  *
- * Run: npx vite-node --config vitest.config.ts scripts/gen-puzzle-levels.ts [unblock] [sokoban]
+ * Run: npx vite-node scripts/gen-puzzle-levels.ts [unblock] [sokoban]
  */
 import { writeFileSync } from 'node:fs';
 import { createRng } from '../src/utils/random';

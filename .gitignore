@@ -6,9 +6,3 @@ dev-dist
 .vite
 coverage
 .tmp/
-
-# Next.js
-.next
-out
-next-env.d.ts
-*.tsbuildinfo

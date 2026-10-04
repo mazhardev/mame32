@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
@@ -17,7 +15,7 @@ export default function MemoryTestGame() {
   const [pattern, setPattern] = useState<number[]>([]);
   const [attempt, setAttempt] = useState<Attempt>({ found: [], wrong: [] });
   const [phase, setPhase] = useState<Phase>('ready');
-  const timer = useRef<number | undefined>(undefined);
+  const timer = useRef<number>();
   const n = gridSize(level);
 
   const show = useCallback(

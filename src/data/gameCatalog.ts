@@ -12,7 +12,7 @@ const ALL_GAMES: GameDefinition[] = [
 
 const byId = new Map(ALL_GAMES.map((g) => [g.id, g]));
 
-if (process.env.NODE_ENV !== 'production' && byId.size !== ALL_GAMES.length) {
+if (import.meta.env.DEV && byId.size !== ALL_GAMES.length) {
   console.warn('[catalog] duplicate game ids detected');
 }
 

@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { incrementProgress, reportProgress } from '@/achievements/AchievementService';

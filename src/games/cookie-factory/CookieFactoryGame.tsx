@@ -1,5 +1,3 @@
-'use client';
-
 import { reportProgress } from '@/achievements/AchievementService';
 import { ClickerGame } from '../_shared/idle/ClickerGame';
 import type { ClickerTheme } from '../_shared/idle/ClickerGame';

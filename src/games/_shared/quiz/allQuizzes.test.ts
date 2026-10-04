@@ -1,6 +1,3 @@
-import { existsSync, readdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { createRng } from '@/utils/random';
 import type { Rng } from '@/utils/random';
@@ -9,14 +6,13 @@ import type { QuizQuestion } from './engine';
 
 type Maker = (rng: Rng, d: DifficultySetting) => QuizQuestion[];
 
-// Every game folder with a questions.ts(x) module is a quiz.
-const gamesDir = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const quizzes = await Promise.all(
-  readdirSync(gamesDir)
-    .flatMap((id) => ['ts', 'tsx'].map((ext) => [id, join(gamesDir, id, `questions.${ext}`)] as const))
-    .filter(([, file]) => existsSync(file))
-    .map(async ([id, file]) => [id, ((await import(pathToFileURL(file).href)) as { makeQuestions?: Maker }).makeQuestions] as const),
-).then((list) => list.filter((q): q is readonly [string, Maker] => typeof q[1] === 'function'));
+const modules = import.meta.glob<{ makeQuestions?: Maker }>('../../*/questions.{ts,tsx}', {
+  eager: true,
+});
+
+const quizzes = Object.entries(modules)
+  .filter(([, m]) => typeof m.makeQuestions === 'function')
+  .map(([path, m]) => [path.split('/')[2], m.makeQuestions as Maker] as const);
 
 describe('quiz question banks', () => {
   it('finds the quiz games', () => {
