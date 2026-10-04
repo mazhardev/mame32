@@ -1,0 +1,119 @@
+.hr {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.hr-note {
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.hr-track {
+  background: linear-gradient(#3f8f3a, #2f7a2c);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hr-lane {
+  position: relative;
+  height: 34px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+}
+
+.hr-lane:last-child {
+  border-bottom: 0;
+}
+
+.hr-horse {
+  position: absolute;
+  top: 2px;
+  width: 46px;
+  height: 30px;
+  transform: translateX(-100%);
+}
+
+.hr-finish {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  width: 6px;
+  background: repeating-linear-gradient(#fff 0 6px, #111 6px 12px);
+}
+
+.hr-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hr-runner {
+  display: grid;
+  grid-template-columns: 28px 1fr auto auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm, 8px);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.hr-runner[aria-checked='true'] {
+  border-color: var(--brand);
+  background: var(--surface-2);
+}
+
+.hr-runner:disabled {
+  cursor: default;
+}
+
+.hr-silk {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+.hr-form {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.hr-odds {
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  min-width: 3.5em;
+  text-align: right;
+}
+
+.hr-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+}
+
+.hr-stake {
+  font-weight: 750;
+  min-width: 5.5em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
