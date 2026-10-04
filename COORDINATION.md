@@ -8,7 +8,11 @@ Claude added keyword landing pages (`/collections/<slug>/`, defined in
 copy is rendered visibly by the React pages, so it matches the FAQPage JSON-LD.
 Claude also sharpened the title templates, fixed "Brain Games Games", added
 git-based sitemap `lastmod`, an IndexNow key and CI job, `llms-full.txt` and
-search-engine verification hooks. No game code changed. See `SEO.md`.
+search-engine verification hooks. See `SEO.md`.
+Follow-up: per-page share images in `public/og/` (`npm run og-images`; run it
+after adding a game), `.page { min-height: 100vh }` to remove a 0.28 layout
+shift on game pages, darker faint/success/warning tokens for contrast, and
+`role="group"` on the chess captured-pieces rows.
 
 ## Claude update — 2026-09-29
 

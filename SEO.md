@@ -17,6 +17,7 @@ Every page gets:
 
 - **A unique title** of 60 characters or less, and a meta description of 160 characters or less. Titles follow real query shapes: "Chess – Play Free vs Computer or 2 Player". Tests in `src/utils/seo.test.ts` enforce the lengths and uniqueness.
 - **A canonical URL** (trailing slash), Open Graph and Twitter tags.
+- **Its own share image** (1200×630) for every game, category and collection, in `public/og/`. Link previews on WhatsApp, X, Facebook, Discord and Slack show it, and the sitemap lists it for Google Images. Pages without one fall back to `/og-image.png`.
 - **JSON-LD structured data**: `WebSite` + `SearchAction` (sitelinks search box), `Organization`, `BreadcrumbList`, `CollectionPage` + `ItemList`, `VideoGame` (with `PlayAction`, player counts and `dateModified`), and `FAQPage`.
 - **A visible FAQ** that matches the FAQ structured data. Search engines ignore FAQ markup that is not shown on the page, so the React pages render the same questions from `src/seo/content.ts`.
 - **Internal links** between related games, categories and collections, plus footer links to the main landing pages.
@@ -47,11 +48,14 @@ These are not code changes, but they matter more than anything in the code.
    - Submit the site to web-game directories, PWA directories and GitHub "awesome" lists for browser and HTML5 games.
    - Post individual games where people ask for them: Reddit (r/WebGames, r/incremental_games, r/chess for the chess AI, r/sudoku), Hacker News "Show HN" (the no-backend, offline-PWA angle is a good story), Product Hunt.
    - Link the site from the GitHub repository's About field and README.
-5. **Share images.** Every page currently shares `/og-image.png`. Per-game share images would improve click-through from social media and chat apps.
-6. **Watch Search Console → Performance** after 2–4 weeks. Game and collection pages usually start ranking for long-tail searches ("connect four 2 player online", "mancala vs computer") long before the home page ranks for broad terms. Expand the collections that get impressions.
+5. **Watch Search Console → Performance** after 2–4 weeks. Game and collection pages usually start ranking for long-tail searches ("connect four 2 player online", "mancala vs computer") long before the home page ranks for broad terms. Expand the collections that get impressions.
+
+## Page speed
+
+Lighthouse (mobile, local preview): home 97, game pages 95–97. SEO scores 100 and layout shift is 0. `.page` has `min-height: 100vh`, so the footer can't jump while a lazy page or game loads; without it, game pages had CLS 0.28 ("poor"). Keep that rule.
 
 ## Adding SEO for a new game
 
-There's nothing extra to do. When a game is registered in `src/games/registry.ts`, the build gives it a page, title, description, FAQ, structured data, sitemap entry, `llms.txt` lines and collection membership automatically. Good `shortDescription`, `fullDescription`, `instructions` and `tags` are what make the page rank, so write them for people, not for keywords.
+Run `npm run og-images` and commit the new image in `public/og/`. This needs a local Chromium, so it isn't part of `npm run build`. Without it, the game just uses the default share image. Nothing else is needed: when a game is registered in `src/games/registry.ts`, the build gives it a page, title, description, FAQ, structured data, sitemap entry, `llms.txt` lines and collection membership automatically. Good `shortDescription`, `fullDescription`, `instructions` and `tags` are what make the page rank, so write them for people, not for keywords.
 
 To add a collection, add an entry to `src/data/collections.ts` with its own intro and FAQ. It goes live once at least four playable games match.

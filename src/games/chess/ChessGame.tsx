@@ -238,7 +238,7 @@ export default function ChessGame() {
         )}
       </div>
       <StatusBar>{status}</StatusBar>
-      <div className="chess-captured" aria-label="Pieces captured from the side at the top">
+      <div className="chess-captured" role="group" aria-label="Pieces captured from the side at the top">
         {captured(chess, orientation).map((p, i) => (
           <PieceGlyph key={i} piece={p} />
         ))}
@@ -251,7 +251,7 @@ export default function ChessGame() {
         lastMove={lastMove}
         version={version}
       />
-      <div className="chess-captured" aria-label="Pieces captured from the side at the bottom">
+      <div className="chess-captured" role="group" aria-label="Pieces captured from the side at the bottom">
         {captured(chess, -orientation as 1 | -1).map((p, i) => (
           <PieceGlyph key={i} piece={p} />
         ))}

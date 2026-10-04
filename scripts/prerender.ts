@@ -10,7 +10,7 @@
  * It also writes sitemap.xml, robots.txt, llms.txt and the SPA 404.html.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site } from '../src/config/site';
@@ -46,7 +46,9 @@ import {
   gamePath,
   gameTitle,
   homeTitle,
+  ogImagePath,
   withBrand,
+  type OgImageKind,
 } from '../src/utils/seo';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -54,6 +56,12 @@ const dist = resolve(root, 'dist');
 const template = readFileSync(resolve(dist, 'index.html'), 'utf8');
 const today = new Date().toISOString().slice(0, 10);
 const ogImage = `${site.siteUrl}${site.ogImage}`;
+
+/** The page's own share image from scripts/og-images.ts, if it has been generated. */
+function shareImage(kind: OgImageKind, slug: string): string | undefined {
+  const path = ogImagePath(kind, slug);
+  return existsSync(resolve(dist, `.${path}`)) ? `${site.siteUrl}${path}` : undefined;
+}
 
 const games = [...GAME_REGISTRY].sort((a, b) => a.title.localeCompare(b.title));
 const implementedIds = new Set(games.map((g) => g.id));
@@ -225,6 +233,9 @@ interface Page {
   canonical?: boolean;
   /** YYYY-MM-DD for the sitemap; defaults to today. */
   lastmod?: string;
+  /** Absolute share-image URL; defaults to the site-wide image. */
+  image?: string;
+  imageAlt?: string;
 }
 
 function setTag(html: string, pattern: RegExp, replacement: string): string {
@@ -263,6 +274,12 @@ function render(page: Page): string {
   html = setTag(html, /<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`);
   html = setTag(html, /<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${title}" />`);
   html = setTag(html, /<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${desc}" />`);
+  if (page.image) {
+    const alt = esc(page.imageAlt ?? page.title);
+    html = setTag(html, /<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${page.image}" />`);
+    html = setTag(html, /<meta property="og:image:alt" content="[^"]*" \/>/, `<meta property="og:image:alt" content="${alt}" />`);
+    html = setTag(html, /<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${page.image}" />`);
+  }
   const schema = page.schema?.length
     ? jsonLd({ '@context': 'https://schema.org', '@graph': page.schema })
     : '';
@@ -415,6 +432,8 @@ ${inCat.length ? `<section><h2>Play ${esc(categoryLabel(c).toLowerCase())} free<
 ${catFaqs.length ? faqHtml(catFaqs) : ''}
 ${upcoming.length ? `<section><h2>Coming soon</h2>${list(upcoming.map((g) => g.title))}</section>` : ''}`,
     lastmod: newestOf(inCat),
+    image: shareImage('categories', c.slug),
+    imageAlt: `${categoryLabel(c)} on ${site.siteName}`,
     schema: [
       organization,
       breadcrumbs(crumbs),
@@ -451,6 +470,8 @@ for (const col of collections) {
     title: collectionTitle(col.title),
     description: collectionDescription(col, inCol.length),
     lastmod: newestOf(inCol),
+    image: shareImage('collections', col.slug),
+    imageAlt: `${col.name} on ${site.siteName}`,
     body: `${breadcrumbHtml(crumbs)}
 <h1>${esc(col.heading)}</h1>
 ${paragraphs(col.intro)}
@@ -499,6 +520,7 @@ for (const g of games) {
     g.controls.touch?.length ? `<h3>Touch</h3>${list(g.controls.touch)}` : '',
   ].join('');
   const players = playersLabel(g);
+  const gameImage = shareImage('games', g.id);
   const gameCollections = collectionsForGame(g, games);
 
   pages.push({
@@ -522,6 +544,8 @@ ${faqHtml(faqs)}
 <section><h2>More games like ${esc(g.title)}</h2><ul>${[...related, ...fill].map(gameLink).join('')}</ul>${gameCollections.length ? collectionLinks(gameCollections) : ''}</section>
 </article>`,
     lastmod: gameDate.get(g.id),
+    image: gameImage,
+    imageAlt: `${g.title} – play free online on ${site.siteName}`,
     schema: [
       organization,
       breadcrumbs(crumbs),
@@ -531,7 +555,7 @@ ${faqHtml(faqs)}
         name: g.title,
         url: absoluteUrl(gamePath(g.id)),
         description: g.fullDescription,
-        image: ogImage,
+        image: gameImage ?? ogImage,
         genre: [cat.name, ...g.tags.slice(0, 3)],
         keywords: g.tags.join(', '),
         gamePlatform: ['Web browser', 'Mobile web browser'],
@@ -618,8 +642,15 @@ const indexable = pages.filter((p) => !p.noindex);
 write(
   '/sitemap.xml',
   `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${indexable.map((p) => `  <url><loc>${absoluteUrl(p.path)}</loc><lastmod>${p.lastmod ?? today}</lastmod></url>`).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${indexable
+  .map(
+    (p) =>
+      `  <url><loc>${absoluteUrl(p.path)}</loc><lastmod>${p.lastmod ?? today}</lastmod>${
+        p.image ? `<image:image><image:loc>${p.image}</image:loc></image:image>` : ''
+      }</url>`,
+  )
+  .join('\n')}
 </urlset>
 `,
 );

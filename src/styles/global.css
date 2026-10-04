@@ -14,16 +14,16 @@
 
   --text: #171a26;
   --text-muted: #5c6280;
-  --text-faint: #8a90ab;
+  --text-faint: #646a88;
 
   --brand: #5b5bd6;
   --brand-hover: #4a4ac4;
   --brand-soft: #ecebff;
   --brand-contrast: #ffffff;
 
-  --success: #14856b;
+  --success: #0f6e58;
   --success-soft: #dff5ee;
-  --warning: #b25e09;
+  --warning: #96500a;
   --warning-soft: #fdf0dc;
   --danger: #c0332f;
   --danger-soft: #fce9e8;
@@ -72,7 +72,7 @@
 
   --text: #eef0f8;
   --text-muted: #a3aac4;
-  --text-faint: #6f7691;
+  --text-faint: #838aa6;
 
   --brand: #8b8bf5;
   --brand-hover: #a0a0ff;
@@ -217,6 +217,9 @@ ol {
 
 .page {
   flex: 1;
+  /* Keeps the footer below the fold while lazy pages and games load, so it
+     never jumps down the screen (a layout shift that hurts Core Web Vitals). */
+  min-height: 100vh;
   padding: var(--space-6) 0 var(--space-7);
 }
 

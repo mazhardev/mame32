@@ -283,17 +283,17 @@ export default function GameDetailPage() {
                   const def = game.achievements?.find((d) => d.id === a.achievementId);
                   if (!def) return null;
                   return (
-                    <div
-                      key={a.achievementId}
-                      className="row"
-                      style={{ gap: 10, opacity: a.unlocked ? 1 : 0.55 }}
-                    >
-                      <span style={{ fontSize: '1.1rem' }} aria-hidden="true">
+                    <div key={a.achievementId} className="row" style={{ gap: 10 }}>
+                      <span
+                        style={{ fontSize: '1.1rem', opacity: a.unlocked ? 1 : 0.55 }}
+                        aria-hidden="true"
+                      >
                         {a.unlocked ? (def.icon ?? '🏆') : '🔒'}
                       </span>
                       <span style={{ flex: 1, minWidth: 0 }}>
                         <span style={{ display: 'block', fontSize: '0.85rem', fontWeight: 550 }}>
                           {def.name}
+                          {!a.unlocked && <span className="sr-only"> (locked)</span>}
                         </span>
                         <span className="tiny muted">{def.description}</span>
                       </span>

@@ -258,7 +258,9 @@ Everything a game needs lives in its own folder, and games are discovered automa
 
 5. **Add tests** for the rules: move legality, win and loss detection, generator validity (every generated puzzle solvable), and save validation. The shared smoke test automatically mounts every registered game and clicks its first controls.
 
-6. **Update the checklist** with `node scripts/update-status.mjs`.
+6. **Generate its share image** with `npm run og-images` and commit the new file in `public/og/games/` (see [SEO.md](SEO.md)).
+
+7. **Update the checklist** with `node scripts/update-status.mjs`.
 
 ---
 
