@@ -1,0 +1,47 @@
+.ms-board {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.ms-stick {
+  stroke: #d97706;
+  stroke-width: 9;
+  stroke-linecap: round;
+  transition: opacity 120ms ease;
+}
+
+.ms-stick.fixed {
+  stroke: #a16207;
+}
+
+.ms-stick.slot {
+  stroke: var(--border);
+  stroke-width: 4;
+  stroke-dasharray: 2 6;
+  opacity: 0;
+}
+
+.ms-board.holding .ms-stick.slot {
+  opacity: 1;
+  stroke: var(--brand);
+}
+
+.ms-stick.held {
+  stroke: #f87171;
+  opacity: 0.45;
+}
+
+.ms-hit {
+  stroke: transparent;
+  stroke-width: 22;
+  stroke-linecap: round;
+  cursor: pointer;
+}
+
+.ms-hit:focus-visible {
+  outline: none;
+  stroke: rgba(91, 91, 214, 0.35);
+}

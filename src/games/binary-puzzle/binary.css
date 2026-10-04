@@ -1,0 +1,39 @@
+.bin-cell {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: calc(var(--cell) * 0.5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+}
+
+.bin-cell.zero {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.bin-cell.one {
+  background: #fde68a;
+  color: #92400e;
+}
+
+:root[data-theme='dark'] .bin-cell.zero {
+  background: #1e3a8a;
+  color: #dbeafe;
+}
+
+:root[data-theme='dark'] .bin-cell.one {
+  background: #78350f;
+  color: #fde68a;
+}
+
+.bin-cell.given {
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.25);
+  cursor: default;
+}
+
+.bin-cell.bad {
+  outline: 3px solid var(--danger);
+  outline-offset: -3px;
+}

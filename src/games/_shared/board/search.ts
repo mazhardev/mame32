@@ -56,12 +56,19 @@ export function searchBest<S, M>(
     const scores = new Map<M, number>();
     let depthBest = rootMoves[0];
     let bestScore = -Infinity;
+    let maxRaw = -Infinity;
     try {
       for (const m of rootMoves) {
         const next = game.play(state, m);
-        const v = switches(state, m) ? -negamax(next, depth - 1, -Infinity, -bestScore) : negamax(next, depth - 1, bestScore, Infinity);
+        // Alpha-beta only returns a bound for moves that cannot beat alpha.
+        // Lowering alpha by the jitter keeps every move that could still win
+        // the random tie-break exact, and a refuted move's bound plus any
+        // jitter stays below the best score.
+        const alpha = maxRaw - jitter - 1e-6;
+        const v = switches(state, m) ? -negamax(next, depth - 1, -Infinity, -alpha) : negamax(next, depth - 1, alpha, Infinity);
         const score = v + Math.random() * jitter;
         scores.set(m, score);
+        if (v > maxRaw) maxRaw = v;
         if (score > bestScore) {
           bestScore = score;
           depthBest = m;
