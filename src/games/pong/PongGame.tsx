@@ -1,3 +1,5 @@
+'use client';
+
 import { CanvasRunner } from '../_shared/arcade/CanvasRunner';
 import { PongEngine } from './engine';
 import type { DifficultySetting } from '@/types';

@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { ArcadeGame } from '../_shared/arcade/ArcadeGame';

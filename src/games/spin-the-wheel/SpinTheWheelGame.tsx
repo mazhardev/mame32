@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
@@ -44,7 +46,7 @@ export default function SpinTheWheelGame() {
   const [rotation, setRotation] = useState(0);
   const [spinning, setSpinning] = useState(false);
   const [message, setMessage] = useState('Pick a stake and spin.');
-  const timer = useRef<number>();
+  const timer = useRef<number | undefined>(undefined);
 
   const restart = useCallback(() => {
     window.clearTimeout(timer.current);

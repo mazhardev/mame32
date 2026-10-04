@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
@@ -69,7 +71,7 @@ export default function CandyMatchGame() {
   const [hint, setHint] = useState<[number, number] | null>(null);
   const live = useRef({ score: 0, collected: [] as number[], jelly: spec.jelly, movesLeft: spec.moves, spec });
   const startedRef = useRef(false);
-  const idle = useRef<number | undefined>();
+  const idle = useRef<number | undefined>(undefined);
 
   const m3 = useMatch3(cfgRef.current, () => createBoard(cfgRef.current, Math.random), Math.random, {
     onStep: (step: Step, index: number) => {

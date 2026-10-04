@@ -291,3 +291,26 @@ last batch covers the sports, strategy/simulation and creative categories.
   that every AI move is legal and that every game finishes.
 - Shared kits gained `_shared/idle/balanceBot.ts`, and the golf and rally kits
   were extended. Existing callers are unchanged.
+
+## Claude update — moved to Next.js for SEO (2026-10-05)
+
+At the user's request the site now builds with **Next.js 16 (App Router, static
+export)** instead of Vite + React Router. It is still a fully static site with
+no server; `out/` replaces `dist/`. What changes for game work:
+
+- **Start every game's entry component with `'use client';`** (the file that
+  `definition.ts` lazy-loads). The server reads definitions to pre-render pages;
+  without the directive the build fails. All 253 existing entries have it.
+- Games are discovered by `scripts/gen-registry.mjs`, which writes
+  `src/games/registry.generated.ts`. It runs before `dev`, `build`,
+  `typecheck` and `test`; adding a folder is still all that is needed.
+- `import.meta.env` and `import.meta.glob` do not exist in Next.js. Use
+  `process.env.NODE_ENV !== 'production'` for dev-only code.
+- React 19: `useRef<T>()` needs an argument (`useRef<T | undefined>(undefined)`),
+  and ref callbacks must not return a value. 15 game files were adjusted.
+- `src/pages/` is now `src/views/` (Next.js reserves `pages/`), and
+  `src/app/ThemeProvider` / `ToastProvider` moved to `src/providers/`.
+- Navigation: import `Link`, `NavLink`, `useNavigate` from `@/components/router`
+  (a thin wrapper over `next/link` and `next/navigation`).
+- Web workers keep the `new Worker(new URL('./x.worker.ts', import.meta.url))`
+  form; the build uses webpack because Turbopack breaks them.

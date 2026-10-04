@@ -1,5 +1,7 @@
+'use client';
+
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { getPreferences, setPreferences, subscribe } from '@/storage/StorageService';
+import { DEFAULT_PREFERENCES, getPreferences, setPreferences, subscribe } from '@/storage/StorageService';
 import type { Preferences } from '@/types';
 
 /** Subscribes a component to the shared preferences store. */
@@ -7,7 +9,9 @@ export function usePreferences(): [Preferences, (patch: Partial<Preferences>) =>
   const prefs = useSyncExternalStore(
     (cb) => subscribe('preferences', cb),
     getPreferences,
-    getPreferences,
+    // Pre-rendered HTML always uses the defaults; the browser's own
+    // preferences apply right after hydration.
+    () => DEFAULT_PREFERENCES,
   );
   const update = useCallback((patch: Partial<Preferences>) => {
     setPreferences(patch);
@@ -40,7 +44,7 @@ export function useDocumentHidden(): boolean {
   return hidden;
 }
 
-export function useFullscreen(targetRef: React.RefObject<HTMLElement>) {
+export function useFullscreen(targetRef: React.RefObject<HTMLElement | null>) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {

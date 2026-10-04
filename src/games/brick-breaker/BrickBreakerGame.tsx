@@ -1,3 +1,5 @@
+'use client';
+
 import { CanvasRunner } from '../_shared/arcade/CanvasRunner';
 import { BrickEngine } from './engine';
 const create = () => new BrickEngine();

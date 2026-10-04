@@ -1,5 +1,7 @@
+'use client';
+
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from '@/components/router';
 import type { DifficultySetting, GameDefinition } from '@/types';
 import { GameShellContext } from '@/game-engine/context';
 import type { GameOverPayload, GameShellApi } from '@/game-engine/context';
@@ -45,6 +47,23 @@ interface ResultState extends GameOverPayload {
  * and talk to the shell through `useGameShell()`.
  */
 export function GameShell({ game }: Props) {
+  // Games only ever run in the browser. The pre-rendered page shows the
+  // toolbar heading and a loader; the session (which reads this browser's
+  // preferences and saves) starts once the page has hydrated.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) {
+    return (
+      <div className="game-shell">
+        <div className="game-toolbar">
+          <h1 className="title">{game.title}</h1>
+        </div>
+        <div className="game-stage">
+          <Loader label={`Loading ${game.title}…`} />
+        </div>
+      </div>
+    );
+  }
   return <GameSession key={game.id} game={game} />;
 }
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Direction } from '@/game-engine/InputManager';
 import { useGameShell } from '@/game-engine/context';

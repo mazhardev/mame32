@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from 'react';
 import { useGameShell } from '@/game-engine/context';
@@ -58,7 +60,7 @@ export default function UnblockGame() {
   const startedRef = useRef(false);
   const boardRef = useRef<HTMLDivElement>(null);
   const dragStart = useRef<{ k: number; x: number; y: number; range: [number, number] } | null>(null);
-  const finishTimer = useRef<number | undefined>();
+  const finishTimer = useRef<number | undefined>(undefined);
 
   const best = levelsList[levels.index]?.moves ?? 0;
 

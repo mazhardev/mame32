@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
@@ -41,7 +43,7 @@ export default function KakuroGame() {
   const [done, setDone] = useState(false);
   const { elapsed, read, reset } = useStopwatch(started && !done && !shell.paused);
   const cellRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const wrongTimer = useRef<number | undefined>();
+  const wrongTimer = useRef<number | undefined>(undefined);
 
   const pending = save.saved && save.saved.n === n ? save.saved : null;
   const locked = shell.paused || done || !!pending || save.loading;
@@ -260,7 +262,9 @@ export default function KakuroGame() {
             <button
               key={i}
               type="button"
-              ref={(el) => (cellRefs.current[i] = el)}
+              ref={(el) => {
+                cellRefs.current[i] = el;
+              }}
               className={`kk-cell${selected === i ? ' sel' : ''}${inRun.has(i) ? ' run' : ''}${given ? ' given' : ''}${dupes.has(i) || wrong.has(i) ? ' err' : ''}`}
               onClick={() => !locked && setSelected(i)}
               tabIndex={selected === i ? 0 : -1}

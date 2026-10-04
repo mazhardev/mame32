@@ -4,40 +4,40 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && vite-node scripts/prerender.ts",
-    "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit",
+    "gen:registry": "node scripts/gen-registry.mjs",
+    "dev": "npm run gen:registry && next dev --webpack",
+    "build": "npm run gen:registry && next build --webpack && node scripts/postbuild.mjs",
+    "typecheck": "npm run gen:registry && tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "test": "vitest run",
+    "test": "npm run gen:registry && vitest run",
     "test:watch": "vitest",
-    "og-images": "vite-node scripts/og-images.ts"
+    "og-images": "vite-node --config vitest.config.ts scripts/og-images.ts"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2"
+    "next": "^16.3.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^16.3.8",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@types/node": "^26.5.0",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
     "@vitejs/plugin-react": "^4.3.2",
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.12",
     "fake-indexeddb": "^6.0.0",
     "jsdom": "^25.0.1",
     "playwright-core": "^1.56.1",
     "prettier": "^3.3.3",
     "typescript": "^5.6.2",
     "vite": "^5.4.8",
-    "vite-plugin-pwa": "^0.20.5",
-    "vitest": "^2.1.2"
+    "vitest": "^2.1.2",
+    "workbox-build": "^7.4.1"
   }
 }

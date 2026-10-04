@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import { Link } from '@/components/router';
 import type { CollectionMeta } from '@/data/collections';
 import { collectionPath } from '@/data/collections';
 

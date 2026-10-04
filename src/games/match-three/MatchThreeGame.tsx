@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
@@ -71,7 +73,7 @@ export default function MatchThreeGame() {
   const [hint, setHint] = useState<[number, number] | null>(null);
   const scoreRef = useRef(0);
   const timeUp = useRef(false);
-  const idleTimer = useRef<number | undefined>();
+  const idleTimer = useRef<number | undefined>(undefined);
   const stats = useRef({ specials: 0 });
   const overRef = useRef(false);
 

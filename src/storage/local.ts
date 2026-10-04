@@ -20,6 +20,8 @@ export const LS_KEYS = {
 let warned = false;
 
 function warnOnce(err: unknown) {
+  // Pages are pre-rendered at build time, where there is no browser storage.
+  if (typeof window === 'undefined') return;
   if (!warned) {
     warned = true;
     console.warn('[storage] localStorage unavailable, falling back to memory', err);

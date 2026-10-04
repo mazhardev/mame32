@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useState } from 'react';
 import { ArcadeGame } from '../_shared/arcade/ArcadeGame';
 import { makeSpec } from './game';

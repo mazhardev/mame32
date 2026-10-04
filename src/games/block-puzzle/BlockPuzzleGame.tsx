@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { useGameShell } from '@/game-engine/context';
@@ -42,7 +44,7 @@ export default function BlockPuzzleGame() {
   const boardRef = useRef<HTMLDivElement>(null);
   const startedRef = useRef(false);
   const bestCombo = useRef(0);
-  const flashTimer = useRef<number | undefined>();
+  const flashTimer = useRef<number | undefined>(undefined);
   const pending = save.saved && save.saved.n === n ? save.saved : null;
   const locked = shell.paused || over || !!pending || save.loading;
 

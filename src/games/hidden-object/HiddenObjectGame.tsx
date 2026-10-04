@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { useGameShell } from '@/game-engine/context';
@@ -24,7 +26,7 @@ export default function HiddenObjectGame() {
   const [miss, setMiss] = useState<{ x: number; y: number; k: number } | null>(null);
   const [phase, setPhase] = useState<Phase>('intro');
   const overRef = useRef(false);
-  const pulseTimer = useRef<number | undefined>();
+  const pulseTimer = useRef<number | undefined>(undefined);
 
   const end = useCallback(
     (foundCount: number, secondsLeft: number, missCount: number, hintCount: number) => {

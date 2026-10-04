@@ -29,13 +29,13 @@ A production-quality browser gaming portal. Every game runs entirely in the brow
 
 | Concern | Choice |
 | --- | --- |
-| UI | React 18 + TypeScript (strict) |
-| Build | Vite 5 |
-| Routing | React Router 6 with real paths, prerendered to static HTML per route |
+| UI | React 19 + TypeScript (strict) |
+| Framework | Next.js 16 (App Router) with static export — every page is pre-rendered HTML |
+| Routing | File-based routes in `src/app/`, real paths with trailing slashes |
 | Rendering | DOM, Canvas 2D and SVG — no game engine dependency |
 | Audio | Web Audio API, all effects synthesised at runtime |
 | Storage | `localStorage` + IndexedDB |
-| Offline | `vite-plugin-pwa` (Workbox) |
+| Offline | Workbox service worker generated after the build (`scripts/postbuild.mjs`) |
 | Tests | Vitest + React Testing Library |
 
 There is no backend of any kind: no Node server, no PHP, no Firebase, Supabase, Mongo, MySQL or Postgres, no auth server and no third-party game API.
@@ -46,13 +46,15 @@ There is no backend of any kind: no Node server, no PHP, no Firebase, Supabase, 
 
 ```
 src/
-  app/            App shell, router, theme and toast providers
-  components/     Reusable UI (cards, search, error boundary)
+  app/            Next.js routes: layout, pages, metadata, sitemap, robots, llms.txt
+  providers/      Client providers: theme, toasts, site chrome, start-up tasks
+  components/     Reusable UI (cards, search, error boundary, JSON-LD)
     game/         GameShell — the runtime every game plugs into
   layouts/        Site chrome (header, footer, drawer)
-  pages/          Route components
+  views/          Page bodies rendered by the routes (client components)
+  seo/            Page copy, metadata, structured data, sitemap dates
   games/          One self-contained folder per game
-    registry.ts   Discovers every games/*/definition.ts automatically
+    registry.ts   Lists every games/*/definition.ts (via registry.generated.ts)
     _shared/      Kits reused across games: cards, board, chess, quiz, words,
                   sports, maze, match3 and puzzle (save/resume, level packs…)
   game-engine/    Shared game SDK: loop, input, particles, shell context
@@ -69,6 +71,7 @@ src/
 
 ### Key ideas
 
+- **Static rendering for SEO.** Each route in `src/app/` is a server component that exports its metadata (`generateMetadata`), renders JSON-LD and then the page body from `src/views/`. `next build` writes the complete HTML of all ~290 pages, so crawlers see real content without running JavaScript. Anything that depends on this browser's saved data (favorites, coins, stats, today's challenge) loads after hydration.
 - **`GameDefinition`** is the contract every game satisfies: metadata, controls, instructions, achievements and a lazily imported component.
 - **`GameShell`** owns everything that is not gameplay: toolbar, pause/resume, fullscreen, session timing, statistics recording, the result screen and the error boundary. Games talk to it through `useGameShell()`.
 - **`StorageService`** is the only module that knows whether data lives in `localStorage` or IndexedDB. Games never touch either directly.
@@ -92,8 +95,8 @@ npm run dev
 ## Production
 
 ```bash
-npm run build
-npm run preview
+npm run build          # static site in out/
+python -m http.server 4178 --directory out   # or any static file server
 ```
 
 ## Testing
@@ -115,9 +118,9 @@ npm run build
 
 ## Static deployment
 
-The build output in `dist/` is a plain static site served from the domain root (`base: '/'`).
+The build output in `out/` is a plain static site served from the domain root.
 
-`npm run build` runs `scripts/prerender.ts` after Vite. It writes a real HTML file for every public route (`/games/snake/index.html`, `/categories/puzzle/index.html`, …). Each file has its own title, description, canonical URL, Open Graph tags, JSON-LD and readable content for crawlers. The script also writes `sitemap.xml`, `robots.txt`, `llms.txt` and a `404.html` SPA fallback. Any host that serves `404.html` for unknown paths needs no rewrite rules. Old `/#/…` links are redirected to real paths on load. See [SEO.md](SEO.md) for collection landing pages, IndexNow, `llms-full.txt` and the Search Console checklist.
+`npm run build` regenerates the game registry, runs `next build` (static export, webpack) and then `scripts/postbuild.mjs`, which writes the service worker. Next.js writes a real HTML file for every public route (`/games/snake/index.html`, `/categories/puzzle/index.html`, …) with its own title, description, canonical URL, Open Graph tags, JSON-LD and full page content. It also writes `sitemap.xml`, `robots.txt`, `manifest.webmanifest`, `llms.txt`, `llms-full.txt` and `404.html`. No rewrite rules are needed. Old `/#/…` links are redirected to real paths on load. See [SEO.md](SEO.md) for collection landing pages, IndexNow, `llms-full.txt` and the Search Console checklist.
 
 The canonical origin lives in `src/config/site.ts` (`siteUrl`). Change it there if the domain changes, and update `public/CNAME`.
 
@@ -128,20 +131,20 @@ The canonical origin lives in `src/config/site.ts` (`siteUrl`). Change it there 
 ### Cloudflare Pages
 
 - Build command: `npm run build`
-- Output directory: `dist`
+- Output directory: `out`
 
 ### Netlify
 
 - Build command: `npm run build`
-- Publish directory: `dist`
+- Publish directory: `out`
 
 ### Vercel
 
-- Framework preset: Vite
+- Framework preset: Other (static)
 - Build command: `npm run build`
-- Output directory: `dist`
+- Output directory: `out`
 
-Any other static host works the same way: upload the contents of `dist/`. On Netlify, Cloudflare Pages and Vercel, set the 404 page to `404.html` if it is not picked up automatically.
+Any other static host works the same way: upload the contents of `out/`. On Netlify, Cloudflare Pages and Vercel, set the 404 page to `404.html` if it is not picked up automatically.
 
 ---
 
@@ -177,7 +180,7 @@ If IndexedDB is unavailable (private browsing, disabled storage, quota exceeded)
 
 ## Offline / PWA behaviour
 
-`vite-plugin-pwa` generates a service worker that precaches the application shell and every built asset. Games are code-split, so a game becomes available offline once you have opened it at least once. There are no runtime network calls.
+After `next build`, `scripts/postbuild.mjs` uses Workbox to generate `out/sw.js`. It precaches the application shell, every script and stylesheet and every pre-rendered page, so after the first visit the whole site — every game — works offline. Query strings are ignored when matching cached pages (`/games/?q=chess` is served from `/games/`). Pages added by a newer deploy are fetched from the network rather than answered with a 404. The worker is registered only in production builds.
 
 ---
 
@@ -201,7 +204,7 @@ Everything a game needs lives in its own folder, and games are discovered automa
 1. **Create the folder** `src/games/<game-id>/`. The id must match an entry in `src/data/plannedGames.ts` (the smoke test checks this), and the real game then replaces the "Planned" placeholder in the catalog.
 
    ```
-   MyGame.tsx        React component (default export)
+   MyGame.tsx        React component (default export), starting with 'use client'
    engine.ts         Pure rules and generation, no React
    engine.test.ts    Rule tests
    definition.ts     The GameDefinition, built with defineGame()
@@ -238,6 +241,8 @@ Everything a game needs lives in its own folder, and games are discovered automa
    });
    ```
 
+   The component file must begin with `'use client';` — the server reads game definitions to pre-render pages, and this keeps the game code itself browser-only. Games are discovered by `scripts/gen-registry.mjs`, which runs automatically before `dev`, `build`, `typecheck` and `test`.
+
    The game toolbar shows an Easy / Normal / Hard picker by default. Set `difficultyPicker: 'in-game'` if the game draws its own picker, or `'none'` if difficulty has no effect.
 
 3. **Talk to the shell** from the component:
@@ -272,6 +277,6 @@ Some games are inspired by classic arcade mechanics, but every name, graphic, so
 
 ## Privacy
 
-Game progress, scores, achievements and preferences are stored locally in your browser. This website does not require an account, and game data is never sent anywhere. The live site uses Google Analytics (measurement ID in `src/config/site.ts`, tag in `index.html`) with Consent Mode: analytics cookies are set only after the visitor clicks Allow, and "No thanks" (or Settings → Privacy) turns reporting off entirely. Analytics only reports on the production hostname, never from local development. See the in-app Privacy page.
+Game progress, scores, achievements and preferences are stored locally in your browser. This website does not require an account, and game data is never sent anywhere. The live site uses Google Analytics (measurement ID in `src/config/site.ts`, tag in `src/app/layout.tsx`) with Consent Mode: analytics cookies are set only after the visitor clicks Allow, and "No thanks" (or Settings → Privacy) turns reporting off entirely. Analytics only reports on the production hostname, never from local development. See the in-app Privacy page.
 
 Clearing browser or site storage will delete your data — export a backup first.

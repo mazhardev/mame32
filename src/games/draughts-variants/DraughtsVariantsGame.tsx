@@ -1,3 +1,5 @@
+'use client';
+
 import { DraughtsGame } from '../_shared/board/DraughtsGame';
 import { BRAZILIAN, INTERNATIONAL } from '../_shared/board/draughts';
 
