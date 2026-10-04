@@ -275,3 +275,19 @@ Already built under `src/games/_shared/`, please reuse rather than reimplement:
   `align-self: stretch` rather than `height: 100%`. A game that renders its own
   full-height layout should keep using `.game-canvas-wrap`.
 - Toolbar shortcuts P/R/F are owned by the shell; games should not bind them.
+
+## Claude update — full catalog complete (2026-10-04)
+
+At the user's request ("complete pending games") Claude implemented every
+remaining Planned entry, so all 252 catalogued games are now playable. The
+last batch covers the sports, strategy/simulation and creative categories.
+
+- Each new game lives in `src/games/<id>/` with an engine, rule tests,
+  instructions, achievements and an OG image.
+- Management sims (city, kingdom, colony, hotel, airport, restaurant, shop,
+  business) ship a scripted "bot" in their tests that must beat every
+  difficulty, so balance regressions fail CI.
+- Army Strategy and Mini Civilization have local AI opponents. Tests check
+  that every AI move is legal and that every game finishes.
+- Shared kits gained `_shared/idle/balanceBot.ts`, and the golf and rally kits
+  were extended. Existing callers are unchanged.

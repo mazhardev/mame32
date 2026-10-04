@@ -1,6 +1,6 @@
 # Project Status
 
-_Last updated: 2026-09-29_
+_Last updated: 2026-10-04_
 
 ## Summary
 
@@ -8,10 +8,11 @@ _Last updated: 2026-09-29_
 | --- | --- |
 | Platform (Phase 1) | ✅ complete |
 | Games playable | 252 of 252 catalogued |
-| Current phase | Completing the full catalog category by category (Word, Board, Card and Puzzle are complete) |
+| Current phase | Full catalog complete — polish, balance and bug fixes |
 
-Games are only marked complete when they genuinely launch and play. Everything
-else appears in the catalog as **Planned** and cannot be started.
+Games are only marked complete when they genuinely launch and play. Anything
+not yet built would appear in the catalog as **Planned** and could not be
+started; today every catalogued game is playable.
 
 ## Work split
 
@@ -67,7 +68,7 @@ agreement and the running handoff log.
 
 ### Tests
 
-884 passing across 100 files: storage, achievements, seeded randomness, the game loop, the game shell (including the difficulty picker and result actions), the shared puzzle and match-three engines, a mount-and-click smoke test for every registered game, and rule tests for the game engines. Generated level packs (Unblock, Sokoban) are re-verified against their solvers in the tests.
+1,822 passing across 243 files: storage, achievements, seeded randomness, the game loop, the game shell (including the difficulty picker and result actions), the shared puzzle and match-three engines, a mount-and-click smoke test for every registered game, and rule tests for the game engines. Generated level packs (Unblock, Sokoban) are re-verified against their solvers in the tests, and the simulation and strategy games include scripted-player balance tests that check every difficulty can be won.
 
 ---
 

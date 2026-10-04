@@ -68,7 +68,9 @@ export default function HomePage() {
           .filter((g): g is GameDefinition => !!g)
           .slice(0, 6),
       );
-      void getAllProgress().then((rows) => setProgress(rows.filter((r) => getGame(r.gameId)).slice(0, 6)));
+      void getAllProgress().then((rows) =>
+        setProgress(rows.filter((r) => getGame(r.gameId)).slice(0, 6)),
+      );
       void getAllStats().then((rows) => {
         const sorted = rows
           .filter((r) => r.gamesStarted > 0)
@@ -110,7 +112,10 @@ export default function HomePage() {
       </section>
 
       {challenge && challengeState && (
-        <section className="card" style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', alignItems: 'center' }}>
+        <section
+          className="card"
+          style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', alignItems: 'center' }}
+        >
           <div style={{ fontSize: '2rem' }} aria-hidden="true">
             📅
           </div>
@@ -227,7 +232,9 @@ export default function HomePage() {
               </span>
               <strong>{cat.name}</strong>
               <span className="tiny muted">
-                {counts[cat.id]?.playable ?? 0} playable · {counts[cat.id]?.total ?? 0} planned
+                {(counts[cat.id]?.playable ?? 0) === (counts[cat.id]?.total ?? 0)
+                  ? `${counts[cat.id]?.total ?? 0} games`
+                  : `${counts[cat.id]?.playable ?? 0} playable · ${counts[cat.id]?.total ?? 0} planned`}
               </span>
             </Link>
           ))}
@@ -271,8 +278,9 @@ export default function HomePage() {
           <p className="muted small">
             {site.siteName} has {TOTAL_PLAYABLE} free online games that run straight in your web
             browser on a computer, tablet or phone. Play puzzle games such as{' '}
-            <Link to="/games/sudoku/">Sudoku</Link>, <Link to="/games/minesweeper/">Minesweeper</Link>{' '}
-            and <Link to="/games/number-merge-2048/">2048</Link>, board games like{' '}
+            <Link to="/games/sudoku/">Sudoku</Link>,{' '}
+            <Link to="/games/minesweeper/">Minesweeper</Link> and{' '}
+            <Link to="/games/number-merge-2048/">2048</Link>, board games like{' '}
             <Link to="/games/chess/">chess</Link>, <Link to="/games/checkers/">checkers</Link> and{' '}
             <Link to="/games/connect-four/">Connect Four</Link>, card games like{' '}
             <Link to="/games/klondike-solitaire/">Klondike Solitaire</Link> and{' '}
@@ -280,8 +288,9 @@ export default function HomePage() {
             <Link to="/games/snake/">Snake</Link>.
           </p>
           <p className="muted small">
-            There is nothing to install and no account to create. Games start instantly, save your high
-            scores and progress in your browser, and keep working offline once they have loaded.
+            There is nothing to install and no account to create. Games start instantly, save your
+            high scores and progress in your browser, and keep working offline once they have
+            loaded.
           </p>
         </div>
       </section>

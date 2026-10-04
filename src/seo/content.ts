@@ -151,10 +151,24 @@ const CATEGORY_INTROS: Record<string, string[]> = {
     'Simple, relaxing games you can pick up in seconds and put down at any time. Perfect for a short break on your phone or computer.',
   ],
   sports: [
-    'Sports games that test aim, power and timing. Line up the shot, pick your moment and chase a new personal best.',
+    'Sports games that test aim, power and timing: football free kicks and penalties, cricket, tennis, table tennis, golf, bowling, pool, darts, archery and more.',
+    'Line up the shot, pick your moment and chase a new personal best – most sports games also have a computer opponent.',
+  ],
+  racing: [
+    'Racing games for quick sessions: top-down circuits, formula cars, drifting, traffic dodging, motorbikes, boats and even space racing.',
+    'Steer with the keyboard or with on-screen controls on a phone, and beat your best lap times.',
+  ],
+  action: [
+    'Action games with stylised, cartoony combat: space battles, tank duels, target shooting, tower defence and boss fights.',
+    'Every round starts in seconds, and difficulty settings change the number and speed of enemies.',
+  ],
+  strategy: [
+    'Strategy and simulation games that reward planning: a compact civilization game, turn-based army tactics, tower and castle defence, plus city, kingdom, farm, colony, hotel, airport, restaurant, shop and business management.',
+    'Longer games save automatically after every turn, day or quarter, and every computer opponent and market is simulated in your browser.',
   ],
   creative: [
-    'Creative games that test your eye for design, such as a logo quiz built from original, fictional logos.',
+    'Creative games for drawing and colouring: pixel art, paint by number, mandala and colouring pages, a pass-and-play drawing party game, character dress-up and a logo quiz built from original, fictional logos.',
+    'Your pictures stay in your browser, and every page and template is original artwork.',
   ],
 };
 
