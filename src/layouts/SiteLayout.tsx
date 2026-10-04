@@ -121,6 +121,12 @@ export default function SiteLayout() {
             <div style={{ marginTop: 4 }}>
               {TOTAL_PLAYABLE} playable games · everything runs in your browser.
             </div>
+            <div style={{ marginTop: 4 }}>
+              Support:{' '}
+              <a href={`mailto:${site.supportEmail}`} className="footer-email">
+                {site.supportEmail}
+              </a>
+            </div>
           </div>
           <nav className="footer-links" aria-label="Footer">
             <Link to="/games/">All Games</Link>
@@ -134,6 +140,7 @@ export default function SiteLayout() {
             <Link to="/settings/">Settings</Link>
             <Link to="/privacy/">Privacy</Link>
             <Link to="/about/">About</Link>
+            <Link to="/contact/">Contact &amp; Support</Link>
           </nav>
         </div>
       </footer>

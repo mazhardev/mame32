@@ -199,6 +199,14 @@ const organization = {
   name: site.siteName,
   url: `${site.siteUrl}/`,
   logo: `${site.siteUrl}/icon-512.png`,
+  email: site.supportEmail,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: site.supportEmail,
+    url: `${site.siteUrl}/contact/`,
+    availableLanguage: ['English'],
+  },
 };
 
 // ------------------------------------------------------------ page shell
@@ -217,7 +225,7 @@ function shell(inner: string): string {
 <footer class="site-footer"><div class="container footer-grid"><div><strong>${esc(site.siteName)}</strong><div>${games.length} free games · everything runs in your browser.</div></div><nav class="footer-links" aria-label="Footer"><a href="/games/">All Games</a><a href="/categories/">Categories</a>${collections
     .slice(0, 4)
     .map((c) => `<a href="${collectionPath(c.slug)}">${esc(c.name)}</a>`)
-    .join('')}<a href="/privacy/">Privacy</a><a href="/about/">About</a></nav></div></footer>
+    .join('')}<a href="/privacy/">Privacy</a><a href="/about/">About</a><a href="/contact/">Contact &amp; Support</a></nav></div></footer>
 </div>`;
 }
 
@@ -602,6 +610,30 @@ pages.push({
   lastmod: latest(fileDates.get('src/pages/PrivacyPage.tsx'), seoDate),
 });
 
+pages.push({
+  path: '/contact/',
+  title: withBrand('Contact & Support'),
+  description: `Contact ${site.siteName} support: report a bug, request a new game or send feedback. Email ${site.supportEmail}.`,
+  body: `<h1>Contact &amp; Support</h1>
+<p>We want every game on ${esc(site.siteName)} to work well on every device. If you run into a problem or have an idea, we would like to hear from you.</p>
+<p><strong>Support email:</strong> <a href="mailto:${site.supportEmail}">${site.supportEmail}</a></p>
+<h2>Report a bug</h2>
+<p>Something not working as it should? Tell us which game, what happened and which device and browser you were using, and we will look into it.</p>
+<h2>Request a game</h2>
+<p>Is there a game you would love to play here? Send us the name or the idea — player suggestions help decide what we build next.</p>
+<h2>General enquiries</h2>
+<p>Feedback, accessibility issues, partnership or press questions — every message is read.</p>`,
+  schema: [
+    organization,
+    breadcrumbs([
+      { name: 'Home', path: '/' },
+      { name: 'Contact & Support', path: '/contact/' },
+    ]),
+    { '@type': 'ContactPage', name: `Contact ${site.siteName}`, url: absoluteUrl('/contact/'), about: { '@id': organization['@id'] } },
+  ],
+  lastmod: latest(fileDates.get('src/pages/ContactPage.tsx'), seoDate),
+});
+
 // Personal pages: must load directly, but stay out of search results.
 for (const [path, name] of [
   ['/favorites/', 'Favorites'],
@@ -726,6 +758,7 @@ ${collections
 - [All games](${site.siteUrl}/games/): The full catalog with search and filters.
 - [About](${site.siteUrl}/about/): What ${site.siteName} is.
 - [Privacy](${site.siteUrl}/privacy/): All player data stays in the browser.
+- [Contact & Support](${site.siteUrl}/contact/): Report a bug or request a game at ${site.supportEmail}.
 `,
 );
 

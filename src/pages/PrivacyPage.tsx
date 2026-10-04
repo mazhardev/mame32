@@ -57,6 +57,13 @@ export default function PrivacyPage() {
             policy at policies.google.com/privacy.
           </p>
         </div>
+        <div>
+          <h2 style={{ fontSize: '1.05rem', marginBottom: 6 }}>Questions</h2>
+          <p className="muted small">
+            For any question about privacy or your data, contact{' '}
+            <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.
+          </p>
+        </div>
         <div className="notice notice-warning">
           <strong>Clearing browser or site data will delete your progress</strong> — including
           scores, achievements, coins and preferences. Use Settings → Export Save Data to keep a

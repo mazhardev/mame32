@@ -44,12 +44,25 @@ export default function AboutPage() {
           </p>
         </div>
 
+        <div>
+          <h2 style={{ fontSize: '1.05rem', marginBottom: 6 }}>Contact &amp; support</h2>
+          <p className="muted small">
+            Found a bug, or would you like to see a particular game added? Email{' '}
+            <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> or visit the{' '}
+            <Link to="/contact/">Contact &amp; Support</Link> page. Every message is read, and player
+            suggestions help decide which games are built next.
+          </p>
+        </div>
+
         <div className="row wrap">
           <Link className="btn btn-primary" to="/games/">
             Browse games
           </Link>
           <Link className="btn" to="/privacy/">
             Privacy
+          </Link>
+          <Link className="btn" to="/contact/">
+            Contact
           </Link>
         </div>
       </div>

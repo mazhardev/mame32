@@ -21,6 +21,7 @@ import {
 import { getAchievementState } from '@/achievements/AchievementService';
 import type { AchievementRecord, GameProgressRecord, GameStatistics } from '@/types';
 import { formatDuration, formatNumber, formatRelative } from '@/utils/format';
+import { bugReportMailto, gameRequestMailto } from '@/utils/support';
 
 export default function GameDetailPage() {
   const { gameId = '' } = useParams();
@@ -303,6 +304,20 @@ export default function GameDetailPage() {
               </div>
             </section>
           )}
+          <section className="card card-tight">
+            <h2 style={{ fontSize: '1rem', marginBottom: 6 }}>Need help?</h2>
+            <p className="small muted">
+              Found a bug in {game.title}, or have an idea for a new game? We read every message.
+            </p>
+            <div className="row wrap" style={{ marginTop: 10, gap: 8 }}>
+              <a className="btn btn-sm" href={bugReportMailto(game.title)}>
+                Report a bug
+              </a>
+              <a className="btn btn-sm" href={gameRequestMailto()}>
+                Request a game
+              </a>
+            </div>
+          </section>
         </aside>
       </div>
 

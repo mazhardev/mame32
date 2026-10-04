@@ -18,6 +18,7 @@ const StatisticsPage = lazy(() => import('@/pages/StatisticsPage'));
 const SettingsPage = lazy(() => import('@/pages/SettingsPage'));
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
+const ContactPage = lazy(() => import('@/pages/ContactPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 function ScrollToTop() {
@@ -129,6 +130,14 @@ export default function App() {
                 element={
                   <Suspense fallback={<Loader />}>
                     <AboutPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <ContactPage />
                   </Suspense>
                 }
               />

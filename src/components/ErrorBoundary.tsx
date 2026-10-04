@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
+import { bugReportMailto } from '@/utils/support';
 
 interface Props {
   children: ReactNode;
@@ -8,6 +9,8 @@ interface Props {
   title?: string;
   onRetry?: () => void;
   fallbackActions?: ReactNode;
+  /** Names the game in the pre-filled bug report. */
+  reportTitle?: string;
 }
 
 interface State {
@@ -64,6 +67,19 @@ export class ErrorBoundary extends Component<Props, State> {
           </button>
           {this.props.fallbackActions}
         </div>
+        <p className="small muted" style={{ marginTop: 16 }}>
+          If this keeps happening,{' '}
+          <a
+            href={bugReportMailto(
+              this.props.reportTitle,
+              `Error: ${this.state.error.message}
+Page: ${window.location.href}`,
+            )}
+          >
+            please report it
+          </a>{' '}
+          so we can fix it.
+        </p>
       </div>
     );
   }

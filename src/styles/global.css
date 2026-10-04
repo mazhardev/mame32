@@ -455,6 +455,46 @@ ol {
   color: var(--text);
 }
 
+.footer-email {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-email:hover {
+  color: var(--text);
+}
+
+/* ================================================================= contact */
+
+.contact-email {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand);
+  word-break: break-all;
+  text-decoration: none;
+}
+
+.contact-email:hover {
+  text-decoration: underline;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.contact-grid .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
 /* ================================================================ controls */
 
 .btn {

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { PageMeta } from '@/components/PageMeta';
+import { site } from '@/config/site';
 
 export default function NotFoundPage() {
   return (
@@ -19,6 +20,10 @@ export default function NotFoundPage() {
             Browse games
           </Link>
         </div>
+        <p className="small muted" style={{ marginTop: 16 }}>
+          Followed a broken link? Let us know at{' '}
+          <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.
+        </p>
       </div>
     </div>
   );

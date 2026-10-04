@@ -454,6 +454,7 @@ function GameSession({ game }: Props) {
         <GameShellContext.Provider value={api}>
           <ErrorBoundary
             resetKey={instanceKey}
+            reportTitle={game.title}
             onRetry={() => setInstanceKey((k) => k + 1)}
             fallbackActions={
               <Link className="btn" to="/games/">
