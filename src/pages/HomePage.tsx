@@ -14,6 +14,10 @@ import {
   getPlayableGames,
 } from '@/data/gameCatalog';
 import { site } from '@/config/site';
+import { FaqSection } from '@/components/FaqSection';
+import { CollectionLinks } from '@/components/CollectionLinks';
+import { activeCollections } from '@/data/collections';
+import { homeFaqs } from '@/seo/content';
 import {
   getAllProgress,
   getAllStats,
@@ -45,6 +49,7 @@ export default function HomePage() {
   const featured = useMemo(() => getFeaturedGames(10), []);
   const newest = useMemo(() => getNewGames(6), []);
   const counts = useMemo(() => countByCategory(), []);
+  const collections = useMemo(() => activeCollections(getPlayableGames()), []);
   const challenge = useMemo(() => getTodaysChallenge(), []);
 
   const [favorites, setFavorites] = useState<GameDefinition[]>([]);
@@ -63,7 +68,9 @@ export default function HomePage() {
           .filter((g): g is GameDefinition => !!g)
           .slice(0, 6),
       );
-      void getAllProgress().then((rows) => setProgress(rows.filter((r) => getGame(r.gameId)).slice(0, 6)));
+      void getAllProgress().then((rows) =>
+        setProgress(rows.filter((r) => getGame(r.gameId)).slice(0, 6)),
+      );
       void getAllStats().then((rows) => {
         const sorted = rows
           .filter((r) => r.gamesStarted > 0)
@@ -105,7 +112,10 @@ export default function HomePage() {
       </section>
 
       {challenge && challengeState && (
-        <section className="card" style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', alignItems: 'center' }}>
+        <section
+          className="card"
+          style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', alignItems: 'center' }}
+        >
           <div style={{ fontSize: '2rem' }} aria-hidden="true">
             📅
           </div>
@@ -222,11 +232,17 @@ export default function HomePage() {
               </span>
               <strong>{cat.name}</strong>
               <span className="tiny muted">
-                {counts[cat.id]?.playable ?? 0} playable · {counts[cat.id]?.total ?? 0} planned
+                {(counts[cat.id]?.playable ?? 0) === (counts[cat.id]?.total ?? 0)
+                  ? `${counts[cat.id]?.total ?? 0} games`
+                  : `${counts[cat.id]?.playable ?? 0} playable · ${counts[cat.id]?.total ?? 0} planned`}
               </span>
             </Link>
           ))}
         </div>
+      </Section>
+
+      <Section title="Popular Collections">
+        <CollectionLinks collections={collections} label="Popular collections" />
       </Section>
 
       <Section title="Your Progress" moreHref="/statistics" moreLabel="Full statistics">
@@ -255,6 +271,31 @@ export default function HomePage() {
           </div>
         </div>
       </Section>
+
+      <section className="stack" style={{ gap: 'var(--space-3)' }}>
+        <h2 style={{ fontSize: '1.15rem' }}>Play free online games – no download, no sign-up</h2>
+        <div className="seo-intro">
+          <p className="muted small">
+            {site.siteName} has {TOTAL_PLAYABLE} free online games that run straight in your web
+            browser on a computer, tablet or phone. Play puzzle games such as{' '}
+            <Link to="/games/sudoku/">Sudoku</Link>,{' '}
+            <Link to="/games/minesweeper/">Minesweeper</Link> and{' '}
+            <Link to="/games/number-merge-2048/">2048</Link>, board games like{' '}
+            <Link to="/games/chess/">chess</Link>, <Link to="/games/checkers/">checkers</Link> and{' '}
+            <Link to="/games/connect-four/">Connect Four</Link>, card games like{' '}
+            <Link to="/games/klondike-solitaire/">Klondike Solitaire</Link> and{' '}
+            <Link to="/games/blackjack/">Blackjack</Link>, and arcade classics like{' '}
+            <Link to="/games/snake/">Snake</Link>.
+          </p>
+          <p className="muted small">
+            There is nothing to install and no account to create. Games start instantly, save your
+            high scores and progress in your browser, and keep working offline once they have
+            loaded.
+          </p>
+        </div>
+      </section>
+
+      <FaqSection faqs={homeFaqs(TOTAL_PLAYABLE)} />
     </div>
   );
 }

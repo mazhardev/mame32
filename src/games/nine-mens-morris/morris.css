@@ -1,0 +1,60 @@
+.morris {
+  width: min(100%, 460px);
+  height: auto;
+  background: #e8c98f;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.morris-line {
+  stroke: #5b3a1a;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.morris-point {
+  fill: #5b3a1a;
+}
+
+.morris-man {
+  stroke-width: 3;
+  transition: r 120ms ease;
+}
+
+.morris-man.p1 {
+  fill: #fafafa;
+  stroke: #94a3b8;
+}
+
+.morris-man.p2 {
+  fill: #1f2937;
+  stroke: #000;
+}
+
+.morris-man.last {
+  stroke: #f59e0b;
+}
+
+.morris-man.sel {
+  stroke: #2563eb;
+  stroke-width: 5;
+}
+
+.morris-man.victim {
+  stroke: #ef4444;
+  stroke-width: 5;
+  stroke-dasharray: 6 4;
+}
+
+.morris-target {
+  fill: rgba(37, 99, 235, 0.55);
+  pointer-events: none;
+}
+
+.morris circle[role='button']:focus-visible {
+  outline: none;
+  stroke: #2563eb;
+  stroke-width: 3;
+}

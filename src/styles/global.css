@@ -14,16 +14,16 @@
 
   --text: #171a26;
   --text-muted: #5c6280;
-  --text-faint: #8a90ab;
+  --text-faint: #646a88;
 
   --brand: #5b5bd6;
   --brand-hover: #4a4ac4;
   --brand-soft: #ecebff;
   --brand-contrast: #ffffff;
 
-  --success: #14856b;
+  --success: #0f6e58;
   --success-soft: #dff5ee;
-  --warning: #b25e09;
+  --warning: #96500a;
   --warning-soft: #fdf0dc;
   --danger: #c0332f;
   --danger-soft: #fce9e8;
@@ -72,7 +72,7 @@
 
   --text: #eef0f8;
   --text-muted: #a3aac4;
-  --text-faint: #6f7691;
+  --text-faint: #838aa6;
 
   --brand: #8b8bf5;
   --brand-hover: #a0a0ff;
@@ -217,6 +217,9 @@ ol {
 
 .page {
   flex: 1;
+  /* Keeps the footer below the fold while lazy pages and games load, so it
+     never jumps down the screen (a layout shift that hurts Core Web Vitals). */
+  min-height: 100vh;
   padding: var(--space-6) 0 var(--space-7);
 }
 
@@ -989,6 +992,69 @@ ol {
 
 .category-icon {
   font-size: 1.6rem;
+}
+
+/* ===================================================================== seo */
+
+.seo-intro {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 72ch;
+}
+
+.faq-item {
+  border-top: 1px solid var(--border);
+  padding: var(--space-2) 0;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-item summary h3 {
+  font-size: 0.95rem;
+  font-weight: 550;
+}
+
+.faq-item p {
+  margin-top: var(--space-2);
+  max-width: 72ch;
+}
+
+.link-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.link-cloud a {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 0.85rem;
+}
+
+.link-cloud a:hover {
+  background: var(--surface-hover);
 }
 
 /* ============================================================== game shell */

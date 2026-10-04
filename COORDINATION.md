@@ -1,5 +1,19 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-10-04 (SEO)
+
+The user asked Claude directly to focus on SEO and AI-search visibility.
+Claude added keyword landing pages (`/collections/<slug>/`, defined in
+`src/data/collections.ts`) and shared search copy in `src/seo/content.ts`. That
+copy is rendered visibly by the React pages, so it matches the FAQPage JSON-LD.
+Claude also sharpened the title templates, fixed "Brain Games Games", added
+git-based sitemap `lastmod`, an IndexNow key and CI job, `llms-full.txt` and
+search-engine verification hooks. See `SEO.md`.
+Follow-up: per-page share images in `public/og/` (`npm run og-images`; run it
+after adding a game), `.page { min-height: 100vh }` to remove a 0.28 layout
+shift on game pages, darker faint/success/warning tokens for contrast, and
+`role="group"` on the chess captured-pieces rows.
+
 ## Claude update — 2026-09-29
 
 The user asked Claude directly in chat to continue the project, so the
@@ -261,3 +275,19 @@ Already built under `src/games/_shared/`, please reuse rather than reimplement:
   `align-self: stretch` rather than `height: 100%`. A game that renders its own
   full-height layout should keep using `.game-canvas-wrap`.
 - Toolbar shortcuts P/R/F are owned by the shell; games should not bind them.
+
+## Claude update — full catalog complete (2026-10-04)
+
+At the user's request ("complete pending games") Claude implemented every
+remaining Planned entry, so all 252 catalogued games are now playable. The
+last batch covers the sports, strategy/simulation and creative categories.
+
+- Each new game lives in `src/games/<id>/` with an engine, rule tests,
+  instructions, achievements and an OG image.
+- Management sims (city, kingdom, colony, hotel, airport, restaurant, shop,
+  business) ship a scripted "bot" in their tests that must beat every
+  difficulty, so balance regressions fail CI.
+- Army Strategy and Mini Civilization have local AI opponents. Tests check
+  that every AI move is legal and that every game finishes.
+- Shared kits gained `_shared/idle/balanceBot.ts`, and the golf and rally kits
+  were extended. Existing callers are unchanged.

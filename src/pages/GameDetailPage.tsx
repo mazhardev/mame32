@@ -4,8 +4,12 @@ import { PageMeta } from '@/components/PageMeta';
 import { gameDescription, gameTitle } from '@/utils/seo';
 import { GameShell } from '@/components/game/GameShell';
 import { GameCard } from '@/components/GameCard';
-import { getGame, getRelatedGames } from '@/data/gameCatalog';
+import { getGame, getPlayableGames, getRelatedGames } from '@/data/gameCatalog';
 import { categoryName } from '@/data/categories';
+import { collectionsForGame } from '@/data/collections';
+import { FaqSection } from '@/components/FaqSection';
+import { CollectionLinks } from '@/components/CollectionLinks';
+import { gameFaqs } from '@/seo/content';
 import {
   clearProgress,
   getProgressRecord,
@@ -27,6 +31,10 @@ export default function GameDetailPage() {
   const [fav, setFav] = useState(() => isFavorite(gameId));
 
   const related = useMemo(() => (game ? getRelatedGames(game, 6) : []), [game]);
+  const collections = useMemo(
+    () => (game ? collectionsForGame(game, getPlayableGames()) : []),
+    [game],
+  );
 
   useEffect(() => {
     if (!game) return;
@@ -142,6 +150,8 @@ export default function GameDetailPage() {
               </>
             )}
           </section>
+
+          {game.status === 'available' && <FaqSection faqs={gameFaqs(game)} />}
         </div>
 
         <aside className="stack" style={{ gap: 'var(--space-4)' }}>
@@ -273,17 +283,17 @@ export default function GameDetailPage() {
                   const def = game.achievements?.find((d) => d.id === a.achievementId);
                   if (!def) return null;
                   return (
-                    <div
-                      key={a.achievementId}
-                      className="row"
-                      style={{ gap: 10, opacity: a.unlocked ? 1 : 0.55 }}
-                    >
-                      <span style={{ fontSize: '1.1rem' }} aria-hidden="true">
+                    <div key={a.achievementId} className="row" style={{ gap: 10 }}>
+                      <span
+                        style={{ fontSize: '1.1rem', opacity: a.unlocked ? 1 : 0.55 }}
+                        aria-hidden="true"
+                      >
                         {a.unlocked ? (def.icon ?? '🏆') : '🔒'}
                       </span>
                       <span style={{ flex: 1, minWidth: 0 }}>
                         <span style={{ display: 'block', fontSize: '0.85rem', fontWeight: 550 }}>
                           {def.name}
+                          {!a.unlocked && <span className="sr-only"> (locked)</span>}
                         </span>
                         <span className="tiny muted">{def.description}</span>
                       </span>
@@ -306,6 +316,15 @@ export default function GameDetailPage() {
               <GameCard key={g.id} game={g} />
             ))}
           </div>
+        </section>
+      )}
+
+      {collections.length > 0 && (
+        <section>
+          <div className="section-head">
+            <h2>Find more games like {game.title}</h2>
+          </div>
+          <CollectionLinks collections={collections} label={`Collections with ${game.title}`} />
         </section>
       )}
     </div>

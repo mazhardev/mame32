@@ -117,7 +117,7 @@ npm run build
 
 The build output in `dist/` is a plain static site served from the domain root (`base: '/'`).
 
-`npm run build` runs `scripts/prerender.ts` after Vite. It writes a real HTML file for every public route (`/games/snake/index.html`, `/categories/puzzle/index.html`, …). Each file has its own title, description, canonical URL, Open Graph tags, JSON-LD and readable content for crawlers. The script also writes `sitemap.xml`, `robots.txt`, `llms.txt` and a `404.html` SPA fallback. Any host that serves `404.html` for unknown paths needs no rewrite rules. Old `/#/…` links are redirected to real paths on load.
+`npm run build` runs `scripts/prerender.ts` after Vite. It writes a real HTML file for every public route (`/games/snake/index.html`, `/categories/puzzle/index.html`, …). Each file has its own title, description, canonical URL, Open Graph tags, JSON-LD and readable content for crawlers. The script also writes `sitemap.xml`, `robots.txt`, `llms.txt` and a `404.html` SPA fallback. Any host that serves `404.html` for unknown paths needs no rewrite rules. Old `/#/…` links are redirected to real paths on load. See [SEO.md](SEO.md) for collection landing pages, IndexNow, `llms-full.txt` and the Search Console checklist.
 
 The canonical origin lives in `src/config/site.ts` (`siteUrl`). Change it there if the domain changes, and update `public/CNAME`.
 
@@ -258,7 +258,9 @@ Everything a game needs lives in its own folder, and games are discovered automa
 
 5. **Add tests** for the rules: move legality, win and loss detection, generator validity (every generated puzzle solvable), and save validation. The shared smoke test automatically mounts every registered game and clicks its first controls.
 
-6. **Update the checklist** with `node scripts/update-status.mjs`.
+6. **Generate its share image** with `npm run og-images` and commit the new file in `public/og/games/` (see [SEO.md](SEO.md)).
+
+7. **Update the checklist** with `node scripts/update-status.mjs`.
 
 ---
 

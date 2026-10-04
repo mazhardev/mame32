@@ -1,0 +1,183 @@
+.civ {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.civ-log {
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  min-height: 2.2em;
+}
+
+.civ-map {
+  display: grid;
+  gap: 1px;
+  padding: 3px;
+  border-radius: 12px;
+  background: #1e3a2a;
+}
+
+.civ-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border: 0;
+  padding: 0;
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  overflow: hidden;
+  font-size: clamp(0.65rem, 3.4vw, 1.35rem);
+}
+
+.civ-tile.t-grass {
+  background: #86c35a;
+}
+.civ-tile.t-plains {
+  background: #c9c46b;
+}
+.civ-tile.t-forest {
+  background: #3f8a3f;
+}
+.civ-tile.t-hills {
+  background: #a68a5b;
+}
+.civ-tile.t-mountain {
+  background: #8b8b8b;
+  cursor: default;
+}
+.civ-tile.t-water {
+  background: #4aa3df;
+  cursor: default;
+}
+
+.civ-tile.move::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(59, 130, 246, 0.42);
+}
+
+.civ-tile.hit {
+  box-shadow: inset 0 0 0 3px #ef4444;
+}
+
+.civ-tile.sel {
+  box-shadow: inset 0 0 0 3px #facc15;
+}
+
+.civ-deco {
+  position: absolute;
+  opacity: 0.55;
+}
+
+.civ-bonus {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  font-size: 0.55em;
+}
+
+.civ-city {
+  position: absolute;
+  inset: 6%;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  border: 2px solid;
+}
+
+.civ-city.o0 {
+  background: rgba(219, 234, 254, 0.85);
+  border-color: #2563eb;
+}
+
+.civ-city.o1 {
+  background: rgba(254, 226, 226, 0.85);
+  border-color: #dc2626;
+}
+
+.civ-pop {
+  position: absolute;
+  bottom: -1px;
+  right: 1px;
+  font-size: 0.5em;
+  font-weight: 800;
+  color: #111827;
+}
+
+.civ-unit {
+  position: relative;
+  z-index: 1;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 2px solid;
+  font-size: 0.8em;
+}
+
+.civ-unit.o0 {
+  background: #eff6ff;
+  border-color: #2563eb;
+}
+
+.civ-unit.o1 {
+  background: #fef2f2;
+  border-color: #dc2626;
+}
+
+.civ-unit.spent {
+  opacity: 0.6;
+}
+
+.civ-stack {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 0.55em;
+  font-weight: 800;
+  background: #111827;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 3px;
+}
+
+.civ-side {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-2);
+}
+
+.civ-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  min-width: 0;
+}
+
+.civ-builds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.civ-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+}

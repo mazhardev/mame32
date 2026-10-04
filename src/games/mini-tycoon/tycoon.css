@@ -1,0 +1,78 @@
+.tyc-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.tyc-run {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background: var(--surface);
+  font-size: 2rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  position: relative;
+  touch-action: manipulation;
+}
+
+.tyc-run:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.tyc-run .tyc-n {
+  position: absolute;
+  bottom: -6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: var(--brand);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 6px;
+}
+
+.tyc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.tyc-bar {
+  position: relative;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.tyc-bar > div {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.tyc-bar span {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 750;
+  line-height: 20px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tyc-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}

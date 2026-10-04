@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history so the sitemap's lastmod dates come from real commits.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -46,3 +49,14 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Ask Bing/Yandex (IndexNow) to recrawl the pages this deploy changed.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/indexnow.mjs

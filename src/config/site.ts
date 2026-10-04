@@ -4,7 +4,7 @@ export const site = {
   siteUrl: 'https://gamesplayland.online',
   tagline: 'Play instantly. No downloads.',
   /** Home page H1 — keeps the tagline but leads with what people search for. */
-  heroTitle: 'Free online games. Play instantly, no downloads.',
+  heroTitle: 'Play free online games instantly. No downloads.',
   description:
     'Play free online games in your browser: puzzle, arcade, card, board, word and sports games. No downloads, no sign-up, and they work on mobile and offline.',
   /** Social share image, relative to the site root. */
@@ -14,6 +14,20 @@ export const site = {
   dbName: 'BrowserArcadeDB',
   dbVersion: 1,
   repositoryUrl: '',
+  /**
+   * Search engine ownership tokens. Paste the content value of each
+   * verification meta tag here; empty values are left out of the page.
+   */
+  verification: {
+    google: '',
+    bing: '',
+    yandex: '',
+  },
+  /**
+   * IndexNow key (Bing, Yandex, Seznam, Naver – Bing results also feed ChatGPT
+   * search and Copilot). The build publishes /<key>.txt to prove ownership.
+   */
+  indexNowKey: 'ad2a080a448bb330f00359072e697d17',
   /** Google Analytics 4 measurement ID. The tag itself lives in index.html. */
   gaMeasurementId: 'G-9Z9RT2YH5X',
   theme: {

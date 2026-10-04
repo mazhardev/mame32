@@ -106,3 +106,10 @@ export function useInterval(callback: () => void, delayMs: number | null) {
     return () => window.clearInterval(id);
   }, [delayMs, saved]);
 }
+
+/** True when the player asked for less motion, in Settings or in their OS. */
+export function useReducedMotion(): boolean {
+  const [prefs] = usePreferences();
+  const media = useMediaQuery('(prefers-reduced-motion: reduce)');
+  return prefs.reducedMotion || media;
+}

@@ -31,6 +31,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // Share images are for crawlers and link previews, not offline play.
+        globIgnores: ['og/**'],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
         navigateFallback: '/index.html',
         // Let robots.txt, sitemap.xml, llms.txt etc. load as files, not as the app.

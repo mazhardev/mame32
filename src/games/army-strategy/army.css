@@ -1,0 +1,181 @@
+.army {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.army-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.army-mission {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.army-mission:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.army-info {
+  min-height: 2.4em;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.army-grid {
+  display: grid;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 12px;
+  background: #3f6212;
+  width: 100%;
+}
+
+.army-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 4px;
+  padding: 0;
+  background: #84cc16;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  overflow: hidden;
+}
+
+.army-tile.t-forest {
+  background: #4d7c0f;
+}
+.army-tile.t-hill {
+  background: #a3a35a;
+}
+.army-tile.t-water {
+  background: #38bdf8;
+  cursor: default;
+}
+.army-tile.t-banner0 {
+  background: #93c5fd;
+}
+.army-tile.t-banner1 {
+  background: #fca5a5;
+}
+
+.army-terrain {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(0.8rem, 4vw, 1.5rem);
+  opacity: 0.55;
+}
+
+.army-tile.move::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(59, 130, 246, 0.45);
+  border-radius: 4px;
+}
+
+.army-tile.hit {
+  box-shadow: inset 0 0 0 3px #ef4444;
+}
+
+.army-tile.sel {
+  box-shadow: inset 0 0 0 3px #facc15;
+}
+
+.army-unit {
+  position: relative;
+  z-index: 1;
+  width: 86%;
+  height: 86%;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid;
+}
+
+.army-unit.s0 {
+  background: #dbeafe;
+  border-color: #2563eb;
+}
+
+.army-unit.s1 {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+.army-unit.done {
+  filter: grayscale(0.8);
+  opacity: 0.7;
+}
+
+.army-unit-icon {
+  font-size: clamp(0.8rem, 4.2vw, 1.5rem);
+  line-height: 1;
+}
+
+.army-hp {
+  width: 70%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.army-hp > span {
+  display: block;
+  height: 100%;
+  background: #16a34a;
+}
+
+.army-preview {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: clamp(0.45rem, 2vw, 0.65rem);
+  font-weight: 800;
+  color: #fff;
+  background: rgba(220, 38, 38, 0.85);
+}
+
+.army-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.army-help ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}

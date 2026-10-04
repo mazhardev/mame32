@@ -40,7 +40,7 @@ function GameCardBase({ game, showBest = true, subtitle }: Props) {
 
   return (
     <article className="game-card">
-      <Link to={`/games/${game.id}/`} aria-label={`${game.title} — ${categoryName(game.category)}`}>
+      <Link to={`/games/${game.id}/`}>
         <div
           className="game-card-art"
           style={{ '--game-accent': game.accent ?? category.accent } as React.CSSProperties}
@@ -57,7 +57,7 @@ function GameCardBase({ game, showBest = true, subtitle }: Props) {
             <span aria-hidden="true">·</span>
             <span className={`badge badge-${game.difficulty}`}>{game.difficulty}</span>
             {game.supportsTouch && (
-              <span title="Works on touch screens" aria-label="Touch supported">
+              <span title="Works on touch screens" role="img" aria-label="Touch supported">
                 📱
               </span>
             )}
