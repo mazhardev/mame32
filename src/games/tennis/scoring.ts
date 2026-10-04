@@ -19,7 +19,14 @@ export const GAMES_TO_WIN = 4;
 const CALLS = ['0', '15', '30', '40'];
 
 export function newMatch(server: Side = 0): Match {
-  return { games: [0, 0], points: [0, 0], tiebreak: false, gameServer: server, winner: null, loveGames: 0 };
+  return {
+    games: [0, 0],
+    points: [0, 0],
+    tiebreak: false,
+    gameServer: server,
+    winner: null,
+    loveGames: 0,
+  };
 }
 
 export function server(m: Match): Side {

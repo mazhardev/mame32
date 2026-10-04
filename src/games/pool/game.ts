@@ -77,7 +77,12 @@ export function create(difficulty: DifficultySetting, random: () => number): Sta
   return {
     ...baseState(),
     balls: rackBalls(random),
-    table: { groups: [null, null], turn: 0, remaining: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], isBreak: true },
+    table: {
+      groups: [null, null],
+      turn: 0,
+      remaining: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      isBreak: true,
+    },
     phase: 'place',
     kitchen: true,
     aim: 0,
@@ -138,7 +143,13 @@ function respot(s: State, n: number) {
   b.potted = false;
   b.vx = b.vy = 0;
   for (let dx = 0; dx < 200; dx += 2) {
-    if (freeSpot(s.balls.filter((x) => x !== b), FOOT.x + dx, FOOT.y)) {
+    if (
+      freeSpot(
+        s.balls.filter((x) => x !== b),
+        FOOT.x + dx,
+        FOOT.y,
+      )
+    ) {
       b.x = FOOT.x + dx;
       b.y = FOOT.y;
       return;
@@ -176,19 +187,36 @@ function resolveShot(s: State) {
     s.over = true;
     if (v.winner === 0) s.score += 500;
     s.events.push(v.winner === 0 ? 'levelComplete' : 'gameOver');
-    say(s, v.winner === 0 ? 'You sank the 8 — you win!' : v.foul ? `${v.foul} — computer wins` : 'Computer sinks the 8', 5);
+    say(
+      s,
+      v.winner === 0
+        ? 'You sank the 8 — you win!'
+        : v.foul
+          ? `${v.foul} — computer wins`
+          : 'Computer sinks the 8',
+      5,
+    );
     return;
   }
   const next: Player = shooter === 0 ? 1 : 0;
   if (v.foul) {
-    say(s, `Foul: ${v.foul}. ${next === 0 ? 'Ball in hand for you' : 'Ball in hand for the computer'}`);
+    say(
+      s,
+      `Foul: ${v.foul}. ${next === 0 ? 'Ball in hand for you' : 'Ball in hand for the computer'}`,
+    );
     s.events.push('failure');
     startTurn(s, next, true);
     return;
   }
   if (v.again) {
     const g = t.groups[shooter];
-    say(s, assigned && g ? `${shooter === 0 ? 'You are' : 'Computer is'} ${g} — shoot again` : 'Shoot again', 1.8);
+    say(
+      s,
+      assigned && g
+        ? `${shooter === 0 ? 'You are' : 'Computer is'} ${g} — shoot again`
+        : 'Shoot again',
+      1.8,
+    );
     s.events.push('success');
     if (shooter === 0) s.phase = 'aim';
     else {
@@ -247,7 +275,8 @@ export function update(s: State, dt: number, input: Input, random: () => number)
     if (h.has('up')) s.power = clamp(s.power + 0.7 * dt, 0.05, 1);
     if (h.has('down')) s.power = clamp(s.power - 0.7 * dt, 0.05, 1);
     if (h.has('left') || h.has('right')) s.follow = false;
-    if (s.follow && p.active && Math.hypot(p.x - c.x, p.y - c.y) > R) s.aim = Math.atan2(p.y - c.y, p.x - c.x);
+    if (s.follow && p.active && Math.hypot(p.x - c.x, p.y - c.y) > R)
+      s.aim = Math.atan2(p.y - c.y, p.x - c.x);
     if (p.pressed) s.charging = 0;
     if (s.charging >= 0 && p.down) {
       s.charging += dt;
@@ -423,8 +452,16 @@ export function render(ctx: CanvasRenderingContext2D, s: State) {
   }
   // Group rack display.
   const groupLabel = (p: Player) => s.table.groups[p] ?? 'open';
-  text(ctx, `You: ${groupLabel(0)}`, LEFT, 13, { size: 12, align: 'left', color: s.table.turn === 0 ? '#7dd3fc' : '#94a3b8' });
-  text(ctx, `Computer: ${groupLabel(1)}`, RIGHT, 13, { size: 12, align: 'right', color: s.table.turn === 1 ? '#fdba74' : '#94a3b8' });
+  text(ctx, `You: ${groupLabel(0)}`, LEFT, 13, {
+    size: 12,
+    align: 'left',
+    color: s.table.turn === 0 ? '#7dd3fc' : '#94a3b8',
+  });
+  text(ctx, `Computer: ${groupLabel(1)}`, RIGHT, 13, {
+    size: 12,
+    align: 'right',
+    color: s.table.turn === 1 ? '#fdba74' : '#94a3b8',
+  });
   const mine = s.table.groups[0];
   if (mine) {
     const left = s.table.remaining.filter((n) => groupOf(n) === mine);
@@ -480,6 +517,13 @@ export const spec: ArcadeSpec<State> = {
     if (difficulty === 'hard') void reportProgress('pool.hard', 1);
     void incrementProgress('pool.wins', 1);
   },
-  touch: { pad: 'dpad', buttons: [{ action: 'action', label: 'Shoot' }, { action: 'action2', label: 'Fine' }] },
-  startHint: 'Point the cue with the mouse or finger, hold to build power and release to shoot. Keys: ← → aim, ↑ ↓ power, Space shoots.',
+  touch: {
+    pad: 'dpad',
+    buttons: [
+      { action: 'action', label: 'Shoot' },
+      { action: 'action2', label: 'Fine' },
+    ],
+  },
+  startHint:
+    'Point the cue with the mouse or finger, hold to build power and release to shoot. Keys: ← → aim, ↑ ↓ power, Space shoots.',
 };

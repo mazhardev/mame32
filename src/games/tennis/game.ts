@@ -169,14 +169,20 @@ export function render(ctx: CanvasRenderingContext2D, s: State) {
   text(ctx, 'CPU', 18, 43, { size: 13, align: 'left', color: '#fdba74' });
   text(ctx, String(m.games[0]), 78, 22, { size: 15 });
   text(ctx, String(m.games[1]), 78, 43, { size: 15 });
-  const pts = (p: number, o: number) => (m.tiebreak ? String(p) : p === 3 && o === 3 ? '40' : ['0', '15', '30', '40'][p]);
+  const pts = (p: number, o: number) =>
+    m.tiebreak ? String(p) : p === 3 && o === 3 ? '40' : ['0', '15', '30', '40'][p];
   text(ctx, pts(m.points[0], m.points[1]), 124, 22, { size: 15, color: '#fde68a' });
   text(ctx, pts(m.points[1], m.points[0]), 124, 43, { size: 15, color: '#fde68a' });
   const srv = server(m);
   text(ctx, '●', 100, srv === 0 ? 22 : 43, { size: 9, color: '#d9f99d' });
   if (r.phase !== 'play') {
     fillRound(ctx, 30, H / 2 - 24, W - 60, 46, 12, 'rgba(15,23,42,0.82)');
-    const hint = r.phase === 'serve' && r.server === 0 ? 'Your serve — Space or tap' : r.phase === 'serve' ? 'Computer to serve' : s.message;
+    const hint =
+      r.phase === 'serve' && r.server === 0
+        ? 'Your serve — Space or tap'
+        : r.phase === 'serve'
+          ? 'Computer to serve'
+          : s.message;
     text(ctx, hint, W / 2, H / 2, { size: 16 });
   }
 }
@@ -216,5 +222,6 @@ export const spec: ArcadeSpec<State> = {
     void incrementProgress('tennis.wins', 1);
   },
   touch: { pad: 'dpad', buttons: [{ action: 'action', label: 'Serve' }] },
-  startHint: 'Run with the arrows or follow the mouse/finger; your racket plays the ball. Hold an arrow at contact to aim. First to 4 games.',
+  startHint:
+    'Run with the arrows or follow the mouse/finger; your racket plays the ball. Hold an arrow at contact to aim. First to 4 games.',
 };

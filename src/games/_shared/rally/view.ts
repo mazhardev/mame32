@@ -49,7 +49,13 @@ export function readControl(input: Input, v: View, mem: PointerMemory): Control 
   return c;
 }
 
-export function drawBall(ctx: CanvasRenderingContext2D, v: View, b: RallyBall, radius: number, color: string) {
+export function drawBall(
+  ctx: CanvasRenderingContext2D,
+  v: View,
+  b: RallyBall,
+  radius: number,
+  color: string,
+) {
   const [sx, sy] = toScreen(v, b.x, b.y);
   ctx.fillStyle = 'rgba(0,0,0,0.25)';
   ctx.beginPath();

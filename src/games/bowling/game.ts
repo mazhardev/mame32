@@ -128,7 +128,12 @@ function finishRoll(s: State) {
     s.streak = 0;
     s.events.push('success');
   } else {
-    s.result = down === 0 ? (roll.ball.gutter ? 'Gutter ball' : 'Missed') : `${down} pin${down === 1 ? '' : 's'}`;
+    s.result =
+      down === 0
+        ? roll.ball.gutter
+          ? 'Gutter ball'
+          : 'Missed'
+        : `${down} pin${down === 1 ? '' : 's'}`;
     s.streak = 0;
   }
   const next = position(s.rolls);
@@ -230,7 +235,13 @@ export function update(s: State, dt: number, input: Input) {
 
 /** Predicted path of the current setup, for the aim guide. */
 function guidePath(s: State, angle: number) {
-  const r = startRoll([], s.x, angle, speedFor(s.power), s.spin * (s.tuning.guide >= 1 ? s.oil : 1));
+  const r = startRoll(
+    [],
+    s.x,
+    angle,
+    speedFor(s.power),
+    s.spin * (s.tuning.guide >= 1 ? s.oil : 1),
+  );
   const pts: { x: number; y: number }[] = [];
   const limit = -LANE * s.tuning.guide;
   for (let i = 0; i < 2000 && r.ball.y > Math.max(limit, -LANE) && !r.ball.gutter; i++) {
@@ -279,7 +290,14 @@ function drawLane(ctx: CanvasRenderingContext2D, s: State) {
 
 const LANE_PX = () => HALF * 2 + GUTTER * 2;
 
-function drawPin(ctx: CanvasRenderingContext2D, s: State, x: number, y: number, down: boolean, angle: number) {
+function drawPin(
+  ctx: CanvasRenderingContext2D,
+  s: State,
+  x: number,
+  y: number,
+  down: boolean,
+  angle: number,
+) {
   const sx = toScreenX(x);
   const sy = toScreenY(s, y);
   if (down) {
@@ -318,7 +336,8 @@ function drawBall(ctx: CanvasRenderingContext2D, x: number, y: number) {
     [-4, -6],
     [3, -7],
     [0, -1],
-  ]) circle(ctx, x + dx, y + dy, 2, '#1e1b4b');
+  ])
+    circle(ctx, x + dx, y + dy, 2, '#1e1b4b');
 }
 
 function drawSheet(ctx: CanvasRenderingContext2D, s: State) {
@@ -361,7 +380,11 @@ export function render(ctx: CanvasRenderingContext2D, s: State) {
       ctx.setLineDash([6, 6]);
       ctx.lineWidth = 2;
       ctx.beginPath();
-      pts.forEach((p, i) => (i ? ctx.lineTo(toScreenX(p.x), toScreenY(s, p.y)) : ctx.moveTo(toScreenX(p.x), toScreenY(s, p.y))));
+      pts.forEach((p, i) =>
+        i
+          ? ctx.lineTo(toScreenX(p.x), toScreenY(s, p.y))
+          : ctx.moveTo(toScreenX(p.x), toScreenY(s, p.y)),
+      );
       ctx.stroke();
       ctx.setLineDash([]);
     } else if (s.phase !== 'position') {
@@ -384,19 +407,33 @@ export function render(ctx: CanvasRenderingContext2D, s: State) {
   const panelY = H - 62;
   if (s.phase === 'position') {
     fillRound(ctx, 10, panelY, W - 20, 52, 10, 'rgba(15,23,42,0.85)');
-    const hook = s.spin === 0 ? 'straight' : `${Math.abs(s.spin) * 100}% hook ${s.spin < 0 ? '←' : '→'}`;
+    const hook =
+      s.spin === 0 ? 'straight' : `${Math.abs(s.spin) * 100}% hook ${s.spin < 0 ? '←' : '→'}`;
     text(ctx, `← → position   ↑ ↓ hook: ${hook}`, W / 2, panelY + 17, { size: 13 });
-    text(ctx, 'Space to aim — or swipe the ball up the lane', W / 2, panelY + 37, { size: 12, color: '#cbd5e1', weight: 500 });
+    text(ctx, 'Space to aim — or swipe the ball up the lane', W / 2, panelY + 37, {
+      size: 12,
+      color: '#cbd5e1',
+      weight: 500,
+    });
   } else if (s.phase === 'aim' || s.phase === 'power') {
     fillRound(ctx, 10, panelY, W - 20, 52, 10, 'rgba(15,23,42,0.85)');
     const isPower = s.phase === 'power';
-    text(ctx, isPower ? 'Power — Space / tap to roll' : 'Aim — Space / tap to lock', W / 2, panelY + 15, { size: 13 });
+    text(
+      ctx,
+      isPower ? 'Power — Space / tap to roll' : 'Aim — Space / tap to lock',
+      W / 2,
+      panelY + 15,
+      { size: 13 },
+    );
     fillRound(ctx, 30, panelY + 28, W - 60, 14, 7, '#334155');
     if (isPower) fillRound(ctx, 30, panelY + 28, (W - 60) * s.power, 14, 7, '#f97316');
     else circle(ctx, W / 2 + (s.angle / MAX_ANGLE) * (W / 2 - 40), panelY + 35, 8, '#facc15');
   } else if (s.phase === 'result') {
     fillRound(ctx, 70, H / 2 - 30, W - 140, 60, 14, 'rgba(15,23,42,0.85)');
-    text(ctx, s.result, W / 2, H / 2, { size: s.result === 'STRIKE!' ? 30 : 24, color: s.result === 'STRIKE!' ? '#facc15' : '#fff' });
+    text(ctx, s.result, W / 2, H / 2, {
+      size: s.result === 'STRIKE!' ? 30 : 24,
+      color: s.result === 'STRIKE!' ? '#facc15' : '#fff',
+    });
   }
 }
 
@@ -433,5 +470,6 @@ export const spec: ArcadeSpec<State> = {
   },
   touch: { pad: 'dpad', buttons: [{ action: 'action', label: 'Aim / Roll' }] },
   pointerStarts: true,
-  startHint: 'Position with ← →, set hook with ↑ ↓, then Space to stop the aim and power meters. Or swipe the ball up the lane.',
+  startHint:
+    'Position with ← →, set hook with ↑ ↓, then Space to stop the aim and power meters. Or swipe the ball up the lane.',
 };

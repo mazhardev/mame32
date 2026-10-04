@@ -12,9 +12,20 @@ export const game = defineGame({
   minutes: 8,
   multiplayer: 'vs-ai',
   controls: {
-    keyboard: ['← → aim (hold X for fine aim)', '↑ ↓ set power', 'Space shoots', 'Arrows move the cue ball when you have ball in hand'],
-    mouse: ['Point the cue; hold the button to build power and release to shoot', 'With ball in hand, move the ball and click to place it'],
-    touch: ['Touch where to aim; hold to build power and lift to shoot', 'With ball in hand, drag the ball and lift to place it'],
+    keyboard: [
+      '← → aim (hold X for fine aim)',
+      '↑ ↓ set power',
+      'Space shoots',
+      'Arrows move the cue ball when you have ball in hand',
+    ],
+    mouse: [
+      'Point the cue; hold the button to build power and release to shoot',
+      'With ball in hand, move the ball and click to place it',
+    ],
+    touch: [
+      'Touch where to aim; hold to build power and lift to shoot',
+      'With ball in hand, drag the ball and lift to place it',
+    ],
   },
   instructions: {
     objective: 'Pot all seven of your balls, then the 8, before the computer does.',
@@ -26,9 +37,15 @@ export const game = defineGame({
       'Pot the 8 early, or scratch while potting it, and you lose the frame.',
     ],
     scoring: '50 points for each ball you pot and 500 for winning the frame.',
-    difficultyNotes: 'Easy shows a long guide for where the object ball will go and the computer aims loosely. Hard has no object-ball guide, and the computer plans carefully and rarely misses.',
-    tips: ['Softer shots leave the cue ball closer to the next target.', 'If nothing is on, roll gently onto one of your balls rather than giving away a foul.'],
-    touchNotes: ['The power bar on the right rises and falls while you hold — lift at the right moment.'],
+    difficultyNotes:
+      'Easy shows a long guide for where the object ball will go and the computer aims loosely. Hard has no object-ball guide, and the computer plans carefully and rarely misses.',
+    tips: [
+      'Softer shots leave the cue ball closer to the next target.',
+      'If nothing is on, roll gently onto one of your balls rather than giving away a foul.',
+    ],
+    touchNotes: [
+      'The power bar on the right rises and falls while you hold — lift at the right moment.',
+    ],
   },
   achievements: [
     ['win', 'Frame Winner', 'Beat the computer.', 1, '🎱', 20],

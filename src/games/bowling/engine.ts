@@ -67,13 +67,38 @@ export function pinSpots(): { n: number; x: number; y: number }[] {
 export function rack(standing: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]): Pin[] {
   return pinSpots()
     .filter((s) => standing.includes(s.n))
-    .map((s) => ({ n: s.n, homeX: s.x, homeY: s.y, x: s.x, y: s.y, vx: 0, vy: 0, down: false, gone: false, standing: true, angle: 0 }));
+    .map((s) => ({
+      n: s.n,
+      homeX: s.x,
+      homeY: s.y,
+      x: s.x,
+      y: s.y,
+      vx: 0,
+      vy: 0,
+      down: false,
+      gone: false,
+      standing: true,
+      angle: 0,
+    }));
 }
 
 /** Starts a roll from `x` on the foul line at `angle` (radians from straight) with `speed`. */
-export function startRoll(pins: Pin[], x: number, angle: number, speed: number, spin: number): Roll {
+export function startRoll(
+  pins: Pin[],
+  x: number,
+  angle: number,
+  speed: number,
+  spin: number,
+): Roll {
   return {
-    ball: { x, y: -10, vx: Math.sin(angle) * speed, vy: -Math.cos(angle) * speed, spin, gutter: false },
+    ball: {
+      x,
+      y: -10,
+      vx: Math.sin(angle) * speed,
+      vy: -Math.cos(angle) * speed,
+      spin,
+      gutter: false,
+    },
     pins: pins.map((p) => ({ ...p })),
     time: 0,
     pinTime: 0,
@@ -81,7 +106,14 @@ export function startRoll(pins: Pin[], x: number, angle: number, speed: number, 
   };
 }
 
-function bump(a: { x: number; y: number; vx: number; vy: number }, ma: number, b: Pin, mb: number, minDist: number, e: number): boolean {
+function bump(
+  a: { x: number; y: number; vx: number; vy: number },
+  ma: number,
+  b: Pin,
+  mb: number,
+  minDist: number,
+  e: number,
+): boolean {
   const dx = b.x - a.x;
   const dy = b.y - a.y;
   const d = Math.hypot(dx, dy);
@@ -128,7 +160,8 @@ export function stepRoll(r: Roll, dt: number): boolean {
 
   for (const p of r.pins) {
     if (p.gone) continue;
-    if (!b.gutter && b.y > -LANE - 220 && bump(b, BALL_MASS, p, PIN_MASS, BALL_R + PIN_R, 0.75)) hit = true;
+    if (!b.gutter && b.y > -LANE - 220 && bump(b, BALL_MASS, p, PIN_MASS, BALL_R + PIN_R, 0.75))
+      hit = true;
   }
   for (let i = 0; i < r.pins.length; i++) {
     const a = r.pins[i];
@@ -221,7 +254,12 @@ export function scoreFrames(rolls: number[]): (number | null)[] {
 }
 
 /** Where the game stands after `rolls`: current frame (0–9), ball in frame, and whether it is over. */
-export function position(rolls: number[]): { frame: number; ball: number; over: boolean; fullRack: boolean } {
+export function position(rolls: number[]): {
+  frame: number;
+  ball: number;
+  over: boolean;
+  fullRack: boolean;
+} {
   let i = 0;
   for (let frame = 0; frame < 9; frame++) {
     if (i >= rolls.length) return { frame, ball: 0, over: false, fullRack: true };

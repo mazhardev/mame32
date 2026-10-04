@@ -1,7 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import { emptyInput, simulate } from '../_shared/arcade/kit';
 import { createRng } from '@/utils/random';
-import { GOAL_W, H, MALLET_R, PUCK_R, W, clampMallet, collide, create, movePuck, spec } from './game';
+import {
+  GOAL_W,
+  H,
+  MALLET_R,
+  PUCK_R,
+  W,
+  clampMallet,
+  collide,
+  create,
+  movePuck,
+  spec,
+} from './game';
 
 describe('air hockey', () => {
   it('the puck bounces off the side boards and stays on the table', () => {

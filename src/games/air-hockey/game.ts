@@ -168,7 +168,10 @@ function aiPlan(s: State, random: () => number) {
     const dx = gx - p.x;
     const dy = gy - p.y;
     const d = Math.hypot(dx, dy) || 1;
-    const behind = { x: p.x - (dx / d) * (MALLET_R + PUCK_R - 6), y: p.y - (dy / d) * (MALLET_R + PUCK_R - 6) };
+    const behind = {
+      x: p.x - (dx / d) * (MALLET_R + PUCK_R - 6),
+      y: p.y - (dy / d) * (MALLET_R + PUCK_R - 6),
+    };
     const lined = Math.hypot(s.cpu.x - behind.x, s.cpu.y - behind.y) < 14 || s.cpu.y < p.y - 10;
     s.aiGoal = lined ? { x: p.x + (dx / d) * 30, y: p.y + (dy / d) * 30 } : behind;
   } else {
@@ -180,7 +183,8 @@ function aiPlan(s: State, random: () => number) {
       while (ahead < 0 || ahead > W) ahead = ahead < 0 ? -ahead : 2 * W - ahead;
       px = p.x + (ahead - p.x) * a.predict;
     }
-    const x = W / 2 + clamp(px - W / 2, -GOAL_W * 0.75, GOAL_W * 0.75) + (random() - 0.5) * a.wobble;
+    const x =
+      W / 2 + clamp(px - W / 2, -GOAL_W * 0.75, GOAL_W * 0.75) + (random() - 0.5) * a.wobble;
     s.aiGoal = { x, y: 62 };
   }
 }
@@ -230,7 +234,15 @@ export function update(s: State, dt: number, input: Input, random: () => number)
       s.events.push(scored === 0 ? 'success' : 'failure');
       s.message = scored === 0 ? 'Goal!' : 'Computer scores';
       s.pause = 1.1;
-      burst(s.sparks, W / 2, scored === 0 ? 4 : H - 4, scored === 0 ? '#38bdf8' : '#f97316', 24, 260, random);
+      burst(
+        s.sparks,
+        W / 2,
+        scored === 0 ? 4 : H - 4,
+        scored === 0 ? '#38bdf8' : '#f97316',
+        24,
+        260,
+        random,
+      );
       if (s.goals[scored] >= TARGET) {
         if (scored === 0) s.score += 300 + (s.goals[1] === 0 ? 200 : 0);
         s.over = true;
@@ -285,7 +297,8 @@ export function render(ctx: CanvasRenderingContext2D, s: State) {
   ctx.stroke();
   // Air holes.
   ctx.fillStyle = 'rgba(14,116,144,0.18)';
-  for (let y = 30; y < H; y += 30) for (let x = 30; x < W; x += 30) ctx.fillRect(x - 1, y - 1, 2, 2);
+  for (let y = 30; y < H; y += 30)
+    for (let x = 30; x < W; x += 30) ctx.fillRect(x - 1, y - 1, 2, 2);
   ctx.fillStyle = '#111827';
   ctx.fillRect(W / 2 - GOAL_W / 2, 0, GOAL_W, 8);
   ctx.fillRect(W / 2 - GOAL_W / 2, H - 8, GOAL_W, 8);
@@ -326,7 +339,9 @@ export const spec: ArcadeSpec<State> = {
       score: s.score,
       won,
       lost: !won,
-      title: won ? `You win ${s.goals[0]}–${s.goals[1]}` : `Computer wins ${s.goals[1]}–${s.goals[0]}`,
+      title: won
+        ? `You win ${s.goals[0]}–${s.goals[1]}`
+        : `Computer wins ${s.goals[1]}–${s.goals[0]}`,
       details: [
         { label: 'Score', value: `${s.goals[0]}–${s.goals[1]}` },
         { label: 'Fastest puck', value: `${Math.round(s.fastest / 10)} km/h` },
@@ -341,5 +356,6 @@ export const spec: ArcadeSpec<State> = {
     if (difficulty === 'hard') void reportProgress('air-hockey.hard', 1);
   },
   touch: { pad: 'none' },
-  startHint: 'Drag your blue mallet (or use the arrow keys) and strike the puck into the top goal. First to 7.',
+  startHint:
+    'Drag your blue mallet (or use the arrow keys) and strike the puck into the top goal. First to 7.',
 };

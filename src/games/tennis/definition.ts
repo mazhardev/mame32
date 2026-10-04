@@ -12,7 +12,11 @@ export const game = defineGame({
   minutes: 7,
   multiplayer: 'vs-ai',
   controls: {
-    keyboard: ['Arrow keys / WASD run', 'Hold ← → at contact to aim; ↑ deep, ↓ short', 'Space serves'],
+    keyboard: [
+      'Arrow keys / WASD run',
+      'Hold ← → at contact to aim; ↑ deep, ↓ short',
+      'Space serves',
+    ],
     mouse: ['Move the mouse to run to that spot; click to serve'],
     touch: ['Drag to run', 'Tap to serve'],
   },
@@ -26,8 +30,12 @@ export const game = defineGame({
       'Points go 15, 30, 40; at 40–40 the next point wins the game. At 3–3 games, a tie-break to 7 (win by two) decides the set.',
     ],
     scoring: '10 points for each point won, 50 for each game, 300 for the match.',
-    difficultyNotes: 'On Hard the computer runs faster, hits with more pace, aims away from you and rarely misses. Easy shows where its shots will land.',
-    tips: ['Wide shots pull the computer out of position — then hit to the open court.', 'After serving, move back to the middle of your baseline.'],
+    difficultyNotes:
+      'On Hard the computer runs faster, hits with more pace, aims away from you and rarely misses. Easy shows where its shots will land.',
+    tips: [
+      'Wide shots pull the computer out of position — then hit to the open court.',
+      'After serving, move back to the middle of your baseline.',
+    ],
     touchNotes: ['Drag below your player so your finger does not hide the ball.'],
   },
   achievements: [

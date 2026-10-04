@@ -24,9 +24,14 @@ export const game = defineGame({
       'The faster your mallet moves when it meets the puck, the harder the shot.',
       'After a goal, the puck is placed in front of the player who conceded.',
     ],
-    scoring: '100 points per goal, plus 20 for each goal of lead, 300 for winning and 200 more for a shutout.',
-    difficultyNotes: 'On Hard the computer’s mallet is much faster, reads the puck sooner, and attacks anywhere in its half.',
-    tips: ['Bank shots off the side boards get past a centred defender.', 'Stay in front of your goal when the puck is in the computer’s half.'],
+    scoring:
+      '100 points per goal, plus 20 for each goal of lead, 300 for winning and 200 more for a shutout.',
+    difficultyNotes:
+      'On Hard the computer’s mallet is much faster, reads the puck sooner, and attacks anywhere in its half.',
+    tips: [
+      'Bank shots off the side boards get past a centred defender.',
+      'Stay in front of your goal when the puck is in the computer’s half.',
+    ],
     touchNotes: ['Keep your finger on the screen and swipe through the puck.'],
   },
   achievements: [

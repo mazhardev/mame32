@@ -1,5 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { BALL_R, HALF, knocked, marks, position, rack, runRoll, scoreFrames, startRoll } from './engine';
+import {
+  BALL_R,
+  HALF,
+  knocked,
+  marks,
+  position,
+  rack,
+  runRoll,
+  scoreFrames,
+  startRoll,
+} from './engine';
 
 describe('bowling scoring', () => {
   it('scores gutter, perfect and all-spare games', () => {
@@ -27,7 +37,11 @@ describe('bowling scoring', () => {
   });
 
   it('writes X, / and - marks', () => {
-    expect(marks([10, 7, 3, 0, 5])).toEqual([['', 'X'], ['7', '/'], ['-', '5']]);
+    expect(marks([10, 7, 3, 0, 5])).toEqual([
+      ['', 'X'],
+      ['7', '/'],
+      ['-', '5'],
+    ]);
     expect(marks([...Array(18).fill(0), 10, 10, 10]).at(-1)).toEqual(['X', 'X', 'X']);
     expect(marks([...Array(18).fill(0), 7, 3, 10]).at(-1)).toEqual(['7', '/', 'X']);
   });

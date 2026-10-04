@@ -12,7 +12,12 @@ export const game = defineGame({
   minutes: 4,
   multiplayer: 'vs-ai',
   controls: {
-    keyboard: ['← → move', 'Hold ← or → at contact to aim', '↑ deep shot, ↓ short shot', 'Space serves'],
+    keyboard: [
+      '← → move',
+      'Hold ← or → at contact to aim',
+      '↑ deep shot, ↓ short shot',
+      'Space serves',
+    ],
     mouse: ['Move the mouse to slide; click to serve'],
     touch: ['Drag along the bottom of the table to move', 'Tap to serve'],
   },
@@ -24,9 +29,14 @@ export const game = defineGame({
       'Hold ← or → as you hit to angle the return, ↑ for a deep shot or ↓ for a short one.',
       'Service changes every two points, and every point from 10–10.',
     ],
-    scoring: '10 points per rally won, 2 per shot in your longest rally, and 100 for winning the game.',
-    difficultyNotes: 'On Hard the computer moves faster, hits harder, places the ball away from you and rarely misses. Easy shows where its shots will land.',
-    tips: ['Angled shots from the paddle edge are the quickest winners — and the riskiest.', 'Return to the middle after each shot.'],
+    scoring:
+      '10 points per rally won, 2 per shot in your longest rally, and 100 for winning the game.',
+    difficultyNotes:
+      'On Hard the computer moves faster, hits harder, places the ball away from you and rarely misses. Easy shows where its shots will land.',
+    tips: [
+      'Angled shots from the paddle edge are the quickest winners — and the riskiest.',
+      'Return to the middle after each shot.',
+    ],
     touchNotes: ['Keep your finger low on the screen so you can see the ball.'],
   },
   achievements: [

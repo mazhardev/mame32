@@ -93,7 +93,8 @@ export function update(s: State, dt: number, input: Input, random: () => number)
     s.points[res.winner] += 1;
     s.maxDeficit = Math.max(s.maxDeficit, s.points[1] - s.points[0]);
     s.score = s.points[0] * 10 + r.longest * 2;
-    s.message = res.winner === 0 ? `${res.reason} — your point` : `${res.reason} — computer’s point`;
+    s.message =
+      res.winner === 0 ? `${res.reason} — your point` : `${res.reason} — computer’s point`;
     s.decided = winnerOf(s.points) !== null;
   }
   if (r.phase === 'point' && r.phaseT > 1.1) {
@@ -167,7 +168,12 @@ export function render(ctx: CanvasRenderingContext2D, s: State) {
   fillRound(ctx, 10, 10, 120, 34, 8, 'rgba(15,23,42,0.75)');
   text(ctx, `${s.points[0]} – ${s.points[1]}`, 70, 27, { size: 20 });
   const server = r.phase === 'serve' ? r.server : null;
-  if (server !== null) text(ctx, server === 0 ? '● you serve' : '● CPU serves', W - 12, 27, { size: 13, align: 'right', color: '#fde68a' });
+  if (server !== null)
+    text(ctx, server === 0 ? '● you serve' : '● CPU serves', W - 12, 27, {
+      size: 13,
+      align: 'right',
+      color: '#fde68a',
+    });
   if (r.phase !== 'play') {
     fillRound(ctx, 40, H / 2 - 22, W - 80, 44, 12, 'rgba(15,23,42,0.8)');
     const hint = r.phase === 'serve' && r.server === 0 ? 'Your serve — Space or tap' : s.message;
@@ -192,7 +198,9 @@ export const spec: ArcadeSpec<State> = {
       score: s.score,
       won,
       lost: !won,
-      title: won ? `You win ${s.points[0]}–${s.points[1]}` : `Computer wins ${s.points[1]}–${s.points[0]}`,
+      title: won
+        ? `You win ${s.points[0]}–${s.points[1]}`
+        : `Computer wins ${s.points[1]}–${s.points[0]}`,
       details: [
         { label: 'Final score', value: `${s.points[0]}–${s.points[1]}` },
         { label: 'Longest rally', value: `${s.rally.longest} shots` },
@@ -208,5 +216,6 @@ export const spec: ArcadeSpec<State> = {
     void incrementProgress('table-tennis.wins', 1);
   },
   touch: { pad: 'horizontal', buttons: [{ action: 'action', label: 'Serve' }] },
-  startHint: 'Move with ←/→ or the mouse/finger; the paddle plays the ball. Hold an arrow at contact to aim. First to 11.',
+  startHint:
+    'Move with ←/→ or the mouse/finger; the paddle plays the ball. Hold an arrow at contact to aim. First to 11.',
 };

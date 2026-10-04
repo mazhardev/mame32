@@ -83,7 +83,8 @@ export interface ShotLog {
 function nearPocketMouth(x: number, y: number): boolean {
   const midX = (LEFT + RIGHT) / 2;
   const corner =
-    (x < LEFT + CORNER_GAP || x > RIGHT - CORNER_GAP) && (y < TOP + CORNER_GAP || y > BOTTOM - CORNER_GAP);
+    (x < LEFT + CORNER_GAP || x > RIGHT - CORNER_GAP) &&
+    (y < TOP + CORNER_GAP || y > BOTTOM - CORNER_GAP);
   const side = Math.abs(x - midX) < SIDE_GAP && (y < TOP + R * 2 || y > BOTTOM - R * 2);
   return corner || side;
 }
@@ -131,7 +132,12 @@ export function step(balls: Ball[], dt: number, log: ShotLog) {
         bounced = true;
       }
       if (bounced && log.firstHit !== null) log.cushionAfterHit = true;
-    } else if (b.x < LEFT - R * 2 || b.x > RIGHT + R * 2 || b.y < TOP - R * 2 || b.y > BOTTOM + R * 2) {
+    } else if (
+      b.x < LEFT - R * 2 ||
+      b.x > RIGHT + R * 2 ||
+      b.y < TOP - R * 2 ||
+      b.y > BOTTOM + R * 2
+    ) {
       // Jaws of a pocket: anything that gets this far drops.
       b.potted = true;
       b.vx = b.vy = 0;
@@ -179,7 +185,12 @@ export function newLog(): ShotLog {
 }
 
 /** Runs a shot to rest. */
-export function simulateShot(balls: Ball[], angle: number, speed: number, maxSeconds = 20): ShotLog {
+export function simulateShot(
+  balls: Ball[],
+  angle: number,
+  speed: number,
+  maxSeconds = 20,
+): ShotLog {
   const cue = balls.find((b) => b.n === 0);
   const log = newLog();
   if (!cue) return log;

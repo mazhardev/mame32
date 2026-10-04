@@ -3,7 +3,8 @@ import { emptyInput, inputWith } from '../_shared/arcade/kit';
 import { create, release, spec, swipeHook } from './game';
 
 function finishRolling(s: ReturnType<typeof create>) {
-  for (let i = 0; i < 60 * 15 && s.phase === 'rolling'; i++) spec.update(s, 1 / 60, emptyInput(), Math.random);
+  for (let i = 0; i < 60 * 15 && s.phase === 'rolling'; i++)
+    spec.update(s, 1 / 60, emptyInput(), Math.random);
 }
 
 describe('bowling game flow', () => {
@@ -38,7 +39,8 @@ describe('bowling game flow', () => {
       s.x = 70;
       release(s, 0.04, 0.5, 0);
       finishRolling(s);
-      for (let i = 0; i < 200 && s.phase === 'result'; i++) spec.update(s, 1 / 60, emptyInput(), Math.random);
+      for (let i = 0; i < 200 && s.phase === 'result'; i++)
+        spec.update(s, 1 / 60, emptyInput(), Math.random);
       balls++;
     }
     expect(s.over).toBe(true);

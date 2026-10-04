@@ -123,7 +123,18 @@ export function emptyControl(): Control {
 export function createRally(court: Court, ai: AiSkill, server: Side = 0): Rally {
   const r: Rally = {
     court,
-    ball: { x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, lastHitter: null, bounces: 0, landX: 0, landY: 0 },
+    ball: {
+      x: 0,
+      y: 0,
+      z: 0,
+      vx: 0,
+      vy: 0,
+      vz: 0,
+      lastHitter: null,
+      bounces: 0,
+      landX: 0,
+      landY: 0,
+    },
     players: [
       { x: 0, y: 0, swing: 0 },
       { x: 0, y: 0, swing: 0 },

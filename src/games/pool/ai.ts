@@ -1,4 +1,16 @@
-import { BOTTOM, HEAD_X, LEFT, MAX_SPEED, POCKETS, R, RIGHT, TOP, cloneBalls, freeSpot, simulateShot } from './physics';
+import {
+  BOTTOM,
+  HEAD_X,
+  LEFT,
+  MAX_SPEED,
+  POCKETS,
+  R,
+  RIGHT,
+  TOP,
+  cloneBalls,
+  freeSpot,
+  simulateShot,
+} from './physics';
 import type { Ball } from './physics';
 import { groupOf, judge, onTheEight } from './rules';
 import type { Table } from './rules';
@@ -42,7 +54,10 @@ function segmentDistance(px: number, py: number, ax: number, ay: number, bx: num
 }
 
 function clear(balls: Ball[], ax: number, ay: number, bx: number, by: number, ignore: number[]) {
-  return balls.every((b) => b.potted || ignore.includes(b.n) || segmentDistance(b.x, b.y, ax, ay, bx, by) >= R * 2 - 0.5);
+  return balls.every(
+    (b) =>
+      b.potted || ignore.includes(b.n) || segmentDistance(b.x, b.y, ax, ay, bx, by) >= R * 2 - 0.5,
+  );
 }
 
 /** Geometric candidates, best first. */
@@ -71,7 +86,12 @@ export function candidates(balls: Ball[], t: Table, cue: { x: number; y: number 
       const objectSpeed = Math.sqrt(2 * FRICTION * d2) * 1.25 + 90;
       const cueAtContact = objectSpeed / cos;
       const speed = Math.min(MAX_SPEED, Math.sqrt(cueAtContact ** 2 + 2 * FRICTION * d1) * 1.08);
-      out.push({ angle: Math.atan2(vy, vx), speed, target: n, score: cos * cos * 100 - d1 * 0.04 - d2 * 0.05 });
+      out.push({
+        angle: Math.atan2(vy, vx),
+        speed,
+        target: n,
+        score: cos * cos * 100 - d1 * 0.04 - d2 * 0.05,
+      });
     });
   }
   return out.sort((a, b) => b.score - a.score);
@@ -97,7 +117,10 @@ export function planShot(balls: Ball[], t: Table, skill: Skill): ShotPlan {
   for (const c of list) {
     const sim = cloneBalls(balls);
     const log = simulateShot(sim, c.angle, c.speed);
-    const v = judge({ ...t, remaining: balls.filter((b) => !b.potted && b.n !== 0).map((b) => b.n) }, log);
+    const v = judge(
+      { ...t, remaining: balls.filter((b) => !b.potted && b.n !== 0).map((b) => b.n) },
+      log,
+    );
     const good = v.foul === null && (v.again || v.winner === t.turn);
     if (good && (!best || c.score > best.score)) best = c;
   }
@@ -105,7 +128,12 @@ export function planShot(balls: Ball[], t: Table, skill: Skill): ShotPlan {
 }
 
 /** Ball in hand: try spots around the table and keep the one with the best shot. */
-export function placeCueBall(balls: Ball[], t: Table, random: () => number, kitchen: boolean): { x: number; y: number } {
+export function placeCueBall(
+  balls: Ball[],
+  t: Table,
+  random: () => number,
+  kitchen: boolean,
+): { x: number; y: number } {
   let best = { x: HEAD_X, y: (TOP + BOTTOM) / 2, score: -Infinity };
   const maxX = kitchen ? HEAD_X : RIGHT - R;
   for (let i = 0; i < 60; i++) {

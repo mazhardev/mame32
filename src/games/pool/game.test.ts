@@ -31,7 +31,8 @@ describe('pool game flow', () => {
     for (let turn = 0; turn < 400 && !s.over; turn++) {
       if (s.phase === 'place') spec.update(s, 1 / 60, inputWith([], ['action']), rng);
       else if (s.phase === 'aim') shoot(s, rng() * Math.PI * 2, 900);
-      else if (s.phase === 'ai') for (let i = 0; i < 90 && s.phase === 'ai'; i++) spec.update(s, 1 / 60, emptyInput(), rng);
+      else if (s.phase === 'ai')
+        for (let i = 0; i < 90 && s.phase === 'ai'; i++) spec.update(s, 1 / 60, emptyInput(), rng);
       settle(s, rng);
     }
     expect(s.over).toBe(true);

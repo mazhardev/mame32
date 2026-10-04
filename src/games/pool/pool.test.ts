@@ -1,13 +1,30 @@
 import { describe, expect, it } from 'vitest';
 import { createRng } from '@/utils/random';
-import { BOTTOM, LEFT, POCKETS, R, RIGHT, TOP, newLog, rackBalls, simulateShot, step } from './physics';
+import {
+  BOTTOM,
+  LEFT,
+  POCKETS,
+  R,
+  RIGHT,
+  TOP,
+  newLog,
+  rackBalls,
+  simulateShot,
+  step,
+} from './physics';
 import type { Ball } from './physics';
 import { judge } from './rules';
 import type { Table } from './rules';
 import { candidates, planShot } from './ai';
 
 const ball = (n: number, x: number, y: number): Ball => ({ n, x, y, vx: 0, vy: 0, potted: false });
-const table = (over: Partial<Table> = {}): Table => ({ groups: [null, null], turn: 0, remaining: [], isBreak: false, ...over });
+const table = (over: Partial<Table> = {}): Table => ({
+  groups: [null, null],
+  turn: 0,
+  remaining: [],
+  isBreak: false,
+  ...over,
+});
 
 describe('pool physics', () => {
   it('a full-ball hit stops the cue ball and sends the object ball on', () => {
@@ -44,20 +61,30 @@ describe('pool physics', () => {
     expect(new Set(balls.map((b) => b.n)).size).toBe(16);
     for (let i = 0; i < balls.length; i++)
       for (let j = i + 1; j < balls.length; j++)
-        expect(Math.hypot(balls[i].x - balls[j].x, balls[i].y - balls[j].y)).toBeGreaterThanOrEqual(R * 2);
+        expect(Math.hypot(balls[i].x - balls[j].x, balls[i].y - balls[j].y)).toBeGreaterThanOrEqual(
+          R * 2,
+        );
     expect(balls[5].n).toBe(8);
   });
 });
 
 describe('8-ball rules', () => {
   it('a scratch is a foul and passes the turn', () => {
-    const v = judge(table({ remaining: [1, 2, 9] }), { firstHit: 1, potted: [0, 1], cushionAfterHit: false });
+    const v = judge(table({ remaining: [1, 2, 9] }), {
+      firstHit: 1,
+      potted: [0, 1],
+      cushionAfterHit: false,
+    });
     expect(v.foul).toMatch(/Scratch/);
     expect(v.again).toBe(false);
   });
 
   it('the first legal pot on an open table assigns groups', () => {
-    const v = judge(table({ remaining: [1, 2, 9, 10, 8] }), { firstHit: 10, potted: [10], cushionAfterHit: false });
+    const v = judge(table({ remaining: [1, 2, 9, 10, 8] }), {
+      firstHit: 10,
+      potted: [10],
+      cushionAfterHit: false,
+    });
     expect(v.groups).toEqual(['stripes', 'solids']);
     expect(v.again).toBe(true);
   });
@@ -76,7 +103,11 @@ describe('8-ball rules', () => {
   });
 
   it('an 8 potted on the break is re-spotted', () => {
-    const v = judge(table({ isBreak: true, remaining: [1, 8, 9] }), { firstHit: 1, potted: [8], cushionAfterHit: false });
+    const v = judge(table({ isBreak: true, remaining: [1, 8, 9] }), {
+      firstHit: 1,
+      potted: [8],
+      cushionAfterHit: false,
+    });
     expect(v.respot8).toBe(true);
     expect(v.winner).toBeNull();
   });
@@ -102,7 +133,11 @@ describe('computer player', () => {
     balls.forEach((b) => {
       if (b.n !== 0 && b.n !== 8) b.x -= 0;
     });
-    const t = table({ groups: ['solids', 'stripes'], turn: 1, remaining: balls.filter((b) => b.n).map((b) => b.n) });
+    const t = table({
+      groups: ['solids', 'stripes'],
+      turn: 1,
+      remaining: balls.filter((b) => b.n).map((b) => b.n),
+    });
     for (const c of candidates(balls, t, balls[0])) expect(c.target! >= 9).toBe(true);
   });
 });
