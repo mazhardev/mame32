@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
-import { incrementProgress, reportProgress } from '@/achievements/AchievementService';
+import { reportProgress } from '@/achievements/AchievementService';
 import { GameHud } from '@/components/game/GameHud';
 import { ResumePrompt } from '../_shared/puzzle/PuzzleUI';
 import { useSavedGame } from '../_shared/puzzle/useSavedGame';
