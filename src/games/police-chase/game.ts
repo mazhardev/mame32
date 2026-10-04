@@ -171,7 +171,7 @@ export function render(ctx: CanvasRenderingContext2D, s: State) {
   for (const v of s.road.traffic) drawVehicle(ctx, v as Vehicle, false, s.time);
   const sy = suspectY(s);
   if (sy > -CAR_H) drawVehicle(ctx, { x: s.suspect.x, y: sy, w: CAR_W, h: CAR_H, color: '#111827', kind: 'suspect' });
-  else text(ctx, '▲ suspect ahead', s.suspect.x, 16, { size: 13, color: '#fde047' });
+  else text(ctx, '▲ suspect ahead', s.suspect.x, 46, { size: 13, color: '#fde047' });
   drawVehicle(ctx, { x: s.x, y: PLAYER_Y, w: CAR_W, h: CAR_H, color: s.stun > 0 && Math.floor(s.time * 12) % 2 ? '#94a3b8' : '#f8fafc', kind: 'police' }, false, s.time);
   drawSparks(ctx, s.sparks);
   fillRound(ctx, 10, H - 40, 140, 30, 8, 'rgba(0,0,0,0.5)');
