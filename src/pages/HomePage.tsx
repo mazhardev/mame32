@@ -14,6 +14,10 @@ import {
   getPlayableGames,
 } from '@/data/gameCatalog';
 import { site } from '@/config/site';
+import { FaqSection } from '@/components/FaqSection';
+import { CollectionLinks } from '@/components/CollectionLinks';
+import { activeCollections } from '@/data/collections';
+import { homeFaqs } from '@/seo/content';
 import {
   getAllProgress,
   getAllStats,
@@ -45,6 +49,7 @@ export default function HomePage() {
   const featured = useMemo(() => getFeaturedGames(10), []);
   const newest = useMemo(() => getNewGames(6), []);
   const counts = useMemo(() => countByCategory(), []);
+  const collections = useMemo(() => activeCollections(getPlayableGames()), []);
   const challenge = useMemo(() => getTodaysChallenge(), []);
 
   const [favorites, setFavorites] = useState<GameDefinition[]>([]);
@@ -229,6 +234,10 @@ export default function HomePage() {
         </div>
       </Section>
 
+      <Section title="Popular Collections">
+        <CollectionLinks collections={collections} label="Popular collections" />
+      </Section>
+
       <Section title="Your Progress" moreHref="/statistics" moreLabel="Full statistics">
         <div className="stat-grid">
           <div className="stat">
@@ -255,6 +264,29 @@ export default function HomePage() {
           </div>
         </div>
       </Section>
+
+      <section className="stack" style={{ gap: 'var(--space-3)' }}>
+        <h2 style={{ fontSize: '1.15rem' }}>Play free online games – no download, no sign-up</h2>
+        <div className="seo-intro">
+          <p className="muted small">
+            {site.siteName} has {TOTAL_PLAYABLE} free online games that run straight in your web
+            browser on a computer, tablet or phone. Play puzzle games such as{' '}
+            <Link to="/games/sudoku/">Sudoku</Link>, <Link to="/games/minesweeper/">Minesweeper</Link>{' '}
+            and <Link to="/games/number-merge-2048/">2048</Link>, board games like{' '}
+            <Link to="/games/chess/">chess</Link>, <Link to="/games/checkers/">checkers</Link> and{' '}
+            <Link to="/games/connect-four/">Connect Four</Link>, card games like{' '}
+            <Link to="/games/klondike-solitaire/">Klondike Solitaire</Link> and{' '}
+            <Link to="/games/blackjack/">Blackjack</Link>, and arcade classics like{' '}
+            <Link to="/games/snake/">Snake</Link>.
+          </p>
+          <p className="muted small">
+            There is nothing to install and no account to create. Games start instantly, save your high
+            scores and progress in your browser, and keep working offline once they have loaded.
+          </p>
+        </div>
+      </section>
+
+      <FaqSection faqs={homeFaqs(TOTAL_PLAYABLE)} />
     </div>
   );
 }

@@ -124,6 +124,11 @@ export default function SiteLayout() {
           </div>
           <nav className="footer-links" aria-label="Footer">
             <Link to="/games/">All Games</Link>
+            <Link to="/collections/2-player-games/">2 Player Games</Link>
+            <Link to="/collections/games-against-computer/">Games vs Computer</Link>
+            <Link to="/collections/mobile-games/">Mobile Games</Link>
+            <Link to="/categories/puzzle/">Puzzle Games</Link>
+            <Link to="/categories/card/">Card Games</Link>
             <Link to="/favorites/">Favorites</Link>
             <Link to="/statistics/">Statistics</Link>
             <Link to="/settings/">Settings</Link>

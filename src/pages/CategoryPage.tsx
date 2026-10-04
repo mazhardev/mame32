@@ -5,6 +5,9 @@ import { categoryDescription, categoryTitle } from '@/utils/seo';
 import { GameCard } from '@/components/GameCard';
 import { getCategoryBySlug } from '@/data/categories';
 import { getGamesByCategory } from '@/data/gameCatalog';
+import { FaqSection } from '@/components/FaqSection';
+import { SeoIntro } from '@/components/SeoIntro';
+import { categoryFaqs, categoryIntro, categoryLabel } from '@/seo/content';
 
 export default function CategoryPage() {
   const { slug = '' } = useParams();
@@ -41,11 +44,11 @@ export default function CategoryPage() {
           ← All categories
         </Link>
         <h1 style={{ fontSize: '1.6rem', marginTop: 8 }}>
-          <span aria-hidden="true">{category.icon}</span> {category.name}
+          <span aria-hidden="true">{category.icon}</span> {categoryLabel(category)}
         </h1>
-        <p className="muted small" style={{ marginTop: 4 }}>
-          {category.description}
-        </p>
+        <div style={{ marginTop: 4 }}>
+          <SeoIntro paragraphs={playable.length > 0 ? categoryIntro(category) : [category.description]} />
+        </div>
       </div>
 
       {playable.length > 0 ? (
@@ -60,6 +63,8 @@ export default function CategoryPage() {
           <p>No games in this category are playable yet.</p>
         </div>
       )}
+
+      {playable.length > 0 && <FaqSection faqs={categoryFaqs(category, playable)} />}
 
       {planned.length > 0 && (
         <section>

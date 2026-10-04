@@ -33,6 +33,7 @@ agreement and the running handoff log.
 | Vite + React + TypeScript (strict) project | ✅ |
 | Routing (real paths, prerendered static HTML per route) | ✅ |
 | SEO: per-page meta, canonical, JSON-LD, sitemap, robots.txt, llms.txt, OG image | ✅ |
+| SEO: keyword collection pages, visible FAQs matching FAQPage schema, git-based sitemap lastmod, IndexNow, llms-full.txt (see SEO.md) | ✅ |
 | Custom domain gamesplayland.online (GitHub Pages) | ✅ |
 | Design system (CSS variables, dark/light/system) | ✅ |
 | Home page (featured, recent, continue, popular, categories) | ✅ |

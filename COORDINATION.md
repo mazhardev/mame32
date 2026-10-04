@@ -1,5 +1,15 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-10-04 (SEO)
+
+The user asked Claude directly to focus on SEO and AI-search visibility.
+Claude added keyword landing pages (`/collections/<slug>/`, defined in
+`src/data/collections.ts`) and shared search copy in `src/seo/content.ts`. That
+copy is rendered visibly by the React pages, so it matches the FAQPage JSON-LD.
+Claude also sharpened the title templates, fixed "Brain Games Games", added
+git-based sitemap `lastmod`, an IndexNow key and CI job, `llms-full.txt` and
+search-engine verification hooks. No game code changed. See `SEO.md`.
+
 ## Claude update — 2026-09-29
 
 The user asked Claude directly in chat to continue the project, so the

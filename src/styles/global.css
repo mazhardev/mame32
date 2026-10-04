@@ -991,6 +991,69 @@ ol {
   font-size: 1.6rem;
 }
 
+/* ===================================================================== seo */
+
+.seo-intro {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 72ch;
+}
+
+.faq-item {
+  border-top: 1px solid var(--border);
+  padding: var(--space-2) 0;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-item summary h3 {
+  font-size: 0.95rem;
+  font-weight: 550;
+}
+
+.faq-item p {
+  margin-top: var(--space-2);
+  max-width: 72ch;
+}
+
+.link-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.link-cloud a {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 0.85rem;
+}
+
+.link-cloud a:hover {
+  background: var(--surface-hover);
+}
+
 /* ============================================================== game shell */
 
 .game-shell {

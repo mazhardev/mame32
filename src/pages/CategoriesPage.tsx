@@ -2,10 +2,13 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { PageMeta } from '@/components/PageMeta';
 import { CATEGORIES } from '@/data/categories';
-import { countByCategory } from '@/data/gameCatalog';
+import { countByCategory, getPlayableGames } from '@/data/gameCatalog';
+import { CollectionLinks } from '@/components/CollectionLinks';
+import { activeCollections } from '@/data/collections';
 
 export default function CategoriesPage() {
   const counts = useMemo(() => countByCategory(), []);
+  const collections = useMemo(() => activeCollections(getPlayableGames()), []);
 
   return (
     <div className="container stack">
@@ -34,6 +37,13 @@ export default function CategoriesPage() {
           </Link>
         ))}
       </div>
+
+      <section>
+        <div className="section-head">
+          <h2>Popular collections</h2>
+        </div>
+        <CollectionLinks collections={collections} />
+      </section>
     </div>
   );
 }

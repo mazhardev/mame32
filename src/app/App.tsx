@@ -10,6 +10,7 @@ import HomePage from '@/pages/HomePage';
 const AllGamesPage = lazy(() => import('@/pages/AllGamesPage'));
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
+const CollectionPage = lazy(() => import('@/pages/CollectionPage'));
 const GameDetailPage = lazy(() => import('@/pages/GameDetailPage'));
 const FavoritesPage = lazy(() => import('@/pages/FavoritesPage'));
 const AchievementsPage = lazy(() => import('@/pages/AchievementsPage'));
@@ -72,6 +73,14 @@ export default function App() {
                 element={
                   <Suspense fallback={<Loader />}>
                     <CategoryPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/collections/:slug"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <CollectionPage />
                   </Suspense>
                 }
               />
