@@ -24,18 +24,23 @@ describe('pool game flow', () => {
     expect(s.message).toMatch(/Foul/);
   });
 
-  it('a whole game between the computer and a random hitter finishes', () => {
-    const rng = createRng(7).next;
-    const s = create('hard', rng);
-    spec.update(s, 1 / 60, inputWith([], ['action']), rng);
-    for (let turn = 0; turn < 400 && !s.over; turn++) {
-      if (s.phase === 'place') spec.update(s, 1 / 60, inputWith([], ['action']), rng);
-      else if (s.phase === 'aim') shoot(s, rng() * Math.PI * 2, 900);
-      else if (s.phase === 'ai')
-        for (let i = 0; i < 90 && s.phase === 'ai'; i++) spec.update(s, 1 / 60, emptyInput(), rng);
-      settle(s, rng);
+  it('games between the computer and a random hitter finish, and the computer usually wins', () => {
+    let computerWins = 0;
+    for (let seed = 1; seed <= 12; seed++) {
+      const rng = createRng(seed).next;
+      const s = create('hard', rng);
+      spec.update(s, 1 / 60, inputWith([], ['action']), rng);
+      for (let turn = 0; turn < 400 && !s.over; turn++) {
+        if (s.phase === 'place') spec.update(s, 1 / 60, inputWith([], ['action']), rng);
+        else if (s.phase === 'aim') shoot(s, rng() * Math.PI * 2, 900);
+        else if (s.phase === 'ai')
+          for (let i = 0; i < 90 && s.phase === 'ai'; i++) spec.update(s, 1 / 60, emptyInput(), rng);
+        settle(s, rng);
+      }
+      expect(s.over, `seed ${seed} never finished`).toBe(true);
+      if (s.winner === 1) computerWins++;
     }
-    expect(s.over).toBe(true);
-    expect(s.winner).toBe(1);
+    // A lucky random shot can sink the 8, so the computer wins most games, not all.
+    expect(computerWins).toBeGreaterThanOrEqual(9);
   });
 });

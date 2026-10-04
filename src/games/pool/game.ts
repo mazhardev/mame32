@@ -119,7 +119,7 @@ export function shoot(s: State, angle: number, speed: number) {
   s.events.push('hit');
 }
 
-function startTurn(s: State, who: Player, ballInHand: boolean) {
+function startTurn(s: State, who: Player, ballInHand: boolean, random: () => number) {
   s.table.turn = who;
   s.visitPots = 0;
   s.kitchen = false;
@@ -130,7 +130,7 @@ function startTurn(s: State, who: Player, ballInHand: boolean) {
     s.aiTimer = 1;
     s.aiPlan = null;
     if (ballInHand) {
-      const spot = placeCueBall(s.balls, s.table, Math.random, false);
+      const spot = placeCueBall(s.balls, s.table, random, false);
       cueBall(s).x = spot.x;
       cueBall(s).y = spot.y;
     }
@@ -157,7 +157,7 @@ function respot(s: State, n: number) {
   }
 }
 
-function resolveShot(s: State) {
+function resolveShot(s: State, random: () => number) {
   const t = s.table;
   const v = judge(t, s.log);
   const assigned = t.groups[0] === null && v.groups[0] !== null;
@@ -205,7 +205,7 @@ function resolveShot(s: State) {
       `Foul: ${v.foul}. ${next === 0 ? 'Ball in hand for you' : 'Ball in hand for the computer'}`,
     );
     s.events.push('failure');
-    startTurn(s, next, true);
+    startTurn(s, next, true, random);
     return;
   }
   if (v.again) {
@@ -227,7 +227,7 @@ function resolveShot(s: State) {
     return;
   }
   say(s, next === 0 ? 'Your shot' : 'Computer’s shot', 1.4);
-  startTurn(s, next, false);
+  startTurn(s, next, false, random);
 }
 
 function readPointer(s: State, input: Input) {
@@ -313,7 +313,7 @@ export function update(s: State, dt: number, input: Input, random: () => number)
     for (let i = 0; i < SUBSTEPS; i++) step(s.balls, dt / SUBSTEPS, s.log);
     if (!hadHit && s.log.firstHit !== null) s.events.push('click');
     if (s.log.potted.length > before) s.events.push('pop');
-    if (!moving(s.balls)) resolveShot(s);
+    if (!moving(s.balls)) resolveShot(s, random);
   }
 }
 
