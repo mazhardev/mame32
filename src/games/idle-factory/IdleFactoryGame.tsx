@@ -66,6 +66,10 @@ export default function IdleFactoryGame() {
     save.clear();
   }, [save]);
   useEffect(() => shell.registerRestart(restart), [shell, restart]);
+  // Machines work on their own, so a fresh game starts as soon as it opens.
+  useEffect(() => {
+    if (!save.loading && !save.saved && !started.current) begin();
+  }, [begin, save.loading, save.saved]);
 
   const resume = useCallback(() => {
     if (!pending) return;
