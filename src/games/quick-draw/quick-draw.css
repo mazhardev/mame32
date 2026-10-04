@@ -1,0 +1,52 @@
+.qd-stage {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: var(--space-2);
+  min-height: 240px;
+  border-radius: var(--radius);
+  background: linear-gradient(#fde68a, #f59e0b 70%, #b45309);
+  padding: var(--space-3);
+  transition: background 120ms ease;
+}
+
+.qd-stage.draw {
+  background: linear-gradient(#fecaca, #ef4444 70%, #991b1b);
+}
+
+.qd-side {
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #451a03;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.qd-side.right .qd-cowboy {
+  transform: scaleX(-1);
+}
+
+.qd-cowboy {
+  font-size: clamp(3rem, 12vw, 5rem);
+  line-height: 1;
+}
+
+.qd-banner {
+  align-self: center;
+  max-width: 12ch;
+  text-align: center;
+  font-weight: 900;
+  font-size: clamp(1.1rem, 4.5vw, 2rem);
+  color: #451a03;
+}
+
+.qd-stage.draw .qd-banner {
+  color: #fff;
+  font-size: clamp(2rem, 9vw, 3.4rem);
+}
