@@ -29,6 +29,7 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
   const shell = useGameShell();
   const coarse = useIsCoarsePointer();
   const wrapRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef<S>(spec.create(shell.difficulty, Math.random));
   const inputRef = useRef<Input>(emptyInput());
@@ -61,14 +62,26 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
   useEffect(() => shell.registerRestart(restart), [shell, restart]);
 
   /* ------------------------------------------------------------ canvas size */
+  const expanded = shell.isFullscreen;
   useEffect(() => {
     const wrap = wrapRef.current;
+    const stage = stageRef.current;
     const canvas = canvasRef.current;
-    if (!wrap || !canvas) return;
+    if (!wrap || !stage || !canvas) return;
     const apply = () => {
-      const avail = wrap.getBoundingClientRect().width;
-      if (!avail) return;
-      const maxH = Math.max(240, window.innerHeight * maxHeight);
+      let avail: number;
+      let maxH: number;
+      if (expanded) {
+        // Full screen: fit the box the layout leaves after the HUD and touch pads.
+        const box = stage.getBoundingClientRect();
+        avail = box.width;
+        maxH = box.height;
+        if (!avail || !maxH) return;
+      } else {
+        avail = wrap.getBoundingClientRect().width;
+        if (!avail) return;
+        maxH = Math.max(240, window.innerHeight * maxHeight);
+      }
       let cssW = avail;
       let cssH = (cssW * spec.height) / spec.width;
       if (cssH > maxH) {
@@ -86,9 +99,10 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
     apply();
     const ro = new ResizeObserver(apply);
     ro.observe(wrap);
+    ro.observe(stage);
     return () => ro.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [spec.width, spec.height, maxHeight]);
+  }, [spec.width, spec.height, maxHeight, expanded]);
 
   const draw = () => {
     const ctx = canvasRef.current?.getContext('2d');
@@ -222,7 +236,7 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
   return (
     <div className="arcade" ref={wrapRef}>
       <GameHud items={hud} />
-      <div className="arcade-stage">
+      <div className="arcade-stage" ref={stageRef}>
         <canvas
           ref={canvasRef}
           className="arcade-canvas"

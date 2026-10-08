@@ -226,11 +226,13 @@ export default function SettingsPage() {
         </div>
         <div className="settings-row">
           <div>
-            <div className="label">Prefer fullscreen</div>
-            <div className="desc">Ask for fullscreen automatically on canvas games.</div>
+            <div className="label">Open games full screen</div>
+            <div className="desc">
+              Start every game in full-screen mode, with its controls sized to your screen.
+            </div>
           </div>
           <Toggle
-            label="Prefer fullscreen"
+            label="Open games full screen"
             checked={prefs.preferFullscreen}
             onChange={(v) => setPrefs({ preferFullscreen: v })}
           />

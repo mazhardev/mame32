@@ -70,7 +70,7 @@ src/
 ### Key ideas
 
 - **`GameDefinition`** is the contract every game satisfies: metadata, controls, instructions, achievements and a lazily imported component.
-- **`GameShell`** owns everything that is not gameplay: toolbar, pause/resume, fullscreen, session timing, statistics recording, the result screen and the error boundary. Games talk to it through `useGameShell()`.
+- **`GameShell`** owns everything that is not gameplay: toolbar, pause/resume, full-screen play, session timing, statistics recording, the result screen and the error boundary. Games talk to it through `useGameShell()`. In full-screen play, games that are larger than the screen are scaled to fit by `FitToStage`, so a new game needs no extra layout work to keep its controls visible on phones.
 - **`StorageService`** is the only module that knows whether data lives in `localStorage` or IndexedDB. Games never touch either directly.
 - **Game loops** use `requestAnimationFrame` and stop completely when paused or when the tab is hidden. High-frequency state lives in refs and engine objects, never React state.
 - **Difficulty** is chosen from the game toolbar. Games read `shell.difficulty`; switching mid-round asks for confirmation and restarts the game on the new setting.

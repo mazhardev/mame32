@@ -299,7 +299,10 @@ export default function CrosswordGame() {
         className="cw-grid"
         role="grid"
         aria-label="Crossword grid"
-        style={{ gridTemplateColumns: `repeat(${c1 - c0 + 1}, var(--cw-cell))` }}
+        style={{
+          gridTemplateColumns: `repeat(${c1 - c0 + 1}, var(--cw-cell))`,
+          ['--cw-cols' as string]: c1 - c0 + 1,
+        }}
       >
         {Array.from({ length: (r1 - r0 + 1) * (c1 - c0 + 1) }, (_, k) => {
           const r = r0 + Math.floor(k / (c1 - c0 + 1));

@@ -5,7 +5,14 @@ import { GameShellContext } from '@/game-engine/context';
 import type { GameOverPayload, GameShellApi } from '@/game-engine/context';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { Loader } from '@/components/Loader';
-import { useDocumentHidden, useFullscreen, usePreferences } from '@/hooks/usePlatform';
+import { FitToStage } from './FitToStage';
+import {
+  useDocumentHidden,
+  useExpandMode,
+  useIsCoarsePointer,
+  usePreferences,
+  useWakeLock,
+} from '@/hooks/usePlatform';
 import { playSound, unlockAudio, vibrate } from '@/services/audio';
 import {
   addPlayTime,
@@ -52,9 +59,12 @@ function GameSession({ game }: Props) {
   const navigate = useNavigate();
   const [prefs, setPrefs] = usePreferences();
   const shellRef = useRef<HTMLDivElement>(null);
-  const { isFullscreen, toggle: toggleFullscreen, supported: fullscreenSupported } =
-    useFullscreen(shellRef);
+  const expand = useExpandMode(shellRef);
+  const isFullscreen = expand.expanded;
+  const coarse = useIsCoarsePointer();
   const hidden = useDocumentHidden();
+  const [showHelp, setShowHelp] = useState(false);
+  const helpPausedRef = useRef(false);
 
   const [paused, setPausedState] = useState(false);
   const [manualPause, setManualPause] = useState(false);
@@ -93,6 +103,20 @@ function GameSession({ game }: Props) {
       alive = false;
     };
   }, [game.id, result]);
+
+  // "Open games full screen": start expanded; browser fullscreen needs a tap, so
+  // it is requested on the first touch or click inside the shell.
+  useEffect(() => {
+    if (!prefs.preferFullscreen) return;
+    expand.enter({ native: false });
+    const shell = shellRef.current;
+    if (!shell) return;
+    const onFirstPress = () => expand.upgrade();
+    shell.addEventListener('pointerdown', onFirstPress, { once: true });
+    return () => shell.removeEventListener('pointerdown', onFirstPress);
+    // Only on arrival at the game page.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.id]);
 
   /* --------------------------------------------------------- session timing */
 
@@ -352,21 +376,64 @@ function GameSession({ game }: Props) {
       } else if (e.key === 'r' || e.key === 'R') {
         if (caps.restartable) requestRestart();
       } else if (e.key === 'f' || e.key === 'F') {
-        void toggleFullscreen();
+        expand.toggle();
+      } else if (e.key === 'Escape' && expand.expanded && !expand.native) {
+        // In browser fullscreen the browser handles Escape itself.
+        if (showHelp) setShowHelp(false);
+        else expand.exit();
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [caps.pausable, caps.restartable, requestRestart, toggleFullscreen, togglePause]);
+  }, [caps.pausable, caps.restartable, requestRestart, expand, showHelp, togglePause]);
+
+  // Keep the phone screen on while playing full screen.
+  useWakeLock(isFullscreen && !paused);
+
+  const openHelp = useCallback(() => {
+    helpPausedRef.current = caps.pausable && !manualPause && !result;
+    if (helpPausedRef.current) setPaused(true);
+    setShowHelp(true);
+  }, [caps.pausable, manualPause, result, setPaused]);
+
+  const closeHelp = useCallback(() => {
+    setShowHelp(false);
+    if (helpPausedRef.current) setPaused(false);
+    helpPausedRef.current = false;
+  }, [setPaused]);
+
+  // Help is part of the expanded layout only; close it when leaving.
+  useEffect(() => {
+    if (!isFullscreen && showHelp) closeHelp();
+  }, [closeHelp, isFullscreen, showHelp]);
+
+  const goBack = () => {
+    // Replace the history entry expanded play added, so Back later returns here.
+    const replace = expand.exit({ keepHistory: true });
+    navigate('/games/', { replace });
+  };
 
   const GameComponent = game.component;
+  const { instructions, controls } = game;
+  const controlGroups = (
+    [
+      ['Touch', controls.touch],
+      ['Keyboard', controls.keyboard],
+      ['Mouse', controls.mouse],
+    ] as const
+  )
+    .filter(([, list]) => list && list.length)
+    .sort(([a], [b]) => (coarse ? (a === 'Touch' ? -1 : b === 'Touch' ? 1 : 0) : 0));
 
   return (
-    <div className={`game-shell${isFullscreen ? ' fullscreen' : ''}`} ref={shellRef}>
+    <div
+      className={`game-shell${isFullscreen ? ' fullscreen expanded' : ''}${expand.native ? ' native-fullscreen' : ''}`}
+      ref={shellRef}
+    >
       <div className="game-toolbar">
         <button
           className="icon-btn"
-          onClick={() => navigate('/games/')}
+          onClick={goBack}
           aria-label="Back to games"
           title="Back to games"
         >
@@ -425,55 +492,125 @@ function GameSession({ game }: Props) {
         >
           {prefs.sound ? '🔊' : '🔇'}
         </button>
-        {fullscreenSupported && (
-          <button
-            className={`icon-btn${isFullscreen ? ' active' : ''}`}
-            onClick={() => void toggleFullscreen()}
-            aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-            title="Fullscreen (F)"
-          >
-            {isFullscreen ? '🗗' : '⛶'}
-          </button>
-        )}
         <a
-          className="icon-btn"
+          className={`icon-btn${showHelp ? ' active' : ''}`}
           href="#instructions"
           aria-label="How to play"
           title="How to play"
           onClick={(e) => {
-            if (isFullscreen) return;
             e.preventDefault();
+            if (isFullscreen) {
+              if (showHelp) closeHelp();
+              else openHelp();
+              return;
+            }
             document.getElementById('instructions')?.scrollIntoView({ behavior: 'smooth' });
           }}
         >
           ❓
         </a>
+        <button
+          className={`icon-btn expand-btn${isFullscreen ? ' active' : ''}`}
+          onClick={() => expand.toggle()}
+          aria-label={isFullscreen ? 'Exit full screen' : 'Play full screen'}
+          aria-pressed={isFullscreen}
+          title={isFullscreen ? 'Exit full screen (F)' : 'Full screen (F)'}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d={
+                isFullscreen
+                  ? 'M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5'
+                  : 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5'
+              }
+            />
+          </svg>
+        </button>
       </div>
 
-      <div className="game-stage" style={isFullscreen ? { flex: 1 } : undefined}>
-        <GameShellContext.Provider value={api}>
-          <ErrorBoundary
-            resetKey={instanceKey}
-            reportTitle={game.title}
-            onRetry={() => setInstanceKey((k) => k + 1)}
-            fallbackActions={
-              <Link className="btn" to="/games/">
-                Return to Games
-              </Link>
-            }
-          >
-            <Suspense fallback={<Loader label={`Loading ${game.title}…`} />}>
-              {GameComponent ? (
-                <GameComponent key={instanceKey} gameId={game.id} />
-              ) : (
-                <div className="empty-state">
-                  <div className="emoji">🚧</div>
-                  <p>This game is planned but not implemented yet.</p>
-                </div>
+      <div className="game-stage">
+        <div className="game-stage-body">
+          <FitToStage active={isFullscreen}>
+            <GameShellContext.Provider value={api}>
+              <ErrorBoundary
+                resetKey={instanceKey}
+                reportTitle={game.title}
+                onRetry={() => setInstanceKey((k) => k + 1)}
+                fallbackActions={
+                  <Link className="btn" to="/games/">
+                    Return to Games
+                  </Link>
+                }
+              >
+                <Suspense fallback={<Loader label={`Loading ${game.title}…`} />}>
+                  {GameComponent ? (
+                    <GameComponent key={instanceKey} gameId={game.id} />
+                  ) : (
+                    <div className="empty-state">
+                      <div className="emoji">🚧</div>
+                      <p>This game is planned but not implemented yet.</p>
+                    </div>
+                  )}
+                </Suspense>
+              </ErrorBoundary>
+            </GameShellContext.Provider>
+          </FitToStage>
+        </div>
+
+        {showHelp && (
+          <div className="game-overlay" onClick={closeHelp}>
+            <div
+              className="overlay-card help-card"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="game-help-title"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 id="game-help-title">How to play</h3>
+              {instructions.objective && <p className="small muted">{instructions.objective}</p>}
+              {instructions.howToPlay.length > 0 && (
+                <ol className="help-steps">
+                  {instructions.howToPlay.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
               )}
-            </Suspense>
-          </ErrorBoundary>
-        </GameShellContext.Provider>
+              {controlGroups.map(([label, list]) => (
+                <div className="help-controls" key={label}>
+                  <div className="help-label">{label}</div>
+                  <ul>
+                    {list!.map((c) => (
+                      <li key={c}>{c}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              {coarse && instructions.touchNotes?.length ? (
+                <div className="help-controls">
+                  <div className="help-label">On touch screens</div>
+                  <ul>
+                    {instructions.touchNotes.map((n) => (
+                      <li key={n}>{n}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              <button className="btn btn-primary btn-block" onClick={closeHelp}>
+                Back to the game
+              </button>
+            </div>
+          </div>
+        )}
 
         {pendingDifficulty && (
           <div className="game-overlay">
@@ -493,7 +630,7 @@ function GameSession({ game }: Props) {
           </div>
         )}
 
-        {paused && !result && !pendingDifficulty && caps.pausable && (
+        {paused && !result && !pendingDifficulty && !showHelp && caps.pausable && (
           <div className="game-overlay">
             <div className="overlay-card">
               <h3>Paused</h3>
@@ -516,8 +653,7 @@ function GameSession({ game }: Props) {
           <div className="game-overlay">
             <div className="overlay-card">
               <h3>
-                {result.title ??
-                  (result.won ? 'Victory!' : result.draw ? 'Draw' : 'Game Over')}
+                {result.title ?? (result.won ? 'Victory!' : result.draw ? 'Draw' : 'Game Over')}
               </h3>
               {result.message && <p className="small muted">{result.message}</p>}
 

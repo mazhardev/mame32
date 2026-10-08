@@ -1106,16 +1106,215 @@ ol {
   background: var(--bg);
 }
 
-.game-shell.fullscreen {
+/* The wrapper is invisible to layout until the shell is expanded. */
+.game-stage-body {
+  display: contents;
+}
+
+/* ------------------------------------------------- expanded (full screen) play
+   One layout for every device: a fixed overlay that fills the screen and keeps
+   clear of notches and home indicators. It works on iPhone, where element
+   fullscreen does not exist; elsewhere the browser's fullscreen hides its UI too. */
+
+html.game-expanded,
+html.game-expanded body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.game-shell.expanded {
   position: fixed;
   inset: 0;
   z-index: 120;
-  padding: var(--space-2);
-  gap: var(--space-2);
+  gap: 6px;
+  padding: max(6px, env(safe-area-inset-top)) max(6px, env(safe-area-inset-right))
+    max(6px, env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));
+  background: var(--bg);
 }
 
-.game-shell.fullscreen .game-stage {
+.game-shell.expanded .game-toolbar {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 4px;
+  padding: 4px;
+}
+
+.game-shell.expanded .game-toolbar .title {
+  font-size: 0.9rem;
+}
+
+.game-shell.expanded .game-toolbar .toolbar-select {
+  height: 36px;
+  padding: 0 6px;
+}
+
+.game-shell.expanded .game-stage {
+  flex: 1 1 auto;
   min-height: 0;
+}
+
+/* The game scrolls inside the stage if it is taller than the screen, so no
+   control is ever cut off; overlays stay pinned to the visible stage. */
+.game-shell.expanded .game-stage-body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: safe center;
+  justify-content: safe center;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Scale-to-fit wrappers (see FitToStage). Invisible outside full-screen play. */
+.game-fit,
+.game-fit-inner {
+  display: contents;
+}
+
+.game-shell.expanded .game-fit {
+  display: block;
+  position: relative;
+  flex: none;
+  width: 100%;
+  height: 100%;
+}
+
+.game-shell.expanded .game-fit-inner {
+  display: flex;
+  align-items: safe center;
+  justify-content: safe center;
+  width: 100%;
+  height: 100%;
+}
+
+.game-shell.expanded .game-fit[data-fit='scale'] .game-fit-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  align-items: flex-start;
+  transform-origin: 0 0;
+}
+
+.rotate-hint {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 24px);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  animation: toast-in 260ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.rotate-hint span {
+  font-size: 1.1rem;
+  color: var(--brand);
+}
+
+/* Bigger thumbs-sized controls when the game has the whole screen. */
+.game-shell.expanded .dpad {
+  grid-template-columns: repeat(3, 58px);
+  grid-template-rows: repeat(3, 58px);
+}
+
+.game-shell.expanded .action-btn {
+  width: 80px;
+  height: 80px;
+}
+
+.game-shell.expanded .touch-controls {
+  padding: 4px 8px;
+}
+
+.expand-btn {
+  color: var(--brand);
+}
+
+.expand-btn.active {
+  background: var(--brand);
+  color: var(--brand-contrast);
+  border-color: var(--brand);
+}
+
+/* Phones: give the game every pixel. */
+@media (max-width: 640px), (max-height: 560px) {
+  .game-shell.expanded {
+    gap: 4px;
+    padding: max(4px, env(safe-area-inset-top)) max(4px, env(safe-area-inset-right))
+      max(4px, env(safe-area-inset-bottom)) max(4px, env(safe-area-inset-left));
+  }
+
+  .game-shell.expanded .game-toolbar {
+    padding: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  .game-shell.expanded .game-toolbar .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .game-shell.expanded .game-stage {
+    border: none;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* Landscape phones: short screens get smaller pads that still fit beside the game. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .game-shell.expanded .dpad {
+    grid-template-columns: repeat(3, 52px);
+    grid-template-rows: repeat(3, 52px);
+  }
+
+  .game-shell.expanded .action-btn {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+.help-card {
+  max-width: 460px;
+  max-height: 100%;
+  overflow-y: auto;
+  align-items: stretch;
+  text-align: left;
+}
+
+.help-card h3 {
+  text-align: center;
+}
+
+.help-steps,
+.help-controls ul {
+  margin: 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.help-label {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 4px;
 }
 
 .game-toolbar {

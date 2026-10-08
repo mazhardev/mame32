@@ -100,7 +100,8 @@
 
 .bp-float {
   position: fixed;
-  z-index: 50;
+  /* Above the full-screen game shell (120), below toasts (300). */
+  z-index: 130;
   pointer-events: none;
   opacity: 0.9;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));

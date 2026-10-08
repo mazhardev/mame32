@@ -1,6 +1,6 @@
 # Project Status
 
-_Last updated: 2026-10-04_
+_Last updated: 2026-10-08_
 
 ## Summary
 
@@ -59,6 +59,7 @@ agreement and the running handoff log.
 | Shared card, word, board and sports utilities | ✅ |
 | Shared puzzle kit (save/resume, level packs, grid cursor, maze, match-three) | ✅ |
 | Difficulty picker in the game toolbar | ✅ |
+| Full-screen play on every device (iPhone included): controls always on screen, landscape handheld layout, scale-to-fit, in-game help | ✅ |
 | Responsive canvas with devicePixelRatio handling | ✅ |
 | PWA (manifest, service worker, generated icons) | ✅ |
 | Error boundary per game | ✅ |
@@ -382,6 +383,11 @@ agreement and the running handoff log.
 4. **The shell owns lifecycle, games own gameplay.** `GameShell` handles pause,
    restart, fullscreen, session timing, statistics, achievements and the result
    screen. This keeps each game small and makes the behaviour consistent.
+   Full-screen play is a fixed overlay (`useExpandMode`) rather than relying on
+   the Fullscreen API alone, because iPhone Safari has no element fullscreen; the
+   API is used on top where it exists. `FitToStage` measures each game's natural
+   size and scales it down only when it is larger than the screen, so all 253
+   games keep their controls visible without per-game layout code.
 5. **No React state in game loops.** High-frequency values live in refs and
    engine objects; React renders menus, HUD and overlays only.
 6. **Loops stop, not idle.** `GameLoop` cancels its animation frame when paused

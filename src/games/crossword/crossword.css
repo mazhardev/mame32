@@ -1,6 +1,7 @@
 /* Crosswords read best like paper: light squares and dark blocks in both themes. */
 .cw-grid {
-  --cw-cell: min(10vw, 44px);
+  /* Fit the widest puzzle on a phone: page gutters plus a 2px gap per column. */
+  --cw-cell: min(calc((100vw - 56px) / var(--cw-cols, 10) - 2px), 44px);
   display: grid;
   gap: 2px;
   background: #1f2433;

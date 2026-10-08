@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
+import { createPortal } from 'react-dom';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
 import { incrementProgress, reportProgress } from '@/achievements/AchievementService';
@@ -302,19 +303,24 @@ export default function BlockPuzzleGame() {
           </button>
         ))}
       </div>
-      {drag && draggedShape && (
-        <div
-          className="bp-float"
-          style={{
-            left: drag.x - (draggedShape.cols * cellPx) / 2,
-            top: drag.y - (draggedShape.rows * cellPx) / 2 - drag.lift,
-            ['--cell' as string]: `${cellPx}px`,
-          }}
-          aria-hidden="true"
-        >
-          <MiniShape shape={draggedShape} />
-        </div>
-      )}
+      {/* Rendered on <body> so it tracks the finger even when full-screen play
+          scales the board to fit (a scaled ancestor would offset fixed positioning). */}
+      {drag &&
+        draggedShape &&
+        createPortal(
+          <div
+            className="bp-float"
+            style={{
+              left: drag.x - (draggedShape.cols * cellPx) / 2,
+              top: drag.y - (draggedShape.rows * cellPx) / 2 - drag.lift,
+              ['--cell' as string]: `${cellPx}px`,
+            }}
+            aria-hidden="true"
+          >
+            <MiniShape shape={draggedShape} />
+          </div>,
+          document.body,
+        )}
     </BoardLayout>
   );
 }

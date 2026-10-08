@@ -40,33 +40,195 @@ export function useDocumentHidden(): boolean {
   return hidden;
 }
 
-export function useFullscreen(targetRef: React.RefObject<HTMLElement>) {
-  const [isFullscreen, setIsFullscreen] = useState(false);
+type FullscreenDocument = Document & {
+  webkitFullscreenElement?: Element | null;
+  webkitFullscreenEnabled?: boolean;
+  webkitExitFullscreen?: () => Promise<void> | void;
+};
+type FullscreenElement = HTMLElement & {
+  webkitRequestFullscreen?: () => Promise<void> | void;
+};
 
-  useEffect(() => {
-    const onChange = () => setIsFullscreen(!!document.fullscreenElement);
-    document.addEventListener('fullscreenchange', onChange);
-    return () => document.removeEventListener('fullscreenchange', onChange);
+function nativeFullscreenElement(): Element | null {
+  if (typeof document === 'undefined') return null;
+  const doc = document as FullscreenDocument;
+  return document.fullscreenElement ?? doc.webkitFullscreenElement ?? null;
+}
+
+/** True where an element can enter the browser's own fullscreen (not iPhone Safari). */
+export function canUseNativeFullscreen(): boolean {
+  if (typeof document === 'undefined' || typeof Element === 'undefined') return false;
+  const doc = document as FullscreenDocument;
+  const enabled = document.fullscreenEnabled ?? doc.webkitFullscreenEnabled ?? false;
+  return (
+    !!enabled &&
+    ('requestFullscreen' in Element.prototype || 'webkitRequestFullscreen' in Element.prototype)
+  );
+}
+
+async function requestNativeFullscreen(el: HTMLElement | null) {
+  if (!el || nativeFullscreenElement() || !canUseNativeFullscreen()) return;
+  const target = el as FullscreenElement;
+  try {
+    if (target.requestFullscreen) await target.requestFullscreen({ navigationUI: 'hide' });
+    else await target.webkitRequestFullscreen?.();
+  } catch {
+    // Refused (no user gesture, or blocked by the browser). The expanded layout
+    // still covers the whole viewport, so play carries on without it.
+  }
+}
+
+function exitNativeFullscreen() {
+  if (!nativeFullscreenElement()) return;
+  const doc = document as FullscreenDocument;
+  try {
+    const done = document.exitFullscreen ? document.exitFullscreen() : doc.webkitExitFullscreen?.();
+    void Promise.resolve(done).catch(() => undefined);
+  } catch {
+    // Already left fullscreen.
+  }
+}
+
+/** History entry marker so the browser Back button closes expanded play first. */
+const EXPAND_MARK = '__gplExpanded';
+
+const historyHasMark = () =>
+  typeof window !== 'undefined' &&
+  !!(window.history.state as Record<string, unknown> | null)?.[EXPAND_MARK];
+
+/**
+ * Expanded play: the game shell covers the whole screen on every device.
+ *
+ * The layout itself is CSS (a fixed overlay that respects notches and safe
+ * areas), so it works everywhere, including iPhone Safari, which has no element
+ * fullscreen. Where the Fullscreen API exists (desktop, Android, iPad) the
+ * browser's own UI is hidden as well. Pressing Escape, the browser or system
+ * Back button, or leaving fullscreen with a system gesture all exit expanded
+ * play, and the page behind never scrolls while it is open.
+ */
+export function useExpandMode(targetRef: React.RefObject<HTMLElement>) {
+  const [expanded, setExpanded] = useState(false);
+  const [native, setNative] = useState(false);
+  const activeRef = useRef(false);
+  const nativeRef = useRef(false);
+  const markedRef = useRef(false);
+
+  const exit = useCallback((opts: { keepHistory?: boolean } = {}) => {
+    if (!activeRef.current) return false;
+    activeRef.current = false;
+    setExpanded(false);
+    exitNativeFullscreen();
+    const marked = markedRef.current && historyHasMark();
+    markedRef.current = false;
+    // Drop the history entry we added, unless the caller is about to replace it.
+    if (marked && !opts.keepHistory) window.history.back();
+    return marked;
   }, []);
 
-  const toggle = useCallback(async () => {
-    const el = targetRef.current;
-    if (!el) return;
-    try {
-      if (document.fullscreenElement) await document.exitFullscreen();
-      else if (el.requestFullscreen) await el.requestFullscreen();
-    } catch {
-      // Fullscreen can be refused (iOS Safari); the layout works without it.
-    }
+  const enter = useCallback(
+    (opts: { native?: boolean } = {}) => {
+      if (!activeRef.current) {
+        activeRef.current = true;
+        setExpanded(true);
+        if (!historyHasMark()) {
+          try {
+            const state = (window.history.state as Record<string, unknown> | null) ?? {};
+            window.history.pushState({ ...state, [EXPAND_MARK]: true }, '');
+            markedRef.current = true;
+          } catch {
+            markedRef.current = false;
+          }
+        }
+      }
+      if (opts.native !== false) void requestNativeFullscreen(targetRef.current);
+    },
+    [targetRef],
+  );
+
+  const toggle = useCallback(() => {
+    if (activeRef.current) exit();
+    else enter();
+  }, [enter, exit]);
+
+  /** Upgrades an already expanded shell to browser fullscreen (needs a user gesture). */
+  const upgrade = useCallback(() => {
+    if (activeRef.current && !nativeRef.current) void requestNativeFullscreen(targetRef.current);
   }, [targetRef]);
 
-  const supported =
-    typeof document !== 'undefined' &&
-    (document.fullscreenEnabled ?? false) &&
-    typeof Element !== 'undefined' &&
-    'requestFullscreen' in Element.prototype;
+  // Track browser fullscreen. Leaving it by Escape or a system gesture ends expanded play.
+  useEffect(() => {
+    const onChange = () => {
+      const fs = nativeFullscreenElement();
+      const ours = !!fs && fs === targetRef.current;
+      const wasNative = nativeRef.current;
+      nativeRef.current = ours;
+      setNative(ours);
+      if (wasNative && !ours) exit();
+    };
+    document.addEventListener('fullscreenchange', onChange);
+    document.addEventListener('webkitfullscreenchange', onChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', onChange);
+      document.removeEventListener('webkitfullscreenchange', onChange);
+    };
+  }, [exit, targetRef]);
 
-  return { isFullscreen, toggle, supported };
+  // Browser / Android Back closes expanded play instead of leaving the game.
+  useEffect(() => {
+    const onPop = () => {
+      if (activeRef.current && !historyHasMark()) {
+        markedRef.current = false;
+        exit();
+      }
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, [exit]);
+
+  // Lock page scroll and pull-to-refresh behind the expanded shell.
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle('game-expanded', expanded);
+    return () => root.classList.remove('game-expanded');
+  }, [expanded]);
+
+  // Leaving the game page while expanded: restore the page, keep navigation intact.
+  useEffect(
+    () => () => {
+      if (activeRef.current) {
+        activeRef.current = false;
+        markedRef.current = false;
+        exitNativeFullscreen();
+      }
+    },
+    [],
+  );
+
+  return { expanded, native, enter, exit, toggle, upgrade, nativeSupported: canUseNativeFullscreen() };
+}
+
+/** Keeps the screen awake while `active` is true, where the Wake Lock API exists. */
+export function useWakeLock(active: boolean) {
+  useEffect(() => {
+    if (!active || typeof navigator === 'undefined') return;
+    const wakeLock = (navigator as Navigator & {
+      wakeLock?: { request: (type: 'screen') => Promise<{ release: () => Promise<void> }> };
+    }).wakeLock;
+    if (!wakeLock) return;
+    let sentinel: { release: () => Promise<void> } | null = null;
+    let cancelled = false;
+    wakeLock
+      .request('screen')
+      .then((s) => {
+        if (cancelled) void s.release().catch(() => undefined);
+        else sentinel = s;
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+      if (sentinel) void sentinel.release().catch(() => undefined);
+    };
+  }, [active]);
 }
 
 export function useMediaQuery(query: string): boolean {

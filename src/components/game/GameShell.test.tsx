@@ -20,8 +20,7 @@ vi.mock('@/hooks/usePlatform', async (importOriginal) => {
   const original = await importOriginal<typeof import('@/hooks/usePlatform')>();
   return {
     ...original,
-    usePreferences: () => [{ difficulty: 'normal', sound: false }, vi.fn()],
-    useFullscreen: () => ({ isFullscreen: false, toggle: vi.fn(), supported: false }),
+    usePreferences: () => [{ difficulty: 'normal', sound: false, preferFullscreen }, vi.fn()],
   };
 });
 vi.mock('@/services/audio', () => ({ playSound: vi.fn(), unlockAudio: vi.fn(), vibrate: vi.fn() }));
@@ -32,6 +31,7 @@ vi.mock('@/achievements/AchievementService', () => ({
 vi.mock('@/services/dailyChallenge', () => ({ reportRoundForChallenge: vi.fn().mockResolvedValue(false) }));
 
 let api: GameShellApi;
+let preferFullscreen = false;
 let disablePause = false;
 let renders = 0;
 let mounts = 0;
@@ -53,8 +53,12 @@ const game: GameDefinition = {
   category: 'board', difficulty: 'easy', tags: [], icon: '', controls: {},
   supportsTouch: true, supportsKeyboard: true, multiplayer: 'single',
   estimatedMinutes: 1, hasHighScore: true, hasAchievements: false, status: 'available',
-  instructions: { howToPlay: [], objective: '' },
+  instructions: { howToPlay: ['Line up three marks.'], objective: 'Win the board.' },
   component: lazy(async () => ({ default: TestGame })),
+};
+const helpGame: GameDefinition = {
+  ...game,
+  controls: { touch: ['Tap a square'], keyboard: ['Arrow keys move'] },
 };
 
 async function mount(def: GameDefinition = game) {
@@ -76,6 +80,7 @@ beforeEach(() => {
   vi.mocked(recordGameComplete).mockResolvedValue({ isRecord: false, previousBest: null });
   visibility('visible');
   disablePause = false;
+  preferFullscreen = false;
   renders = 0;
   mounts = 0;
 });
@@ -227,5 +232,93 @@ describe('GameShell difficulty picker', () => {
     cleanup();
     await mount({ ...game, difficultyPicker: 'none' });
     expect(picker()).not.toBeInTheDocument();
+  });
+});
+
+describe('GameShell full-screen play', () => {
+  const expandButton = () => screen.getByRole('button', { name: 'Play full screen' });
+  const shellEl = (view: ReturnType<typeof render>) =>
+    view.container.querySelector('.game-shell') as HTMLElement;
+
+  afterEach(() => {
+    delete (Element.prototype as Partial<Element>).requestFullscreen;
+    Object.defineProperty(document, 'fullscreenEnabled', { configurable: true, value: undefined });
+    window.history.replaceState(null, '');
+  });
+
+  it('offers full screen even where the Fullscreen API is missing (iPhone)', async () => {
+    const view = await mount();
+    act(() => fireEvent.click(expandButton()));
+    expect(shellEl(view)).toHaveClass('expanded');
+    expect(document.documentElement).toHaveClass('game-expanded');
+    expect(api.isFullscreen).toBe(true);
+    expect(screen.getByRole('button', { name: 'Exit full screen' })).toHaveAttribute('aria-pressed', 'true');
+
+    act(() => fireEvent.click(screen.getByRole('button', { name: 'Exit full screen' })));
+    expect(shellEl(view)).not.toHaveClass('expanded');
+    expect(document.documentElement).not.toHaveClass('game-expanded');
+  });
+
+  it('also requests browser fullscreen where it is available', async () => {
+    const request = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(document, 'fullscreenEnabled', { configurable: true, value: true });
+    (Element.prototype as Partial<Element>).requestFullscreen = request;
+    const view = await mount();
+    act(() => fireEvent.click(expandButton()));
+    expect(request).toHaveBeenCalledWith({ navigationUI: 'hide' });
+    expect(request.mock.contexts[0]).toBe(shellEl(view));
+  });
+
+  it('exits with Escape, the F key and the browser Back button', async () => {
+    const view = await mount();
+    act(() => fireEvent.keyDown(window, { key: 'f' }));
+    expect(shellEl(view)).toHaveClass('expanded');
+    act(() => fireEvent.keyDown(window, { key: 'Escape' }));
+    expect(shellEl(view)).not.toHaveClass('expanded');
+
+    act(() => fireEvent.click(expandButton()));
+    act(() => fireEvent.keyDown(window, { key: 'F' }));
+    expect(shellEl(view)).not.toHaveClass('expanded');
+
+    act(() => fireEvent.click(expandButton()));
+    // Back pops the history entry that expanded play pushed.
+    act(() => {
+      window.history.replaceState(null, '');
+      window.dispatchEvent(new PopStateEvent('popstate', { state: null }));
+    });
+    expect(shellEl(view)).not.toHaveClass('expanded');
+  });
+
+  it('restores the page when the game is left while expanded', async () => {
+    const view = await mount();
+    act(() => fireEvent.click(expandButton()));
+    view.unmount();
+    expect(document.documentElement).not.toHaveClass('game-expanded');
+  });
+
+  it('shows how to play inside full screen and pauses meanwhile', async () => {
+    await mount(helpGame);
+    act(() => api.startRound());
+    act(() => fireEvent.click(expandButton()));
+    act(() => fireEvent.click(screen.getByRole('link', { name: 'How to play' })));
+
+    const dialog = screen.getByRole('dialog', { name: 'How to play' });
+    expect(dialog).toHaveTextContent('Win the board.');
+    expect(dialog).toHaveTextContent('Line up three marks.');
+    expect(dialog).toHaveTextContent('Tap a square');
+    expect(dialog).toHaveTextContent('Arrow keys move');
+    expect(api.paused).toBe(true);
+    // The help replaces the pause card rather than stacking on it.
+    expect(screen.queryByText('Paused')).not.toBeInTheDocument();
+
+    act(() => fireEvent.click(screen.getByRole('button', { name: 'Back to the game' })));
+    expect(screen.queryByRole('dialog', { name: 'How to play' })).not.toBeInTheDocument();
+    expect(api.paused).toBe(false);
+  });
+
+  it('opens games full screen when the player prefers it', async () => {
+    preferFullscreen = true;
+    const view = await mount();
+    expect(shellEl(view)).toHaveClass('expanded');
   });
 });
