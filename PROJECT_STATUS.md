@@ -1,6 +1,6 @@
 # Project Status
 
-_Last updated: 2026-10-08_
+_Last updated: 2026-10-17_
 
 ## Summary
 
@@ -69,7 +69,7 @@ agreement and the running handoff log.
 
 ### Tests
 
-1,822 passing across 243 files: storage, achievements, seeded randomness, the game loop, the game shell (including the difficulty picker and result actions), the shared puzzle and match-three engines, a mount-and-click smoke test for every registered game, and rule tests for the game engines. Generated level packs (Unblock, Sokoban) are re-verified against their solvers in the tests, and the simulation and strategy games include scripted-player balance tests that check every difficulty can be won.
+1,850 passing across 244 files: storage, achievements, seeded randomness, the game loop, the game shell (including the difficulty picker and result actions), the shared puzzle and match-three engines, a mount-and-click smoke test for every registered game, and rule tests for the game engines. Generated level packs (Unblock, Sokoban) are re-verified against their solvers in the tests, and the simulation and strategy games include scripted-player balance tests that check every difficulty can be won. Candy Match's 120 saga levels are calibrated by a bot (`scripts/calibrate-candy.ts`) and a test replays a sample of them within their move limits.
 
 ---
 
