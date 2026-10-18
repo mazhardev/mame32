@@ -31,7 +31,9 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
   const wrapRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const stateRef = useRef<S>(spec.create(shell.difficulty, Math.random));
+  // Created once, not on every render (a useRef initial value is evaluated each time).
+  const stateRef = useRef<S>(null as unknown as S);
+  if (stateRef.current === null) stateRef.current = spec.create(shell.difficulty, Math.random);
   const inputRef = useRef<Input>(emptyInput());
   const phaseRef = useRef<Phase>('ready');
   const [phase, setPhase] = useState<Phase>('ready');

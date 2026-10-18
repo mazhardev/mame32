@@ -1542,6 +1542,61 @@ html.game-expanded body {
   color: var(--brand-contrast);
 }
 
+/* Left / right only: two buttons side by side, without the empty cells of a
+   full pad, so the action buttons still fit beside it on narrow phones. */
+.dpad.dpad-h {
+  grid-template-columns: repeat(2, 56px);
+  grid-template-rows: 56px;
+  gap: 10px;
+}
+
+.dpad.dpad-h .left {
+  grid-area: 1 / 1;
+}
+
+.dpad.dpad-h .right {
+  grid-area: 1 / 2;
+}
+
+.game-shell.expanded .dpad.dpad-h {
+  grid-template-columns: repeat(2, 62px);
+  grid-template-rows: 62px;
+}
+
+@media (max-width: 380px) {
+  .touch-controls {
+    gap: var(--space-2);
+  }
+
+  .action-btn {
+    width: 64px;
+    height: 64px;
+  }
+
+  .game-shell.expanded .action-btn {
+    width: 66px;
+    height: 66px;
+  }
+
+  .game-shell.expanded .dpad.dpad-h {
+    grid-template-columns: repeat(2, 54px);
+    grid-template-rows: 54px;
+  }
+}
+
+@media (max-width: 340px) {
+  .dpad.dpad-h {
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: 50px;
+    gap: 8px;
+  }
+
+  .action-btn {
+    width: 56px;
+    height: 56px;
+  }
+}
+
 /* ================================================================== toasts */
 
 .toast-region {
