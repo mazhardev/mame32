@@ -1,5 +1,19 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-10-19 (Snowball Rumble)
+
+- **`src/games/_shared/arena/`** — kit for single-screen "clear the room"
+  games: stage format (13 inner rows, 9-char rows mirrored), collision with
+  wrap-around, reachability check, hero movement, walker AI that climbs to
+  ledges and drops to floors after the hero, flyers, loot, and the shared
+  flow (intro → play → clear → transition, deaths, hurry-up, chaser).
+- **Snowball Rumble** (`src/games/snowball-rumble/`): 30 floors in 3 zones;
+  snow layers freeze enemies into snowballs that roll and chain knockouts;
+  potions; three bosses that summon minions to roll into them.
+- **`_shared/arcade/StartPicker.tsx`** — "start from any level reached"
+  wrapper around ArcadeGame; Leap Quest now uses it too.
+- Gates: typecheck, lint, 1,909 tests in 249 files and the build pass.
+
 ## Claude update — 2026-10-19 (Leap Quest platformer)
 
 The user asked Claude for a full side-scrolling platformer (plus two arena
