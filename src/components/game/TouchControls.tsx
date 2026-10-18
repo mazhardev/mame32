@@ -30,7 +30,7 @@ export function DPad({ onPress, onRelease, axis = 'both' }: DPadProps) {
   });
 
   return (
-    <div className="dpad" role="group" aria-label="Direction pad">
+    <div className={`dpad${axis === 'horizontal' ? ' dpad-h' : ''}`} role="group" aria-label="Direction pad">
       {axis === 'both' && (
         <button className="up" {...bind('up')}>
           ▲
