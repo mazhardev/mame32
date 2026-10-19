@@ -1,0 +1,50 @@
+import { defineGame } from '../_shared/defineGame';
+
+export const game = defineGame({
+  id: 'bubble-buddies',
+  title: 'Bubble Buddies',
+  category: 'arcade',
+  difficulty: 'medium',
+  icon: '🫧',
+  tags: ['platformer', 'arena', 'bubbles', 'stages', 'bosses', 'retro', 'combo'],
+  short: 'Trap sea monsters in bubbles and pop them into fruit — 40 stages and 2 bosses.',
+  full: 'Fizz the axolotl defends the Bubble Lagoon with nothing but bubbles. Blow a bubble at a monster to trap it, then pop the bubble to turn the monster into fruit. Pop bubbles that touch each other for chain combos, bounce across floating bubbles to reach high ledges, and drop through the floor to fall in from the top of the screen. Lightning and fire bubbles appear on some stages, letter bubbles spell out SPLASH for an extra life, and two boss battles wait at stages 20 and 40.',
+  minutes: 12,
+  hasLevels: true,
+  controls: {
+    keyboard: ['← → or A D move', 'Space, ↑, W or Z jump — hold it to bounce on bubbles', 'X, Shift or J blow a bubble'],
+    touch: ['◀ ▶ move', '⤒ jump — hold it to bounce on bubbles', '🫧 blow a bubble'],
+  },
+  instructions: {
+    objective: 'Clear every monster from each stage, and beat the bosses on stages 20 and 40.',
+    howToPlay: [
+      'Blow a bubble at a monster to trap it inside. Then touch the bubble to pop it — the monster turns into fruit you can collect.',
+      'Popping a bubble also pops every bubble touching it: trap several monsters together for a big chain bonus.',
+      'Trapped monsters break free after a few seconds and come out angry and faster — pop them quickly.',
+      'Bubbles float up to the ceiling. Land on one while holding jump to bounce off it instead of popping it.',
+      'The screen wraps: drop through a gap in the floor to fall back in from the top.',
+      'Yellow lightning bubbles fire a bolt the way you are facing when popped; orange fire bubbles drop flames that burn monsters. Bosses can only be hurt by lightning.',
+      'Collect the letters S, P, L, A, S, H from pink letter bubbles for an extra life. Sweets give power-ups: longer bubbles, faster feet or rapid bubbles.',
+      'Linger too long and monsters get angry — then a ghost comes after you.',
+    ],
+    scoring: 'Popping a trapped monster 1,000, doubling for every extra monster in the same chain. Fruit 100–3,000, letters 500, bosses 20,000, stage clear 1,000 (3,000 if under 25 seconds). Extra life every 60,000 points.',
+    difficultyNotes: 'Easy: 5 lives, slower monsters that stay trapped longer, weaker bosses. Normal: 3 lives. Hard: 3 lives, faster monsters that escape quickly and tougher bosses.',
+    tips: [
+      'Trap monsters, let the bubbles gather at the ceiling, then pop them all at once.',
+      'Blow a few spare bubbles to build steps up to the higher ledges.',
+      'Power-ups are lost when you lose a life.',
+      'Unlocked stages can be chosen from "Start at" above the game.',
+    ],
+    touchNotes: ['Use ◀ ▶ to move, ⤒ to jump and 🫧 to blow bubbles.'],
+  },
+  achievements: [
+    ['first', 'First Pop', 'Clear your first stage.', 1, '🫧', 10],
+    ['chain', 'Bubble Bath', 'Pop 3 trapped monsters in one chain.', 3, '🛁', 25],
+    ['splash', 'Make a SPLASH', 'Collect all six SPLASH letters.', 1, '🔤', 25],
+    ['boss', 'Pop Goes the Boss', 'Beat a boss.', 1, '⚡', 25],
+    ['fruit', 'Fruit Salad', 'Collect 50 pieces of fruit in one game.', 50, '🍒', 20],
+    ['stages', 'Lagoon Explorer', 'Clear 20 stages in one game.', 20, '🌊', 30],
+    ['champion', 'Lagoon Legend', 'Clear all 40 stages.', 1, '🏆', 100],
+  ],
+  load: () => import('./BubbleBuddiesGame'),
+});

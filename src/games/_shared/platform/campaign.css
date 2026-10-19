@@ -1,0 +1,52 @@
+.campaign {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.game-shell.expanded .campaign {
+  height: 100%;
+}
+
+.campaign-starts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--space-2) var(--space-3) 0;
+}
+
+.campaign-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-right: 2px;
+}
+
+.campaign-starts button {
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.campaign-starts button:hover {
+  background: var(--surface-hover);
+}
+
+.campaign-starts button.on {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-contrast);
+}
+
+.campaign-starts button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}

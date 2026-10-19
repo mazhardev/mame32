@@ -65,6 +65,9 @@ const ARCADE: Row[] = [
   ['knife-throw', 'Knife Throw', 'medium', '🔪', 'timing precision rotation'],
   ['falling-blocks', 'Falling Blocks', 'medium', '⬇️', 'falling dodge survival'],
   ['ball-bounce', 'Ball Bounce', 'easy', '⚪', 'physics bounce timing'],
+  ['pip-quest', 'Pip Quest', 'medium', '🦊', 'platformer adventure side-scroller levels bosses'],
+  ['snow-rollers', 'Snow Rollers', 'medium', '☃️', 'platformer arena snowball stages bosses'],
+  ['bubble-buddies', 'Bubble Buddies', 'medium', '🫧', 'platformer arena bubbles stages bosses'],
 ];
 
 const PUZZLE: Row[] = [
