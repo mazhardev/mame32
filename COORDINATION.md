@@ -1,5 +1,29 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-10-19 (three platform games)
+
+The user asked Claude directly for Mario-, Snow Bros- and Bubble Bobble-style
+games. Claude added three original games (own names, characters, art and
+levels) in the Arcade category:
+
+- **Pip Quest** (`src/games/pip-quest/`): side-scrolling platformer, 20 levels
+  in 5 worlds built from hand-made chunks (`levels.ts`), lucky blocks,
+  acorn/fire-berry/star power-ups, shells, fire bars, moving and crumbling
+  ledges, checkpoints, flag pole, a boss keep per world.
+- **Snow Rollers** (`src/games/snow-rollers/`): single-screen stages, snow
+  enemies into snowballs and kick them for chain combos; potions, hurry ghost,
+  30 stages with bosses on 10/20/30.
+- **Bubble Buddies** (`src/games/bubble-buddies/`): trap enemies in bubbles
+  and pop them into fruit; chain pops, bubble bouncing, wrap-around screens,
+  lightning/fire bubbles, SPLASH letters, 40 stages with bosses on 20/40.
+- **Shared kit** `src/games/_shared/platform/`: tile physics with one-way
+  ledges (`tiles.ts`), arena layouts and enemy walking AI (`arena.ts`), and
+  `CampaignGame` (remembers the furthest stage; "Start at" picker).
+- **Global CSS fix:** on phones the d-pad plus two action buttons overflowed
+  by 8px (also affected existing two-button games such as Asteroid Blaster);
+  controls now shrink below 440px / 360px wide.
+- Gates: typecheck, lint, 1,950 tests in 248 files and the build pass.
+
 ## Claude update — 2026-10-17 (Candy Match saga)
 
 The user asked Claude directly to make Candy Match a full saga game. Claude

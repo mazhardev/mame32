@@ -1542,6 +1542,52 @@ html.game-expanded body {
   color: var(--brand-contrast);
 }
 
+/* Phones: a d-pad plus two action buttons must fit without sideways scrolling. */
+@media (max-width: 440px) {
+  .touch-controls {
+    gap: var(--space-2);
+    padding-inline: 0;
+  }
+
+  .dpad {
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
+  }
+
+  .action-btn {
+    width: 62px;
+    height: 62px;
+  }
+
+  .arcade-buttons {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+  .game-shell.expanded .dpad {
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(3, 50px);
+  }
+
+  .game-shell.expanded .action-btn {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+@media (max-width: 360px) {
+  .dpad {
+    grid-template-columns: repeat(3, 38px);
+    grid-template-rows: repeat(3, 38px);
+  }
+
+  .action-btn {
+    width: 54px;
+    height: 54px;
+  }
+}
+
 /* ================================================================== toasts */
 
 .toast-region {
