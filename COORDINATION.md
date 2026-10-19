@@ -1,5 +1,54 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-10-19 (Bubble Bay)
+
+- **Bubble Bay** (`src/games/bubble-bay/`): 30 wrap-around underwater levels
+  in 3 areas, built on the arena kit. Fresh bubbles trap critters (crab,
+  puffer, jellyfish, squid, eel); bubbles float to the surface and pop in
+  chains (score doubles per critter), critters land as treasure; hold jump to
+  bounce on bubbles; power-ups; three bouncing bosses that are worn down by
+  bubbles, sealed in a giant bubble and popped.
+- `arena/stage.ts` reachability now models drifting while falling and short
+  running jumps (fewer false "unreachable" ledges); Snowball Rumble's jump
+  sound now actually plays.
+- Gates: typecheck, lint, 1,930 tests in 250 files and the build pass.
+
+## Claude update — 2026-10-19 (Snowball Rumble)
+
+- **`src/games/_shared/arena/`** — kit for single-screen "clear the room"
+  games: stage format (13 inner rows, 9-char rows mirrored), collision with
+  wrap-around, reachability check, hero movement, walker AI that climbs to
+  ledges and drops to floors after the hero, flyers, loot, and the shared
+  flow (intro → play → clear → transition, deaths, hurry-up, chaser).
+- **Snowball Rumble** (`src/games/snowball-rumble/`): 30 floors in 3 zones;
+  snow layers freeze enemies into snowballs that roll and chain knockouts;
+  potions; three bosses that summon minions to roll into them.
+- **`_shared/arcade/StartPicker.tsx`** — "start from any level reached"
+  wrapper around ArcadeGame; Leap Quest now uses it too.
+- Gates: typecheck, lint, 1,909 tests in 249 files and the build pass.
+
+## Claude update — 2026-10-19 (Leap Quest platformer)
+
+The user asked Claude for a full side-scrolling platformer (plus two arena
+games to follow). Claude added:
+
+- **`src/games/_shared/platformer/`** — tile physics shared by platformers:
+  solid and one-way tiles, sub-stepped movement (no tunnelling), moving
+  ledges, and a ground-walker helper. Tested on its own.
+- **Leap Quest** (`src/games/leap-quest/`): 16 levels in 4 worlds built from
+  hand-designed chunks (`levels.ts`), seven enemy types, kickable shells,
+  gift/brick blocks, three power-ups, fire wheels, lava sprites, cannons,
+  moving platforms, checkpoints, a goal pole, and a guardian boss per world.
+  `scripts/solve-leap-quest.ts` searches every level with the real movement
+  code and stores a winning route in `solutions.ts`; the tests replay them.
+  Re-run the script after changing levels or movement constants.
+- **Shared fixes:** `ArcadeGame` no longer calls `spec.create` on every
+  render (a `useRef` initial value is evaluated each time); the left/right
+  touch pad (`DPad axis="horizontal"`) is now two buttons side by side, and
+  action buttons shrink on narrow phones, which removes an 8px sideways
+  scroll on 390px screens in games such as Asteroid Blaster.
+- Gates: typecheck, lint, 1,886 tests in 247 files and the build pass.
+
 ## Claude update — 2026-10-17 (Candy Match saga)
 
 The user asked Claude directly to make Candy Match a full saga game. Claude

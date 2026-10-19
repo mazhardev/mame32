@@ -1,0 +1,55 @@
+import { defineGame } from '../_shared/defineGame';
+
+export const game = defineGame({
+  id: 'bubble-bay',
+  title: 'Bubble Bay',
+  category: 'arcade',
+  difficulty: 'medium',
+  icon: '🫧',
+  tags: ['bubbles', 'arena', 'platformer', 'retro', 'bosses', 'combo', 'single-screen', 'underwater'],
+  short: 'Trap sea critters in bubbles and pop them in big chains — 30 underwater levels and three bosses.',
+  full: 'Ollie the sea otter blows bubbles. Catch a crab, puffer fish, jellyfish, squid or eel in a freshly blown bubble and it floats away, trapped, up towards the surface. Touch a bubble to pop it — and every bubble touching it pops too, one after another. Each critter popped in the same chain is worth double the one before, and turns into treasure: clams and starfish for small pops, pearls, conch shells, crowns and treasure chests for big chains. Hold jump as you land on a bubble to bounce off it and reach the high ledges. Every level wraps around: drop through the gap in the sea floor and you fall back in from the top. Leave a critter in its bubble too long and it breaks out angry; dawdle and a spiny urchin comes after you. Every tenth level a boss bounces around the room — wear it down with bubbles until it is sealed in a giant one, then pop it. Thirty levels across the Shallows, the Kelp Forest and the Deep Trench.',
+  minutes: 10,
+  hasLevels: true,
+  controls: {
+    keyboard: ['← / → or A / D swim', 'Space, ↑ or Z jump — hold it to bounce on bubbles', 'X or C blow bubbles — hold to keep blowing', '↓ drop through a ledge'],
+    mouse: ['Use the keyboard to play'],
+    touch: ['◀ ▶ swim', '⤒ jump (hold to bounce on bubbles)', '🫧 blow bubbles (hold to keep blowing)'],
+  },
+  instructions: {
+    objective: 'Clear every critter from each level and make it through all thirty levels of the bay.',
+    howToPlay: [
+      'Blow a bubble at a critter to trap it. Only a freshly blown bubble can trap — once it starts to float it is just a bubble.',
+      'Trapped critters float up towards the surface. Touch a bubble to pop it and the critter inside flies off and turns into treasure.',
+      'Popping a bubble pops every bubble touching it, one after another — pop a whole cluster for a big chain.',
+      'Hold jump while you land on a bubble to bounce off it instead of popping it. Bouncing from bubble to bubble takes you up to the highest ledges.',
+      'The bay wraps around: drop through the gap in the sea floor and you come back in at the top, right through the bubbles bunched at the surface.',
+      'Touching a critter costs a life, and so does squid ink. A critter left in its bubble too long breaks out angry and faster.',
+      'Take too long and every critter gets angry; take longer still and a spiny urchin drifts after you.',
+      'Every tenth level is a boss. Hit it with bubbles until it is sealed in a giant bubble, then pop it. King Crab throws shells, Thunder Ray warns before firing lightning along its row, and the Kraken sprays ink and calls in helpers.',
+    ],
+    scoring:
+      'The first critter popped in a chain scores 1,000, and each one after it doubles: 2,000, 4,000, 8,000 and up to 64,000. Treasure is worth 300 to 8,000 — bigger chains drop better treasure. Empty bubbles score 10, bubbles on a boss 50, and popping a beaten boss 20,000. An extra life every 50,000 points.',
+    difficultyNotes: 'Easy: 5 lives, slower critters, longer before they break out of bubbles or get angry. Normal: 3 lives. Hard: faster critters that break out sooner, and tougher bosses.',
+    tips: [
+      'Let several trapped critters gather at the surface, then pop them all in one go — the chain doubles the score each time.',
+      'Dropping through the floor gap is the quickest way to reach the bubbles at the top.',
+      'A freshly blown bubble also swallows ink and King Crab’s shells.',
+      'Treasure fades after a few seconds — grab it before the level ends.',
+      'Some treasures are power-ups: pink candy blows bubbles further, blue candy blows them faster, the flipper makes you swim faster and the golden bubble makes you invincible for a few seconds. They last until you lose a life.',
+    ],
+    touchNotes: ['Use ◀ ▶ to swim, ⤒ to jump and 🫧 to blow bubbles. Hold ⤒ as you land on a bubble to bounce, and hold 🫧 to keep blowing.'],
+  },
+  achievements: [
+    ['first', 'First Splash', 'Clear your first level.', 1, '🫧', 10],
+    ['combo3', 'Bubble Burst', 'Pop 3 trapped critters in one chain.', 3, '💥', 20],
+    ['combo5', 'Bubble Bonanza', 'Pop 5 trapped critters in one chain.', 5, '🌊', 40],
+    ['bounce', 'Bubble Surfer', 'Bounce on bubbles 5 times without touching the ground.', 5, '🏄', 25],
+    ['crab', 'Crab Cracker', 'Defeat King Crab.', 1, '🦀', 30],
+    ['ray', 'Storm Chaser', 'Defeat Thunder Ray.', 1, '⚡', 40],
+    ['kraken', 'Kraken Tamer', 'Defeat the Kraken.', 1, '🐙', 80],
+    ['treasure', 'Treasure Hunter', 'Collect 100 treasures in one run.', 100, '💎', 30],
+    ['runs', 'Tide Regular', 'Play 10 runs.', 10, '🦦', 15],
+  ],
+  load: () => import('./BubbleBayGame'),
+});

@@ -1,0 +1,43 @@
+.picker-run {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Let the arcade shrink with the screen; the canvas re-sizes itself to fit. */
+.picker-run > .arcade {
+  min-width: 0;
+}
+
+.picker-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.picker-pick .select {
+  max-width: 230px;
+}
+
+.picker-loading {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px 0;
+}
+
+/* Full-screen play: the picker stays small and the arcade takes the rest. */
+.game-shell.expanded .picker-run {
+  height: 100%;
+  min-height: 0;
+}
+
+.game-shell.expanded .picker-run > .arcade {
+  flex: 1 1 0;
+  min-height: 0;
+}
