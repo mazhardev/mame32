@@ -124,9 +124,9 @@ export function update(s: State, dt: number, input: Input, random: () => number,
   const hero = s.hero;
   const speedMul = s.potions.speed ? 1.3 : 1;
   const hi = heroInput(input);
-  const wasGround = hero.onGround;
+  const vyBefore = hero.vy;
   stepHero(hero, hi, dt, map, false, speedMul);
-  if (wasGround && hero.vy === -HERO.jump) sound(s, 'jump');
+  if (hero.vy < vyBefore - HERO.jump * 0.5) sound(s, 'jump');
   s.potions.shield = Math.max(0, s.potions.shield - dt);
 
   // Throwing snow (hold to keep throwing).

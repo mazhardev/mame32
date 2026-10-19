@@ -67,6 +67,7 @@ const ARCADE: Row[] = [
   ['ball-bounce', 'Ball Bounce', 'easy', '⚪', 'physics bounce timing'],
   ['leap-quest', 'Leap Quest', 'medium', '⛰️', 'platformer adventure levels bosses'],
   ['snowball-rumble', 'Snowball Rumble', 'medium', '☃️', 'snow arena platformer bosses'],
+  ['bubble-bay', 'Bubble Bay', 'medium', '🫧', 'bubbles arena platformer bosses underwater'],
 ];
 
 const PUZZLE: Row[] = [

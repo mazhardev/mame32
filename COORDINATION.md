@@ -1,5 +1,18 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-10-19 (Bubble Bay)
+
+- **Bubble Bay** (`src/games/bubble-bay/`): 30 wrap-around underwater levels
+  in 3 areas, built on the arena kit. Fresh bubbles trap critters (crab,
+  puffer, jellyfish, squid, eel); bubbles float to the surface and pop in
+  chains (score doubles per critter), critters land as treasure; hold jump to
+  bounce on bubbles; power-ups; three bouncing bosses that are worn down by
+  bubbles, sealed in a giant bubble and popped.
+- `arena/stage.ts` reachability now models drifting while falling and short
+  running jumps (fewer false "unreachable" ledges); Snowball Rumble's jump
+  sound now actually plays.
+- Gates: typecheck, lint, 1,930 tests in 250 files and the build pass.
+
 ## Claude update — 2026-10-19 (Snowball Rumble)
 
 - **`src/games/_shared/arena/`** — kit for single-screen "clear the room"

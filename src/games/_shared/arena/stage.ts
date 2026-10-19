@@ -122,14 +122,25 @@ export function reachableCells(s: Stage, start: [number, number], jumpRows = 3, 
     }
   };
   const fallFrom = (c: number, r: number) => {
-    // Drop down column c from row r until landing (wrapping at most once round).
+    // Drop from (c, r), steering sideways on the way down: about one column
+    // for every two rows fallen (wrapping at most once round).
+    let lo = c;
+    let hi = c;
     for (let k = 0; k < ROWS * 2; k++) {
       const rr = r + k;
-      if (glyph(s, c, rr) === '#') return;
-      if (standable(s, c, rr)) {
-        push(c, rr);
-        return;
+      if (k > 0 && k % 2 === 0) {
+        lo = Math.max(1, lo - 1);
+        hi = Math.min(COLS - 2, hi + 1);
       }
+      let open = false;
+      for (let cc = lo; cc <= hi; cc++) {
+        if (glyph(s, cc, rr) === '#') continue;
+        open = true;
+        if (k > 0 && standable(s, cc, rr)) push(cc, rr);
+      }
+      if (!open) return;
+      // Landing on the column directly below ends the fall.
+      if (k > 0 && standable(s, c, rr)) return;
     }
   };
   push(start[0], start[1]);
@@ -138,6 +149,16 @@ export function reachableCells(s: Stage, start: [number, number], jumpRows = 3, 
     for (const dc of [-1, 1]) {
       const nc = c + dc;
       if (glyph(s, nc, r) === '#') continue;
+      if (standable(s, nc, r)) push(nc, r);
+      else fallFrom(nc, r);
+    }
+    // Running jumps across a gap: up to three columns, landing level or lower.
+    for (const dc of [-3, -2, 2, 3]) {
+      const nc = c + dc;
+      if (nc <= 0 || nc >= COLS - 1) continue;
+      let clear = true;
+      for (let k = 1; k <= Math.abs(dc); k++) if (glyph(s, c + Math.sign(dc) * k, r - 1) === '#' || glyph(s, c + Math.sign(dc) * k, r) === '#') clear = false;
+      if (!clear) continue;
       if (standable(s, nc, r)) push(nc, r);
       else fallFrom(nc, r);
     }
