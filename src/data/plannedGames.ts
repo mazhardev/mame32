@@ -68,6 +68,7 @@ const ARCADE: Row[] = [
   ['pip-quest', 'Pip Quest', 'medium', '🦊', 'platformer adventure side-scroller levels bosses'],
   ['snow-rollers', 'Snow Rollers', 'medium', '☃️', 'platformer arena snowball stages bosses'],
   ['bubble-buddies', 'Bubble Buddies', 'medium', '🫧', 'platformer arena bubbles stages bosses'],
+  ['blast-maze', 'Blast Maze', 'medium', '💣', 'maze bombs battle bosses stages'],
 ];
 
 const PUZZLE: Row[] = [
@@ -141,6 +142,7 @@ const BOARD: Row[] = [
   ['hex', 'Hex', 'hard', '⬡', 'connection strategy ai'],
   ['mastermind', 'Mastermind', 'medium', '🎨', 'deduction colors logic'],
   ['peg-solitaire', 'Peg Solitaire', 'medium', '🔘', 'jumping single-player'],
+  ['carrom', 'Carrom', 'medium', '🪙', 'carrom striker flick two-player ai'],
   ['dominoes', 'Dominoes', 'easy', '🁫', 'tiles ai matching'],
   ['tile-solitaire', 'Tile Solitaire', 'medium', '🀄', 'matching tiles relaxing'],
   ['go', 'Go', 'hard', '⚪', 'territory strategy ai'],

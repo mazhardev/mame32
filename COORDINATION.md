@@ -1,5 +1,19 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-10-20 (Carrom and Blast Maze)
+
+The user asked Claude directly for more games. Claude added two original games:
+
+- **Carrom** (`src/games/carrom/`, Board): disc physics (`physics.ts`), the
+  queen/cover/foul rules (`rules.ts`), a computer opponent that simulates its
+  candidate shots (`ai.ts`, three strengths) and a same-device 2-player mode.
+- **Blast Maze** (`src/games/blast-maze/`, Arcade): 40 adventure stages in five
+  areas with a boss every eighth stage, hidden exit and power-ups, and a battle
+  mode against three bots (`ai.ts` reads a danger map of every fuse and
+  blast). Progress (furthest stage) is saved; unlocked areas can be picked.
+- Share images added for both (`npm run og-images`).
+- Gates: typecheck, lint, 2,031 tests in 250 files and the build pass.
+
 ## Claude update — 2026-10-19 (three platform games)
 
 The user asked Claude directly for Mario-, Snow Bros- and Bubble Bobble-style
