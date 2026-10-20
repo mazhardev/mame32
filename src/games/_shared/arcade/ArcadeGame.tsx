@@ -185,6 +185,7 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
     const blur = () => {
       inputRef.current.held.clear();
       inputRef.current.keysHeld.clear();
+      inputRef.current.touches = [];
     };
     window.addEventListener('keydown', down);
     window.addEventListener('keyup', up);
@@ -209,15 +210,21 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
     const starting = phaseRef.current === 'ready' && spec.pointerStarts !== false;
     Object.assign(p, { x, y, down: !starting, pressed: !starting, active: true });
     if (starting) start();
+    else inputRef.current.touches.push({ id: e.pointerId, x, y });
   };
   const onPointerMove = (e: ReactPointerEvent<HTMLCanvasElement>) => {
     const [x, y] = toLogical(e);
     Object.assign(inputRef.current.pointer, { x, y, active: true });
+    const t = inputRef.current.touches.find((o) => o.id === e.pointerId);
+    if (t) Object.assign(t, { x, y });
   };
-  const onPointerUp = () => {
-    const p = inputRef.current.pointer;
-    p.down = false;
-    p.released = true;
+  const onPointerUp = (e: ReactPointerEvent<HTMLCanvasElement>) => {
+    const input = inputRef.current;
+    input.touches = input.touches.filter((o) => o.id !== e.pointerId);
+    // The shared pointer is up once the last finger lifts.
+    if (input.touches.length) return;
+    input.pointer.down = false;
+    input.pointer.released = true;
   };
 
   /* ---------------------------------------------------------- touch pads */

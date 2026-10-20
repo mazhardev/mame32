@@ -1,0 +1,50 @@
+import { defineGame } from '../_shared/defineGame';
+
+export const game = defineGame({
+  id: 'slingshot-siege',
+  title: 'Slingshot Siege',
+  category: 'casual',
+  difficulty: 'easy',
+  icon: '🪨',
+  tags: ['slingshot', 'physics', 'catapult', 'destruction', 'levels', 'stars', 'puzzle', 'aim'],
+  short: 'Fling stone critters at wobbly forts and knock out every Grumble across 30 physics levels.',
+  full: 'The Grumbles have built forts of wood, stone and ice — time to knock them down. Pull back the slingshot and let fly: real physics topples towers, snaps planks and sends the grumpy one-eyed critters tumbling. Each stone has its own trick: Triplets split into three, the Zoomer dashes ahead, the Boulder crushes stone and the Kaboom explodes. Flatten 30 forts across the Meadow, the Desert Ruins and the Glacier Citadel, set off TNT crates, and earn three stars by matching each level’s par.',
+  minutes: 10,
+  hasLevels: true,
+  controls: {
+    mouse: ['Drag back from anywhere and release to fling', 'Click while a special stone flies to use its move'],
+    keyboard: ['↑ ↓ change the angle', '← → change the power', 'Space fires, and uses the special move in flight'],
+    touch: ['Drag back from anywhere and let go to fling', 'Tap while a special stone flies to use its move'],
+  },
+  instructions: {
+    objective: 'Knock out every Grumble in the fort before you run out of stones.',
+    howToPlay: [
+      'Drag back from anywhere on the play area: the further you pull, the harder the shot. The stone flies the opposite way to your pull. Let go to fire.',
+      'The dotted guide shows the start of the flight path, and the faint trail shows your last shot.',
+      'Grumbles are fragile: a knock from a falling plank, a tumble from a tower or a direct hit will do.',
+      'Wood breaks under a solid hit, ice shatters easily and stone takes a real pounding. TNT crates explode when hit.',
+      'Pebble: a sturdy all-rounder. Triplets: tap in flight to split into three; great against ice. Boulder: heavy, cracks stone. Zoomer: tap to dash ahead; splinters wood. Kaboom: tap to explode, or it blows a moment after it lands.',
+      'Win a level to unlock the next. Unlocked levels can be replayed from the level list above the game.',
+    ],
+    scoring: 'Grumbles are worth 5,000 points, broken pieces 300 (ice) to 800 (stone), and every stone you didn’t need adds 10,000. Stars: three for clearing a level within its par (the number of stones the level can be won with), two for one stone more, one otherwise.',
+    difficultyNotes: 'Easy: a long aiming guide and an extra pebble on every level. Normal: a shorter guide. Hard: only the first moments of the flight are shown.',
+    tips: [
+      'Hit towers low and near the edge to topple them onto their neighbours.',
+      'A stone that smashes through one piece carries on into the next, so line up a few.',
+      'Use special moves at the right moment: split Triplets just before ice, dash the Zoomer into wooden walls.',
+      'TNT crates are often the key to a fort — look for them first.',
+    ],
+    touchNotes: ['Drag back from anywhere and release to fling; tap anywhere while a special stone is in the air to use its move.'],
+  },
+  achievements: [
+    ['first', 'Opening Shot', 'Clear your first fort.', 1, '🪨', 10],
+    ['three', 'Sharpshooter', 'Earn three stars on a level.', 1, '⭐', 15],
+    ['tnt', 'Big Bang', 'Set off a TNT crate on the way to clearing a fort.', 1, '💥', 15],
+    ['sweep', 'Clean Sweep', 'Knock out 3 Grumbles with a single stone.', 3, '🎳', 25],
+    ['world1', 'Meadow Mopped Up', 'Clear all 10 Meadow forts.', 10, '🌿', 25],
+    ['world2', 'Ruin Raider', 'Clear all 10 Desert Ruins forts.', 10, '🏜️', 30],
+    ['world3', 'Glacier Breaker', 'Clear all 10 Glacier Citadel forts.', 10, '🧊', 40],
+    ['stars', 'Star Collector', 'Collect 60 stars.', 60, '🌟', 60],
+  ],
+  load: () => import('./SlingshotSiegeGame'),
+});

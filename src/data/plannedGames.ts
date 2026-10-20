@@ -294,6 +294,7 @@ const CASUAL: Row[] = [
   ['endless-jumper', 'Endless Jumper', 'medium', '🦘', 'platformer endless'],
   ['circle-jump', 'Circle Jump', 'hard', '⭕', 'timing rotation'],
   ['color-tap', 'Color Tap', 'easy', '🌈', 'reflex colors'],
+  ['slingshot-siege', 'Slingshot Siege', 'easy', '🪨', 'slingshot physics levels stars destruction'],
 ];
 
 const CREATIVE: Row[] = [
