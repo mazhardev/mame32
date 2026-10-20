@@ -1,0 +1,16 @@
+.carrom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.game-shell.expanded .carrom {
+  height: 100%;
+}
+
+.carrom-modes {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-2) var(--space-3) 0;
+}
