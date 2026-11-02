@@ -70,6 +70,7 @@ const ARCADE: Row[] = [
   ['bubble-buddies', 'Bubble Buddies', 'medium', '🫧', 'platformer arena bubbles stages bosses'],
   ['blast-maze', 'Blast Maze', 'medium', '💣', 'maze bombs battle bosses stages'],
   ['nebula-pinball', 'Nebula Pinball', 'medium', '🪐', 'pinball flippers multiball space'],
+  ['lane-rush', 'Lane Rush', 'medium', '🏃', 'runner endless swipe trains coins'],
 ];
 
 const PUZZLE: Row[] = [
