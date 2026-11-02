@@ -226,6 +226,7 @@ const ACTION: Row[] = [
   ['survival-arena', 'Survival Arena', 'hard', '⚔️', 'waves survival'],
   ['boss-battle', 'Boss Battle', 'hard', '🐲', 'patterns bullet-hell'],
   ['dungeon-shooter', 'Dungeon Shooter', 'hard', '🗝️', 'rooms shooter roguelite'],
+  ['dojo-duel', 'Dojo Duel', 'medium', '🥋', 'fighting martial-arts versus two-player combos'],
 ];
 
 const STRATEGY: Row[] = [

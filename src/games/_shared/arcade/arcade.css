@@ -58,6 +58,17 @@
   gap: 12px;
 }
 
+.arcade-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 8px;
+}
+
+.arcade-buttons-grid .action-btn {
+  width: 58px;
+  height: 58px;
+}
+
 .arcade-vpad {
   display: flex;
   flex-direction: column;

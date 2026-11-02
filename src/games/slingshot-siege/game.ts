@@ -205,7 +205,7 @@ function blast(s: State, x: number, y: number, b: { r: number; power: number; da
 }
 
 /** The special move of the shot in flight: split, dash or explode. */
-export function useAbility(s: State) {
+export function triggerAbility(s: State) {
   if (s.phase !== 'fly' || s.ability !== 'ready') return;
   const t = s.shots[0];
   if (!t || t.dead) return;
@@ -495,7 +495,7 @@ export function update(s: State, dt: number, input: Input) {
     }
   } else if (s.phase === 'fly') {
     s.drag.on = false;
-    if (ptr.pressed || input.pressed.has('action')) useAbility(s);
+    if (ptr.pressed || input.pressed.has('action')) triggerAbility(s);
   } else s.drag.on = false;
   tick(s, dt);
 }
@@ -518,7 +518,7 @@ export function playShot(s: State, shot: Shot) {
   launch(s, (shot.a * Math.PI) / 180, shot.v);
   let n = 0;
   while (s.phase === 'fly' && !s.over && n < 60 * 20) {
-    if (shot.tap !== undefined && n === shot.tap) useAbility(s);
+    if (shot.tap !== undefined && n === shot.tap) triggerAbility(s);
     fixedStep(s);
     n++;
   }

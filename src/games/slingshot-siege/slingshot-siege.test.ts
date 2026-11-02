@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { inputWith } from '../_shared/arcade/kit';
-import { AMMO_BONUS, PULL_PX, create, fixedStep, launch, playOut, playShot, starsFor, update, useAbility } from './game';
+import { AMMO_BONUS, PULL_PX, create, fixedStep, launch, playOut, playShot, starsFor, update, triggerAbility } from './game';
 import type { State } from './game';
 import { ENEMY_R, LEVEL_COUNT, PER_WORLD, level } from './levels';
 import { AMMO, ENEMY_HP, MATS, addBox, addEnemy, addShot, buildWorld, enemiesLeft, stepWorld } from './physics';
@@ -198,20 +198,20 @@ describe('play', () => {
     const t = create('normal', 4);
     launch(t, 0.6, 15);
     for (let i = 0; i < 20; i++) fixedStep(t);
-    useAbility(t);
+    triggerAbility(t);
     expect(t.shots.length).toBe(3);
 
     const z = create('normal', 10);
     launch(z, 0.5, 12);
     for (let i = 0; i < 20; i++) fixedStep(z);
     const v0 = z.shots[0].body.getLinearVelocity().length();
-    useAbility(z);
+    triggerAbility(z);
     expect(z.shots[0].body.getLinearVelocity().length()).toBeGreaterThan(v0 * 1.8);
 
     const k = create('normal', 20);
     launch(k, 0.6, 15);
     for (let i = 0; i < 20; i++) fixedStep(k);
-    useAbility(k);
+    triggerAbility(k);
     expect(k.shots[0].dead).toBe(true);
     expect(k.booms.length).toBe(1);
   });

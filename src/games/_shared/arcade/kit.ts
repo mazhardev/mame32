@@ -9,7 +9,7 @@ import type { HudItem } from '@/components/game/GameHud';
  * without a browser: create the world, advance it by dt with an input
  * snapshot, draw it, and describe the HUD and the result.
  */
-export type Action = 'left' | 'right' | 'up' | 'down' | 'action' | 'action2' | 'action3';
+export type Action = 'left' | 'right' | 'up' | 'down' | 'action' | 'action2' | 'action3' | 'action4';
 
 export interface Pointer {
   x: number;
@@ -57,6 +57,8 @@ export interface TouchLayout {
   /** Direction controls shown on touch screens. */
   pad?: 'dpad' | 'horizontal' | 'vertical' | 'none';
   buttons?: { action: Action; label: string }[];
+  /** Lay the buttons out two by two (for four buttons on narrow phones). */
+  grid?: boolean;
 }
 
 export interface ArcadeSpec<S extends BaseState> {

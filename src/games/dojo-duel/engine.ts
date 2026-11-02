@@ -466,7 +466,7 @@ function knockOut(b: Battle, loser: Fighter, winner: Fighter, how: 'ko' | 'super
   b.events.push('explosion');
 }
 
-function tryGrab(b: Battle, att: Fighter, def: Fighter, m: Move): boolean {
+function tryGrab(att: Fighter, def: Fighter, m: Move): boolean {
   if (gap(att, def) > (m.range ?? 12)) return false;
   if (!isGround(def) || def.invuln > 0 || def.act === 'hit' || def.act === 'block' || def.act === 'fall' || def.act === 'down') return false;
   def.act = 'thrown';
@@ -582,7 +582,7 @@ function updateFighter(b: Battle, f: Fighter, o: Fighter) {
         f.face = o.x >= f.x ? 1 : -1;
         f.alpha = 1;
       }
-      if (m.level === 'grab' && !tryGrab(b, f, o, m)) {
+      if (m.level === 'grab' && !tryGrab(f, o, m)) {
         // A whiffed grab just recovers.
       }
       if (m.pose === 'dive') {
@@ -668,16 +668,17 @@ function separate(a: Fighter, b: Fighter) {
   }
 }
 
-function collectHits(b: Battle, att: Fighter, def: Fighter, out: PendingHit[]) {
+function collectHits(att: Fighter, def: Fighter, out: PendingHit[]) {
   const r = att.run;
   if (!r || !r.m.box) return;
   const m = r.m;
+  const box = m.box as Box;
   const t = r.t;
   if (t <= m.startup || t > m.startup + m.active) return;
   const maxHits = m.hits ?? 1;
   if (r.hits >= maxHits) return;
   if (maxHits > 1 && t - r.lastHit < (m.every ?? 6)) return;
-  const hb = worldBox(att, m.box);
+  const hb = worldBox(att, box);
   const hurt = hurtbox(def);
   if (!hurt || !overlap(hb, hurt)) return;
   r.hits++;
@@ -828,8 +829,8 @@ export function stepBattle(b: Battle, pads: [Pad, Pad]) {
     for (const f of b.f) if (f.act === 'win') f.vx = 0;
   }
   const hits: PendingHit[] = [];
-  collectHits(b, a, c, hits);
-  collectHits(b, c, a, hits);
+  collectHits(a, c, hits);
+  collectHits(c, a, hits);
   updateProjectiles(b, hits);
   for (const h of hits) if (b.phase === 'fight' || b.phase === 'ko') applyHit(b, h);
 }

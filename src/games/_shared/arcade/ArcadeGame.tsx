@@ -276,7 +276,7 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
           ) : (
             <span />
           )}
-          <div className="arcade-buttons">
+          <div className={touch.grid ? 'arcade-buttons arcade-buttons-grid' : 'arcade-buttons'}>
             {touch.buttons?.map((b) => (
               <ActionButton key={b.action} label={b.label} onPress={() => press(b.action)} onRelease={() => release(b.action)} />
             ))}
