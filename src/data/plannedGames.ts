@@ -102,6 +102,7 @@ const PUZZLE: Row[] = [
   ['spot-the-difference', 'Spot the Difference', 'easy', '🔍', 'observation visual'],
   ['hidden-object', 'Hidden Object', 'easy', '🔎', 'observation search'],
   ['pattern-puzzle', 'Pattern Puzzle', 'medium', '🔷', 'pattern logic sequence'],
+  ['marble-chain', 'Marble Chain', 'medium', '🔮', 'marbles match-three shooter chain temple'],
 ];
 
 const WORD: Row[] = [
