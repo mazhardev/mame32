@@ -9,7 +9,7 @@ import type { HudItem } from '@/components/game/GameHud';
  * without a browser: create the world, advance it by dt with an input
  * snapshot, draw it, and describe the HUD and the result.
  */
-export type Action = 'left' | 'right' | 'up' | 'down' | 'action' | 'action2';
+export type Action = 'left' | 'right' | 'up' | 'down' | 'action' | 'action2' | 'action3' | 'action4';
 
 export interface Pointer {
   x: number;
@@ -23,6 +23,13 @@ export interface Pointer {
   active: boolean;
 }
 
+/** One finger (or the mouse) currently down on the canvas, in logical coordinates. */
+export interface Touch {
+  id: number;
+  x: number;
+  y: number;
+}
+
 export interface Input {
   held: Set<Action>;
   /** Actions that started since the previous update (edge-triggered). */
@@ -32,6 +39,8 @@ export interface Input {
   /** customKeys currently held down (e.g. a second player's controls). */
   keysHeld: Set<string>;
   pointer: Pointer;
+  /** Every pointer currently down on the canvas, for multi-touch games. */
+  touches: Touch[];
 }
 
 /** Every arcade state carries these fields. */
@@ -48,6 +57,8 @@ export interface TouchLayout {
   /** Direction controls shown on touch screens. */
   pad?: 'dpad' | 'horizontal' | 'vertical' | 'none';
   buttons?: { action: Action; label: string }[];
+  /** Lay the buttons out two by two (for four buttons on narrow phones). */
+  grid?: boolean;
 }
 
 export interface ArcadeSpec<S extends BaseState> {
@@ -98,6 +109,7 @@ export function emptyInput(): Input {
     keys: new Set(),
     keysHeld: new Set(),
     pointer: { x: 0, y: 0, down: false, pressed: false, released: false, active: false },
+    touches: [],
   };
 }
 

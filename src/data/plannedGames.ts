@@ -69,6 +69,8 @@ const ARCADE: Row[] = [
   ['snow-rollers', 'Snow Rollers', 'medium', '☃️', 'platformer arena snowball stages bosses'],
   ['bubble-buddies', 'Bubble Buddies', 'medium', '🫧', 'platformer arena bubbles stages bosses'],
   ['blast-maze', 'Blast Maze', 'medium', '💣', 'maze bombs battle bosses stages'],
+  ['nebula-pinball', 'Nebula Pinball', 'medium', '🪐', 'pinball flippers multiball space'],
+  ['lane-rush', 'Lane Rush', 'medium', '🏃', 'runner endless swipe trains coins'],
 ];
 
 const PUZZLE: Row[] = [
@@ -226,6 +228,7 @@ const ACTION: Row[] = [
   ['survival-arena', 'Survival Arena', 'hard', '⚔️', 'waves survival'],
   ['boss-battle', 'Boss Battle', 'hard', '🐲', 'patterns bullet-hell'],
   ['dungeon-shooter', 'Dungeon Shooter', 'hard', '🗝️', 'rooms shooter roguelite'],
+  ['dojo-duel', 'Dojo Duel', 'medium', '🥋', 'fighting martial-arts versus two-player combos'],
 ];
 
 const STRATEGY: Row[] = [
@@ -294,6 +297,7 @@ const CASUAL: Row[] = [
   ['endless-jumper', 'Endless Jumper', 'medium', '🦘', 'platformer endless'],
   ['circle-jump', 'Circle Jump', 'hard', '⭕', 'timing rotation'],
   ['color-tap', 'Color Tap', 'easy', '🌈', 'reflex colors'],
+  ['slingshot-siege', 'Slingshot Siege', 'easy', '🪨', 'slingshot physics levels stars destruction'],
 ];
 
 const CREATIVE: Row[] = [

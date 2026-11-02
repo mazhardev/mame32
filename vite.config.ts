@@ -53,6 +53,8 @@ export default defineConfig({
           if (id.includes('node_modules')) {
             if (id.includes('react-router')) return 'router';
             if (id.includes('react')) return 'react';
+            // The physics engine is only for Slingshot Siege: keep it out of the shared bundle.
+            if (id.includes('/node_modules/planck/')) return 'planck';
             return 'vendor';
           }
           return undefined;

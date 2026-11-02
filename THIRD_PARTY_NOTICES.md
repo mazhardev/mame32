@@ -1,7 +1,7 @@
 # Third-party notices
 
 GamesPlayLand's game code, graphics and sounds are original. The following
-third-party data is bundled.
+third-party code and data are bundled.
 
 ## SCOWL word lists
 
@@ -24,3 +24,30 @@ SCOWL incorporates material from the Moby Words II project (public domain),
 12Dicts by Alan Beale, and the UK English Wordlist with Frequency
 Classification by Brian Kelk. See http://wordlist.aspell.net/ for the full
 SCOWL copyright file.
+
+## planck.js
+
+Slingshot Siege (`src/games/slingshot-siege/`) uses planck.js 1.5.0, a
+JavaScript port of the Box2D physics engine, from the `planck` npm package.
+
+> The MIT License
+>
+> Copyright (c) Erin Catto, Ali Shakiba
+>
+> Permission is hereby granted, free of charge, to any person obtaining a copy
+> of this software and associated documentation files (the "Software"), to deal
+> in the Software without restriction, including without limitation the rights
+> to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+> copies of the Software, and to permit persons to whom the Software is
+> furnished to do so, subject to the following conditions:
+>
+> The above copyright notice and this permission notice shall be included in all
+> copies or substantial portions of the Software.
+>
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+> OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+> SOFTWARE.
