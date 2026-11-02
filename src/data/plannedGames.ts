@@ -253,6 +253,7 @@ const STRATEGY: Row[] = [
   ['airport-manager', 'Airport Manager', 'medium', '✈️', 'management scheduling'],
   ['hotel-manager', 'Hotel Manager', 'medium', '🏨', 'management economy'],
   ['mini-tycoon', 'Mini Tycoon', 'easy', '🎩', 'idle economy save'],
+  ['garden-guard', 'Garden Guard', 'medium', '🌻', 'lane-defense plants garden pests strategy'],
 ];
 
 const EDUCATIONAL: Row[] = [
