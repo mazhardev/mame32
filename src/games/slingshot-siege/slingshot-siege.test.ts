@@ -109,7 +109,7 @@ describe('damage', () => {
   it('resting and gentle bumps do no harm', () => {
     const p = empty();
     const plank = addBox(p, 'ice', 0, 0.2, 2, 0.4);
-    const blob = addEnemy(p, 0, 3, 0.3 + ENEMY_R[0]);
+    const blob = addEnemy(p, 0, 3, ENEMY_R[0]);
     for (let i = 0; i < 180; i++) stepWorld(p);
     expect(plank.hp).toBe(MATS.ice.hp);
     expect(blob.hp).toBe(ENEMY_HP[0]);
