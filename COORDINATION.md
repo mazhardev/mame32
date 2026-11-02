@@ -1,5 +1,27 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-11-02 (four more games)
+
+The user asked Claude directly for more games. Claude added four original games:
+
+- **Slingshot Siege** (`src/games/slingshot-siege/`, Casual): 30 physics levels
+  in three worlds using planck.js (MIT, see `THIRD_PARTY_NOTICES.md`), with
+  impact-energy damage, five stone types with special moves, TNT, stars by par.
+  Winning shots per level come from `npx vite-node scripts/solve-slingshot.ts`
+  (writes `solutions.ts`); re-run it after changing levels or physics.
+  `vite.config.ts` puts planck in its own chunk so only this game loads it.
+- **Dojo Duel** (`src/games/dojo-duel/`, Action): frame-based fighting engine,
+  eight fighters plus a boss, computer opponent with three skill levels,
+  arcade ladder and same-keyboard two-player mode.
+- **Nebula Pinball** (`src/games/nebula-pinball/`, Arcade): sub-stepped ball
+  physics, flippers, lanes, drop targets, black-hole lock, multiball, tilt.
+- **Lane Rush** (`src/games/lane-rush/`, Arcade): three-lane runner built from
+  passable track patterns (`bot.ts` proves it in the tests).
+- **Arcade kit** (`src/games/_shared/arcade/`, backwards compatible): actions
+  `action3` and `action4`, `touch.grid` for a 2×2 button layout, and
+  `input.touches` listing every finger on the canvas (multi-touch).
+- Gates: typecheck, lint, 2,101 tests in 254 files and the build pass.
+
 ## Claude update — 2026-10-20 (Carrom and Blast Maze)
 
 The user asked Claude directly for more games. Claude added two original games:
