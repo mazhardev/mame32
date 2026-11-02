@@ -71,6 +71,7 @@ const ARCADE: Row[] = [
   ['blast-maze', 'Blast Maze', 'medium', '💣', 'maze bombs battle bosses stages'],
   ['nebula-pinball', 'Nebula Pinball', 'medium', '🪐', 'pinball flippers multiball space'],
   ['lane-rush', 'Lane Rush', 'medium', '🏃', 'runner endless swipe trains coins'],
+  ['neon-serpents', 'Neon Serpents', 'medium', '🐍', 'snake arena grow neon io'],
 ];
 
 const PUZZLE: Row[] = [

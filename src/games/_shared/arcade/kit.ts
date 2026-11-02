@@ -21,6 +21,8 @@ export interface Pointer {
   released: boolean;
   /** The pointer has been over the canvas at least once. */
   active: boolean;
+  /** What the last press came from: 'mouse', 'touch' or 'pen'. */
+  type?: string;
 }
 
 /** One finger (or the mouse) currently down on the canvas, in logical coordinates. */

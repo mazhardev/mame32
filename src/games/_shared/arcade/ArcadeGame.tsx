@@ -208,7 +208,7 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
     const p = inputRef.current.pointer;
     // The press that starts the game is not also delivered as a game action.
     const starting = phaseRef.current === 'ready' && spec.pointerStarts !== false;
-    Object.assign(p, { x, y, down: !starting, pressed: !starting, active: true });
+    Object.assign(p, { x, y, down: !starting, pressed: !starting, active: true, type: e.pointerType });
     if (starting) start();
     else inputRef.current.touches.push({ id: e.pointerId, x, y });
   };
