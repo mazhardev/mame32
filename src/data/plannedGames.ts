@@ -104,6 +104,7 @@ const PUZZLE: Row[] = [
   ['hidden-object', 'Hidden Object', 'easy', '🔎', 'observation search'],
   ['pattern-puzzle', 'Pattern Puzzle', 'medium', '🔷', 'pattern logic sequence'],
   ['marble-chain', 'Marble Chain', 'medium', '🔮', 'marbles match-three shooter chain temple'],
+  ['snip-snack', 'Snip Snack', 'medium', '🍬', 'physics rope cut candy stars'],
 ];
 
 const WORD: Row[] = [
