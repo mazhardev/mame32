@@ -1,5 +1,27 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-11-07 (four more games)
+
+The user asked Claude directly for more games. Claude added four original games:
+
+- **Marble Chain** (`src/games/marble-chain/`, Puzzle): marble-chain shooter on
+  five spiral tracks (`paths.ts`), gap closing with combos, bomb/slow/reverse
+  power marbles, 15 levels in three temples. `bot.ts` proves every level can be
+  cleared on Normal.
+- **Garden Guard** (`src/games/garden-guard/`, Strategy): 9×5 lane defense with
+  seven defenders, five pests, garden rollers and 15 levels in three gardens
+  (`data.ts`). `bot.ts` is a planning gardener used by the balance tests.
+- **Neon Serpents** (`src/games/neon-serpents/`, Arcade): arena snake game
+  against computer snakes, with boosting, pellets from knocked-out snakes,
+  leaderboard and minimap. Boost: mouse button, two fingers, Space or the
+  touch button.
+- **Snip Snack** (`src/games/snip-snack/`, Puzzle): Verlet rope physics,
+  bubbles, blowers, auto-ropes and spikes, 15 levels. Each level was laid out
+  around a planned solution (`solutions.ts`, replayed by the tests); after
+  moving anything in `levels.ts`, run `npx vite-node scripts/check-snip-snack.ts`
+  to see each step's timing slack.
+- Gates: typecheck, lint, 2,170 tests in 258 files and the build pass.
+
 ## Claude update — 2026-11-02 (four more games)
 
 The user asked Claude directly for more games. Claude added four original games:
