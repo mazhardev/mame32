@@ -71,6 +71,7 @@ const ARCADE: Row[] = [
   ['blast-maze', 'Blast Maze', 'medium', '💣', 'maze bombs battle bosses stages'],
   ['nebula-pinball', 'Nebula Pinball', 'medium', '🪐', 'pinball flippers multiball space'],
   ['lane-rush', 'Lane Rush', 'medium', '🏃', 'runner endless swipe trains coins'],
+  ['neon-serpents', 'Neon Serpents', 'medium', '🐍', 'snake arena grow neon io'],
 ];
 
 const PUZZLE: Row[] = [
@@ -102,6 +103,8 @@ const PUZZLE: Row[] = [
   ['spot-the-difference', 'Spot the Difference', 'easy', '🔍', 'observation visual'],
   ['hidden-object', 'Hidden Object', 'easy', '🔎', 'observation search'],
   ['pattern-puzzle', 'Pattern Puzzle', 'medium', '🔷', 'pattern logic sequence'],
+  ['marble-chain', 'Marble Chain', 'medium', '🔮', 'marbles match-three shooter chain temple'],
+  ['snip-snack', 'Snip Snack', 'medium', '🍬', 'physics rope cut candy stars'],
 ];
 
 const WORD: Row[] = [
@@ -252,6 +255,7 @@ const STRATEGY: Row[] = [
   ['airport-manager', 'Airport Manager', 'medium', '✈️', 'management scheduling'],
   ['hotel-manager', 'Hotel Manager', 'medium', '🏨', 'management economy'],
   ['mini-tycoon', 'Mini Tycoon', 'easy', '🎩', 'idle economy save'],
+  ['garden-guard', 'Garden Guard', 'medium', '🌻', 'lane-defense plants garden pests strategy'],
 ];
 
 const EDUCATIONAL: Row[] = [
