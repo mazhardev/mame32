@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎹',
   tags: ['touch typing', 'keyboard', 'lessons', 'learn'],
   short: 'Learn touch typing step by step, from the home row to full sentences.',
-  full: 'Ten guided typing lessons. Start with the home row, add one reach at a time, and finish with real sentences. A colour-coded keyboard shows which finger to use for the next key. Progress is saved as you unlock lessons.',
+  full: 'Ten guided typing lessons. Start with the home row, add one reach at a time, and finish with real sentences. A colour-coded keyboard shows which finger to use for the next key. Progress is saved as you unlock lessons. Then test your speed in [Speed Typing](game:speed-typing), or race falling words in [Typing Challenge](game:typing-challenge).',
   minutes: 5,
   hasLevels: true,
   hasSaveState: true,

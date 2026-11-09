@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⛳',
   tags: ['solitaire', 'patience', 'cards', 'sequence', 'single player', 'quick'],
   short: 'Clear seven columns by playing cards one higher or lower onto the waste.',
-  full: 'A quick, open solitaire. Seven columns of five cards are all face up. Play the bottom card of any column onto the waste if it is one rank higher or lower, and flip from the stock when you can’t. Like golf, the fewer cards you leave, the better.',
+  full: 'A quick, open solitaire. Seven columns of five cards are all face up. Play the bottom card of any column onto the waste if it is one rank higher or lower, and flip from the stock when you can’t. Like golf, the fewer cards you leave, the better. For more one-higher-or-lower solitaire, try [TriPeaks](game:tripeaks), or browse all [solitaire games](hub:solitaire-games).',
   minutes: 4,
   multiplayer: 'single',
   controls: {

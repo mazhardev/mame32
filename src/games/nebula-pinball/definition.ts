@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🪐',
   tags: ['pinball', 'flippers', 'multiball', 'space', 'arcade', 'high score', 'retro'],
   short: 'A space-themed pinball table with planet bumpers, a black-hole lock and three-ball multiball.',
-  full: 'Launch into the nebula! Keep the ball alive with the flippers and send it around a deep-space table: bounce it off planet bumpers, light the three star lanes to raise your bonus multiplier, knock down the drop targets to light the black-hole lock, and lock two balls to start multiball. During multiball every shot into the black hole is a jackpot, and each one is worth more than the last. Nudge the table to save a ball, but shake it too hard and it tilts.',
+  full: 'Launch into the nebula! Keep the ball alive with the flippers and send it around a deep-space table: bounce it off planet bumpers, light the three star lanes to raise your bonus multiplier, knock down the drop targets to light the black-hole lock, and lock two balls to start multiball. During multiball every shot into the black hole is a jackpot, and each one is worth more than the last. Nudge the table to save a ball, but shake it too hard and it tilts. For more bouncing-ball classics, try [Brick Breaker](game:brick-breaker) or [Pong](game:pong).',
   minutes: 8,
   controls: {
     keyboard: ['← or Z: left flipper', '→ or / (or M): right flipper', 'Hold ↓ or Space to pull the plunger, release to launch', '↑ or X nudges the table'],

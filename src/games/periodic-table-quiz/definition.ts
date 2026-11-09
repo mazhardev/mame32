@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '⚗️',
   tags: ['quiz', 'science', 'chemistry'],
   short: 'Chemical symbols, element names, atomic numbers and fun facts.',
-  full: 'Learn the periodic table: match symbols to names, recall atomic numbers of the first twenty elements, and answer questions about famous elements.',
+  full: 'Learn the periodic table: match symbols to names, recall atomic numbers of the first twenty elements, and answer questions about famous elements. For space, the body and physics, try the [Science Quiz](game:science-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 4,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

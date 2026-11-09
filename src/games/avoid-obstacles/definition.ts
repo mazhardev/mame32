@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚧',
   tags: ['dodging', 'endless', 'reflex', 'survival', 'casual'],
   short: 'Dodge a growing swarm of bouncing hazards for as long as you can survive.',
-  full: 'A tense survival game in a small arena. Red orbs bounce around the walls and a new one joins every few seconds. Weave between them with the keyboard, mouse or your finger. Grab green pickups for a short shield. Your score is how long you last.',
+  full: 'A tense survival game in a small arena. Red orbs bounce around the walls and a new one joins every few seconds. Weave between them with the keyboard, mouse or your finger. Grab green pickups for a short shield. Your score is how long you last. For more dodging, try [Falling Ball](game:falling-ball), or browse the [quick games](hub:quick-games).',
   minutes: 2,
   controls: {
     keyboard: ['Arrow keys or WASD move the orb (diagonals too)'],

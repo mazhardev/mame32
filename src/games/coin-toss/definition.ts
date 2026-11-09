@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🪙',
   tags: ['luck', 'quick', 'simple', 'casual'],
   short: 'Call heads or tails and see how long your lucky streak can last.',
-  full: 'A fair, animated coin toss. Call heads or tails before each flip. Correct calls build your streak; wrong calls cost a life. How many can you get right before your luck runs out? Each toss is an independent 50/50, so no strategy beats the coin — it is pure luck.',
+  full: 'A fair, animated coin toss. Call heads or tails before each flip. Correct calls build your streak; wrong calls cost a life. How many can you get right before your luck runs out? Each toss is an independent 50/50, so no strategy beats the coin — it is pure luck. For another game of chance, try [Rock Paper Scissors](game:rock-paper-scissors) against a computer that learns.',
   minutes: 1,
   controls: {
     keyboard: ['H or ← calls heads, T or → calls tails'],

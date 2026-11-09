@@ -9,7 +9,7 @@ export const game = defineGame({
   tags: ['airport', 'planes', 'air traffic', 'time management', 'scheduling', 'upgrades'],
   short:
     'Land circling planes, park them at gates and clear them for take-off before fuel runs low.',
-  full: 'Run the control tower of a small, busy airport for five days. Planes arrive and circle with limited fuel; clear them to land on a free runway, send them to a gate (jumbos need the big one), and once they have turned around, clear them for take-off. Every flight pays when it leaves, minus a penalty for keeping it waiting, and a plane that runs low on fuel diverts elsewhere. Spend your earnings on a second runway, more gates and a faster ground crew to keep up with growing traffic.',
+  full: 'Run the control tower of a small, busy airport for five days. Planes arrive and circle with limited fuel; clear them to land on a free runway, send them to a gate (jumbos need the big one), and once they have turned around, clear them for take-off. Every flight pays when it leaves, minus a penalty for keeping it waiting, and a plane that runs low on fuel diverts elsewhere. Spend your earnings on a second runway, more gates and a faster ground crew to keep up with growing traffic. For more juggling against the clock, try [Restaurant Simulator](game:restaurant-simulator), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 12,
   hasSaveState: true,
   hasLevels: true,

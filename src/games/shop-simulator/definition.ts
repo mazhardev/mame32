@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏪',
   tags: ['shop', 'pricing', 'stock', 'economy', 'simulation', 'save'],
   short: 'Stock the shelves, set your prices and keep customers happy for two weeks.',
-  full: 'Run a corner shop for fourteen days. Each morning, check the weather, restock from the wholesaler and set your prices; then open up and watch customers come in one by one. Price too high and people walk out grumbling, run out of stock and your reputation suffers, buy too much bread and it goes stale. Heatwaves sell ice cream, rainy days sell newspapers and coffee. Reinvest in bigger shelves, a chiller, a wider range and a shop sign, and hit your takings goal.',
+  full: 'Run a corner shop for fourteen days. Each morning, check the weather, restock from the wholesaler and set your prices; then open up and watch customers come in one by one. Price too high and people walk out grumbling, run out of stock and your reputation suffers, buy too much bread and it goes stale. Heatwaves sell ice cream, rainy days sell newspapers and coffee. Reinvest in bigger shelves, a chiller, a wider range and a shop sign, and hit your takings goal. For bigger trades, sail between ports in [Trading Simulator](game:trading-simulator), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 12,
   hasSaveState: true,
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🛸',
   tags: ['shooter', 'space', 'retro', 'formation', 'stages'],
   short: 'Aliens swoop into formation, then dive-bomb your ship. Shoot them down stage by stage.',
-  full: 'A swooping space shooter. Squadrons of aliens loop in on graceful flight paths and settle into a shimmering formation — then peel off one or two at a time to dive at your ship, firing as they come. Picking off divers mid-swoop is worth double. Clear every alien to reach the next, more aggressive stage.',
+  full: 'A swooping space shooter. Squadrons of aliens loop in on graceful flight paths and settle into a shimmering formation — then peel off one or two at a time to dive at your ship, firing as they come. Picking off divers mid-swoop is worth double. Clear every alien to reach the next, more aggressive stage. Hold the ground instead in [Alien Defender](game:alien-defender), or browse more [space shooter games](hub:space-shooter-games).',
   minutes: 5,
   controls: {
     keyboard: ['← / → move', 'Space or ↑ fires'],

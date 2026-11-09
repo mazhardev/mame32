@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚀',
   tags: ['shoot em up', 'shmup', 'space', 'bosses', 'power-ups'],
   short: 'A vertical shoot-’em-up: dodge, power up and blast your way to the boss.',
-  full: 'Fly up through deep space in a classic vertical shooter. Your ship fires on its own, so focus on flying: weave through drones, sine-wave fighters and aimed gunship fire, grab weapon and shield power-ups, and face a heavily armoured boss every 45 seconds.',
+  full: 'Fly up through deep space in a classic vertical shooter. Your ship fires on its own, so focus on flying: weave through drones, sine-wave fighters and aimed gunship fire, grab weapon and shield power-ups, and face a heavily armoured boss every 45 seconds. For classic alien waves, try [Alien Defender](game:alien-defender), or see all [space shooter games](hub:space-shooter-games).',
   minutes: 5,
   controls: {
     keyboard: ['Arrow keys or WASD fly the ship (it fires automatically)'],

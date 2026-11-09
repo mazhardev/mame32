@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '📚',
   tags: ['quiz', 'meaning'],
   short: 'What does it mean? Match words to their definitions.',
-  full: 'Expand your English vocabulary. Choose the meaning of a word, or the word that matches a meaning — from everyday words to rare gems like “ephemeral”.',
+  full: 'Expand your English vocabulary. Choose the meaning of a word, or the word that matches a meaning — from everyday words to rare gems like “ephemeral”. For timed synonyms and antonyms, try the [Vocabulary Challenge](game:vocabulary-challenge), or browse all [quiz games](hub:quiz-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

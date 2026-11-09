@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🥋',
   tags: ['fighting', 'martial arts', 'versus', 'two-player', 'combos', 'arcade', 'boss'],
   short: 'A one-on-one martial arts fighter: eight original fighters, special moves, supers and a final boss.',
-  full: 'Step into the dojo and fight your way up the ladder. Pick one of eight original fighters, each with their own style, special moves and a screen-filling super: fireballs, whirlwind kicks, bear hugs, shadow steps, staff spins and lightning. Block high and low, chain punches into specials for combos, fill your super meter and beat seven rivals to face Master Oni at the Last Gate. Or hand a friend the other side of the keyboard for a two-player duel.',
+  full: 'Step into the dojo and fight your way up the ladder. Pick one of eight original fighters, each with their own style, special moves and a screen-filling super: fireballs, whirlwind kicks, bear hugs, shadow steps, staff spins and lightning. Block high and low, chain punches into specials for combos, fill your super meter and beat seven rivals to face Master Oni at the Last Gate. Or hand a friend the other side of the keyboard for a two-player duel. For a different kind of showdown, take on a three-phase dragon in [Boss Battle](game:boss-battle), or go three rounds in [Boxing](game:boxing).',
   minutes: 10,
   multiplayer: 'local-multiplayer',
   controls: {

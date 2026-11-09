@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔺',
   tags: ['solitaire', 'patience', 'cards', 'adding', 'matching', 'single player'],
   short: 'Clear the pyramid by pairing cards that add up to 13.',
-  full: 'A classic adding solitaire. Twenty-eight cards form a pyramid; pair up any two uncovered cards that total 13 — a 6 with a 7, a Jack with a 2, a Queen with an Ace — and remove Kings on their own. Use the draw pile to find partners and clear the whole pyramid.',
+  full: 'A classic adding solitaire. Twenty-eight cards form a pyramid; pair up any two uncovered cards that total 13 — a 6 with a 7, a Jack with a 2, a Queen with an Ace — and remove Kings on their own. Use the draw pile to find partners and clear the whole pyramid. For another adding-up solitaire, try [Golf Solitaire](game:golf-solitaire), or browse all [solitaire games](hub:solitaire-games).',
   minutes: 6,
   multiplayer: 'single',
   controls: {

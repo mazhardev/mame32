@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌐',
   tags: ['navigation', 'generated', 'labyrinth', 'relaxing'],
   short: 'Find your way through a freshly generated maze to the exit flag.',
-  full: 'A new labyrinth every time. Guide the red marker from the top-left corner to the green flag in the bottom-right. Step cell by cell, or swipe to dash along a corridor to the next junction. Beat the par time, take the shortest route, and use "Show the way" only if you are truly lost.',
+  full: 'A new labyrinth every time. Guide the red marker from the top-left corner to the green flag in the bottom-right. Step cell by cell, or swipe to dash along a corridor to the next junction. Beat the par time, take the shortest route, and use "Show the way" only if you are truly lost. For a darker challenge with keys and a timer, try [Escape Maze](game:escape-maze), or browse all [maze games](hub:maze-games).',
   minutes: 3,
   controls: {
     keyboard: ['Arrow keys or WASD step one cell', 'Shift + arrow runs to the next junction'],

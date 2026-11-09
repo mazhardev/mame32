@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔍',
   tags: ['observation', 'visual', 'pictures', 'timed', 'relaxing'],
   short: 'Two pictures, a handful of changes. Find them all before the clock runs out.',
-  full: 'Compare two cheerful, freshly drawn scenes side by side and find every difference: something missing, something added, a new colour, a different size or a mirror image. Tap a difference in either picture to circle it. Every scene is generated new, so you will never see the same pair twice.',
+  full: 'Compare two cheerful, freshly drawn scenes side by side and find every difference: something missing, something added, a new colour, a different size or a mirror image. Tap a difference in either picture to circle it. Every scene is generated new, so you will never see the same pair twice. For another search, find every item in [Hidden Object](game:hidden-object), or train your memory in [Memory Match](game:memory-match).',
   minutes: 3,
   controls: {
     mouse: ['Click a difference in either picture'],

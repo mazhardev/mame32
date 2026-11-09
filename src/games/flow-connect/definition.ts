@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌈',
   tags: ['path drawing', 'logic', 'pipes', 'colours', 'relaxing'],
   short: 'Join every pair of matching dots with pipes that never cross — and fill the whole board.',
-  full: 'Draw a pipe between each pair of same-coloured dots. Pipes cannot cross or share a square, and the puzzle is only complete when every square on the board is filled. Each dot is also marked with a letter. Every puzzle is built from a real full-board solution. Your progress is saved, so you can come back to a tough grid.',
+  full: 'Draw a pipe between each pair of same-coloured dots. Pipes cannot cross or share a square, and the puzzle is only complete when every square on the board is filled. Each dot is also marked with a letter. Every puzzle is built from a real full-board solution. Your progress is saved, so you can come back to a tough grid. For another line-drawing puzzle, try [Connect the Dots](game:connect-the-dots), or turn pipes in [Pipe Connect](game:pipe-connect).',
   minutes: 4,
   hasSaveState: true,
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⬢',
   tags: ['connection', 'hexagon', 'classic', 'ai', 'two player', 'strategy'],
   short: 'Link your two sides of a diamond of hexagons before your opponent.',
-  full: 'Hex is a pure connection game with no draws. Red tries to join the top and bottom edges with an unbroken chain of hexagons; Blue tries to join left and right. Play a local computer opponent or a friend on the same device, on a 7×7, 9×9 or 11×11 board.',
+  full: 'Hex is a pure connection game with no draws. Red tries to join the top and bottom edges with an unbroken chain of hexagons; Blue tries to join left and right. Play a local computer opponent or a friend on the same device, on a 7×7, 9×9 or 11×11 board. For more abstract strategy, try [Go](game:go) or [Gomoku](game:gomoku).',
   minutes: 8,
   multiplayer: 'vs-ai',
   hasLevels: true,

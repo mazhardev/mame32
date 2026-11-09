@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏰',
   tags: ['artillery', 'two player', 'physics', 'ai', 'action'],
   short: 'Turn-based artillery: set angle and power, beat the wind and flatten the enemy castle.',
-  full: 'Two castles, one hill between them. Take turns lobbing cannonballs: choose an angle and power, check the wind, and fire. Shells blow craters in the ground, and a castle takes damage from any blast close by. Knock out three hearts to win. Play against a computer gunner that calculates its shots, or against a friend on the same device.',
+  full: 'Two castles, one hill between them. Take turns lobbing cannonballs: choose an angle and power, check the wind, and fire. Shells blow craters in the ground, and a castle takes damage from any blast close by. Knock out three hearts to win. Play against a computer gunner that calculates its shots, or against a friend on the same device. For more angle-and-power shots, try [Slingshot Siege](game:slingshot-siege) or [Cannon Shooter](game:cannon-shooter).',
   minutes: 4,
   multiplayer: 'vs-ai',
   controls: {

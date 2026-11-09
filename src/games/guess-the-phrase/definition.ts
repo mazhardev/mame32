@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💬',
   tags: ['phrases', 'idioms', 'proverbs', 'letters'],
   short: 'Reveal a hidden phrase one letter at a time, then solve it for a bonus.',
-  full: 'Guess letters to reveal a hidden idiom, proverb or everyday phrase. Consonants earn prize points for every time they appear, vowels cost points, and wrong guesses cost lives. Solve the phrase early for a big bonus.',
+  full: 'Guess letters to reveal a hidden idiom, proverb or everyday phrase. Consonants earn prize points for every time they appear, vowels cost points, and wrong guesses cost lives. Solve the phrase early for a big bonus. For single hidden words, try [Hangman](game:hangman), or see all [word guessing games](hub:word-guessing-games).',
   minutes: 6,
   controls: {
     keyboard: ['Type a letter to guess it'],

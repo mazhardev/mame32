@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎯',
   tags: ['aim', 'precision', 'scoring', 'ai', 'sports'],
   short: 'Play 301 against the computer — aim for treble 20 and finish on a double.',
-  full: 'A full game of 301 darts against a computer opponent. Each of you starts on 301 and takes turns of three darts, counting down. Your hand drifts gently, so release the dart as the sight passes over your target. To win you must hit exactly zero, and the final dart must be a double (or the bullseye). Go below zero, leave 1, or reach zero without a double and the turn is a bust.',
+  full: 'A full game of 301 darts against a computer opponent. Each of you starts on 301 and takes turns of three darts, counting down. Your hand drifts gently, so release the dart as the sight passes over your target. To win you must hit exactly zero, and the final dart must be a double (or the bullseye). Go below zero, leave 1, or reach zero without a double and the turn is a bust. For a bow instead, try [Archery](game:archery), or browse all [target shooting games](hub:target-shooting-games).',
   minutes: 6,
   multiplayer: 'vs-ai',
   controls: {

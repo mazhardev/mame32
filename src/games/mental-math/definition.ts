@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🧮',
   tags: ['maths', 'speed', 'drill'],
   short: 'Two-step sums, percentages and squares to solve in your head.',
-  full: 'Train your mental arithmetic with multi-step calculations, percentages and squares. No paper allowed — just you and the clock.',
+  full: 'Train your mental arithmetic with multi-step calculations, percentages and squares. No paper allowed — just you and the clock. For a race against the computer, try [Math Racing](game:math-racing), or browse all [math games](hub:math-games).',
   minutes: 4,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

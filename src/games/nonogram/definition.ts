@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🖼️',
   tags: ['picross', 'griddlers', 'logic', 'grid', 'picture', 'paint by numbers'],
   short: 'Use the number clues to fill in the grid and reveal a hidden picture.',
-  full: 'A picture logic puzzle, also known as Picross or Griddlers. The numbers beside each row and above each column give the lengths of the filled runs in that line. Work out which cells are filled to reveal a hidden pixel picture. Every puzzle can be solved by logic alone — no guessing needed. Drag to fill several cells, cross out cells you know are empty, and your progress is saved automatically.',
+  full: 'A picture logic puzzle, also known as Picross or Griddlers. The numbers beside each row and above each column give the lengths of the filled runs in that line. Work out which cells are filled to reveal a hidden pixel picture. Every puzzle can be solved by logic alone — no guessing needed. Drag to fill several cells, cross out cells you know are empty, and your progress is saved automatically. If you like logic grids, try [Kakuro](game:kakuro) or [Binary Puzzle](game:binary-puzzle); more are in [Sudoku and number puzzles](hub:number-puzzles).',
   minutes: 8,
   hasSaveState: true,
   controls: {

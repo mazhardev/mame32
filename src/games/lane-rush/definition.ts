@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏃',
   tags: ['runner', 'endless', 'swipe', 'trains', 'coins', 'reflex', 'arcade'],
   short: 'Dash down three lanes of track: dodge trains, jump hurdles, slide under bars and grab coins.',
-  full: 'Run as far as you can down a busy stretch of track at sunset. Swipe between three lanes to dodge oncoming trains, jump the hurdles, slide under the bars and scoop up coins on the way. The pace keeps rising the further you go. Grab a magnet to pull in every coin nearby, a 2× badge to double your score, or a shield that saves you from one crash.',
+  full: 'Run as far as you can down a busy stretch of track at sunset. Swipe between three lanes to dodge oncoming trains, jump the hurdles, slide under the bars and scoop up coins on the way. The pace keeps rising the further you go. Grab a magnet to pull in every coin nearby, a 2× badge to double your score, or a shield that saves you from one crash. For rooftop free running, try [Endless Runner](game:endless-runner), or see all [runner games](hub:runner-games).',
   minutes: 5,
   controls: {
     keyboard: ['← → (or A, D) change lanes', '↑, W or Space jump', '↓ or S slide (in the air: drop fast)'],

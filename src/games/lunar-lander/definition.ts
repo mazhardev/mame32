@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌙',
   tags: ['space', 'physics', 'landing', 'skill', 'classic'],
   short: 'Fire the thruster, fight the gravity, and touch down gently on a landing pad.',
-  full: 'A classic physics challenge. Your lander drifts over a rocky moonscape: rotate it and fire the main engine to control your descent, then set it down slowly and level on a flat green pad. Narrow pads are worth more. Fuel is precious — you get a little back with each landing — and a single hard touchdown ends the mission.',
+  full: 'A classic physics challenge. Your lander drifts over a rocky moonscape: rotate it and fire the main engine to control your descent, then set it down slowly and level on a flat green pad. Narrow pads are worth more. Fuel is precious — you get a little back with each landing — and a single hard touchdown ends the mission. More space flying awaits in [Asteroid Blaster](game:asteroid-blaster) and [Space Combat](game:space-combat).',
   minutes: 4,
   controls: {
     keyboard: ['← / → rotate the lander', '↑ or Space fire the engine'],

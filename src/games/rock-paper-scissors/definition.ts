@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '✂️',
   tags: ['ai', 'classic', 'quick', 'luck', 'casual'],
   short: 'First to five wins against a computer that learns your habits.',
-  full: 'The classic hand game against a computer opponent. On Easy it plays completely at random. On Normal and Hard it watches what you tend to play next and counters it — so if you fall into a pattern, it will catch you. Win five rounds before the computer does.',
+  full: 'The classic hand game against a computer opponent. On Easy it plays completely at random. On Normal and Hard it watches what you tend to play next and counters it — so if you fall into a pattern, it will catch you. Win five rounds before the computer does. For another quick game against luck, try [Coin Toss](game:coin-toss), or play a bigger strategy game in [Tic-Tac-Toe](game:tic-tac-toe).',
   minutes: 2,
   multiplayer: 'vs-ai',
   controls: {

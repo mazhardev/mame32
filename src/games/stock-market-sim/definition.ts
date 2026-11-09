@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '📈',
   tags: ['simulation', 'investing', 'fictional data', 'economy', 'save', 'news'],
   short: 'Trade shares in eight invented companies, read the news, and beat the market target.',
-  full: 'A stock market simulation with eight fictional companies across tech, food, energy, health and travel. Prices move every trading day with the market’s mood, sector swings and each company’s own story — and news headlines give you a hint of what comes next. Start with $10,000, buy and sell (every trade pays a small fee), and try to grow your portfolio past the target before the final day. All companies and prices are invented and generated in your browser.',
+  full: 'A stock market simulation with eight fictional companies across tech, food, energy, health and travel. Prices move every trading day with the market’s mood, sector swings and each company’s own story — and news headlines give you a hint of what comes next. Start with $10,000, buy and sell (every trade pays a small fee), and try to grow your portfolio past the target before the final day. All companies and prices are invented and generated in your browser. For buying and selling goods instead of shares, try [Trading Simulator](game:trading-simulator), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 10,
   hasSaveState: true,
   controls: {

@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🏁',
   tags: ['maths', 'speed', 'race'],
   short: 'Race a computer car: every right answer moves your car forward.',
-  full: 'A maths race. Each correct answer moves your car along the track, while the computer car drives on at a steady pace. Reach the finish line first to win.',
+  full: 'A maths race. Each correct answer moves your car along the track, while the computer car drives on at a steady pace. Reach the finish line first to win. For more fast sums, try [Mental Math](game:mental-math), or browse all [math games](hub:math-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

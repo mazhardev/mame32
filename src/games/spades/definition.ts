@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '♠️',
   tags: ['cards', 'trick taking', 'bidding', 'partners', 'trumps', 'ai', 'four players'],
   short: 'Bid and win tricks with a computer partner — spades are always trumps.',
-  full: 'The partnership trick-taking classic. You and your computer partner (North) take on two computer opponents. Everyone bids how many tricks they will win, spades are always trumps, and your team scores only if it makes its combined bid. Watch out for bags — every ten overtricks costs 100 points. First team to 250 wins.',
+  full: 'The partnership trick-taking classic. You and your computer partner (North) take on two computer opponents. Everyone bids how many tricks they will win, spades are always trumps, and your team scores only if it makes its combined bid. Watch out for bags — every ten overtricks costs 100 points. First team to 250 wins. For trick-taking without a partner, try [Hearts](game:hearts), or see all [card games against the computer](hub:card-games-vs-computer).',
   minutes: 20,
   multiplayer: 'vs-ai',
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '❓',
   tags: ['guess', 'deduction', 'letters', 'jotto'],
   short: 'Deduce a secret word from how many letters each guess shares with it.',
-  full: 'A classic word-deduction game. The secret word has no repeated letters. Every guess tells you only how many of its letters appear in the secret word — not which ones. Use the notes board to track what you have learned.',
+  full: 'A classic word-deduction game. The secret word has no repeated letters. Every guess tells you only how many of its letters appear in the secret word — not which ones. Use the notes board to track what you have learned. For colour-coded clues, try [Five Letter Word](game:five-letter-word), or browse all [word guessing games](hub:word-guessing-games).',
   minutes: 6,
   controls: {
     keyboard: ['Type letters', 'Enter to guess, Backspace to delete'],

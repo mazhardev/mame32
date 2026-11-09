@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎨',
   tags: ['drawing', 'guessing', 'quick', 'pictures', 'creative', 'kids'],
   short: 'Watch a sketch appear line by line and name it before it’s finished.',
-  full: 'The computer draws a picture one line at a time — a house, a kite, a snowman, a light bulb — and you guess what it is. The sooner you name it, the more points you score, but a wrong guess costs points and some answers look very alike. Ten sketches per game.',
+  full: 'The computer draws a picture one line at a time — a house, a kite, a snowman, a light bulb — and you guess what it is. The sooner you name it, the more points you score, but a wrong guess costs points and some answers look very alike. Ten sketches per game. For a drawing party game with friends, try [Local Pictionary](game:local-pictionary), or browse more [creative games](cat:creative).',
   minutes: 3,
   controls: {
     keyboard: ['1–6 choose an answer'],

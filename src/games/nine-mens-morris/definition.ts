@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⭕',
   tags: ['strategy', 'ai', 'classic', 'two player', 'mills'],
   short: 'Form mills of three to capture your opponent’s men in this ancient strategy game.',
-  full: "One of the oldest board games still played. Each player has nine men. Take turns placing them on the board's 24 points, then slide them along the lines. Every time you line up three in a row — a mill — you remove one of your opponent's men. Reduce your opponent to two men, or leave them with no legal move, to win. Play against the computer or a friend on the same device.",
+  full: "One of the oldest board games still played. Each player has nine men. Take turns placing them on the board's 24 points, then slide them along the lines. Every time you line up three in a row — a mill — you remove one of your opponent's men. Reduce your opponent to two men, or leave them with no legal move, to win. Play against the computer or a friend on the same device. For more ancient strategy games, try [Mancala](game:mancala) or [Go](game:go).",
   minutes: 10,
   multiplayer: 'vs-ai',
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⏱️',
   tags: ['timing', 'one button', 'precision', 'quick', 'casual'],
   short: 'Stop the sweeping needle inside the green zone — it gets smaller and faster every time.',
-  full: 'A pure one-button timing test. A needle sweeps across a bar; tap to stop it inside the green target. Every hit shrinks the target, moves it somewhere new and speeds the needle up. Stop it in the yellow centre for a perfect worth double points. Miss three times and the game is over.',
+  full: 'A pure one-button timing test. A needle sweeps across a bar; tap to stop it inside the green target. Every hit shrinks the target, moves it somewhere new and speeds the needle up. Stop it in the yellow centre for a perfect worth double points. Miss three times and the game is over. For more timing tests, try [Bottle Flip](game:bottle-flip) or the other [reaction time games](hub:reaction-time-games).',
   minutes: 2,
   controls: {
     keyboard: ['Space or Enter stops the needle'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏀',
   tags: ['timing', 'one button', 'endless', 'jump', 'casual'],
   short: 'A bouncing ball rolls on — time big leaps over walls and stay low under the bars.',
-  full: 'The ball keeps bouncing with small hops all by itself. One tap turns the next bounce into a big leap. Small hops clear low hurdles, big leaps clear tall walls — but floating bars must be passed underneath, so jumping at the wrong moment is just as risky as not jumping. Collect coins for bonus points as the pace keeps rising.',
+  full: 'The ball keeps bouncing with small hops all by itself. One tap turns the next bounce into a big leap. Small hops clear low hurdles, big leaps clear tall walls — but floating bars must be passed underneath, so jumping at the wrong moment is just as risky as not jumping. Collect coins for bonus points as the pace keeps rising. For more well-timed leaps, try [Circle Jump](game:circle-jump) or [Dino Runner](game:dino-runner).',
   minutes: 2,
   controls: {
     keyboard: ['Space, Enter or Up arrow queues a big leap'],

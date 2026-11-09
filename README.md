@@ -260,7 +260,7 @@ Everything a game needs lives in its own folder, and games are discovered automa
 
 6. **Generate its share image** with `npm run og-images` and commit the new file in `public/og/games/` (see [SEO.md](SEO.md)).
 
-7. **Join a topic hub.** Add the game's id to the best-fitting hub in `src/data/topicIndex.ts` (or to a small topic in `src/data/smallTopics.ts`). Related games, breadcrumbs and hub links follow automatically; `src/data/linking.test.ts` fails if a game ends up with too few links (see [SEO.md](SEO.md#internal-linking)).
+7. **Join a topic hub.** Add the game's id to the best-fitting hub in `src/data/topicIndex.ts` (or to a small topic in `src/data/smallTopics.ts`), and end its `full` description with a sentence that links to a related game or hub, for example `For more mazes, see [Blast Maze](game:blast-maze) and the other [maze games](hub:maze-games).` Related games, breadcrumbs and hub links follow automatically; `src/data/linking.test.ts` fails if a game ends up with too few links (see [SEO.md](SEO.md#internal-linking)).
 
 8. **Update the checklist** with `node scripts/update-status.mjs`.
 

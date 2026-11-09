@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🪜',
   tags: ['letters', 'puzzle', 'logic', 'doublets'],
   short: 'Change one letter at a time to climb from one word to another.',
-  full: 'A classic word puzzle: turn one word into another by changing a single letter at each step, and every step must be a real word. Try to match the shortest possible ladder.',
+  full: 'A classic word puzzle: turn one word into another by changing a single letter at each step, and every step must be a real word. Try to match the shortest possible ladder. For more one-letter-at-a-time puzzles, try [Word Builder](game:word-builder) or [Word Scramble](game:word-scramble).',
   minutes: 5,
   controls: {
     keyboard: ['Type the next word and press Enter'],

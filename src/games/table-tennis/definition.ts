@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏓',
   tags: ['ping pong', 'rally', 'ai', 'sports', 'paddle'],
   short: 'Rally against the computer in a game of table tennis to 11 points.',
-  full: 'A fast game of table tennis seen from above. Slide along your end of the table and your paddle plays the ball automatically — where the ball meets the paddle, and the arrow you hold at contact, decide where your return lands. Each shot must bounce once on the other side; hit the net or miss the table and the point goes to your opponent. First to 11 points, win by two.',
+  full: 'A fast game of table tennis seen from above. Slide along your end of the table and your paddle plays the ball automatically — where the ball meets the paddle, and the arrow you hold at contact, decide where your return lands. Each shot must bounce once on the other side; hit the net or miss the table and the point goes to your opponent. First to 11 points, win by two. For the full-court version, try [Tennis](game:tennis), or keep a rally going in [Pong](game:pong).',
   minutes: 4,
   multiplayer: 'vs-ai',
   controls: {

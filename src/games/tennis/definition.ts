@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎾',
   tags: ['rally', 'ai', 'sports', 'racket', 'serve', 'volley'],
   short: 'Serve, rally and volley through a fast set of tennis against the computer.',
-  full: 'A short set of tennis on a singles court seen from above. Run anywhere in your half — your racket plays the ball automatically when it is in reach, and the arrow you hold at contact sends the ball cross-court, deep or short. You can volley before the bounce, so charging the net is a real tactic. First to 4 games wins; at 40–40 one deciding point settles the game, and 3–3 goes to a tie-break.',
+  full: 'A short set of tennis on a singles court seen from above. Run anywhere in your half — your racket plays the ball automatically when it is in reach, and the arrow you hold at contact sends the ball cross-court, deep or short. You can volley before the bounce, so charging the net is a real tactic. First to 4 games wins; at 40–40 one deciding point settles the game, and 3–3 goes to a tie-break. For a faster rally on a smaller table, try [Table Tennis](game:table-tennis), or browse more [sports games](cat:sports).',
   minutes: 7,
   multiplayer: 'vs-ai',
   controls: {

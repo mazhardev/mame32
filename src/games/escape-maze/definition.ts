@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚪',
   tags: ['navigation', 'timed', 'keys', 'dark', 'maze'],
   short: 'Escape five dark mazes by lamplight — find the keys before your time runs out.',
-  full: 'Five mazes, one lamp, and a ticking clock. You can only see a small circle around you, so explore carefully: coloured doors block the way out until you find the matching key, and coins hidden in dead ends add bonus points. Each maze is bigger than the last.',
+  full: 'Five mazes, one lamp, and a ticking clock. You can only see a small circle around you, so explore carefully: coloured doors block the way out until you find the matching key, and coins hidden in dead ends add bonus points. Each maze is bigger than the last. For a simpler maze, try [Maze](game:maze), or browse all [maze games](hub:maze-games).',
   minutes: 6,
   controls: {
     keyboard: ['Arrow keys or WASD step one cell', 'Shift + arrow runs to the next junction'],

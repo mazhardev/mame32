@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎈',
   tags: ['timing', 'juggling', 'tap', 'endless', 'casual'],
   short: 'Keepy-uppy: tap the ball to kick it into the air and never let it touch the grass.',
-  full: 'How many kicks can you manage? Tap the ball to send it flying. Where you tap decides the direction: hit the left side to send it right, the right side to send it left, or dead centre to go straight up. The ball bounces off the walls and comes down faster as the round goes on.',
+  full: 'How many kicks can you manage? Tap the ball to send it flying. Where you tap decides the direction: hit the left side to send it right, the right side to send it left, or dead centre to go straight up. The ball bounces off the walls and comes down faster as the round goes on. More ball games: [Basketball Shot](game:basketball-shot) and [Penalty Shootout](game:penalty-shootout).',
   minutes: 1,
   mouse: true,
   controls: {

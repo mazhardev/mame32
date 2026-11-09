@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💼',
   tags: ['business', 'startup', 'economy', 'management', 'products', 'save'],
   short: 'Run a gadget start-up for three years: develop, launch, price and market your products.',
-  full: 'Build a gadget company from a two-person start-up into a business worth millions. Your engineers develop products — launch early and risk being outclassed, or keep polishing while rivals improve every quarter. Pick budget, standard or premium pricing, hire sales and support staff, set a marketing budget, borrow when you must, and react to booms, slumps, glowing reviews and parts shortages. Reach the target company value by the end of year three. All the market data is simulated in your browser.',
+  full: 'Build a gadget company from a two-person start-up into a business worth millions. Your engineers develop products — launch early and risk being outclassed, or keep polishing while rivals improve every quarter. Pick budget, standard or premium pricing, hire sales and support staff, set a marketing budget, borrow when you must, and react to booms, slumps, glowing reviews and parts shortages. Reach the target company value by the end of year three. All the market data is simulated in your browser. For more business, run a hotel in [Hotel Manager](game:hotel-manager), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 15,
   hasSaveState: true,
   controls: {

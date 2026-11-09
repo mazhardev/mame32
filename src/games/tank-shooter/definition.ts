@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💥',
   tags: ['shooter', 'tanks', 'aim', 'armour', 'action'],
   short: 'Command a tank with a free-aiming turret — blast through brick walls and enemy tanks.',
-  full: 'Drive a tank the proper way: turn the hull left and right, roll forwards and backwards, and aim the turret independently with the mouse or your finger. Brick walls crumble after two hits, steel walls stop everything. Enemy tanks patrol the map and open fire when they spot you. Clear every sector to move on to a harder one.',
+  full: 'Drive a tank the proper way: turn the hull left and right, roll forwards and backwards, and aim the turret independently with the mouse or your finger. Brick walls crumble after two hits, steel walls stop everything. Enemy tanks patrol the map and open fire when they spot you. Clear every sector to move on to a harder one. For tank duels against a friend, try [Tank Battle](game:tank-battle), or flatten castles in [Cannon Battle](game:cannon-battle).',
   minutes: 6,
   controls: {
     keyboard: ['↑ / W drive forwards, ↓ / S reverse', '← → / A D turn the hull', 'Space fires along the turret'],

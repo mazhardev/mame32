@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔢',
   tags: ['higher lower', 'numbers', 'logic', 'binary search'],
   short: 'Find the secret number using “higher” and “lower” clues.',
-  full: 'The computer picks a secret number. Each guess tells you whether the answer is higher or lower. Narrow it down before you run out of guesses — the smartest strategy always halves the range.',
+  full: 'The computer picks a secret number. Each guess tells you whether the answer is higher or lower. Narrow it down before you run out of guesses — the smartest strategy always halves the range. Ready for more? Crack a safe in [Code Breaker](game:code-breaker), or browse all [code-breaking games](hub:code-breaking-games).',
   minutes: 2,
   controls: {
     keyboard: ['Type digits, Enter to guess, Backspace to delete'],

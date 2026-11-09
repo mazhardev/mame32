@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🀄',
   tags: ['tiles', 'matching', 'pairs', 'relaxing', 'single player', 'mahjong style'],
   short: 'Clear a stacked layout of picture tiles by matching free pairs.',
-  full: 'A relaxing tile-matching solitaire. Picture tiles are stacked in layers; remove them two at a time by matching identical tiles that are free — nothing on top and an open left or right side. Every deal is generated to be solvable, and Undo, Hint and Shuffle are there when you get stuck.',
+  full: 'A relaxing tile-matching solitaire. Picture tiles are stacked in layers; remove them two at a time by matching identical tiles that are free — nothing on top and an open left or right side. Every deal is generated to be solvable, and Undo, Hint and Shuffle are there when you get stuck. For card solitaire, try [Klondike](game:klondike-solitaire), or browse all [solitaire games](hub:solitaire-games).',
   minutes: 10,
   multiplayer: 'single',
   hasLevels: true,

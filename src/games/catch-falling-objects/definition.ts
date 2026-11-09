@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🧺',
   tags: ['catching', 'endless', 'reflex', 'kids', 'casual'],
   short: 'Slide the basket to catch falling fruit and stars — but stay clear of the bombs.',
-  full: 'Fruit tumbles from the sky. Slide your basket left and right to catch it before it hits the ground. Golden stars are worth five times as much, bombs blow a life away, and every fruit you drop costs a life too. The more you catch, the faster things fall.',
+  full: 'Fruit tumbles from the sky. Slide your basket left and right to catch it before it hits the ground. Golden stars are worth five times as much, bombs blow a life away, and every fruit you drop costs a life too. The more you catch, the faster things fall. For the opposite challenge, dodge everything in [Avoid Obstacles](game:avoid-obstacles), or play more [games for kids](hub:games-for-kids).',
   minutes: 2,
   controls: {
     keyboard: ['← → or A / D move the basket'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚪',
   tags: ['ball', 'bounce', 'timing', 'platforms', 'physics', 'endless'],
   short: 'A never-stopping bouncy ball: speed up, slow down and slam to land every bounce.',
-  full: 'Your ball bounces on its own and keeps rolling forward — your job is timing. Speed up to clear long gaps, ease off to drop onto near ledges, and slam straight down when you are about to overshoot. Watch out for spike strips, ledges that crumble after one bounce, and springy pads that launch you higher than usual. Collect gems along the way.',
+  full: 'Your ball bounces on its own and keeps rolling forward — your job is timing. Speed up to clear long gaps, ease off to drop onto near ledges, and slam straight down when you are about to overshoot. Watch out for spike strips, ledges that crumble after one bounce, and springy pads that launch you higher than usual. Collect gems along the way. If you like controlling a bouncing ball, try [Color Switch](game:color-switch) or [Spiral Drop](game:spiral-drop).',
   minutes: 3,
   controls: {
     keyboard: ['→ / D speed up', '← / A slow down', 'Space or ↓ slam down'],

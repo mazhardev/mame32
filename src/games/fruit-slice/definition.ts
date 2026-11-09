@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🍉',
   tags: ['swipe', 'slice', 'fruit', 'reflex', 'casual', 'touch'],
   short: 'Swipe to slice flying fruit in two — but never touch a bomb.',
-  full: 'Fruit flies up into the air; swipe through it to slice it in half with a satisfying splash. Catch several fruits in one swipe for a combo bonus. Let three whole fruits fall and the game is over — and slicing a bomb ends it instantly.',
+  full: 'Fruit flies up into the air; swipe through it to slice it in half with a satisfying splash. Catch several fruits in one swipe for a combo bonus. Let three whole fruits fall and the game is over — and slicing a bomb ends it instantly. For another quick swipe-and-tap game, try [Whack-a-Mole](game:whack-a-mole) or the rest of the [quick games](hub:quick-games).',
   minutes: 2,
   controls: {
     keyboard: ['Arrow keys steer the blade', 'Hold Space to cut while moving'],

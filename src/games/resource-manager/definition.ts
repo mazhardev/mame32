@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '📦',
   tags: ['colony', 'space', 'resources', 'planning', 'survival', 'save'],
   short: 'Run a colony on a dusty planet: balance food, water, power and metal to grow it.',
-  full: 'Six colonists have landed on a dusty red planet. Each day you decide who farms, who pumps water, who mines and who builds. Solar arrays power everything — until a dust storm rolls in. Greenhouses turn water into food, extractors pull water from the ground, mines dig the metal you need for new modules, and each new habitat brings more colonists on the next shuttle. Watch the daily forecast, keep stores from running dry, repair meteor damage, and grow the colony to its target before the supply contract ends.',
+  full: 'Six colonists have landed on a dusty red planet. Each day you decide who farms, who pumps water, who mines and who builds. Solar arrays power everything — until a dust storm rolls in. Greenhouses turn water into food, extractors pull water from the ground, mines dig the metal you need for new modules, and each new habitat brings more colonists on the next shuttle. Watch the daily forecast, keep stores from running dry, repair meteor damage, and grow the colony to its target before the supply contract ends. For more balancing acts, try [Kingdom Builder](game:kingdom-builder), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 15,
   hasSaveState: true,
   controls: {

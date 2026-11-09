@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🗂️',
   tags: ['letters', 'party', 'timed', 'general knowledge'],
   short: 'One letter, six categories: name an animal, a country, a job… fast!',
-  full: 'A quick-thinking word game. Each round gives you a letter and six categories such as Animals, Countries or Jobs. Fill in an answer for each one that starts with the letter before time runs out.',
+  full: 'A quick-thinking word game. Each round gives you a letter and six categories such as Animals, Countries or Jobs. Fill in an answer for each one that starts with the letter before time runs out. For more quick-thinking word play, try [Anagram](game:anagram) or [Letter Grid](game:letter-grid).',
   minutes: 5,
   keyboard: true,
   controls: {

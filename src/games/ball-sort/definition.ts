@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔵',
   tags: ['sorting', 'logic', 'relaxing', 'colours', 'tubes'],
   short: 'Move balls between tubes until every tube holds a single colour.',
-  full: 'A calm sorting puzzle. Move the top ball of one tube onto a ball of the same colour or into an empty tube, and keep going until each tube holds four balls of one colour. Every deal is checked by a solver so it can always be finished. Unlimited undo, a solver-backed hint and one spare tube if you get stuck.',
+  full: 'A calm sorting puzzle. Move the top ball of one tube onto a ball of the same colour or into an empty tube, and keep going until each tube holds four balls of one colour. Every deal is checked by a solver so it can always be finished. Unlimited undo, a solver-backed hint and one spare tube if you get stuck. For the same idea with liquids, try [Water Sort](game:water-sort), or unwind with more [relaxing games](hub:relaxing-games).',
   minutes: 5,
   hasSaveState: true,
   controls: {

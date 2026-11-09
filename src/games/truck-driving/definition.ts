@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚚',
   tags: ['cargo', 'delivery', 'physics', 'levels', 'racing'],
   short: 'Haul a load of loose crates over the hills to the depot — without spilling them.',
-  full: 'A delivery driving game where smooth beats fast. Your flatbed truck carries a few loose crates. Brake hard, slam on the gas, crest a hill too quickly or land from a bump, and the crates slide — anything that slides off the bed is gone. Reach the depot flag before the timer runs out with at least one crate to complete the delivery. Each new route is longer and hillier, with more crates to carry.',
+  full: 'A delivery driving game where smooth beats fast. Your flatbed truck carries a few loose crates. Brake hard, slam on the gas, crest a hill too quickly or land from a bump, and the crates slide — anything that slides off the bed is gone. Reach the depot flag before the timer runs out with at least one crate to complete the delivery. Each new route is longer and hillier, with more crates to carry. For more hills and fuel to manage, try [Hill Racer](game:hill-racer), or see all [car driving games](hub:driving-games).',
   minutes: 5,
   hasLevels: true,
   controls: {

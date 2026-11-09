@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🧩',
   tags: ['pieces', 'relaxing', 'drag', 'pictures', 'landscape'],
   short: 'Piece together a freshly painted landscape — every picture is unique.',
-  full: 'A relaxing jigsaw with real interlocking pieces. Each puzzle is a brand-new landscape painted on the spot — sunsets, starry nights, autumn hills and bright days — then cut into pieces and scattered around the table. Drag pieces into the frame and they click into place when they are near their spot. Turn on the guide picture for help, and your progress is saved.',
+  full: 'A relaxing jigsaw with real interlocking pieces. Each puzzle is a brand-new landscape painted on the spot — sunsets, starry nights, autumn hills and bright days — then cut into pieces and scattered around the table. Drag pieces into the frame and they click into place when they are near their spot. Turn on the guide picture for help, and your progress is saved. For a shape puzzle with only seven pieces, try [Tangram](game:tangram), or relax with more [relaxing games](hub:relaxing-games).',
   minutes: 8,
   hasSaveState: true,
   controls: {

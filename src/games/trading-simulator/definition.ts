@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💹',
   tags: ['simulation', 'trading', 'economy', 'fictional data', 'save', 'ships'],
   short: 'Buy low, sail far, sell high: trade goods between five ports in one season.',
-  full: 'Captain a merchant ship among five invented ports. Each port makes some goods cheaply and pays well for others — grain from Saltmere, silk from Brightharbour, spice from Ambercove — and festivals, droughts and gluts shake the markets. Your own trades move prices too, so the biggest cargo is not always the best. Pay your crew, enlarge your hold and reach the gold target before the season ends.',
+  full: 'Captain a merchant ship among five invented ports. Each port makes some goods cheaply and pays well for others — grain from Saltmere, silk from Brightharbour, spice from Ambercove — and festivals, droughts and gluts shake the markets. Your own trades move prices too, so the biggest cargo is not always the best. Pay your crew, enlarge your hold and reach the gold target before the season ends. For trading shares instead of cargo, try the [Stock Market Simulator](game:stock-market-sim), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 12,
   hasSaveState: true,
   controls: {

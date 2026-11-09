@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⭕',
   tags: ['letter wheel', 'relaxing', 'levels', 'find words'],
   short: 'Connect letters on a wheel to fill every hidden word slot.',
-  full: 'A relaxing word puzzle. Each level gives you a wheel of letters and a set of hidden words. Tap letters in order to spell words and fill every slot. Find extra words for bonus points. Five levels per game.',
+  full: 'A relaxing word puzzle. Each level gives you a wheel of letters and a set of hidden words. Tap letters in order to spell words and fill every slot. Find extra words for bonus points. Five levels per game. For more letter-tracing puzzles, try [Letter Grid](game:letter-grid) or a classic [Word Search](game:word-search).',
   minutes: 8,
   hasLevels: true,
   controls: {

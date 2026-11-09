@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚽',
   tags: ['falling', 'dodge', 'endless', 'reflex', 'casual'],
   short: 'Floors keep rising — steer the ball through the gaps before you hit the ceiling.',
-  full: 'An endless fall. Floors with a single gap scroll up the screen, faster and faster. Roll left and right to drop through each gap. If the floors carry you up into the spiked ceiling, or you land on a red spiked floor, the run is over.',
+  full: 'An endless fall. Floors with a single gap scroll up the screen, faster and faster. Roll left and right to drop through each gap. If the floors carry you up into the spiked ceiling, or you land on a red spiked floor, the run is over. For more dodging, try [Avoid Obstacles](game:avoid-obstacles) or guide a ball down a tower in [Spiral Drop](game:spiral-drop).',
   minutes: 2,
   controls: {
     keyboard: ['← → or A / D roll the ball'],

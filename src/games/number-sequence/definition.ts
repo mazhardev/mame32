@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '📊',
   tags: ['logic', 'maths', 'series'],
   short: 'Find the next number in each sequence.',
-  full: 'Spot the rule behind each number sequence — adding, multiplying, squares, alternating steps and more — and choose the next number. The rule is explained after every answer.',
+  full: 'Spot the rule behind each number sequence — adding, multiplying, squares, alternating steps and more — and choose the next number. The rule is explained after every answer. For pictures instead of numbers, try [Pattern Recognition](game:pattern-recognition), or play more [math games](hub:math-games).',
   minutes: 4,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

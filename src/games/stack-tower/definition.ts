@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏗️',
   tags: ['timing', 'one button', 'stacking', 'endless', 'casual'],
   short: 'Drop sliding blocks to build the tallest tower — anything that overhangs gets sliced off.',
-  full: 'A one-tap timing game. A block slides back and forth above your tower; tap to drop it. Any part that hangs over the edge is sliced off, so each imperfect drop leaves a narrower block to stack. Nail the timing for a perfect drop, and chain perfects to make your blocks grow again.',
+  full: 'A one-tap timing game. A block slides back and forth above your tower; tap to drop it. Any part that hangs over the edge is sliced off, so each imperfect drop leaves a narrower block to stack. Nail the timing for a perfect drop, and chain perfects to make your blocks grow again. For a crane version, try [Stack Blocks](game:stack-blocks), or browse all [block games](hub:block-games).',
   minutes: 2,
   controls: {
     keyboard: ['Space or Enter drops the block'],

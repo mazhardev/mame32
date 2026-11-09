@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '♟️',
   tags: ['chess', 'checkmate', 'mate in one', 'mate in two', 'tactics', 'brain'],
   short: 'Find the checkmate: mate-in-one and mate-in-two chess puzzles.',
-  full: 'A collection of original checkmate puzzles, each checked by a computer solver to have exactly one winning key move. Find mate in one on Easy, mate in two on Normal, and tricky quiet mates in two — where the key move is not even a check — on Hard. Your progress is saved.',
+  full: 'A collection of original checkmate puzzles, each checked by a computer solver to have exactly one winning key move. Find mate in one on Easy, mate in two on Normal, and tricky quiet mates in two — where the key move is not even a check — on Hard. Your progress is saved. Put your mates to work in a full game of [chess against the computer](game:chess), or race the clock in [Chess Tactics](game:chess-tactics).',
   minutes: 5,
   multiplayer: 'single',
   hasLevels: true,

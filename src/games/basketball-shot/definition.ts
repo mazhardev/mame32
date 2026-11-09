@@ -8,7 +8,7 @@ export const basketballShotGame: GameDefinition = {
   title: 'Basketball Shot',
   shortDescription: 'Aim, set your power and sink as many baskets as you can against the clock.',
   fullDescription:
-    'A timed shooting challenge with real ball physics. Drag to set the angle and power, bank shots off the backboard, and chain baskets for streak bonuses. Three-pointers and swishes are worth extra.',
+    'A timed shooting challenge with real ball physics. Drag to set the angle and power, bank shots off the backboard, and chain baskets for streak bonuses. Three-pointers and swishes are worth extra. For more aim-and-power sports, try [Soccer Free Kick](game:soccer-free-kick) or [Bowling](game:bowling).',
   category: 'sports',
   difficulty: 'easy',
   tags: ['basketball', 'aim', 'power', 'timing', 'physics', 'hoops'],

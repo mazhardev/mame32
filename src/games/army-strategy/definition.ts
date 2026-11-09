@@ -9,7 +9,7 @@ export const game = defineGame({
   tags: ['tactics', 'turn-based', 'war game', 'units', 'ai', 'missions'],
   short:
     'Turn-based tactics: outmanoeuvre the computer’s army with spearmen, archers, riders and catapults.',
-  full: 'Command a small army across three missions against a computer general. Each turn every unit can move and then attack. Spearmen stop cavalry, riders run down archers and catapults, and archers pick off spearmen from a distance — while forests and hills give cover. Catapults hit hardest of all but cannot fire after moving. Defeat every enemy, or plant a unit on the enemy banner and hold it for a whole turn. The computer opponent runs entirely in your browser.',
+  full: 'Command a small army across three missions against a computer general. Each turn every unit can move and then attack. Spearmen stop cavalry, riders run down archers and catapults, and archers pick off spearmen from a distance — while forests and hills give cover. Catapults hit hardest of all but cannot fire after moving. Defeat every enemy, or plant a unit on the enemy banner and hold it for a whole turn. The computer opponent runs entirely in your browser. For strategy on a bigger scale, build a whole civilization in [Mini Civilization](game:mini-civilization), or defend a castle in [Castle Defense](game:castle-defense).',
   minutes: 15,
   multiplayer: 'vs-ai',
   hasSaveState: true,

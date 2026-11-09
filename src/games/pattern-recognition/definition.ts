@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🔷',
   tags: ['logic', 'visual'],
   short: 'Spot the pattern: what comes next, which one doesn’t belong, what’s missing.',
-  full: 'Visual pattern puzzles with coloured symbols. Continue repeating sequences, find the odd one out, and fill the gap in a symbol grid.',
+  full: 'Visual pattern puzzles with coloured symbols. Continue repeating sequences, find the odd one out, and fill the gap in a symbol grid. For number patterns, try [Number Sequence](game:number-sequence), or take the [IQ Challenge](game:iq-challenge).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

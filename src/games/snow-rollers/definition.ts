@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '☃️',
   tags: ['platformer', 'arena', 'snowball', 'stages', 'bosses', 'retro', 'combo'],
   short: 'Pack monsters into snowballs and roll them into each other — 30 stages and 3 bosses.',
-  full: 'Yuki the yeti must clear the snow kingdom of mischievous monsters. Throw snow at them until they are packed into a giant snowball, then kick it: the ball rolls, bounces off the walls and flattens every monster in its path for huge chain combos. Defeated monsters drop treats and magic potions for speed, power, range or a burst of Super Yuki. Thirty single-screen stages across Frosty Glade, Twilight Ridge and Ember Glacier, with a boss at the end of each land. Dawdle too long and a ghost comes looking for you.',
+  full: 'Yuki the yeti must clear the snow kingdom of mischievous monsters. Throw snow at them until they are packed into a giant snowball, then kick it: the ball rolls, bounces off the walls and flattens every monster in its path for huge chain combos. Defeated monsters drop treats and magic potions for speed, power, range or a burst of Super Yuki. Thirty single-screen stages across Frosty Glade, Twilight Ridge and Ember Glacier, with a boss at the end of each land. Dawdle too long and a ghost comes looking for you. More stage-based arcade adventures: [Pip Quest](game:pip-quest) and [Bubble Buddies](game:bubble-buddies).',
   minutes: 12,
   hasLevels: true,
   controls: {

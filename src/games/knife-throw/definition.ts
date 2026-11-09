@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔪',
   tags: ['timing', 'one button', 'stages', 'reflex'],
   short: 'Throw knives into a spinning log — but never hit a knife that is already there.',
-  full: 'A tense timing game. A wooden log spins at the top of the screen; tap to throw a knife into it. Stick every knife to split the log and reach the next stage, where the log spins in trickier patterns. Hitting another knife ends the run. Hit the apples for bonus points, and watch out for the boss log every five stages.',
+  full: 'A tense timing game. A wooden log spins at the top of the screen; tap to throw a knife into it. Stick every knife to split the log and reach the next stage, where the log spins in trickier patterns. Hitting another knife ends the run. Hit the apples for bonus points, and watch out for the boss log every five stages. If you like precise throws, try [Darts](game:darts) or the other [target shooting games](hub:target-shooting-games).',
   minutes: 2,
   controls: {
     keyboard: ['Space or ↑ to throw'],

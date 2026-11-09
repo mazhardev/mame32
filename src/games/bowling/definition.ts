@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎳',
   tags: ['ten pin', 'aim', 'power', 'physics', 'sports', 'strike'],
   short: 'Bowl a full ten-frame game: hook the ball into the pocket for strikes.',
-  full: 'Ten-pin bowling with real pin action. Pick your spot on the lane, choose how much the ball hooks, then stop the aim and power meters — or simply swipe the ball up the lane. Pins scatter and knock each other down, and the score sheet counts strikes and spares exactly like a bowling alley, including bonus balls in the tenth frame.',
+  full: 'Ten-pin bowling with real pin action. Pick your spot on the lane, choose how much the ball hooks, then stop the aim and power meters — or simply swipe the ball up the lane. Pins scatter and knock each other down, and the score sheet counts strikes and spares exactly like a bowling alley, including bonus balls in the tenth frame. For more aim-and-power games, try [Mini Golf](game:mini-golf) or [Basketball Shot](game:basketball-shot).',
   minutes: 6,
   controls: {
     keyboard: [

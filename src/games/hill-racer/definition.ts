@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⛰️',
   tags: ['physics', 'terrain', 'fuel', 'hills', 'racing'],
   short: 'Drive a bouncy jeep over endless hills — manage your fuel and never land on your roof.',
-  full: 'A physics driving game over rolling, ever-steeper hills. Your jeep has real suspension: it bounces, catches air off crests and can tip over if you are careless. Fuel runs down as you drive, so grab the red fuel cans along the way. In mid-air, the gas pedal tips the nose up and the brake tips it down, letting you line up a clean landing. Collect coins and see how far you can get.',
+  full: 'A physics driving game over rolling, ever-steeper hills. Your jeep has real suspension: it bounces, catches air off crests and can tip over if you are careless. Fuel runs down as you drive, so grab the red fuel cans along the way. In mid-air, the gas pedal tips the nose up and the brake tips it down, letting you line up a clean landing. Collect coins and see how far you can get. For more bumpy driving, haul crates in [Truck Driving](game:truck-driving), or slide through bends in [Drift Challenge](game:drift-challenge).',
   minutes: 4,
   controls: {
     keyboard: ['→ or ↑ gas', '← or ↓ brake / reverse'],

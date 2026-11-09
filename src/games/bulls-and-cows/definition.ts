@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🐂',
   tags: ['numbers', 'deduction', 'code', 'logic'],
   short: 'Crack a secret number using bulls (right place) and cows (wrong place).',
-  full: 'The classic pencil-and-paper code game. The computer picks a secret number with no repeated digits. After each guess you learn how many digits are in the right place (bulls) and how many are in the number but in the wrong place (cows).',
+  full: 'The classic pencil-and-paper code game. The computer picks a secret number with no repeated digits. After each guess you learn how many digits are in the right place (bulls) and how many are in the number but in the wrong place (cows). For the same idea with colours, try [Secret Colors](game:mastermind), or see all [code-breaking games](hub:code-breaking-games).',
   minutes: 5,
   controls: {
     keyboard: ['Type digits, Enter to guess, Backspace to delete'],

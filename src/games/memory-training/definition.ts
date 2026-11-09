@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🧠',
   tags: ['memory', 'drill', 'n-back', 'brain', 'educational'],
   short: 'Train your working memory with the N-back task: spot letters that repeat N steps back.',
-  full: 'A working-memory trainer based on the N-back task used in cognitive research. Letters appear one at a time. Press MATCH whenever the letter is the same as the one N steps earlier. A session has three blocks, and the level adapts: score 80 % or more and the next block goes one step further back; score under 50 % and it eases off.',
+  full: 'A working-memory trainer based on the N-back task used in cognitive research. Letters appear one at a time. Press MATCH whenever the letter is the same as the one N steps earlier. A session has three blocks, and the level adapts: score 80 % or more and the next block goes one step further back; score under 50 % and it eases off. For a lighter memory game, try [Memory Match](game:memory-match), or see all [memory games](hub:memory-games).',
   minutes: 4,
   controls: {
     keyboard: ['Space, Enter or M presses MATCH'],

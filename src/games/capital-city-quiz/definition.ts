@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🏛️',
   tags: ['quiz', 'world', 'capitals'],
   short: 'Name the capital cities of countries around the world.',
-  full: 'How well do you know the world’s capitals? Nearly 100 countries, with tricky distractors like Sydney and Toronto that catch out even seasoned travellers.',
+  full: 'How well do you know the world’s capitals? Nearly 100 countries, with tricky distractors like Sydney and Toronto that catch out even seasoned travellers. For the flags of the same countries, try the [Flag Quiz](game:flag-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

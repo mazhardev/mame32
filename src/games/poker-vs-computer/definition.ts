@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '♠️',
   tags: ['cards', 'poker', 'five card draw', 'bluff', 'casino style', 'virtual points', 'ai'],
   short: 'Heads-up five-card draw against a computer that bets, calls and bluffs.',
-  full: 'Classic five-card draw poker, one on one against a computer opponent, played with virtual chips only. Bet or check, swap up to three cards, bet again and show down. The computer judges its hand, calls your bets and sometimes bluffs. Take all its chips or finish twenty hands ahead.',
+  full: 'Classic five-card draw poker, one on one against a computer opponent, played with virtual chips only. Bet or check, swap up to three cards, bet again and show down. The computer judges its hand, calls your bets and sometimes bluffs. Take all its chips or finish twenty hands ahead. For a quicker showdown, try the [Three Card Game](game:three-card-game), or see all [card games against the computer](hub:card-games-vs-computer).',
   minutes: 10,
   multiplayer: 'vs-ai',
   controls: {

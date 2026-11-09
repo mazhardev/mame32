@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚗',
   tags: ['endless', 'traffic', 'dodge', 'near miss', 'racing'],
   short: 'Weave through busy traffic at full speed and chain near misses for big combos.',
-  full: 'An endless traffic dodger where you set the pace. Hold the accelerator to go faster and score faster, but the gaps between cars close quicker too. Slip past a car with only a whisker of space for a near miss, and keep them coming to build a combo multiplier. Cars change lanes now and then, and trucks are long. One crash ends the run.',
+  full: 'An endless traffic dodger where you set the pace. Hold the accelerator to go faster and score faster, but the gaps between cars close quicker too. Slip past a car with only a whisker of space for a near miss, and keep them coming to build a combo multiplier. Cars change lanes now and then, and trucks are long. One crash ends the run. For a relaxed endless drive, try [Endless Traffic Driving](game:endless-traffic-driving), or see all [car driving games](hub:driving-games).',
   minutes: 3,
   controls: {
     keyboard: ['← → steer', '↑ accelerate, ↓ brake'],

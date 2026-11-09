@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🖍️',
   tags: ['colouring', 'kids', 'relaxing', 'drawing', 'creative', 'save'],
   short: 'Tap to colour six original pictures: a cottage, a rocket, an underwater scene and more.',
-  full: 'A tap-to-fill colouring book with six original pages — a cottage on the hills, life under the sea, a rocket trip, an ice-cream treat, a butterfly and a castle. Pick a colour and tap any part of the picture to fill it. Every page saves as you go, and you can download your finished pictures.',
+  full: 'A tap-to-fill colouring book with six original pages — a cottage on the hills, life under the sea, a rocket trip, an ice-cream treat, a butterfly and a castle. Pick a colour and tap any part of the picture to fill it. Every page saves as you go, and you can download your finished pictures. For endless patterns, try [Mandala Coloring](game:mandala-coloring), or see all [colouring games](hub:coloring-games).',
   minutes: 6,
   hasSaveState: true,
   controls: {

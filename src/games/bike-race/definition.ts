@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚴',
   tags: ['motocross', 'physics', 'balance', 'jumps', 'racing', 'sports'],
   short: 'Race a dirt bike over jumps and whoops against two ghost riders across three stages.',
-  full: 'Three motocross stages packed with kickers, tabletops, whoops, step-ups and drops. Hold the throttle, brake before the big drops and lean to land your jumps level — land on your head and you go back to the last checkpoint while the clock keeps running. Two ghost riders show the pace to beat; land a full flip in the air for bonus points.',
+  full: 'Three motocross stages packed with kickers, tabletops, whoops, step-ups and drops. Hold the throttle, brake before the big drops and lean to land your jumps level — land on your head and you go back to the last checkpoint while the clock keeps running. Two ghost riders show the pace to beat; land a full flip in the air for bonus points. For more racing on two wheels, try [Motorcycle Racing](game:motorcycle-racing), or browse all [racing games](cat:racing).',
   minutes: 4,
   hasLevels: true,
   controls: {

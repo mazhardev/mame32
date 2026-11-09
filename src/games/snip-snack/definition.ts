@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🍬',
   tags: ['physics', 'rope', 'cut', 'candy', 'sweet', 'monster', 'stars', 'levels', 'swipe'],
   short: 'Cut the ropes to swing a sweet into the Nibbler’s mouth and grab three stars on the way — 15 levels.',
-  full: 'A sweet dangles from ropes and the Nibbler, a small green monster, is very hungry. Swipe across a rope to cut it and let the sweet swing, fly and fall. Time your cuts so it picks up all three stars before it drops into the Nibbler’s mouth. Bubbles float the sweet upward until you pop them, blowers puff it sideways, dotted rings tie on a fresh rope as it passes, and spikes are best avoided. 15 levels across the Pantry, the Garden Shed and the Toy Box.',
+  full: 'A sweet dangles from ropes and the Nibbler, a small green monster, is very hungry. Swipe across a rope to cut it and let the sweet swing, fly and fall. Time your cuts so it picks up all three stars before it drops into the Nibbler’s mouth. Bubbles float the sweet upward until you pop them, blowers puff it sideways, dotted rings tie on a fresh rope as it passes, and spikes are best avoided. 15 levels across the Pantry, the Garden Shed and the Toy Box. For more physics puzzles, knock over forts in [Slingshot Siege](game:slingshot-siege), or browse [logic puzzles](hub:logic-puzzles).',
   minutes: 5,
   hasLevels: true,
   controls: {

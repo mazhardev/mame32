@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🧱',
   tags: ['timing', 'stacking', 'one button', 'physics', 'casual'],
   short: 'Drop blocks from a swinging crane and build a tower that does not topple.',
-  full: 'A crane swings a block back and forth on a rope. Release it at the right moment so it lands on top of your tower. Blocks that land off-centre stay where they fall, so a sloppy stack starts to lean — and if too much weight hangs over one side, the top of the tower comes crashing down. Line up perfect drops for bonus points.',
+  full: 'A crane swings a block back and forth on a rope. Release it at the right moment so it lands on top of your tower. Blocks that land off-centre stay where they fall, so a sloppy stack starts to lean — and if too much weight hangs over one side, the top of the tower comes crashing down. Line up perfect drops for bonus points. For a sliding-block version, try [Stack Tower](game:stack-tower), or browse all [block games](hub:block-games).',
   minutes: 3,
   controls: {
     keyboard: ['Space or Enter releases the block'],

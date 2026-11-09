@@ -9,7 +9,7 @@ export const game = defineGame({
   tags: ['kingdom', 'medieval', 'resources', 'decisions', 'building', 'save'],
   short:
     'Feed your people, survive raids and hard choices, and build a castle before your reign ends.',
-  full: 'Rule a small medieval kingdom season by season. Build farms, lumber camps, quarries and cottages and put your people to work; markets, barracks, temples and walls come later. Every season brings a decision — a merchant at the gates, a blight in the fields, settlers asking to join, raiders demanding tribute — and your tax rate trades gold against your people’s happiness. Keep everyone fed and content, and gather enough stone, wood and gold to raise a castle before your reign ends.',
+  full: 'Rule a small medieval kingdom season by season. Build farms, lumber camps, quarries and cottages and put your people to work; markets, barracks, temples and walls come later. Every season brings a decision — a merchant at the gates, a blight in the fields, settlers asking to join, raiders demanding tribute — and your tax rate trades gold against your people’s happiness. Keep everyone fed and content, and gather enough stone, wood and gold to raise a castle before your reign ends. For more long-term planning, grow a colony in [Resource Manager](game:resource-manager), or build a civilization in [Mini Civilization](game:mini-civilization).',
   minutes: 15,
   hasSaveState: true,
   controls: {

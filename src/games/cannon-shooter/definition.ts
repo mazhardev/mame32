@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💣',
   tags: ['cannon', 'shooter', 'physics', 'bounce', 'boulders', 'casual'],
   short: 'Slide your cannon under bouncing boulders and blast them to bits.',
-  full: 'Numbered boulders drop into the valley and bounce around. Your cannon fires on its own — all you have to do is slide it underneath them. Every shot knocks a point off a boulder; at zero, big boulders split into two smaller ones. Clear every boulder to finish the level and power up your cannon. Just don’t let one land on you.',
+  full: 'Numbered boulders drop into the valley and bounce around. Your cannon fires on its own — all you have to do is slide it underneath them. Every shot knocks a point off a boulder; at zero, big boulders split into two smaller ones. Clear every boulder to finish the level and power up your cannon. Just don’t let one land on you. More aim-and-fire fun: [Knife Throw](game:knife-throw) and the other [target shooting games](hub:target-shooting-games).',
   minutes: 5,
   controls: {
     keyboard: ['← / → or A / D move the cannon'],

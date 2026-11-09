@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '✏️',
   tags: ['party', 'drawing', 'two-player', 'family', 'guessing', 'creative'],
   short: 'A pass-and-play drawing party game: draw the secret word while friends shout guesses.',
-  full: 'A drawing party game for 2–8 players on one device. Each turn, one player secretly sees a word and draws it against the clock while everyone else shouts guesses. When someone gets it, tap their name: the guesser scores a point and the artist scores one (two for a quick guess). Words range from easy objects to tricky ideas like “jet lag”. Nothing goes online — just pass the phone or tablet around.',
+  full: 'A drawing party game for 2–8 players on one device. Each turn, one player secretly sees a word and draws it against the clock while everyone else shouts guesses. When someone gets it, tap their name: the guesser scores a point and the artist scores one (two for a quick guess). Words range from easy objects to tricky ideas like “jet lag”. Nothing goes online — just pass the phone or tablet around. For solo drawing practice, try [Shape Drawing](game:shape-drawing), or guess what the computer draws in [Drawing Guess](game:drawing-guess).',
   minutes: 15,
   multiplayer: 'local-multiplayer',
   keyboard: false,

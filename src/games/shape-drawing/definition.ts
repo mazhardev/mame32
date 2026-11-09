@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔺',
   tags: ['drawing', 'accuracy', 'freehand', 'shapes', 'creative', 'practice'],
   short: 'Draw circles, stars, spirals and more freehand — how close can you get to perfect?',
-  full: 'A freehand drawing challenge. You are asked for eight shapes — a circle, a star, a heart, a spiral, an infinity sign — and each one is scored by comparing it with the ideal shape, whatever size you draw it. After each shape the perfect version appears over yours so you can see where you wandered.',
+  full: 'A freehand drawing challenge. You are asked for eight shapes — a circle, a star, a heart, a spiral, an infinity sign — and each one is scored by comparing it with the ideal shape, whatever size you draw it. After each shape the perfect version appears over yours so you can see where you wandered. Put your drawing to the test with friends in [Local Pictionary](game:local-pictionary), or create sprites in [Pixel Art](game:pixel-art).',
   minutes: 3,
   keyboard: false,
   controls: {

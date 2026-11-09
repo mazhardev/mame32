@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🔬',
   tags: ['quiz', 'science'],
   short: 'Space, the human body, physics, chemistry and nature.',
-  full: 'A general science quiz covering the solar system, human biology, physics, chemistry and the natural world.',
+  full: 'A general science quiz covering the solar system, human biology, physics, chemistry and the natural world. For the elements in detail, try the [Periodic Table Quiz](game:periodic-table-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

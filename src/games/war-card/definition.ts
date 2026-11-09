@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚔️',
   tags: ['cards', 'luck', 'classic', 'kids', 'quick', 'vs computer'],
   short: 'Flip cards against the computer — the higher card takes both.',
-  full: 'The classic card game of pure luck. You and the computer each flip the top card of your deck, and the higher card wins both. Tie? That means WAR: three cards face down and one more face up, winner takes the lot. Have the most cards when the rounds run out, or win all 52.',
+  full: 'The classic card game of pure luck. You and the computer each flip the top card of your deck, and the higher card wins both. Tie? That means WAR: three cards face down and one more face up, winner takes the lot. Have the most cards when the rounds run out, or win all 52. For a card game with a little more choice, try [Crazy Eights](game:crazy-eights), or see all [card games against the computer](hub:card-games-vs-computer).',
   minutes: 5,
   multiplayer: 'vs-ai',
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🍾',
   tags: ['physics', 'timing', 'one button', 'quick', 'casual'],
   short: 'Charge, release and flip the water bottle — land it standing upright.',
-  full: 'The famous bottle-flip challenge, on screen. Hold to charge a bouncing power meter and release to toss the bottle. More power means a higher toss and a faster spin. It only lands upright if it has turned a whole number of times when it comes down. Find the sweet spot for a single flip, then go for a double.',
+  full: 'The famous bottle-flip challenge, on screen. Hold to charge a bouncing power meter and release to toss the bottle. More power means a higher toss and a faster spin. It only lands upright if it has turned a whole number of times when it comes down. Find the sweet spot for a single flip, then go for a double. For more one-tap timing, try [Perfect Timing](game:perfect-timing) or [Circle Jump](game:circle-jump).',
   minutes: 2,
   controls: {
     keyboard: ['Hold Space to charge, release to flip'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌀',
   tags: ['tower', 'drop', 'rotate', 'levels', 'one finger'],
   short: 'Twist the tower so the bouncing ball drops through the gaps — never onto red.',
-  full: 'Guide a bouncing ball all the way down a tall spiral tower. Turn the tower left and right so the ball falls through the gaps in each ring. Landing on red ends the run — but fall through three rings in a row and the ball powers up to smash through whatever it hits next. Reach the golden base to clear the level.',
+  full: 'Guide a bouncing ball all the way down a tall spiral tower. Turn the tower left and right so the ball falls through the gaps in each ring. Landing on red ends the run — but fall through three rings in a row and the ball powers up to smash through whatever it hits next. Reach the golden base to clear the level. If you like guiding a bouncing ball, try [Ball Bounce](game:ball-bounce) or [Color Switch](game:color-switch).',
   minutes: 3,
   hasLevels: true,
   controls: {

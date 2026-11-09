@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔠',
   tags: ['word grid', 'word hunt', 'timed', 'find words'],
   short: 'Trace words through a grid of letters before the timer runs out.',
-  full: 'A word-hunt in a grid of random letters. Join neighbouring tiles — including diagonals — to spell words, without reusing a tile in the same word. When time is up, see how many words were hiding in the grid.',
+  full: 'A word-hunt in a grid of random letters. Join neighbouring tiles — including diagonals — to spell words, without reusing a tile in the same word. When time is up, see how many words were hiding in the grid. For a calmer search, try [Word Search](game:word-search), or connect letters on a wheel in [Letter Connect](game:letter-connect).',
   minutes: 4,
   controls: {
     keyboard: ['Type a word and press Enter'],

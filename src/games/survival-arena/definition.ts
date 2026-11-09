@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚔️',
   tags: ['survival', 'waves', 'dash', 'combo', 'action'],
   short: 'No weapons, just a dash: zip through enemies to defeat them and survive the arena.',
-  full: 'An arena survival game built around one move: the dash. Dashing makes you briefly untouchable and defeats every enemy you pass through, but it needs a moment to recharge — and between dashes you are vulnerable. Slimes split into two when hit, bats flutter around you and archers fire from a distance. Chain several enemies into one dash for a combo.',
+  full: 'An arena survival game built around one move: the dash. Dashing makes you briefly untouchable and defeats every enemy you pass through, but it needs a moment to recharge — and between dashes you are vulnerable. Slimes split into two when hit, bats flutter around you and archers fire from a distance. Chain several enemies into one dash for a combo. For survival with a weapon, try [Zombie Survival](game:zombie-survival) or [Robot Shooter](game:robot-shooter).',
   minutes: 4,
   controls: {
     keyboard: ['WASD or arrows move', 'Space dashes in the direction you are moving'],

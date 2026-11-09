@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎵',
   tags: ['rhythm', 'jump', 'courses', 'one button', 'precision'],
   short: 'Jump a dashing cube over spikes and up blocks on a course built to the beat.',
-  full: 'A precision one-button runner. Your cube dashes along a course whose spikes, blocks, staircases and jump pads land on a steady beat — listen for the tick. Tap to jump, hold to keep jumping as soon as you land. One touch of a spike or a block’s face sends you back to the start. Each difficulty is a fixed course: learn it and reach 100%.',
+  full: 'A precision one-button runner. Your cube dashes along a course whose spikes, blocks, staircases and jump pads land on a steady beat — listen for the tick. Tap to jump, hold to keep jumping as soon as you land. One touch of a spike or a block’s face sends you back to the start. Each difficulty is a fixed course: learn it and reach 100%. For more precise jumping, try [Dino Runner](game:dino-runner), or browse all [runner games](hub:runner-games).',
   minutes: 3,
   hasLevels: true,
   controls: {

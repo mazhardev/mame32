@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⏱️',
   tags: ['reflex', 'measurement', 'attention', 'brain'],
   short: 'A three-part reaction battery: simple, choice and go/no-go reaction times.',
-  full: 'Go beyond a single reaction test. Reaction Test Pro measures three different skills: simple reaction (respond to green), choice reaction (press the side the arrow points to) and inhibition with go/no-go (respond to green but hold still for red). You get your average time and accuracy for each part.',
+  full: 'Go beyond a single reaction test. Reaction Test Pro measures three different skills: simple reaction (respond to green), choice reaction (press the side the arrow points to) and inhibition with go/no-go (respond to green but hold still for red). You get your average time and accuracy for each part. For a quick single test, try the [Reaction Timer](game:reaction-timer), or see all [reaction time games](hub:reaction-time-games).',
   minutes: 3,
   controls: {
     keyboard: ['Space or Enter responds; ← and → answer choice trials'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '✍️',
   tags: ['prefix', 'vocabulary', 'timed', 'word sprint'],
   short: 'How many words can you make from a starting prefix in 45 seconds?',
-  full: 'A fast vocabulary sprint. Each round gives you the beginning of a word — type as many different real words that start with it as you can before time runs out. Three rounds per game.',
+  full: 'A fast vocabulary sprint. Each round gives you the beginning of a word — type as many different real words that start with it as you can before time runs out. Three rounds per game. For more fill-in-the-gaps play, try [Missing Letters](game:missing-letters), or browse all [word guessing games](hub:word-guessing-games).',
   minutes: 3,
   controls: {
     keyboard: ['Type a word (or just its ending) and press Enter'],

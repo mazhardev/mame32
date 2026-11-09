@@ -9,7 +9,7 @@ export const game = defineGame({
   tags: ['4x', 'civilization', 'turn-based', 'research', 'cities', 'ai'],
   short:
     'Found cities, research a tech tree and race a rival civilization to the stars — or conquer it.',
-  full: 'A compact turn-based empire builder against one computer rival on a small map. Send settlers out to found cities; each city works the land around it for food, production and science. Research Pottery, Bronze Working, Writing, Masonry and more, build granaries, libraries and walls, and raise warriors, spearmen, riders and catapults. Win by completing the Grand Observatory wonder first, or by capturing the rival’s capital. The rival plays by the same rules, entirely in your browser.',
+  full: 'A compact turn-based empire builder against one computer rival on a small map. Send settlers out to found cities; each city works the land around it for food, production and science. Research Pottery, Bronze Working, Writing, Masonry and more, build granaries, libraries and walls, and raise warriors, spearmen, riders and catapults. Win by completing the Grand Observatory wonder first, or by capturing the rival’s capital. The rival plays by the same rules, entirely in your browser. For turn-based battles, try [Army Strategy](game:army-strategy), or rule a kingdom in [Kingdom Builder](game:kingdom-builder).',
   minutes: 30,
   multiplayer: 'vs-ai',
   hasSaveState: true,

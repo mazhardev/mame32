@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🦖',
   tags: ['runner', 'jump', 'endless', 'reflex', 'one button'],
   short: 'Help a little dinosaur leap over cacti and duck under birds as the desert speeds up.',
-  full: 'An endless desert dash. Your dinosaur runs by itself — jump over cacti, and duck or jump past birds swooping in at different heights. The pace keeps rising, and day turns to night the further you get.',
+  full: 'An endless desert dash. Your dinosaur runs by itself — jump over cacti, and duck or jump past birds swooping in at different heights. The pace keeps rising, and day turns to night the further you get. Want more speed? Free-run the rooftops in [Endless Runner](game:endless-runner) or see all [runner games](hub:runner-games).',
   minutes: 2,
   controls: {
     keyboard: ['Space or ↑ to jump', '↓ to duck (or to drop faster in the air)'],

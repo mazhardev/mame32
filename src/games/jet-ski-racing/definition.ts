@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌊',
   tags: ['water', 'endless', 'slalom', 'gates', 'racing'],
   short: 'Slalom a jet ski through buoy gates on choppy water — each gate buys a little more time.',
-  full: 'An endless water slalom against the clock. Steer your jet ski between each pair of buoys: every gate you make adds time, every gate you miss takes time away. Jet skis slide, so steering sets where you want to go and the ski drifts there, while a shifting current pushes you sideways. Rocks bring you to a near stop. The course speeds up and the gates narrow as you go.',
+  full: 'An endless water slalom against the clock. Steer your jet ski between each pair of buoys: every gate you make adds time, every gate you miss takes time away. Jet skis slide, so steering sets where you want to go and the ski drifts there, while a shifting current pushes you sideways. Rocks bring you to a near stop. The course speeds up and the gates narrow as you go. For powerboats on a lagoon, try [Boat Racing](game:boat-racing), or browse all [racing games](cat:racing).',
   minutes: 3,
   controls: {
     keyboard: ['← → steer', '↑ boost, ↓ ease off'],

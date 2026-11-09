@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏎️',
   tags: ['laps', 'track', 'ai', 'cars', 'racing'],
   short: 'Race three rivals over three laps of a country circuit — seen from above.',
-  full: 'Classic top-down racing. Line up on the grid with three computer drivers, wait for the countdown and race three laps of a winding country circuit. Brake before the bends, use the handbrake to swing round tight corners, and stay off the grass — it slows you right down. Watch the minimap to see where your rivals are.',
+  full: 'Classic top-down racing. Line up on the grid with three computer drivers, wait for the countdown and race three laps of a winding country circuit. Brake before the bends, use the handbrake to swing round tight corners, and stay off the grass — it slows you right down. Watch the minimap to see where your rivals are. For more circuits, try [Circuit Racing](game:circuit-racing) or [Formula Racing](game:formula-racing).',
   minutes: 4,
   multiplayer: 'vs-ai',
   controls: {

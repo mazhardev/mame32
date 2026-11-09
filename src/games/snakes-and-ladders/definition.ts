@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🪜',
   tags: ['dice', 'family', 'luck', 'kids', 'two player', 'four player', 'race'],
   short: 'Roll the die, climb ladders, dodge snakes and race to square 100.',
-  full: 'The family dice race. Roll and move your token along the winding 100-square board: ladders carry you up, snakes slide you down. Play against up to three computer players, or pass and play with up to four people on one device.',
+  full: 'The family dice race. Roll and move your token along the winding 100-square board: ladders carry you up, snakes slide you down. Play against up to three computer players, or pass and play with up to four people on one device. For a race with more choices, try [Ludo](game:ludo), or see all [family board games](hub:family-board-games).',
   minutes: 6,
   multiplayer: 'local-multiplayer',
   controls: {

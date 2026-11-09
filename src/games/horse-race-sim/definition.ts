@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🐎',
   tags: ['racing', 'simulation', 'virtual points', 'odds', 'strategy', 'sports'],
   short: 'Study the form, back a runner with virtual points and watch eight simulated races.',
-  full: 'A day at the races with virtual points only. Each race has six runners with hidden speed, stamina and finishing kick; their recent form and the odds are your clues. Back a horse to win, or to finish in the top three for a smaller return, then watch the race unfold. Try to finish the eight-race meeting with more points than you started with. There is no real money and nothing to buy.',
+  full: 'A day at the races with virtual points only. Each race has six runners with hidden speed, stamina and finishing kick; their recent form and the odds are your clues. Back a horse to win, or to finish in the top three for a smaller return, then watch the race unfold. Try to finish the eight-race meeting with more points than you started with. There is no real money and nothing to buy. For a race you run yourself, try the [Sprint Race](game:sprint-race), or browse more [sports games](cat:sports).',
   minutes: 6,
   controls: {
     keyboard: [

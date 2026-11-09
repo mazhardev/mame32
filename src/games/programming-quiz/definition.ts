@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '💻',
   tags: ['quiz', 'coding'],
   short: 'Web basics, data structures, algorithms and coding trivia.',
-  full: 'A quiz for coders and learners: HTML and CSS, JavaScript and Python basics, data structures, Big-O, HTTP, Git and computing history.',
+  full: 'A quiz for coders and learners: HTML and CSS, JavaScript and Python basics, data structures, Big-O, HTTP, Git and computing history. For more trivia, try the [Science Quiz](game:science-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 4,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

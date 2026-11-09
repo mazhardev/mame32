@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🔢',
   tags: ['kids', 'numbers'],
   short: 'Count fruit, stars and animals — a gentle first maths game for kids.',
-  full: 'A friendly counting game for young children. Count the pictures, compare which group has more, and add two groups together. No timers and big tap-friendly answers.',
+  full: 'A friendly counting game for young children. Count the pictures, compare which group has more, and add two groups together. No timers and big tap-friendly answers. Next, learn letters in the [Alphabet Game](game:alphabet-game), or find more [games for kids](hub:games-for-kids).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

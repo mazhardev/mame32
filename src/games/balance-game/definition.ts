@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚖️',
   tags: ['physics', 'balance', 'endless', 'reflex', 'casual'],
   short: 'Keep a wobbly pole upright on a cart while gusts of wind try to knock it over.',
-  full: 'A real inverted-pendulum balancing act. A tall pole stands on a little cart. Drive the cart left and right to keep the pole from toppling — just like balancing a broom on your hand, you move towards the side it is leaning. Gusts of wind push the pole and get stronger the longer you last.',
+  full: 'A real inverted-pendulum balancing act. A tall pole stands on a little cart. Drive the cart left and right to keep the pole from toppling — just like balancing a broom on your hand, you move towards the side it is leaning. Gusts of wind push the pole and get stronger the longer you last. If you like a steady hand, try [Stack Blocks](game:stack-blocks) or [Bottle Flip](game:bottle-flip).',
   minutes: 2,
   controls: {
     keyboard: ['← → or A / D drive the cart'],

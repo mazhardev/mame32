@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🥅',
   tags: ['football', 'soccer', 'curve', 'aim', 'swipe', 'sports'],
   short: 'Curl ten free kicks around the wall and past the keeper.',
-  full: 'Ten free kicks from different distances and angles. A wall of defenders guards the near post and a keeper waits for anything on target. Swipe towards the goal to shoot: swipe faster for more power and bow your swipe to bend the ball. Top-corner goals score extra.',
+  full: 'Ten free kicks from different distances and angles. A wall of defenders guards the near post and a keeper waits for anything on target. Swipe towards the goal to shoot: swipe faster for more power and bow your swipe to bend the ball. Top-corner goals score extra. Then step up for a five-kick [Penalty Shootout](game:penalty-shootout), or browse more [sports games](cat:sports).',
   minutes: 4,
   controls: {
     keyboard: [

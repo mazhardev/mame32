@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '👽',
   tags: ['shooter', 'waves', 'defense', 'aim', 'action'],
   short: 'Flying saucers bomb the city and beam up buildings — aim your turret and stop them.',
-  full: 'Defend a little city from a cartoon alien invasion. Saucers zigzag across the sky dropping bombs, and green abductor ships hover over a building and slowly beam it away. Aim your turret freely and shoot them down; you can even shoot falling bombs out of the air. Rescue a building mid-abduction for a big bonus. The invasion wins when the last building is gone.',
+  full: 'Defend a little city from a cartoon alien invasion. Saucers zigzag across the sky dropping bombs, and green abductor ships hover over a building and slowly beam it away. Aim your turret freely and shoot them down; you can even shoot falling bombs out of the air. Rescue a building mid-abduction for a big bonus. The invasion wins when the last building is gone. For more cartoon space defence, try [Asteroid Defense](game:asteroid-defense), or browse [space shooter games](hub:space-shooter-games).',
   minutes: 5,
   controls: {
     keyboard: ['← → rotate the turret', 'Space fires'],

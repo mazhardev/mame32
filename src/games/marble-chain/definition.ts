@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔮',
   tags: ['marbles', 'match three', 'shooter', 'chain', 'temple', 'combo', 'levels'],
   short: 'Shoot marbles into a rolling chain and match three before it reaches the pit — 15 temple levels.',
-  full: 'A chain of coloured marbles rolls along a carved temple track toward a bottomless pit. From the stone idol in the middle, shoot marbles into the chain: three or more of a colour touching disappear. When a gap opens and the marbles on either side match, the chain rolls back together, and another match there is a combo. Watch for power marbles that explode, slow the chain or roll it backwards. Clear every marble before any reach the pit, across 15 levels in the Jade, Sun and Moon temples.',
+  full: 'A chain of coloured marbles rolls along a carved temple track toward a bottomless pit. From the stone idol in the middle, shoot marbles into the chain: three or more of a colour touching disappear. When a gap opens and the marbles on either side match, the chain rolls back together, and another match there is a combo. Watch for power marbles that explode, slow the chain or roll it backwards. Clear every marble before any reach the pit, across 15 levels in the Jade, Sun and Moon temples. For more colour matching, pop bubbles in [Bubble Shooter](game:bubble-shooter), or browse all [match 3 games](hub:match-3-games).',
   minutes: 10,
   hasLevels: true,
   controls: {

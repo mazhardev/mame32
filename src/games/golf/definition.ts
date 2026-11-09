@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⛳',
   tags: ['course', 'clubs', 'wind', 'putting', 'aim', 'sports'],
   short: 'Play nine holes of golf: choose your club, beat the wind and read the greens.',
-  full: 'A nine-hole, par-36 golf course seen from above, with doglegs, creeks, an island green, bunkers and tree-lined fairways. Pick the right club for the distance, aim around the hazards and allow for the wind. On the green the view zooms in and the slope arrows show which way your putt will break.',
+  full: 'A nine-hole, par-36 golf course seen from above, with doglegs, creeks, an island green, bunkers and tree-lined fairways. Pick the right club for the distance, aim around the hazards and allow for the wind. On the green the view zooms in and the slope arrows show which way your putt will break. For a quicker round with windmills and bumpers, try [Mini Golf](game:mini-golf), or line up a strike in [Bowling](game:bowling).',
   minutes: 10,
   hasLevels: true,
   controls: {

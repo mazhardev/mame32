@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '♞',
   tags: ['chess', 'tactics', 'training', 'forks', 'pins', 'timed', 'puzzles'],
   short: 'Timed chess training: spot the move that wins material.',
-  full: 'Sharpen your tactical vision. Each round gives you ten original chess positions where one move wins material — a fork, a pin, a skewer or a loose piece. Find it before the clock runs out. Every position was checked by a chess engine so the best move stands clearly above the rest.',
+  full: 'Sharpen your tactical vision. Each round gives you ten original chess positions where one move wins material — a fork, a pin, a skewer or a loose piece. Find it before the clock runs out. Every position was checked by a chess engine so the best move stands clearly above the rest. Apply your tactics in a full game of [chess](game:chess), or solve set positions in [Chess Puzzle](game:chess-puzzle).',
   minutes: 6,
   multiplayer: 'single',
   controls: {

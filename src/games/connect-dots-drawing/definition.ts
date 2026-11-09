@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '📐',
   tags: ['dot to dot', 'drawing', 'kids', 'numbers', 'creative', 'relaxing'],
   short: 'Join the numbered dots in order to reveal five hidden pictures.',
-  full: 'A classic dot-to-dot activity with original pictures. Tap the dots in number order — 1, 2, 3 — and a line follows your finger. When the last dot is joined, the details appear and the picture is revealed. Five pictures per game, with more dots on harder levels.',
+  full: 'A classic dot-to-dot activity with original pictures. Tap the dots in number order — 1, 2, 3 — and a line follows your finger. When the last dot is joined, the details appear and the picture is revealed. Five pictures per game, with more dots on harder levels. Then colour your picture in the [Coloring Game](game:coloring-game), or join numbered dots in a puzzle with [Connect the Dots](game:connect-the-dots).',
   minutes: 4,
   controls: {
     keyboard: ['Tab to a dot and press Enter', 'Enter goes to the next picture'],

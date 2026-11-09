@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏗️',
   tags: ['letters', 'chain', 'timed', 'anagram'],
   short: 'Grow a word one letter at a time: ART → RATE → CRATE → CARTER.',
-  full: 'Start with a three-letter word and keep building. Each new word must use every letter of the last one plus exactly one new letter, in any order. Longer words score much more.',
+  full: 'Start with a three-letter word and keep building. Each new word must use every letter of the last one plus exactly one new letter, in any order. Longer words score much more. For more ways to grow words, try [Tile Word Builder](game:tile-word-builder) or climb a [Word Ladder](game:word-ladder).',
   minutes: 3,
   controls: {
     keyboard: ['Type the next word and press Enter'],

@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '📜',
   tags: ['quiz', 'history'],
   short: 'Ancient civilisations, world wars, explorers and inventions.',
-  full: 'Travel through time with questions about ancient civilisations, empires, revolutions, explorers, inventions and the 20th century.',
+  full: 'Travel through time with questions about ancient civilisations, empires, revolutions, explorers, inventions and the 20th century. For more school subjects, try the [Science Quiz](game:science-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

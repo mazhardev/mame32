@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏁',
   tags: ['laps', 'ai', 'track', 'circuits', 'racing'],
   short: 'Sports-car racing on three technical circuits — hairpins, esses and a mountain pass.',
-  full: 'Four-lap sports-car races against three skilled computer drivers on one of three technical circuits: tight Harbour Hairpins, flowing Forest Esses or the twisting Mountain Pass. Each race picks a circuit at random, so you need to learn them all. Brake points matter more than top speed here.',
+  full: 'Four-lap sports-car races against three skilled computer drivers on one of three technical circuits: tight Harbour Hairpins, flowing Forest Esses or the twisting Mountain Pass. Each race picks a circuit at random, so you need to learn them all. Brake points matter more than top speed here. For a single-seater on a grand prix track, try [Formula Racing](game:formula-racing), or race from above in [Top Down Car Racing](game:top-down-racing).',
   minutes: 5,
   multiplayer: 'vs-ai',
   controls: {

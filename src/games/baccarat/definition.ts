@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎰',
   tags: ['cards', 'casino style', 'simulation', 'virtual points', 'punto banco'],
   short: 'Back Player, Banker or Tie in this card-game simulation using virtual points.',
-  full: 'A simulation of the card game baccarat (punto banco) played with virtual points only — no real money and nothing to buy. Back the Player hand, the Banker hand or a Tie, then watch the cards follow the traditional drawing rules. Try to finish twenty hands with more points than you started with.',
+  full: 'A simulation of the card game baccarat (punto banco) played with virtual points only — no real money and nothing to buy. Back the Player hand, the Banker hand or a Tie, then watch the cards follow the traditional drawing rules. Try to finish twenty hands with more points than you started with. For another card game against the dealer with virtual points, try [Blackjack](game:blackjack).',
   minutes: 5,
   multiplayer: 'single',
   controls: {

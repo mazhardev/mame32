@@ -178,6 +178,11 @@ describe('links in copy', () => {
     }
   });
 
+  it('ends every game description with at least one link to a related game or hub', () => {
+    for (const g of games)
+      expect(linkTargets(g.fullDescription).length, g.id).toBeGreaterThanOrEqual(1);
+  });
+
   it('gives every hub intro at least two links', () => {
     for (const c of CLUSTERS)
       expect(linkTargets(c.intro.join(' ')).length, c.slug).toBeGreaterThanOrEqual(2);

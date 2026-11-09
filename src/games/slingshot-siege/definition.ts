@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🪨',
   tags: ['slingshot', 'physics', 'catapult', 'destruction', 'levels', 'stars', 'puzzle', 'aim'],
   short: 'Fling stone critters at wobbly forts and knock out every Grumble across 30 physics levels.',
-  full: 'The Grumbles have built forts of wood, stone and ice — time to knock them down. Pull back the slingshot and let fly: real physics topples towers, snaps planks and sends the grumpy one-eyed critters tumbling. Each stone has its own trick: Triplets split into three, the Zoomer dashes ahead, the Boulder crushes stone and the Kaboom explodes. Flatten 30 forts across the Meadow, the Desert Ruins and the Glacier Citadel, set off TNT crates, and earn three stars by matching each level’s par.',
+  full: 'The Grumbles have built forts of wood, stone and ice — time to knock them down. Pull back the slingshot and let fly: real physics topples towers, snaps planks and sends the grumpy one-eyed critters tumbling. Each stone has its own trick: Triplets split into three, the Zoomer dashes ahead, the Boulder crushes stone and the Kaboom explodes. Flatten 30 forts across the Meadow, the Desert Ruins and the Glacier Citadel, set off TNT crates, and earn three stars by matching each level’s par. For more physics puzzles, cut the ropes in [Snip Snack](game:snip-snack), or plan artillery shots in [Cannon Battle](game:cannon-battle).',
   minutes: 10,
   hasLevels: true,
   controls: {

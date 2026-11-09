@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏨',
   tags: ['hotel', 'bookings', 'calendar', 'management', 'economy', 'save'],
   short: 'Juggle bookings on the room calendar, keep rooms clean and grow a five-star hotel.',
-  full: 'Run a small hotel for a month. Booking requests arrive every morning — a business traveller for one night, a family for five, a honeymoon couple who want the suite — and you fit them onto the room calendar. Take the cheap long stay now, or hold the room for a better offer? Every check-out leaves a room to clean, and guests who walk into a messy room leave terrible reviews. Good reviews bring more guests and better offers. Build new rooms, renovate to deluxe and suites, open a café, pool or spa, and hit the month’s profit goal.',
+  full: 'Run a small hotel for a month. Booking requests arrive every morning — a business traveller for one night, a family for five, a honeymoon couple who want the suite — and you fit them onto the room calendar. Take the cheap long stay now, or hold the room for a better offer? Every check-out leaves a room to clean, and guests who walk into a messy room leave terrible reviews. Good reviews bring more guests and better offers. Build new rooms, renovate to deluxe and suites, open a café, pool or spa, and hit the month’s profit goal. For more hospitality, run a kitchen in [Restaurant Simulator](game:restaurant-simulator), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 15,
   hasSaveState: true,
   controls: {
