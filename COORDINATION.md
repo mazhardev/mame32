@@ -9,7 +9,7 @@ The user asked for an internal linking plan for topical authority, then asked Cl
 - **Links in copy:** `[text](game:id)`, `[text](hub:slug)`, `[text](cat:slug)` in intros, descriptions and FAQ answers (`src/seo/links.ts`, `RichText`). Category intros and every hub carry links; every game gets a "What games are like …?" FAQ.
 - **Pages:** hub level in game breadcrumbs and a "Part of …" line; topic chips and related categories on category pages; hub pages breadcrumb through their category and link related topics; home "Popular Topics" (lazy, keeps hub copy out of the main bundle); footer lists all 13 categories and 6 hubs, no noindex pages; trailing slashes on home "See all" links.
 - **Tests:** `src/data/linking.test.ts`. Docs: SEO.md "Internal linking", README step 7.
-- Gates: typecheck, lint, TESTCOUNT and the build pass.
+- Gates: typecheck, lint, 2,190 tests in 259 files and the build pass.
 
 ## Claude update — 2026-11-07 (four more games)
 
