@@ -4,11 +4,12 @@ import { PageMeta } from '@/components/PageMeta';
 import { CATEGORIES } from '@/data/categories';
 import { countByCategory, getPlayableGames } from '@/data/gameCatalog';
 import { CollectionLinks } from '@/components/CollectionLinks';
-import { activeCollections } from '@/data/collections';
+import { activeClusters, playCollections } from '@/data/collections';
 
 export default function CategoriesPage() {
   const counts = useMemo(() => countByCategory(), []);
-  const collections = useMemo(() => activeCollections(getPlayableGames()), []);
+  const collections = useMemo(() => playCollections(getPlayableGames()), []);
+  const topics = useMemo(() => activeClusters(getPlayableGames()), []);
 
   return (
     <div className="container stack">
@@ -37,6 +38,13 @@ export default function CategoriesPage() {
           </Link>
         ))}
       </div>
+
+      <section>
+        <div className="section-head">
+          <h2>Game topics</h2>
+        </div>
+        <CollectionLinks collections={topics} label="Game topics" />
+      </section>
 
       <section>
         <div className="section-head">

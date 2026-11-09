@@ -8,7 +8,7 @@ export const brickBreakerGame: GameDefinition = {
   title: 'Brick Breaker',
   shortDescription: 'Bounce the ball to smash every brick on the wall.',
   fullDescription:
-    'Guide the paddle to keep the ball in play and clear all forty bricks. You have three balls.',
+    'Guide the paddle to keep the ball in play and clear all forty bricks. You have three balls. For another paddle classic, play [Pong](game:pong) against the computer.',
   category: 'arcade',
   difficulty: 'medium',
   tags: ['classic', 'paddle', 'retro', 'bricks'],

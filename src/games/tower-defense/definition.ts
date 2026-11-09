@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🗼',
   tags: ['towers', 'waves', 'strategy', 'defense', 'upgrade', 'featured'],
   short: 'Build and upgrade arrow, cannon, frost and laser towers to hold back 20 waves.',
-  full: 'Classic tower defense on one of three winding maps. Spend gold on arrow towers, splash-damage cannons, slowing frost towers and armour-piercing lasers, then upgrade them twice. Runners rush, armoured tanks shrug off arrows and bosses arrive every tenth wave. Every enemy that reaches your castle costs a life — survive all the waves to win.',
+  full: 'Classic tower defense on one of three winding maps. Spend gold on arrow towers, splash-damage cannons, slowing frost towers and armour-piercing lasers, then upgrade them twice. Runners rush, armoured tanks shrug off arrows and bosses arrive every tenth wave. Every enemy that reaches your castle costs a life — survive all the waves to win. For a gentler start, plant defenders in [Garden Guard](game:garden-guard), or see all [tower defense games](hub:tower-defense-games).',
   minutes: 15,
   controls: {
     keyboard: [

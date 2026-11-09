@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🁫',
   tags: ['tiles', 'matching', 'draw game', 'classic', 'ai', 'double six'],
   short: 'Match the ends of the line and be first to play all your tiles.',
-  full: 'Classic draw dominoes with a double-six set against a computer opponent. Match a number on one of your tiles to an open end of the line. Can’t match? Draw from the boneyard. Empty your hand first to score your opponent’s pips — first to 50 points wins the match.',
+  full: 'Classic draw dominoes with a double-six set against a computer opponent. Match a number on one of your tiles to an open end of the line. Can’t match? Draw from the boneyard. Empty your hand first to score your opponent’s pips — first to 50 points wins the match. More classic table games, from [Carrom](game:carrom) to [Ludo](game:ludo), are in [family board games](hub:family-board-games).',
   minutes: 10,
   multiplayer: 'vs-ai',
   controls: {

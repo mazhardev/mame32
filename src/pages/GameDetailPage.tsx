@@ -5,11 +5,12 @@ import { gameDescription, gameTitle } from '@/utils/seo';
 import { GameShell } from '@/components/game/GameShell';
 import { GameCard } from '@/components/GameCard';
 import { getGame, getPlayableGames, getRelatedGames } from '@/data/gameCatalog';
-import { categoryName } from '@/data/categories';
-import { collectionsForGame } from '@/data/collections';
+import { categoryName, getCategory } from '@/data/categories';
+import { collectionPath, collectionsForGame, primaryHub } from '@/data/collections';
 import { FaqSection } from '@/components/FaqSection';
 import { CollectionLinks } from '@/components/CollectionLinks';
-import { gameFaqs } from '@/seo/content';
+import { categoryLabel, gameFaqs, hubLinkText } from '@/seo/content';
+import { RichText } from '@/components/RichText';
 import {
   clearProgress,
   getProgressRecord,
@@ -36,6 +37,7 @@ export default function GameDetailPage() {
     () => (game ? collectionsForGame(game, getPlayableGames()) : []),
     [game],
   );
+  const hub = useMemo(() => (game ? primaryHub(game, getPlayableGames()) : undefined), [game]);
 
   useEffect(() => {
     if (!game) return;
@@ -79,6 +81,11 @@ export default function GameDetailPage() {
       <nav className="small muted" aria-label="Breadcrumb">
         <Link to="/games/">Games</Link> ·{' '}
         <Link to={`/categories/${game.category}/`}>{categoryName(game.category)}</Link> ·{' '}
+        {hub && (
+          <>
+            <Link to={collectionPath(hub.slug)}>{hub.name}</Link> ·{' '}
+          </>
+        )}
         <span>{game.title}</span>
       </nav>
 
@@ -112,7 +119,22 @@ export default function GameDetailPage() {
               </button>
             </div>
 
-            <p className="muted small">{game.fullDescription}</p>
+            <p className="muted small">
+              <RichText text={game.fullDescription} />
+            </p>
+            {hub && (
+              <p className="small" style={{ marginTop: 8 }}>
+                Part of{' '}
+                <Link className="text-link" to={collectionPath(hub.slug)}>
+                  {hubLinkText(hub.name)}
+                </Link>{' '}
+                in{' '}
+                <Link className="text-link" to={`/categories/${game.category}/`}>
+                  {categoryLabel(getCategory(game.category)).toLowerCase()}
+                </Link>
+                .
+              </p>
+            )}
 
             <hr className="divider" />
 
@@ -152,7 +174,14 @@ export default function GameDetailPage() {
             )}
           </section>
 
-          {game.status === 'available' && <FaqSection faqs={gameFaqs(game)} />}
+          {game.status === 'available' && (
+            <FaqSection
+              faqs={gameFaqs(game, {
+                games: related,
+                hub: hub && { slug: hub.slug, name: hub.name },
+              })}
+            />
+          )}
         </div>
 
         <aside className="stack" style={{ gap: 'var(--space-4)' }}>

@@ -19,6 +19,7 @@ import { CATEGORIES, getCategory } from '../src/data/categories';
 import { activeCollections, collectionGames } from '../src/data/collections';
 import { categoryLabel, playersLabel } from '../src/seo/content';
 import { ogImagePath } from '../src/utils/seo';
+import { plainText } from '../src/seo/links';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const force = process.argv.includes('--force');
@@ -104,9 +105,9 @@ for (const col of activeCollections(GAME_REGISTRY)) {
   cards.push({
     file: ogImagePath('collections', col.slug),
     icon: col.icon,
-    eyebrow: 'Collection',
+    eyebrow: col.kind === 'cluster' ? 'Topic' : 'Collection',
     title: col.name,
-    text: col.intro[0],
+    text: plainText(col.intro[0]),
     chips: [`${count} free games`, 'No download', 'No sign-up'],
     accent: 'linear-gradient(135deg, #6366f1, #0ea5e9)',
   });

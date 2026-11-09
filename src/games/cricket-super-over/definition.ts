@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏆',
   tags: ['cricket', 'super over', 'batting', 'bowling', 'ai', 'sports'],
   short: 'Six balls to bat, six to bowl: win the super over against the computer.',
-  full: 'The match is tied and it all comes down to a super over. First you bat: one over, two wickets, swing for the ropes. Then you take the ball and bowl one over while the computer chases your score, swinging hard from the first ball. If the scores finish level, the side with more boundaries wins.',
+  full: 'The match is tied and it all comes down to a super over. First you bat: one over, two wickets, swing for the ropes. Then you take the ball and bowl one over while the computer chases your score, swinging hard from the first ball. If the scores finish level, the side with more boundaries wins. Practise each half first in [Cricket Batting](game:cricket-batting) and [Cricket Bowling](game:cricket-bowling).',
   minutes: 4,
   multiplayer: 'vs-ai',
   controls: {

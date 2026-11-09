@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '👾',
   tags: ['shooter', 'retro', 'classic', 'space', 'waves', 'featured'],
   short: 'Hold back a marching alien formation with your cannon — before they touch down.',
-  full: 'A retro space shooter. Rows of aliens march back and forth, stepping lower each time they reach the edge and speeding up as their numbers fall. Slide your cannon along the ground, fire up through the formation, and shelter behind shields that crumble under fire. Shoot the mothership when it glides across the top for a mystery bonus.',
+  full: 'A retro space shooter. Rows of aliens march back and forth, stepping lower each time they reach the edge and speeding up as their numbers fall. Slide your cannon along the ground, fire up through the formation, and shelter behind shields that crumble under fire. Shoot the mothership when it glides across the top for a mystery bonus. For more waves of aliens, try [Alien Shooter](game:alien-shooter) or browse all [space shooter games](hub:space-shooter-games).',
   minutes: 5,
   controls: {
     keyboard: ['← / → move', 'Space or ↑ fires'],

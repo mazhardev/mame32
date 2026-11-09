@@ -3,8 +3,10 @@ import { Link, useParams } from 'react-router-dom';
 import { PageMeta } from '@/components/PageMeta';
 import { categoryDescription, categoryTitle } from '@/utils/seo';
 import { GameCard } from '@/components/GameCard';
-import { getCategoryBySlug } from '@/data/categories';
-import { getGamesByCategory } from '@/data/gameCatalog';
+import { getCategory, getCategoryBySlug } from '@/data/categories';
+import { collectionsForCategory } from '@/data/collections';
+import { CollectionLinks } from '@/components/CollectionLinks';
+import { getGamesByCategory, getPlayableGames } from '@/data/gameCatalog';
 import { FaqSection } from '@/components/FaqSection';
 import { SeoIntro } from '@/components/SeoIntro';
 import { categoryFaqs, categoryIntro, categoryLabel } from '@/seo/content';
@@ -31,6 +33,8 @@ export default function CategoryPage() {
 
   const playable = games.filter((g) => g.status === 'available');
   const planned = games.filter((g) => g.status === 'planned');
+  const hubs = collectionsForCategory(category.id, getPlayableGames());
+  const relatedCategories = category.related.map(getCategory);
 
   return (
     <div className="container stack">
@@ -51,6 +55,8 @@ export default function CategoryPage() {
         </div>
       </div>
 
+      {hubs.length > 0 && <CollectionLinks collections={hubs} label={`Topics in ${categoryLabel(category)}`} />}
+
       {playable.length > 0 ? (
         <div className="game-grid">
           {playable.map((game) => (
@@ -65,6 +71,19 @@ export default function CategoryPage() {
       )}
 
       {playable.length > 0 && <FaqSection faqs={categoryFaqs(category, playable)} />}
+
+      <section>
+        <div className="section-head">
+          <h2>More game categories</h2>
+        </div>
+        <nav className="link-cloud" aria-label="Related categories">
+          {relatedCategories.map((c) => (
+            <Link key={c.id} to={`/categories/${c.slug}/`}>
+              <span aria-hidden="true">{c.icon}</span> {categoryLabel(c)}
+            </Link>
+          ))}
+        </nav>
+      </section>
 
       {planned.length > 0 && (
         <section>

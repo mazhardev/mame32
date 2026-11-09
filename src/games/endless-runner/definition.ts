@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏃',
   tags: ['runner', 'jump', 'rooftops', 'coins', 'endless', 'featured'],
   short: 'Free-run across the city rooftops at dusk — double-jump the gaps and dodge the spikes.',
-  full: 'Sprint across an endless sunset skyline. Your runner never stops: jump between rooftops of different heights, double-jump the wide gaps, hop over spikes and scoop up coins. The run gets faster the further you go.',
+  full: 'Sprint across an endless sunset skyline. Your runner never stops: jump between rooftops of different heights, double-jump the wide gaps, hop over spikes and scoop up coins. The run gets faster the further you go. More runs await in [Dino Runner](game:dino-runner) and the rest of the [runner games](hub:runner-games).',
   minutes: 3,
   controls: {
     keyboard: ['Space or ↑ to jump; press again in the air to double-jump'],

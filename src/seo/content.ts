@@ -72,7 +72,16 @@ export function homeFaqs(gameCount: number): Faq[] {
   ];
 }
 
-export function gameFaqs(game: GameDefinition): Faq[] {
+/** Games and a topic hub to suggest in a game's "What games are like…" answer. */
+export interface MoreLikeThis {
+  games: Pick<GameDefinition, 'id' | 'title'>[];
+  hub?: { slug: string; name: string };
+}
+
+export { hubLinkText } from '@/data/topicIndex';
+import { hubLinkText } from '@/data/topicIndex';
+
+export function gameFaqs(game: GameDefinition, more?: MoreLikeThis): Faq[] {
   const t = game.title;
   const faqs: Faq[] = [
     {
@@ -115,60 +124,71 @@ export function gameFaqs(game: GameDefinition): Faq[] {
           a: `Yes. Your personal best, statistics and achievements for ${t} are saved in your browser automatically.`,
         },
   );
+  const similar = (more?.games ?? []).slice(0, 3).map((g) => `[${g.title}](game:${g.id})`);
+  if (similar.length) {
+    const list =
+      similar.length > 1 ? `${similar.slice(0, -1).join(', ')} and ${similar.at(-1)}` : similar[0];
+    const hub = more?.hub
+      ? `, or browse all [${hubLinkText(more.hub.name)}](hub:${more.hub.slug})`
+      : '';
+    faqs.push({ q: `What games are like ${t}?`, a: `If you like ${t}, try ${list}${hub}.` });
+  }
   return faqs;
 }
 
+/** Intros may link to games, hubs and categories with [text](game:id) markup; see links.ts. */
 const CATEGORY_INTROS: Record<string, string[]> = {
   arcade: [
-    'Arcade games are all about quick reflexes and one more go. Steer, dodge, shoot and jump your way to a new high score – every round starts in seconds and lasts just a few minutes.',
-    'Play with the keyboard on a computer or with large on-screen controls on a phone. Your personal best is saved after every run.',
+    'Arcade games are all about quick reflexes and one more go. Steer, dodge, shoot and jump your way to a new high score in classics like [Snake](game:snake), [Block Drop](game:block-drop) and [Brick Breaker](game:brick-breaker) – every round starts in seconds and lasts just a few minutes.',
+    'Looking for something specific? Try the [runner games](hub:runner-games), [space shooters](hub:space-shooter-games), [block games](hub:block-games) or [maze games](hub:maze-games). Play with the keyboard on a computer or with large on-screen controls on a phone.',
   ],
   puzzle: [
-    'Puzzle games for every mood: number puzzles like Sudoku and 2048, logic grids like Nonogram and Kakuro, sorting and matching puzzles, mazes, Sokoban and more.',
-    'Puzzles with longer sessions save automatically, so you can stop halfway and continue later on the same device.',
+    'Puzzle games for every mood: number puzzles like [Sudoku](game:sudoku) and [2048](game:number-merge-2048), logic grids like Nonogram and Kakuro, sorting and matching puzzles, mazes, [Sokoban](game:sokoban) and more.',
+    'Browse [Sudoku and number puzzles](hub:number-puzzles) or [match 3 games](hub:match-3-games). Puzzles with longer sessions save automatically, so you can stop halfway and continue later on the same device.',
   ],
   word: [
-    'Word games that test your vocabulary and spelling: guess the five-letter word, find hidden words in a grid, unscramble anagrams, climb word ladders and race the clock in typing challenges.',
-    'Every word game uses an offline dictionary built into the site, so it keeps working without an internet connection.',
+    'Word games that test your vocabulary and spelling: guess the [five-letter word](game:five-letter-word), find hidden words in a [word search](game:word-search), unscramble anagrams, climb word ladders and race the clock in typing challenges.',
+    'Love a mystery word? See all [word guessing games](hub:word-guessing-games). Every word game uses an offline dictionary built into the site, so it keeps working without an internet connection.',
   ],
   board: [
-    'Classic board games including chess, checkers, Connect Four, Reversi, Go, Backgammon, Ludo and Mancala. Play against a computer opponent with three difficulty levels, or take turns with a friend on the same device.',
-    'A chess game in progress is saved automatically, so you can close the page and finish it later.',
+    'Classic board games including [chess](game:chess), checkers, [Connect Four](game:connect-four), Reversi, Go, Backgammon, [Ludo](game:ludo) and Mancala. Play against a computer opponent with three difficulty levels, or take turns with a friend on the same device.',
+    'Browse [chess and checkers games](hub:chess-and-checkers-games), [family board games](hub:family-board-games) or every [2 player game](hub:2-player-games). A chess game in progress is saved automatically, so you can close the page and finish it later.',
   ],
   card: [
-    'Card games for one player and against the computer: Klondike, Spider, FreeCell and other solitaire games, plus Hearts, Spades, Crazy Eights, Rummy, Blackjack and Poker.',
-    'Casino-style games are simulations that use virtual points only – there is no real money and nothing to buy.',
+    'Card games for one player and against the computer: [Klondike](game:klondike-solitaire), Spider, FreeCell and other [solitaire games](hub:solitaire-games), plus [Hearts](game:hearts), Spades, Crazy Eights, Rummy, [Blackjack](game:blackjack) and Poker.',
+    'See all [card games against the computer](hub:card-games-vs-computer). Casino-style games are simulations that use virtual points only – there is no real money and nothing to buy.',
   ],
   educational: [
-    'Learning games that make practice fun: maths drills and times tables, geography, flags and capital cities, science and history quizzes, typing practice and early-years games for counting and the alphabet.',
-    'All questions are stored in the site itself, so the games work offline and never need an account.',
+    'Learning games that make practice fun: maths drills and [times tables](game:multiplication-challenge), geography, flags and capital cities, science and history quizzes, [typing practice](game:typing-tutor) and early-years games for counting and the alphabet.',
+    'Browse every [quiz and trivia game](hub:quiz-games) and [math game](hub:math-games). All questions are stored in the site itself, so the games work offline and never need an account.',
   ],
   brain: [
-    'Brain games that train memory, attention and reasoning: Simon-style sequences, code breakers, number sequences, logic deduction puzzles, cryptograms and chess tactics.',
-    'Track your improvement over time – your best scores and statistics are saved in your browser.',
+    'Brain games that train memory, attention and reasoning: [Simon-style sequences](game:simon-memory), code breakers, number sequences, [logic deduction](game:logic-deduction) puzzles, cryptograms and [chess tactics](game:chess-tactics).',
+    'Browse [memory games](hub:memory-games) and [code-breaking games](hub:code-breaking-games). Track your improvement over time – your best scores and statistics are saved in your browser.',
   ],
   casual: [
-    'Simple, relaxing games you can pick up in seconds and put down at any time. Perfect for a short break on your phone or computer.',
+    'Simple, relaxing games you can pick up in seconds and put down at any time, like [Bottle Flip](game:bottle-flip), [Stack Blocks](game:stack-blocks) and Keep the Ball Up. Perfect for a short break on your phone or computer.',
+    'Want to know how fast you are? Try the [reaction time games](hub:reaction-time-games), or browse [quick games](hub:quick-games) you can finish in a few minutes.',
   ],
   sports: [
-    'Sports games that test aim, power and timing: football free kicks and penalties, cricket, tennis, table tennis, golf, bowling, pool, darts, archery and more.',
-    'Line up the shot, pick your moment and chase a new personal best – most sports games also have a computer opponent.',
+    'Sports games that test aim, power and timing: football free kicks and [penalties](game:penalty-shootout), [cricket batting](game:cricket-batting), bowling and a super over, tennis, table tennis, golf, ten-pin bowling, [pool](game:pool), darts, archery and more.',
+    'Line up the shot, pick your moment and chase a new personal best – most sports games also have a computer opponent. Aiming games are in [target shooting games](hub:target-shooting-games).',
   ],
   racing: [
-    'Racing games for quick sessions: top-down circuits, formula cars, drifting, traffic dodging, motorbikes, boats and even space racing.',
-    'Steer with the keyboard or with on-screen controls on a phone, and beat your best lap times.',
+    'Racing games for quick sessions: [top-down circuits](game:top-down-racing), [formula cars](game:formula-racing), drifting, traffic dodging, motorbikes, boats and even space racing.',
+    'For trucks, police chases and parking, see [car driving games](hub:driving-games). Steer with the keyboard or with on-screen controls on a phone, and beat your best lap times.',
   ],
   action: [
-    'Action games with stylised, cartoony combat: space battles, tank duels, target shooting, tower defence and boss fights.',
-    'Every round starts in seconds, and difficulty settings change the number and speed of enemies.',
+    'Action games with stylised, cartoony combat: space battles, [tank duels](game:tank-shooter), target shooting, [zombie survival](game:zombie-survival) and [boss fights](game:boss-battle).',
+    'Browse [target shooting games](hub:target-shooting-games) and [space shooter games](hub:space-shooter-games). Every round starts in seconds, and difficulty settings change the number and speed of enemies.',
   ],
   strategy: [
-    'Strategy and simulation games that reward planning: a compact civilization game, turn-based army tactics, tower and castle defence, plus city, kingdom, farm, colony, hotel, airport, restaurant, shop and business management.',
-    'Longer games save automatically after every turn, day or quarter, and every computer opponent and market is simulated in your browser.',
+    'Strategy and simulation games that reward planning: a compact [civilization game](game:mini-civilization), turn-based [army tactics](game:army-strategy), tower and castle defence, plus city, kingdom, farm, colony, hotel, airport, restaurant, shop and business management.',
+    'Browse [tower defense games](hub:tower-defense-games), [idle and clicker games](hub:idle-games) and [tycoon and management games](hub:tycoon-games). Longer games save automatically after every turn, day or quarter, and every computer opponent and market is simulated in your browser.',
   ],
   creative: [
-    'Creative games for drawing and colouring: pixel art, paint by number, mandala and colouring pages, a pass-and-play drawing party game, character dress-up and a logo quiz built from original, fictional logos.',
-    'Your pictures stay in your browser, and every page and template is original artwork.',
+    'Creative games for drawing and colouring: [pixel art](game:pixel-art), paint by number, mandala and colouring pages, a [pass-and-play drawing party game](game:local-pictionary), character dress-up and a logo quiz built from original, fictional logos.',
+    'See all [colouring games](hub:coloring-games). Your pictures stay in your browser, and every page and template is original artwork.',
   ],
 };
 
@@ -180,7 +200,7 @@ export function categoryFaqs(category: CategoryMeta, games: GameDefinition[]): F
   const label = categoryLabel(category).toLowerCase();
   const examples = games
     .slice(0, 5)
-    .map((g) => g.title)
+    .map((g) => `[${g.title}](game:${g.id})`)
     .join(', ');
   const faqs: Faq[] = [
     {

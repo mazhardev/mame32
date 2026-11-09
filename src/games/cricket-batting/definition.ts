@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏏',
   tags: ['cricket', 'timing', 'batting', 'chase', 'sports', 'T20'],
   short: 'Chase a target in three overs: time your swing, pick your gaps and clear the ropes.',
-  full: 'Face a computer bowler mixing pace and spin, yorkers and bouncers, and chase down a target in three overs with three wickets in hand. Timing is everything: meet the ball early and it flies to the leg side, late and it goes square on the off side. Loft it for six — but a mistimed lofted shot can be caught in the deep, and a missed straight ball crashes into the stumps.',
+  full: 'Face a computer bowler mixing pace and spin, yorkers and bouncers, and chase down a target in three overs with three wickets in hand. Timing is everything: meet the ball early and it flies to the leg side, late and it goes square on the off side. Loft it for six — but a mistimed lofted shot can be caught in the deep, and a missed straight ball crashes into the stumps. Then swap ends and defend a total in [Cricket Bowling](game:cricket-bowling), or play both halves in a [Cricket Super Over](game:cricket-super-over).',
   minutes: 5,
   multiplayer: 'vs-ai',
   controls: {

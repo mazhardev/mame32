@@ -6,7 +6,7 @@ export const game: GameDefinition = {
   id: 'memory-match',
   title: 'Memory Match',
   shortDescription: 'Find every pair with as few turns as possible.',
-  fullDescription: 'Find every pair with as few turns as possible. Match every symbol pair.',
+  fullDescription: 'Find every pair with as few turns as possible. Match every symbol pair. To train other kinds of memory, try [Simon Memory](game:simon-memory) or see all [memory games](hub:memory-games).',
   category: 'puzzle',
   difficulty: 'easy',
   tags: ['puzzle', 'classic'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🕷️',
   tags: ['solitaire', 'patience', 'cards', 'two decks', 'single player', 'classic'],
   short: 'Two-deck solitaire: build King-to-Ace runs of one suit to clear the table.',
-  full: 'The famous two-deck solitaire. Arrange 104 cards in ten columns, building down regardless of suit — but only runs of a single suit can move together. Complete a run from King to Ace and it leaves the table. Clear all eight to win. Play with one, two or four suits. Your game is saved automatically.',
+  full: 'The famous two-deck solitaire. Arrange 104 cards in ten columns, building down regardless of suit — but only runs of a single suit can move together. Complete a run from King to Ace and it leaves the table. Clear all eight to win. Play with one, two or four suits. Your game is saved automatically. For a one-deck game, try [Klondike](game:klondike-solitaire) or see all [solitaire games](hub:solitaire-games).',
   minutes: 15,
   multiplayer: 'single',
   hasSaveState: true,

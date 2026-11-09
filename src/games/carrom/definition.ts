@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🪙',
   tags: ['carrom', 'board', 'flick', 'striker', 'two-player', 'vs computer', 'physics', 'classic'],
   short: 'Flick the striker to pocket your coins and cover the queen — vs the computer or a friend.',
-  full: 'The classic board game of carrom, played with realistic sliding and bouncing coins. Place your striker on your baseline, aim and flick it to knock your coins into the four corner pockets. Pocket the red queen and cover it with one of your own coins for bonus points, avoid pocketing the striker, and clear all nine of your coins before your opponent does. Play against a computer opponent with three skill levels, or pass the device between two players.',
+  full: 'The classic board game of carrom, played with realistic sliding and bouncing coins. Place your striker on your baseline, aim and flick it to knock your coins into the four corner pockets. Pocket the red queen and cover it with one of your own coins for bonus points, avoid pocketing the striker, and clear all nine of your coins before your opponent does. Play against a computer opponent with three skill levels, or pass the device between two players. More games families play at home, including [Ludo](game:ludo), are in [family board games](hub:family-board-games).',
   minutes: 10,
   multiplayer: 'vs-ai',
   controls: {

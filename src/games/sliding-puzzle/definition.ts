@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔀',
   tags: ['tiles', 'classic', 'logic', '15 puzzle', 'numbers'],
   short: 'Slide the numbered tiles back into order — the classic 8, 15 and 24 puzzles.',
-  full: 'The classic sliding-tile puzzle. One square is empty; slide tiles into the gap until the numbers run in order from the top-left corner. Every shuffle is guaranteed solvable. Choose a 3×3, 4×4 or 5×5 board, and your puzzle is saved if you leave part-way through.',
+  full: 'The classic sliding-tile puzzle. One square is empty; slide tiles into the gap until the numbers run in order from the top-left corner. Every shuffle is guaranteed solvable. Choose a 3×3, 4×4 or 5×5 board, and your puzzle is saved if you leave part-way through. For more classic puzzles, try [Sokoban](game:sokoban) or the [Tower of Hanoi](game:tower-of-hanoi).',
   minutes: 4,
   hasSaveState: true,
   controls: {

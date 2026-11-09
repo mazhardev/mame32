@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🥜',
   tags: ['kalah', 'seeds', 'sowing', 'classic', 'ai', 'two player', 'strategy'],
   short: 'Sow seeds around the board and fill your store with the most.',
-  full: 'An ancient count-and-capture game played with pits and seeds (Kalah rules). Pick up all the seeds from one of your pits and sow them one by one around the board. Land in your store to go again, or land in an empty pit on your side to capture the seeds opposite.',
+  full: 'An ancient count-and-capture game played with pits and seeds (Kalah rules). Pick up all the seeds from one of your pits and sow them one by one around the board. Land in your store to go again, or land in an empty pit on your side to capture the seeds opposite. Other ancient games on the site include [Backgammon](game:backgammon) and [Go](game:go).',
   minutes: 8,
   multiplayer: 'vs-ai',
   controls: {

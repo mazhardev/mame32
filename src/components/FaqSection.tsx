@@ -1,4 +1,5 @@
 import type { Faq } from '@/seo/content';
+import { RichText } from './RichText';
 
 interface Props {
   faqs: Faq[];
@@ -21,7 +22,9 @@ export function FaqSection({ faqs, title = 'Frequently asked questions' }: Props
           <summary>
             <h3>{f.q}</h3>
           </summary>
-          <p className="small muted">{f.a}</p>
+          <p className="small muted">
+            <RichText text={f.a} />
+          </p>
         </details>
       ))}
     </section>

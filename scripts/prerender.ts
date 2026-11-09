@@ -18,13 +18,21 @@ import { GAME_REGISTRY } from '../src/games/registry';
 import { CATEGORIES, getCategory } from '../src/data/categories';
 import { PLANNED_GAMES } from '../src/data/plannedGames';
 import {
+  activeClusters,
   activeCollections,
   collectionDescription,
   collectionGames,
   collectionPath,
+  collectionsForCategory,
   collectionsForGame,
+  featuredTopics,
+  playCollections,
+  primaryHub,
+  relatedCollections,
   type CollectionMeta,
 } from '../src/data/collections';
+import { getRelatedGames } from '../src/data/gameCatalog';
+import { parseLinks, plainText } from '../src/seo/links';
 import type { GameDefinition } from '../src/types';
 import {
   categoryFaqs,
@@ -32,6 +40,7 @@ import {
   categoryLabel,
   gameFaqs,
   homeFaqs,
+  hubLinkText,
   isTwoPlayer,
   playersLabel,
   type Faq,
@@ -67,6 +76,9 @@ const games = [...GAME_REGISTRY].sort((a, b) => a.title.localeCompare(b.title));
 const implementedIds = new Set(games.map((g) => g.id));
 const planned = PLANNED_GAMES.filter((g) => !implementedIds.has(g.id));
 const collections = activeCollections(games);
+/** Ways to play (2 player, vs computer…) as opposed to topic hubs. */
+const playLists = playCollections(games);
+const topicHubs = activeClusters(games);
 
 // ------------------------------------------------------- last-modified dates
 
@@ -149,8 +161,22 @@ function collectionLinks(items: CollectionMeta[]): string {
     .join('')}</ul>`;
 }
 
+/** Copy with [text](game:id)-style links (see src/seo/links.ts) as escaped HTML. */
+function rich(text: string): string {
+  return parseLinks(text)
+    .map((part) => (part.href ? `<a href="${part.href}">${esc(part.text)}</a>` : esc(part.text)))
+    .join('');
+}
+
+/** Copy with link markup as Markdown links to absolute URLs, for llms-full.txt. */
+function markdown(text: string): string {
+  return parseLinks(text)
+    .map((part) => (part.href ? `[${part.text}](${absoluteUrl(part.href)})` : part.text))
+    .join('');
+}
+
 function paragraphs(items: string[]): string {
-  return items.map((p) => `<p>${esc(p)}</p>`).join('');
+  return items.map((p) => `<p>${rich(p)}</p>`).join('');
 }
 
 const categoryOf = (g: GameDefinition) => getCategory(g.category);
@@ -158,7 +184,7 @@ const playableIn = (id: string) => games.filter((g) => g.category === id);
 
 function faqHtml(faqs: Faq[]): string {
   return `<section><h2>Frequently asked questions</h2>${faqs
-    .map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`)
+    .map((f) => `<h3>${esc(f.q)}</h3><p>${rich(f.a)}</p>`)
     .join('')}</section>`;
 }
 
@@ -168,7 +194,7 @@ function faqSchema(faqs: Faq[]) {
     mainEntity: faqs.map((f) => ({
       '@type': 'Question',
       name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
+      acceptedAnswer: { '@type': 'Answer', text: plainText(f.a) },
     })),
   };
 }
@@ -222,8 +248,12 @@ function shell(inner: string): string {
   return `<div class="app-shell">
 <header class="site-header"><div class="container"><a class="logo" href="/"><span class="logo-mark" aria-hidden="true">🕹</span><span>${esc(site.siteName)}</span></a><nav class="main-nav" aria-label="Main">${nav}</nav></div></header>
 <main id="main" class="page"><div class="container stack">${inner}</div></main>
-<footer class="site-footer"><div class="container footer-grid"><div><strong>${esc(site.siteName)}</strong><div>${games.length} free games · everything runs in your browser.</div></div><nav class="footer-links" aria-label="Footer"><a href="/games/">All Games</a><a href="/categories/">Categories</a>${collections
-    .slice(0, 4)
+<footer class="site-footer"><div class="container footer-grid"><div><strong>${esc(site.siteName)}</strong><div>${games.length} free games · everything runs in your browser.</div></div><nav class="footer-links" aria-label="Game categories">${CATEGORIES.map(
+    (c) => `<a href="${categoryPath(c.slug)}">${esc(categoryLabel(c))}</a>`,
+  ).join('')}</nav><nav class="footer-links" aria-label="Popular topics">${featuredTopics(games, 6)
+    .map((c) => `<a href="${collectionPath(c.slug)}">${esc(hubLinkText(c.name).replace(/^./, (ch) => ch.toUpperCase()))}</a>`)
+    .join('')}</nav><nav class="footer-links" aria-label="Footer"><a href="/games/">All Games</a><a href="/categories/">Categories</a>${playLists
+    .slice(0, 3)
     .map((c) => `<a href="${collectionPath(c.slug)}">${esc(c.name)}</a>`)
     .join('')}<a href="/privacy/">Privacy</a><a href="/about/">About</a><a href="/contact/">Contact &amp; Support</a></nav></div></footer>
 </div>`;
@@ -321,7 +351,8 @@ pages.push({
         `<li><a href="${categoryPath(c.slug)}">${esc(categoryLabel(c))}</a> – ${esc(c.description)} (${playableIn(c.id).length} playable)</li>`,
     )
     .join('')}</ul></section>
-<section><h2>Popular collections</h2>${collectionLinks(collections)}</section>
+<section><h2>Popular topics</h2>${collectionLinks(featuredTopics(games))}</section>
+<section><h2>Popular collections</h2>${collectionLinks(playLists)}</section>
 <section><h2>Play free online games – no download, no sign-up</h2><p>${esc(site.siteName)} has ${games.length} free online games that run straight in your web browser on a computer, tablet or phone. There is nothing to install and no account to create. Games start instantly, save your high scores and progress in your browser, and keep working offline once they have loaded.</p></section>
 ${faqHtml(homeFaq)}`,
   schema: [
@@ -364,7 +395,8 @@ pages.push({
   body: `${breadcrumbHtml([{ name: 'Home', path: '/' }, { name: 'All games', path: '/games/' }])}
 <h1>All free online games</h1>
 <p>${games.length} games you can play right now in your browser, with ${planned.length} more on the way.</p>
-<section><h2>Collections</h2>${collectionLinks(collections)}</section>
+<section><h2>Collections</h2>${collectionLinks(playLists)}</section>
+<section><h2>Game topics</h2>${collectionLinks(topicHubs)}</section>
 ${CATEGORIES.filter((c) => playableIn(c.id).length > 0)
   .map(
     (c) =>
@@ -407,7 +439,8 @@ pages.push({
     const label = n > 0 ? `${n} playable` : 'coming soon';
     return `<li><a href="${categoryPath(c.slug)}">${esc(categoryLabel(c))}</a> – ${esc(c.description)} (${label})</li>`;
   }).join('')}</ul>
-<section><h2>Popular collections</h2>${collectionLinks(collections)}</section>`,
+<section><h2>Game topics</h2>${collectionLinks(topicHubs)}</section>
+<section><h2>Popular collections</h2>${collectionLinks(playLists)}</section>`,
   lastmod: newestOf(games),
   schema: [
     organization,
@@ -428,6 +461,8 @@ for (const c of CATEGORIES) {
     { name: categoryLabel(c), path: categoryPath(c.slug) },
   ];
   const catFaqs = inCat.length ? categoryFaqs(c, inCat) : [];
+  const catHubs = inCat.length ? collectionsForCategory(c.id, games) : [];
+  const relatedCats = c.related.map((id) => getCategory(id));
   pages.push({
     path: categoryPath(c.slug),
     title: categoryTitle(c.name),
@@ -436,8 +471,10 @@ for (const c of CATEGORIES) {
     body: `${breadcrumbHtml(crumbs)}
 <h1>${esc(categoryLabel(c))}</h1>
 ${inCat.length ? paragraphs(categoryIntro(c)) : `<p>${esc(c.description)}</p>`}
+${catHubs.length ? `<section><h2>Topics</h2>${collectionLinks(catHubs)}</section>` : ''}
 ${inCat.length ? `<section><h2>Play ${esc(categoryLabel(c).toLowerCase())} free</h2><ul>${inCat.map(gameLink).join('')}</ul></section>` : ''}
 ${catFaqs.length ? faqHtml(catFaqs) : ''}
+<section><h2>More game categories</h2><ul>${relatedCats.map((o) => `<li><a href="${categoryPath(o.slug)}">${esc(categoryLabel(o))}</a></li>`).join('')}</ul></section>
 ${upcoming.length ? `<section><h2>Coming soon</h2>${list(upcoming.map((g) => g.title))}</section>` : ''}`,
     lastmod: newestOf(inCat),
     image: shareImage('categories', c.slug),
@@ -468,11 +505,25 @@ ${upcoming.length ? `<section><h2>Coming soon</h2>${list(upcoming.map((g) => g.t
 // Each collection
 for (const col of collections) {
   const inCol = collectionGames(col, games);
+  const parent = col.parent ? getCategory(col.parent) : undefined;
   const crumbs = [
     { name: 'Home', path: '/' },
-    { name: 'All games', path: '/games/' },
+    parent ? { name: categoryLabel(parent), path: categoryPath(parent.slug) } : { name: 'All games', path: '/games/' },
     { name: col.name, path: collectionPath(col.slug) },
   ];
+  // A topic hub links to its nearest hubs; a ways-to-play collection to the others and its top topics.
+  const nearby =
+    col.kind === 'cluster'
+      ? `<section><h2>Related topics</h2>${collectionLinks(relatedCollections(col, games))}</section>`
+      : `<section><h2>Popular topics</h2>${collectionLinks(
+          topicHubs
+            .map((t) => ({ t, n: inCol.filter((g) => t.includes(g)).length }))
+            .filter((x) => x.n > 0)
+            .sort((a, b) => b.n - a.n)
+            .slice(0, 6)
+            .map((x) => x.t),
+        )}</section>
+<section><h2>More collections</h2>${collectionLinks(playLists.filter((o) => o.slug !== col.slug))}</section>`;
   pages.push({
     path: collectionPath(col.slug),
     title: collectionTitle(col.title),
@@ -483,9 +534,10 @@ for (const col of collections) {
     body: `${breadcrumbHtml(crumbs)}
 <h1>${esc(col.heading)}</h1>
 ${paragraphs(col.intro)}
-<section><h2>${inCol.length} free ${esc(col.name.toLowerCase())}</h2><ul>${inCol.map(gameLink).join('')}</ul></section>
+<section><h2>${inCol.length} free ${esc(hubLinkText(col.name))}</h2><ul>${inCol.map(gameLink).join('')}</ul></section>
 ${faqHtml(col.faqs)}
-<section><h2>More collections</h2>${collectionLinks(collections.filter((o) => o.slug !== col.slug))}</section>`,
+${parent ? `<p>Part of <a href="${categoryPath(parent.slug)}">${esc(categoryLabel(parent).toLowerCase())}</a>.</p>` : ''}
+${nearby}`,
     schema: [
       organization,
       breadcrumbs(crumbs),
@@ -513,12 +565,13 @@ ${faqHtml(col.faqs)}
 // Each game
 for (const g of games) {
   const cat = categoryOf(g);
-  const related = games.filter((o) => o.category === g.category && o.id !== g.id).slice(0, 6);
-  const fill = related.length < 4 ? games.filter((o) => o.category !== g.category).slice(0, 4 - related.length) : [];
-  const faqs = gameFaqs(g);
+  const related = getRelatedGames(g);
+  const hub = primaryHub(g, games);
+  const faqs = gameFaqs(g, { games: related, hub: hub && { slug: hub.slug, name: hub.name } });
   const crumbs = [
     { name: 'Home', path: '/' },
     { name: categoryLabel(cat), path: categoryPath(cat.slug) },
+    ...(hub ? [{ name: hub.name, path: collectionPath(hub.slug) }] : []),
     { name: g.title, path: gamePath(g.id) },
   ];
   const ins = g.instructions;
@@ -540,7 +593,8 @@ for (const g of games) {
 <article class="stack">
 <h1>${esc(g.title)}</h1>
 <p><strong>Play ${esc(g.title)} free online.</strong> ${esc(g.shortDescription)}</p>
-<p>${esc(g.fullDescription)}</p>
+<p>${rich(g.fullDescription)}</p>
+${hub ? `<p>Part of <a href="${collectionPath(hub.slug)}">${esc(hubLinkText(hub.name))}</a> in <a href="${categoryPath(cat.slug)}">${esc(categoryLabel(cat).toLowerCase())}</a>.</p>` : ''}
 <ul><li>Category: <a href="${categoryPath(cat.slug)}">${esc(cat.name)}</a></li><li>Difficulty: ${esc(g.difficulty)}</li><li>Players: ${players}</li><li>Typical game: about ${g.estimatedMinutes} minutes</li><li>Works on: desktop${g.supportsTouch ? ', phones and tablets' : ''}</li></ul>
 <section><h2>How to play ${esc(g.title)}</h2><p><strong>Objective:</strong> ${esc(ins.objective)}</p><ol>${ins.howToPlay.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
 ${ins.scoring ? `<h3>Scoring</h3><p>${esc(ins.scoring)}</p>` : ''}
@@ -549,7 +603,7 @@ ${ins.tips?.length ? `<h3>Tips</h3>${list(ins.tips)}` : ''}</section>
 ${controls ? `<section><h2>Controls</h2>${controls}</section>` : ''}
 ${g.achievements?.length ? `<section><h2>${esc(g.title)} achievements</h2><ul>${g.achievements.map((a) => `<li><strong>${esc(a.name)}</strong> – ${esc(a.description)}</li>`).join('')}</ul></section>` : ''}
 ${faqHtml(faqs)}
-<section><h2>More games like ${esc(g.title)}</h2><ul>${[...related, ...fill].map(gameLink).join('')}</ul>${gameCollections.length ? collectionLinks(gameCollections) : ''}</section>
+<section><h2>More games like ${esc(g.title)}</h2><ul>${related.map(gameLink).join('')}</ul>${gameCollections.length ? collectionLinks(gameCollections) : ''}</section>
 </article>`,
     lastmod: gameDate.get(g.id),
     image: gameImage,
@@ -562,7 +616,7 @@ ${faqHtml(faqs)}
         '@id': `${absoluteUrl(gamePath(g.id))}#game`,
         name: g.title,
         url: absoluteUrl(gamePath(g.id)),
-        description: g.fullDescription,
+        description: plainText(g.fullDescription),
         image: gameImage ?? ogImage,
         genre: [cat.name, ...g.tags.slice(0, 3)],
         keywords: g.tags.join(', '),
@@ -778,7 +832,7 @@ function gameMarkdown(g: GameDefinition): string {
     `Play free: ${absoluteUrl(gamePath(g.id))}`,
     `Category: ${categoryOf(g).name}. Players: ${playersLabel(g)}. Difficulty: ${g.difficulty}. Typical game: about ${g.estimatedMinutes} minutes. Works on: desktop${g.supportsTouch ? ', phones and tablets' : ''}.`,
     '',
-    g.fullDescription,
+    markdown(g.fullDescription),
     '',
     `Objective: ${ins.objective}`,
     '',
@@ -799,10 +853,10 @@ write(
 
 ${about}
 
-${homeFaq.map((f) => `Q: ${f.q}\nA: ${f.a}`).join('\n\n')}
+${homeFaq.map((f) => `Q: ${f.q}\nA: ${markdown(f.a)}`).join('\n\n')}
 
 ${CATEGORIES.filter((c) => playableIn(c.id).length > 0)
-  .map((c) => `## ${categoryLabel(c)}\n\n${categoryIntro(c).join('\n\n')}\n\n${playableIn(c.id).map(gameMarkdown).join('\n\n')}`)
+  .map((c) => `## ${categoryLabel(c)}\n\n${categoryIntro(c).map(markdown).join('\n\n')}\n\n${playableIn(c.id).map(gameMarkdown).join('\n\n')}`)
   .join('\n\n')}
 `,
 );

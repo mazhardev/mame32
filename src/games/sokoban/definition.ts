@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '📦',
   tags: ['pushing', 'boxes', 'warehouse', 'levels', 'logic', 'classic'],
   short: 'Push every crate onto a storage spot — you can push, but never pull.',
-  full: 'The classic warehouse puzzle. Walk the keeper around the room and push crates onto the marked storage spots. Crates can only be pushed, one at a time, never pulled — so a crate shoved into a corner is stuck for good. Forty-five original rooms in three packs, each with a known minimum number of pushes.',
+  full: 'The classic warehouse puzzle. Walk the keeper around the room and push crates onto the marked storage spots. Crates can only be pushed, one at a time, never pulled — so a crate shoved into a corner is stuck for good. Forty-five original rooms in three packs, each with a known minimum number of pushes. If you like push-and-plan puzzles, try [Parking Puzzle](game:parking-puzzle) or [Unblock Puzzle](game:unblock-puzzle).',
   minutes: 6,
   hasLevels: true,
   hasSaveState: true,

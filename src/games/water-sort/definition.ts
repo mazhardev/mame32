@@ -7,7 +7,7 @@ export const game: GameDefinition = {
   title: 'Water Sort',
   shortDescription: 'Pour matching colors into separate tubes.',
   fullDescription:
-    'Pour matching colors into separate tubes. Sort all colors into separate, full tubes.',
+    'Pour matching colors into separate tubes. Sort all colors into separate, full tubes. For a sorting puzzle with balls, try [Ball Sort](game:ball-sort), or unwind with more [relaxing games](hub:relaxing-games).',
   category: 'puzzle',
   difficulty: 'easy',
   tags: ['puzzle', 'classic'],

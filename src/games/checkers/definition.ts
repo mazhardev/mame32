@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⛀',
   tags: ['draughts', 'classic', 'ai', 'two player', 'strategy'],
   short: 'Classic 8×8 checkers against the computer or a friend.',
-  full: 'Jump your opponent’s pieces and crown your own. Play classic checkers (English draughts) against a local computer opponent with three strength levels, or pass-and-play with a friend on the same device.',
+  full: 'Jump your opponent’s pieces and crown your own. Play classic checkers (English draughts) against a local computer opponent with three strength levels, or pass-and-play with a friend on the same device. For bigger boards and flying kings, try [Draughts Variants](game:draughts-variants), or play [chess](game:chess) against the same kind of computer opponent.',
   minutes: 10,
   multiplayer: 'vs-ai',
   controls: {

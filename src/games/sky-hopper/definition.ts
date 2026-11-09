@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🐦',
   tags: ['flappy', 'tap', 'one button', 'endless', 'reflex', 'featured'],
   short: 'Tap to flap and steer a little bird through the gaps between the towers.',
-  full: 'A one-button arcade challenge. Every tap gives your bird a flap upwards; gravity does the rest. Guide it through the gaps between the grassy towers — each one you pass scores a point, and the pace slowly picks up. How far can you fly?',
+  full: 'A one-button arcade challenge. Every tap gives your bird a flap upwards; gravity does the rest. Guide it through the gaps between the grassy towers — each one you pass scores a point, and the pace slowly picks up. How far can you fly? If one-button games are your thing, try [Jetpack Runner](game:jetpack-runner) or [Road Hopper](game:road-hopper).',
   minutes: 2,
   controls: {
     keyboard: ['Space, Enter or the up arrow to flap'],

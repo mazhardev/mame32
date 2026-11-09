@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚪',
   tags: ['five in a row', 'stones', 'classic', 'ai', 'two player', 'strategy'],
   short: 'Get five stones in a row on a 15×15 board before your opponent.',
-  full: 'Gomoku, also called five in a row, is played with black and white stones on the crossings of a 15×15 grid. Take turns placing one stone at a time; the first to make an unbroken line of five wins. Play the local computer at three strengths or a friend on the same device.',
+  full: 'Gomoku, also called five in a row, is played with black and white stones on the crossings of a 15×15 grid. Take turns placing one stone at a time; the first to make an unbroken line of five wins. Play the local computer at three strengths or a friend on the same device. Enjoy stone games? Try [Go](game:go), the ancient game of territory, or [Connect Four](game:connect-four).',
   minutes: 8,
   multiplayer: 'vs-ai',
   controls: {

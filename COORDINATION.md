@@ -1,5 +1,16 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-11-09 (internal linking for SEO)
+
+The user asked for an internal linking plan for topical authority, then asked Claude to build it.
+
+- **Topic hubs:** 20 new collections of `kind: 'cluster'` (Chess & Checkers, Family Board Games, Memory, Quiz & Trivia, Tower Defense, …). Games, parent category and related hubs are in `src/data/topicIndex.ts`; page copy in `src/data/clusters.ts`. Existing collections are `kind: 'intent'`, except Mobile and Offline (`'feature'`, never linked from game pages).
+- **Related games:** `getRelatedGames` now uses one catalog-wide index (hub first, then category, then two cross-category picks, balanced so every game has at least 4 inbound links). Small topics without a hub (cricket, typing, parking, football, snake) are in `src/data/smallTopics.ts`. The prerendered pages use the same index.
+- **Links in copy:** `[text](game:id)`, `[text](hub:slug)`, `[text](cat:slug)` in intros, descriptions and FAQ answers (`src/seo/links.ts`, `RichText`). Category intros, every hub and the descriptions of 50 key games (featured, classics, cricket) carry links; every game gets a "What games are like …?" FAQ.
+- **Pages:** hub level in game breadcrumbs and a "Part of …" line; topic chips and related categories on category pages; hub pages breadcrumb through their category and link related topics; home "Popular Topics" (lazy, keeps hub copy out of the main bundle); footer lists all 13 categories and 6 hubs, no noindex pages; trailing slashes on home "See all" links.
+- **Tests:** `src/data/linking.test.ts`. Docs: SEO.md "Internal linking", README step 7.
+- Gates: typecheck, lint, 2,190 tests in 259 files and the build pass.
+
 ## Claude update — 2026-11-07 (four more games)
 
 The user asked Claude directly for more games. Claude added four original games:

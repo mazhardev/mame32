@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎯',
   tags: ['cricket', 'bowling', 'aim', 'timing', 'sports', 'yorker'],
   short: 'Bowl three overs and defend the total: pick your line, length and pace or spin.',
-  full: 'You have the ball and three overs to defend a total against a computer batter. Place your target on the pitch — a yorker at the toes, a good length on off stump, or a short ball — choose pace or spin, then release as the accuracy meter passes through the green. The batter reads every delivery: hit the stumps line, vary your length and pace, and the wickets will come. Bowl too short or too wide and the ball disappears to the boundary.',
+  full: 'You have the ball and three overs to defend a total against a computer batter. Place your target on the pitch — a yorker at the toes, a good length on off stump, or a short ball — choose pace or spin, then release as the accuracy meter passes through the green. The batter reads every delivery: hit the stumps line, vary your length and pace, and the wickets will come. Bowl too short or too wide and the ball disappears to the boundary. Prefer the bat? Chase a target in [Cricket Batting](game:cricket-batting), or settle a tie in the [Cricket Super Over](game:cricket-super-over).',
   minutes: 5,
   multiplayer: 'vs-ai',
   hasLevels: false,

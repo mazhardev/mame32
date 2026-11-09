@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🛡️',
   tags: ['defense', 'aim', 'waves', 'classic', 'strategy'],
   short: 'Launch interceptors to shield six cities from waves of falling missiles.',
-  full: 'Defend six cities from waves of incoming missiles. Tap a spot in the sky to fire an interceptor from the nearest battery; it explodes into an expanding blast that destroys any missile inside. Lead your shots, catch several missiles with one blast, and ration your ammunition — later waves bring faster missiles that split in mid-air.',
+  full: 'Defend six cities from waves of incoming missiles. Tap a spot in the sky to fire an interceptor from the nearest battery; it explodes into an expanding blast that destroys any missile inside. Lead your shots, catch several missiles with one blast, and ration your ammunition — later waves bring faster missiles that split in mid-air. More ways to hold the line are in [tower defense games](hub:tower-defense-games), from [Tower Defense](game:tower-defense) to [Castle Defense](game:castle-defense).',
   minutes: 5,
   controls: {
     keyboard: ['Arrow keys move the crosshair', 'Space fires at the crosshair'],

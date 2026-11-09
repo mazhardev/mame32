@@ -1,5 +1,7 @@
-import type { GameDefinition } from '@/types';
+import type { GameCategory, GameDefinition } from '@/types';
 import { hasComputerOpponent, isTwoPlayer, type Faq } from '@/seo/content';
+import { CLUSTERS } from './clusters';
+import { FEATURED_TOPICS, MIN_HUB_SIZE } from './topicIndex';
 
 /**
  * Collections are landing pages for the ways people actually search for games
@@ -8,6 +10,12 @@ import { hasComputerOpponent, isTwoPlayer, type Faq } from '@/seo/content';
  * the page has unique content rather than being a thin duplicate of a category.
  */
 export interface CollectionMeta {
+  /**
+   * intent: how or with whom people play (2 player, vs computer, quick).
+   * cluster: one topic shared by a group of games (chess, memory); see clusters.ts.
+   * feature: true of nearly every game (mobile, offline), so never used as a parent.
+   */
+  kind: 'intent' | 'cluster' | 'feature';
   slug: string;
   /** Short name used in links, e.g. "2 Player Games". */
   name: string;
@@ -22,15 +30,22 @@ export interface CollectionMeta {
   intro: string[];
   faqs: Faq[];
   includes: (game: GameDefinition) => boolean;
+  /** Cluster hubs: the category this topic belongs to. */
+  parent?: GameCategory;
+  /** Cluster hubs: their games, in the order the hub lists them. */
+  ids?: string[];
+  /** Hubs to link to from this one, nearest first. */
+  related?: string[];
 }
 
 const hasTag = (game: GameDefinition, ...tags: string[]) => tags.some((t) => game.tags.includes(t));
 
 /** A collection needs this many games before it is linked or indexed. */
-export const MIN_COLLECTION_SIZE = 4;
+export const MIN_COLLECTION_SIZE = MIN_HUB_SIZE;
 
-export const COLLECTIONS: CollectionMeta[] = [
+const INTENT_COLLECTIONS: CollectionMeta[] = [
   {
+    kind: 'intent',
     slug: '2-player-games',
     name: '2 Player Games',
     icon: '👥',
@@ -55,6 +70,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: isTwoPlayer,
   },
   {
+    kind: 'intent',
     slug: 'games-against-computer',
     name: 'Games vs Computer',
     icon: '🤖',
@@ -79,6 +95,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: hasComputerOpponent,
   },
   {
+    kind: 'feature',
     slug: 'mobile-games',
     name: 'Mobile Games',
     icon: '📱',
@@ -103,6 +120,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: (g) => g.supportsTouch,
   },
   {
+    kind: 'feature',
     slug: 'offline-games',
     name: 'Offline Games',
     icon: '📴',
@@ -127,6 +145,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: () => true,
   },
   {
+    kind: 'intent',
     slug: 'quick-games',
     name: 'Quick Games',
     icon: '⏱️',
@@ -147,6 +166,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: (g) => g.estimatedMinutes <= 3,
   },
   {
+    kind: 'intent',
     slug: 'classic-games',
     name: 'Classic Games',
     icon: '🏛️',
@@ -167,6 +187,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: (g) => hasTag(g, 'classic'),
   },
   {
+    kind: 'intent',
     slug: 'solitaire-games',
     name: 'Solitaire Games',
     icon: '🂡',
@@ -187,6 +208,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: (g) => hasTag(g, 'solitaire', 'patience'),
   },
   {
+    kind: 'intent',
     slug: 'games-for-kids',
     name: 'Games for Kids',
     icon: '🧒',
@@ -207,6 +229,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: (g) => hasTag(g, 'kids', 'family') || (g.category === 'educational' && g.difficulty === 'easy'),
   },
   {
+    kind: 'intent',
     slug: 'math-games',
     name: 'Math Games',
     icon: '➗',
@@ -227,6 +250,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: (g) => hasTag(g, 'maths', 'numbers', 'math'),
   },
   {
+    kind: 'intent',
     slug: 'logic-puzzles',
     name: 'Logic Puzzles',
     icon: '💡',
@@ -247,6 +271,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     includes: (g) => hasTag(g, 'logic', 'deduction'),
   },
   {
+    kind: 'intent',
     slug: 'relaxing-games',
     name: 'Relaxing Games',
     icon: '🌿',
@@ -267,6 +292,8 @@ export const COLLECTIONS: CollectionMeta[] = [
   },
 ];
 
+export const COLLECTIONS: CollectionMeta[] = [...INTENT_COLLECTIONS, ...CLUSTERS];
+
 const bySlug = new Map(COLLECTIONS.map((c) => [c.slug, c]));
 
 export function getCollection(slug: string): CollectionMeta | undefined {
@@ -274,7 +301,11 @@ export function getCollection(slug: string): CollectionMeta | undefined {
 }
 
 export function collectionGames(collection: CollectionMeta, games: GameDefinition[]): GameDefinition[] {
-  return games.filter((g) => g.status === 'available' && collection.includes(g));
+  const playable = games.filter((g) => g.status === 'available' && collection.includes(g));
+  if (!collection.ids) return playable;
+  // Cluster hubs list their games in a hand-picked order.
+  const order = new Map(collection.ids.map((id, i) => [id, i]));
+  return playable.sort((a, b) => (order.get(a.id) ?? 0) - (order.get(b.id) ?? 0));
 }
 
 /** Collections big enough to link to and index. */
@@ -282,10 +313,65 @@ export function activeCollections(games: GameDefinition[]): CollectionMeta[] {
   return COLLECTIONS.filter((c) => collectionGames(c, games).length >= MIN_COLLECTION_SIZE);
 }
 
-/** Collections a game belongs to, for internal links from its page. */
+/** Active topic hubs, optionally only those under one category. */
+export function activeClusters(games: GameDefinition[], parent?: GameCategory): CollectionMeta[] {
+  return activeCollections(games).filter((c) => c.kind === 'cluster' && (!parent || c.parent === parent));
+}
+
+/** The topic hub a game page names as its parent: the first active hub that lists it. */
+export function primaryHub(game: GameDefinition, games: GameDefinition[]): CollectionMeta | undefined {
+  return activeClusters(games).find((c) => c.includes(game));
+}
+
+/**
+ * Collections a game belongs to, for internal links from its page: its own
+ * topic hub first, then other hubs and the ways it can be played. Mobile and
+ * offline hold nearly every game, so linking them from each page adds nothing.
+ */
 export function collectionsForGame(game: GameDefinition, games: GameDefinition[]): CollectionMeta[] {
-  // Every game is offline-capable; linking that from every page adds nothing.
-  return activeCollections(games).filter((c) => c.slug !== 'offline-games' && c.includes(game));
+  const hub = primaryHub(game, games);
+  const rest = activeCollections(games).filter((c) => c.kind !== 'feature' && c !== hub && c.includes(game));
+  return hub ? [hub, ...rest] : rest;
+}
+
+/**
+ * Hubs to link from a category page: the topic hubs under it, then the two
+ * ways-to-play collections that hold the most of its games.
+ */
+export function collectionsForCategory(category: GameCategory, games: GameDefinition[]): CollectionMeta[] {
+  const inCategory = games.filter((g) => g.category === category);
+  const intents = activeCollections(games)
+    .filter((c) => c.kind === 'intent')
+    .map((c) => ({ c, n: inCategory.filter((g) => g.status === 'available' && c.includes(g)).length }))
+    .filter((x) => x.n > 0)
+    .sort((a, b) => b.n - a.n)
+    .slice(0, 2)
+    .map((x) => x.c);
+  return [...activeClusters(games, category), ...intents];
+}
+
+/** Hubs to show beside a hub page: its own picks, then hubs under the same category. */
+export function relatedCollections(collection: CollectionMeta, games: GameDefinition[], limit = 4): CollectionMeta[] {
+  const active = activeCollections(games).filter((c) => c.slug !== collection.slug && c.kind !== 'feature');
+  const picked = (collection.related ?? [])
+    .map((slug) => active.find((c) => c.slug === slug))
+    .filter((c): c is CollectionMeta => !!c);
+  const siblings = collection.parent
+    ? active.filter((c) => c.kind === 'cluster' && c.parent === collection.parent && !picked.includes(c))
+    : [];
+  return [...picked, ...siblings].slice(0, limit);
+}
+
+export function featuredTopics(games: GameDefinition[], limit = FEATURED_TOPICS.length): CollectionMeta[] {
+  const active = activeClusters(games);
+  return FEATURED_TOPICS.map((slug) => active.find((c) => c.slug === slug))
+    .filter((c): c is CollectionMeta => !!c)
+    .slice(0, limit);
+}
+
+/** Ways-to-play collections (not topic hubs), for site-wide lists. */
+export function playCollections(games: GameDefinition[]): CollectionMeta[] {
+  return activeCollections(games).filter((c) => c.kind !== 'cluster');
 }
 
 export function collectionPath(slug: string): string {

@@ -8,7 +8,7 @@ export const ticTacToeGame: GameDefinition = {
   title: 'Tic-Tac-Toe',
   shortDescription: 'Classic three-in-a-row against a local AI or a friend on the same device.',
   fullDescription:
-    'Tic-Tac-Toe with a proper opponent. The Hard computer searches the full game tree with alpha-beta pruning and plays perfectly, so the best result available to you is a draw. Easy and Normal deliberately leave openings. Two-player mode passes the device between players.',
+    'Tic-Tac-Toe with a proper opponent. The Hard computer searches the full game tree with alpha-beta pruning and plays perfectly, so the best result available to you is a draw. Easy and Normal deliberately leave openings. Two-player mode passes the device between players. Ready for a bigger board? Try [Connect Four](game:connect-four) or [Gomoku](game:gomoku).',
   category: 'board',
   difficulty: 'easy',
   tags: ['classic', 'ai', 'two-player', 'featured', 'quick'],

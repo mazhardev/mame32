@@ -66,7 +66,7 @@ describe('faq content', () => {
   });
 
   it('never produces empty questions or answers', () => {
-    const all = [...homeFaqs(GAME_REGISTRY.length), ...GAME_REGISTRY.flatMap(gameFaqs), ...COLLECTIONS.flatMap((c) => c.faqs)];
+    const all = [...homeFaqs(GAME_REGISTRY.length), ...GAME_REGISTRY.flatMap((g) => gameFaqs(g)), ...COLLECTIONS.flatMap((c) => c.faqs)];
     for (const f of all) {
       expect(f.q.trim()).not.toBe('');
       expect(f.a.trim().length).toBeGreaterThan(10);

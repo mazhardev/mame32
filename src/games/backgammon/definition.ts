@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎯',
   tags: ['dice', 'race', 'classic', 'strategy', 'ai', 'checkers', 'tavla'],
   short: 'Race your fifteen checkers home and bear them off before the computer.',
-  full: 'The ancient race game of dice and strategy. Move your checkers around the board according to the dice, hit your opponent’s lone checkers to send them back, build blocking points, and bear off all fifteen before the computer does. Gammons and backgammons count double and triple.',
+  full: 'The ancient race game of dice and strategy. Move your checkers around the board according to the dice, hit your opponent’s lone checkers to send them back, build blocking points, and bear off all fifteen before the computer does. Gammons and backgammons count double and triple. Other dice and race games include [Ludo](game:ludo) and the rest of the [family board games](hub:family-board-games).',
   minutes: 12,
   multiplayer: 'vs-ai',
   controls: {

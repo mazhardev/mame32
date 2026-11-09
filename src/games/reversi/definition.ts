@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚫',
   tags: ['flip', 'discs', 'classic', 'ai', 'two player', 'strategy'],
   short: 'Outflank and flip your opponent’s discs to own the board.',
-  full: 'The classic disc-flipping strategy game. Place a disc so that it traps a line of your opponent’s discs between two of yours, and they all flip to your colour. Whoever has the most discs when the board fills wins.',
+  full: 'The classic disc-flipping strategy game. Place a disc so that it traps a line of your opponent’s discs between two of yours, and they all flip to your colour. Whoever has the most discs when the board fills wins. If you like capturing territory, try [Go](game:go), or line up four against the computer in [Connect Four](game:connect-four).',
   minutes: 10,
   multiplayer: 'vs-ai',
   controls: {

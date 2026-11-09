@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '♥️',
   tags: ['cards', 'trick taking', 'hearts', 'queen of spades', 'ai', 'four players', 'classic'],
   short: 'Avoid hearts and the Queen of Spades against three computer players.',
-  full: 'The classic trick-avoidance card game against three local computer players. Pass three cards, follow suit, and dodge every heart and the dreaded Queen of Spades — or take them all and shoot the moon. The first to 50 points ends the game, and the lowest score wins.',
+  full: 'The classic trick-avoidance card game against three local computer players. Pass three cards, follow suit, and dodge every heart and the dreaded Queen of Spades — or take them all and shoot the moon. The first to 50 points ends the game, and the lowest score wins. Prefer to win tricks? Bid with a computer partner in [Spades](game:spades), or see all [card games against the computer](hub:card-games-vs-computer).',
   minutes: 15,
   multiplayer: 'vs-ai',
   controls: {

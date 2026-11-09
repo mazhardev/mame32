@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔺',
   tags: ['shapes', 'geometry', 'drag', 'classic', 'levels'],
   short: 'Fit the seven classic tangram pieces together to fill each silhouette.',
-  full: 'The ancient seven-piece puzzle. Two large triangles, a medium triangle, two small triangles, a square and a parallelogram — cut from a single square — must be turned, flipped and slid together to fill a dark silhouette exactly. Start with the classic square and work through sixty figures. Pieces click into place when they are close to a spot where they fit.',
+  full: 'The ancient seven-piece puzzle. Two large triangles, a medium triangle, two small triangles, a square and a parallelogram — cut from a single square — must be turned, flipped and slid together to fill a dark silhouette exactly. Start with the classic square and work through sixty figures. Pieces click into place when they are close to a spot where they fit. For more shape puzzles, try the [Jigsaw Puzzle](game:jigsaw-puzzle) or the [Sliding Puzzle](game:sliding-puzzle).',
   minutes: 5,
   hasLevels: true,
   controls: {

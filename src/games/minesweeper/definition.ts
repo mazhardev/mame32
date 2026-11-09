@@ -8,7 +8,7 @@ export const minesweeperGame: GameDefinition = {
   title: 'Minesweeper',
   shortDescription: 'Clear the board using number clues without detonating a mine.',
   fullDescription:
-    'The logic classic. Numbers tell you how many mines touch a square; deduce which squares are safe and clear the whole board. The first click is always safe, chord-clicking speeds up solved areas, and best times are tracked separately for each board size.',
+    'The logic classic. Numbers tell you how many mines touch a square; deduce which squares are safe and clear the whole board. The first click is always safe, chord-clicking speeds up solved areas, and best times are tracked separately for each board size. If you like deducing from number clues, try a [Nonogram](game:nonogram) or the other [logic puzzles](hub:logic-puzzles).',
   category: 'puzzle',
   difficulty: 'medium',
   tags: ['logic', 'grid', 'classic', 'featured', 'deduction'],
