@@ -7,7 +7,7 @@ export const game: GameDefinition = {
   title: 'Hangman',
   shortDescription: 'Discover a hidden word before six incorrect guesses.',
   fullDescription:
-    'Discover a hidden word before six incorrect guesses. Reveal the entire hidden word.',
+    'Discover a hidden word before six incorrect guesses. Reveal the entire hidden word. For colour-coded clues instead, try [Five Letter Word](game:five-letter-word) or another of the [word guessing games](hub:word-guessing-games).',
   category: 'word',
   difficulty: 'easy',
   tags: ['word', 'classic'],

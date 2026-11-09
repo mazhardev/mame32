@@ -7,7 +7,7 @@ export const game: GameDefinition = {
   title: 'Aim Trainer',
   shortDescription: 'Hit as many targets as possible in thirty seconds.',
   fullDescription:
-    'Hit as many targets as possible in thirty seconds. Hit targets quickly and accurately before time runs out.',
+    'Hit as many targets as possible in thirty seconds. Hit targets quickly and accurately before time runs out. To measure raw speed, take the [Reaction Timer](game:reaction-timer) test or the [click speed test](game:click-speed-test).',
   category: 'casual',
   difficulty: 'easy',
   tags: ['casual', 'classic'],

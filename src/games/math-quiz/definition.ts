@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '➗',
   tags: ['maths', 'quiz', 'timed', 'featured'],
   short: 'Quick-fire arithmetic: add, subtract, multiply and divide against the clock.',
-  full: 'Ten arithmetic questions per round with a timer on each one. Easy sticks to adding and subtracting within 20; Hard mixes all four operations with numbers up to 1,000.',
+  full: 'Ten arithmetic questions per round with a timer on each one. Easy sticks to adding and subtracting within 20; Hard mixes all four operations with numbers up to 1,000. For harder sums, try [Mental Math](game:mental-math), or practise times tables in the [Multiplication Challenge](game:multiplication-challenge).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

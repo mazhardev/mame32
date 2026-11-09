@@ -4,6 +4,7 @@ import { PLANNED_GAMES } from './plannedGames';
 import { getCategory } from './categories';
 import { MIN_HUB_SIZE, topicsForGame } from './topicIndex';
 import { SMALL_TOPICS } from './smallTopics';
+import { plainText } from '@/seo/links';
 
 const implementedIds = new Set(GAME_REGISTRY.map((g) => g.id));
 
@@ -84,7 +85,7 @@ function matchesQuery(game: GameDefinition, query: string): boolean {
   const haystack = [
     game.title,
     game.shortDescription,
-    game.fullDescription,
+    plainText(game.fullDescription),
     game.category,
     ...game.tags,
   ]

@@ -7,7 +7,7 @@ export const game: GameDefinition = {
   title: 'Simon Memory',
   shortDescription: 'Remember an expanding sequence of four colored pads.',
   fullDescription:
-    'Remember an expanding sequence of four colored pads. Repeat a sequence of 12 steps to win.',
+    'Remember an expanding sequence of four colored pads. Repeat a sequence of 12 steps to win. For digits instead of colours, try [Memory Sequence](game:memory-sequence) or browse all [memory games](hub:memory-games).',
   category: 'brain',
   difficulty: 'easy',
   tags: ['brain', 'classic'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎨',
   tags: ['code breaking', 'colour pegs', 'deduction', 'logic', 'classic'],
   short: 'Deduce the hidden colour code from black and white feedback pins.',
-  full: 'A classic code-breaking board game. The computer hides a row of coloured pegs. After each guess, black pins show colours in the right place and white pins show right colours in the wrong place. Crack the code before your guesses run out.',
+  full: 'A classic code-breaking board game. The computer hides a row of coloured pegs. After each guess, black pins show colours in the right place and white pins show right colours in the wrong place. Crack the code before your guesses run out. More code-cracking: [Bulls and Cows](game:bulls-and-cows), [Code Breaker](game:code-breaker) and the other [code-breaking games](hub:code-breaking-games).',
   minutes: 6,
   controls: {
     keyboard: ['Tab to a colour and press Enter to place it'],

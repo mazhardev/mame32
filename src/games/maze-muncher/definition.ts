@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🟡',
   tags: ['maze', 'dots', 'ghosts', 'chase', 'classic', 'retro'],
   short: 'Munch every dot in the maze while four ghosts give chase.',
-  full: 'A maze-chase classic with an original maze and a gang of four ghosts, each with its own personality: Blaze hunts you directly, Petal tries to cut you off, Splash teams up with Blaze to pincer you and Sunny loses its nerve when it gets close. Eat a power pellet and the tables turn — the ghosts go blue and you can eat them for big points. Clear the maze to move on to a faster level.',
+  full: 'A maze-chase classic with an original maze and a gang of four ghosts, each with its own personality: Blaze hunts you directly, Petal tries to cut you off, Splash teams up with Blaze to pincer you and Sunny loses its nerve when it gets close. Eat a power pellet and the tables turn — the ghosts go blue and you can eat them for big points. Clear the maze to move on to a faster level. For more mazes, see [Blast Maze](game:blast-maze) and the other [maze games](hub:maze-games).',
   minutes: 6,
   controls: {
     keyboard: ['Arrow keys or WASD steer'],

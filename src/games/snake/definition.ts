@@ -8,7 +8,7 @@ export const snakeGame: GameDefinition = {
   title: 'Snake',
   shortDescription: 'Guide a growing snake around the board without hitting your own tail.',
   fullDescription:
-    'The arcade classic, rebuilt for the browser. Steer a snake around a grid, eat food to grow longer, and survive as long as you can while the pace keeps climbing. Three difficulties change the board size, the speed curve and whether the walls are deadly.',
+    'The arcade classic, rebuilt for the browser. Steer a snake around a grid, eat food to grow longer, and survive as long as you can while the pace keeps climbing. Three difficulties change the board size, the speed curve and whether the walls are deadly. Want a bigger arena? [Neon Serpents](game:neon-serpents) puts you up against computer snakes.',
   category: 'arcade',
   difficulty: 'easy',
   tags: ['classic', 'reflex', 'retro', 'featured', 'grid'],

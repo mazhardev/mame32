@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚢',
   tags: ['naval', 'ships', 'grid', 'guessing', 'deduction', 'ai', 'classic'],
   short: 'Hunt down the hidden enemy fleet before it finds yours.',
-  full: 'A classic naval guessing game. Both sides hide five ships on a 10×10 grid, then take turns firing at coordinates. Hits are marked, and a ship sinks once every square of it has been hit. Sink the whole enemy fleet before the computer admiral sinks yours.',
+  full: 'A classic naval guessing game. Both sides hide five ships on a 10×10 grid, then take turns firing at coordinates. Hits are marked, and a ship sinks once every square of it has been hit. Sink the whole enemy fleet before the computer admiral sinks yours. For another game of hidden information and deduction, crack the colour code in [Secret Colors](game:mastermind).',
   minutes: 8,
   multiplayer: 'vs-ai',
   controls: {

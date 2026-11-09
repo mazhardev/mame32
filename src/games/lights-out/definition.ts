@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💡',
   tags: ['grid', 'toggle', 'logic', 'classic', 'brain'],
   short: 'Every press flips a light and its neighbours. Can you switch the whole grid off?',
-  full: 'A classic toggle puzzle. Pressing a light switches it and the lights above, below, left and right of it. Turn every light off in as few presses as possible — each puzzle shows its par, the fewest presses that can solve it. Stuck? The hint solver works out the best next press.',
+  full: 'A classic toggle puzzle. Pressing a light switches it and the lights above, below, left and right of it. Turn every light off in as few presses as possible — each puzzle shows its par, the fewest presses that can solve it. Stuck? The hint solver works out the best next press. For another puzzle with a perfect solution, try the [Tower of Hanoi](game:tower-of-hanoi) or browse [logic puzzles](hub:logic-puzzles).',
   minutes: 4,
   hasSaveState: true,
   controls: {

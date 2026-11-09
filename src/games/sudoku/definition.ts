@@ -8,7 +8,7 @@ export const sudokuGame: GameDefinition = {
   title: 'Sudoku',
   shortDescription: 'Fill the grid so every row, column and box holds the digits 1 to 9.',
   fullDescription:
-    'A full Sudoku with a puzzle generator that guarantees a unique solution, so you never have to guess. Pencil in notes, spot conflicts as you go, take a hint when you are stuck, and pick up an unfinished grid later — progress is saved automatically.',
+    'A full Sudoku with a puzzle generator that guarantees a unique solution, so you never have to guess. Pencil in notes, spot conflicts as you go, take a hint when you are stuck, and pick up an unfinished grid later — progress is saved automatically. For more number logic, try [Kakuro](game:kakuro) or browse [Sudoku and number puzzles](hub:number-puzzles).',
   category: 'puzzle',
   difficulty: 'medium',
   tags: ['logic', 'numbers', 'classic', 'featured', 'save'],

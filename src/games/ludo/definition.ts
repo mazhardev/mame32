@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎲',
   tags: ['dice', 'family', 'race', 'two player', 'four player', 'ai', 'classic'],
   short: 'Roll the die, race your four tokens around the board and capture rivals.',
-  full: 'The classic family race game for 2–4 players. Roll a six to bring tokens out, race them around the cross-shaped board and up your home column. Land on an opponent to send them back to their yard. Play against computer opponents or pass and play on one device.',
+  full: 'The classic family race game for 2–4 players. Roll a six to bring tokens out, race them around the cross-shaped board and up your home column. Land on an opponent to send them back to their yard. Play against computer opponents or pass and play on one device. For more dice and board games, try [Snakes and Ladders](game:snakes-and-ladders), [Carrom](game:carrom) or all [family board games](hub:family-board-games).',
   minutes: 15,
   multiplayer: 'local-multiplayer',
   controls: {

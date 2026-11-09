@@ -8,7 +8,7 @@ export const connectFourGame: GameDefinition = {
   title: 'Connect Four',
   shortDescription: 'Drop discs and line up four in a row before the computer does.',
   fullDescription:
-    'Drop coloured discs into a seven-by-six grid and race to connect four in a line. The computer opponent uses alpha-beta search with a positional heuristic, looking up to six moves ahead on Hard. Two-player mode lets you pass the device between friends.',
+    'Drop coloured discs into a seven-by-six grid and race to connect four in a line. The computer opponent uses alpha-beta search with a positional heuristic, looking up to six moves ahead on Hard. Two-player mode lets you pass the device between friends. Like lining up pieces? [Gomoku](game:gomoku) asks for five in a row on a bigger board, and [Tic-Tac-Toe](game:tic-tac-toe) is the three-in-a-row classic.',
   category: 'board',
   difficulty: 'medium',
   tags: ['classic', 'ai', 'two-player', 'featured', 'strategy'],

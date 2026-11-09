@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚪',
   tags: ['territory', 'stones', 'classic', 'strategy', 'ai', 'two player', 'weiqi', 'baduk'],
   short: 'Surround territory and capture stones in the ancient game of Go.',
-  full: 'The ancient strategy game of surrounding territory. Play 9×9 Go against a Monte Carlo computer opponent that runs in your browser, or play a friend on a 9×9, 13×13 or 19×19 board. Uses area scoring with 7.5 points of komi for White.',
+  full: 'The ancient strategy game of surrounding territory. Play 9×9 Go against a Monte Carlo computer opponent that runs in your browser, or play a friend on a 9×9, 13×13 or 19×19 board. Uses area scoring with 7.5 points of komi for White. For a quicker game of placing stones, try [Gomoku](game:gomoku), five in a row on a 15×15 grid.',
   minutes: 15,
   multiplayer: 'vs-ai',
   controls: {

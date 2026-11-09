@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🆓',
   tags: ['solitaire', 'patience', 'cards', 'logic', 'single player', 'classic'],
   short: 'The thinking player’s solitaire — every card is face up.',
-  full: 'Classic FreeCell solitaire. All 52 cards are dealt face up into eight columns, so almost every deal can be won with careful planning. Use the four free cells to park cards, build down in alternating colours and move every card to its foundation.',
+  full: 'Classic FreeCell solitaire. All 52 cards are dealt face up into eight columns, so almost every deal can be won with careful planning. Use the four free cells to park cards, build down in alternating colours and move every card to its foundation. If you like planning every move, try [Spider Solitaire](game:spider-solitaire) or the other [solitaire games](hub:solitaire-games).',
   minutes: 10,
   multiplayer: 'single',
   controls: {

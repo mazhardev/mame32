@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🟩',
   tags: ['guess', 'daily', 'classic', 'five letters', 'vocabulary'],
   short: 'Guess the hidden five-letter word. Colours show which letters are right.',
-  full: 'A word-guessing puzzle. Type any five-letter word: green tiles are in the right spot, yellow tiles are in the word but elsewhere, and grey tiles are not in it at all. Use the clues to find the word before you run out of guesses.',
+  full: 'A word-guessing puzzle. Type any five-letter word: green tiles are in the right spot, yellow tiles are in the word but elsewhere, and grey tiles are not in it at all. Use the clues to find the word before you run out of guesses. More hidden-word puzzles: [Hangman](game:hangman) and the other [word guessing games](hub:word-guessing-games).',
   minutes: 4,
   controls: {
     keyboard: ['Type letters', 'Enter to submit, Backspace to delete'],

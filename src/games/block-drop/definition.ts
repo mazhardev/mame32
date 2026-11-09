@@ -8,7 +8,7 @@ export const blockDropGame: GameDefinition = {
   title: 'Block Drop',
   shortDescription: 'Rotate falling pieces and clear full rows.',
   fullDescription:
-    'Falling pieces stack up in the well. Complete horizontal rows to clear them, and clear twenty lines before the stack reaches the top.',
+    'Falling pieces stack up in the well. Complete horizontal rows to clear them, and clear twenty lines before the stack reaches the top. For a calmer take with no falling pieces, try [Block Puzzle](game:block-puzzle), or browse all [block games](hub:block-games).',
   category: 'arcade',
   difficulty: 'medium',
   tags: ['classic', 'falling-blocks', 'retro', 'puzzle'],

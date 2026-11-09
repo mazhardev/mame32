@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🗼',
   tags: ['classic', 'logic', 'recursion', 'discs', 'brain'],
   short: 'Move the tower of discs to the right peg, one disc at a time, never larger on smaller.',
-  full: 'The famous recursive puzzle. Move a stack of discs from the left peg to the right peg, one disc at a time, and never place a larger disc on a smaller one. The counter shows the fewest moves still needed from your position, and the hint always suggests the optimal next move.',
+  full: 'The famous recursive puzzle. Move a stack of discs from the left peg to the right peg, one disc at a time, and never place a larger disc on a smaller one. The counter shows the fewest moves still needed from your position, and the hint always suggests the optimal next move. For another puzzle with a perfect answer, try [Lights Out](game:lights-out) or browse [logic puzzles](hub:logic-puzzles).',
   minutes: 5,
   hasSaveState: true,
   controls: {

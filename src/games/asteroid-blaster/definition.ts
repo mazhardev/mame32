@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '☄️',
   tags: ['space', 'shooter', 'classic', 'retro', 'waves'],
   short: 'Pilot a nimble ship through a field of drifting rocks and blast them into dust.',
-  full: 'A classic space shooter in a wrap-around asteroid field. Turn, thrust and fire to break big rocks into smaller, faster ones until the sector is clear. Fly off one edge and you reappear on the other. From wave 3 a saucer drops by to shoot back — and when things look hopeless, jump to hyperspace and hope for the best.',
+  full: 'A classic space shooter in a wrap-around asteroid field. Turn, thrust and fire to break big rocks into smaller, faster ones until the sector is clear. Fly off one edge and you reappear on the other. From wave 3 a saucer drops by to shoot back — and when things look hopeless, jump to hyperspace and hope for the best. More space action waits in [Asteroid Defense](game:asteroid-defense) and the other [space shooter games](hub:space-shooter-games).',
   minutes: 5,
   controls: {
     keyboard: ['← / → turn', '↑ thrust', 'Space fires', 'X or ↓ jumps to hyperspace'],

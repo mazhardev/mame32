@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🫧',
   tags: ['bubbles', 'aim', 'match', 'colours', 'classic', 'casual'],
   short: 'Aim, bounce and pop — match three bubbles of a colour before they reach the line.',
-  full: 'A classic bubble-popping shooter. Aim the launcher and fire coloured bubbles into the cluster above; bank shots off the walls to reach tricky spots. Three or more bubbles of the same colour pop, and any bubbles left hanging fall for big bonus points. Every few shots the ceiling drops a row — don’t let the bubbles reach the dashed line. Each colour also has its own symbol.',
+  full: 'A classic bubble-popping shooter. Aim the launcher and fire coloured bubbles into the cluster above; bank shots off the walls to reach tricky spots. Three or more bubbles of the same colour pop, and any bubbles left hanging fall for big bonus points. Every few shots the ceiling drops a row — don’t let the bubbles reach the dashed line. Each colour also has its own symbol. If you like matching colours, try [Marble Chain](game:marble-chain) or the other [match 3 games](hub:match-3-games).',
   minutes: 5,
   controls: {
     keyboard: ['← / → aim', 'Space or ↑ fires'],

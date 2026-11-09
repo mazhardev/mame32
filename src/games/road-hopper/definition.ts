@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🐔',
   tags: ['hop', 'crossing', 'traffic', 'endless', 'casual', 'featured'],
   short: 'Hop across endless roads, rivers and railways without getting squashed.',
-  full: 'Why did the bird cross the road? To see how far it could get! Hop forward across busy roads, jump between drifting logs on the rivers, and wait for the warning light before crossing the railway. Collect coins on the grass — but keep moving, because the view creeps forward and won’t wait for you.',
+  full: 'Why did the bird cross the road? To see how far it could get! Hop forward across busy roads, jump between drifting logs on the rivers, and wait for the warning light before crossing the railway. Collect coins on the grass — but keep moving, because the view creeps forward and won’t wait for you. For more one-tap dodging, try [Sky Hopper](game:sky-hopper) or the other [runner games](hub:runner-games).',
   minutes: 3,
   controls: {
     keyboard: ['Arrow keys or WASD hop one square', 'Space also hops forward'],

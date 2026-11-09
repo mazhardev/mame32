@@ -8,7 +8,7 @@ export const numberMergeGame: GameDefinition = {
   title: 'Number Merge 2048',
   shortDescription: 'Slide and merge numbered tiles to build the 2048 tile.',
   fullDescription:
-    'Slide every tile in one direction, merge matching pairs, and keep the board alive long enough to reach the target tile. Easy gives you a roomier five-by-five board, Hard removes undo entirely and pushes the goal to 4096. Your run saves automatically, so you can leave and come back.',
+    'Slide every tile in one direction, merge matching pairs, and keep the board alive long enough to reach the target tile. Easy gives you a roomier five-by-five board, Hard removes undo entirely and pushes the goal to 4096. Your run saves automatically, so you can leave and come back. Prefer fitting shapes to merging numbers? Try [Block Puzzle](game:block-puzzle) or see all [block games](hub:block-games).',
   category: 'puzzle',
   difficulty: 'medium',
   tags: ['merge', 'numbers', 'sliding', 'featured', 'save'],

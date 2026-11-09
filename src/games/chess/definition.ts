@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '♛',
   tags: ['classic', 'strategy', 'ai', 'two player', 'checkmate', 'featured'],
   short: 'Full chess against a local computer opponent or a friend.',
-  full: 'Complete chess with every rule — castling, en passant, promotion, check, checkmate, stalemate, threefold repetition and the fifty-move rule. Play White or Black against a computer opponent that thinks right in your browser, or pass and play with a friend. Unfinished games are saved automatically.',
+  full: 'Complete chess with every rule — castling, en passant, promotion, check, checkmate, stalemate, threefold repetition and the fifty-move rule. Play White or Black against a computer opponent that thinks right in your browser, or pass and play with a friend. Unfinished games are saved automatically. To sharpen your play between games, solve [mate-in-two chess puzzles](game:chess-puzzle) or drill [chess tactics](game:chess-tactics).',
   minutes: 20,
   multiplayer: 'vs-ai',
   hasSaveState: true,
