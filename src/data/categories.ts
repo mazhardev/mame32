@@ -7,6 +7,8 @@ export interface CategoryMeta {
   icon: string;
   description: string;
   accent: string;
+  /** Categories to link to from this one's page, nearest first. */
+  related: GameCategory[];
 }
 
 export const CATEGORIES: CategoryMeta[] = [
@@ -17,6 +19,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '👾',
     description: 'Fast reflex classics — dodge, shoot, jump and chase a high score.',
     accent: 'linear-gradient(135deg, #6366f1, #a855f7)',
+    related: ['action', 'casual', 'racing'],
   },
   {
     id: 'puzzle',
@@ -25,6 +28,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🧩',
     description: 'Logic, matching and pattern games that reward careful thinking.',
     accent: 'linear-gradient(135deg, #0ea5e9, #22d3ee)',
+    related: ['brain', 'word', 'board'],
   },
   {
     id: 'word',
@@ -33,6 +37,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🔤',
     description: 'Vocabulary, spelling and letter games with an offline dictionary.',
     accent: 'linear-gradient(135deg, #f59e0b, #f97316)',
+    related: ['educational', 'puzzle', 'brain'],
   },
   {
     id: 'board',
@@ -41,6 +46,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '♟️',
     description: 'Timeless board games with local computer opponents.',
     accent: 'linear-gradient(135deg, #14b8a6, #10b981)',
+    related: ['card', 'strategy', 'brain'],
   },
   {
     id: 'card',
@@ -49,6 +55,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🃏',
     description: 'Solitaire variants and card duels against the computer.',
     accent: 'linear-gradient(135deg, #ef4444, #f43f5e)',
+    related: ['board', 'puzzle', 'casual'],
   },
   {
     id: 'sports',
@@ -57,6 +64,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🏀',
     description: 'Aim, power and timing challenges across many sports.',
     accent: 'linear-gradient(135deg, #f97316, #ea580c)',
+    related: ['racing', 'casual', 'action'],
   },
   {
     id: 'racing',
@@ -65,6 +73,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🏎️',
     description: 'Top-down and endless driving with lap times and traffic.',
     accent: 'linear-gradient(135deg, #dc2626, #f59e0b)',
+    related: ['sports', 'arcade', 'action'],
   },
   {
     id: 'action',
@@ -73,6 +82,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '💥',
     description: 'Stylised shooters, survival arenas and tower defense.',
     accent: 'linear-gradient(135deg, #7c3aed, #c026d3)',
+    related: ['arcade', 'strategy', 'racing'],
   },
   {
     id: 'strategy',
@@ -81,6 +91,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🏰',
     description: 'Build, manage and simulate — all data generated locally.',
     accent: 'linear-gradient(135deg, #0891b2, #0e7490)',
+    related: ['board', 'action', 'puzzle'],
   },
   {
     id: 'educational',
@@ -89,6 +100,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🎓',
     description: 'Quizzes and drills for maths, geography, science and more.',
     accent: 'linear-gradient(135deg, #16a34a, #65a30d)',
+    related: ['word', 'brain', 'creative'],
   },
   {
     id: 'casual',
@@ -97,6 +109,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🎈',
     description: 'Quick one-more-go games you can play in under a minute.',
     accent: 'linear-gradient(135deg, #ec4899, #f472b6)',
+    related: ['arcade', 'sports', 'puzzle'],
   },
   {
     id: 'creative',
@@ -105,6 +118,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🎨',
     description: 'Drawing, colouring and pixel art tools that save locally.',
     accent: 'linear-gradient(135deg, #8b5cf6, #ec4899)',
+    related: ['educational', 'casual', 'puzzle'],
   },
   {
     id: 'brain',
@@ -113,6 +127,7 @@ export const CATEGORIES: CategoryMeta[] = [
     icon: '🧠',
     description: 'Memory, deduction and reasoning trainers.',
     accent: 'linear-gradient(135deg, #2563eb, #7c3aed)',
+    related: ['puzzle', 'educational', 'word'],
   },
 ];
 

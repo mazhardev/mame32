@@ -6,6 +6,14 @@ import { site } from '@/config/site';
 import { getProfile, subscribe } from '@/storage/StorageService';
 import { formatNumber } from '@/utils/format';
 import { TOTAL_PLAYABLE } from '@/data/gameCatalog';
+import { CATEGORIES } from '@/data/categories';
+import { FEATURED_TOPICS, getTopic, hubLinkText, type TopicEntry } from '@/data/topicIndex';
+
+const FOOTER_TOPICS = FEATURED_TOPICS.map(getTopic)
+  .filter((t): t is TopicEntry => !!t)
+  .slice(0, 6);
+/** "Brain Games" already ends in "Games". */
+const categoryLabel = (name: string) => (/games$/i.test(name) ? name : `${name} Games`);
 
 const NAV = [
   { to: '/', label: 'Home', end: true },
@@ -128,16 +136,25 @@ export default function SiteLayout() {
               </a>
             </div>
           </div>
+          <nav className="footer-links" aria-label="Game categories">
+            {CATEGORIES.map((c) => (
+              <Link key={c.id} to={`/categories/${c.slug}/`}>
+                {categoryLabel(c.name)}
+              </Link>
+            ))}
+          </nav>
+          <nav className="footer-links" aria-label="Popular topics">
+            {FOOTER_TOPICS.map((c) => (
+              <Link key={c.slug} to={`/collections/${c.slug}/`}>
+                {hubLinkText(c.name).replace(/^./, (ch) => ch.toUpperCase())}
+              </Link>
+            ))}
+          </nav>
           <nav className="footer-links" aria-label="Footer">
             <Link to="/games/">All Games</Link>
             <Link to="/collections/2-player-games/">2 Player Games</Link>
             <Link to="/collections/games-against-computer/">Games vs Computer</Link>
             <Link to="/collections/mobile-games/">Mobile Games</Link>
-            <Link to="/categories/puzzle/">Puzzle Games</Link>
-            <Link to="/categories/card/">Card Games</Link>
-            <Link to="/favorites/">Favorites</Link>
-            <Link to="/statistics/">Statistics</Link>
-            <Link to="/settings/">Settings</Link>
             <Link to="/privacy/">Privacy</Link>
             <Link to="/about/">About</Link>
             <Link to="/contact/">Contact &amp; Support</Link>

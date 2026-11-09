@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageMeta } from '@/components/PageMeta';
 import { Section } from '@/components/Section';
@@ -15,8 +15,6 @@ import {
 } from '@/data/gameCatalog';
 import { site } from '@/config/site';
 import { FaqSection } from '@/components/FaqSection';
-import { CollectionLinks } from '@/components/CollectionLinks';
-import { activeCollections } from '@/data/collections';
 import { homeFaqs } from '@/seo/content';
 import {
   getAllProgress,
@@ -44,12 +42,12 @@ function useRecentGames(): GameDefinition[] {
   );
 }
 
+const HomeCollections = lazy(() => import('@/components/HomeCollections'));
 export default function HomePage() {
   const recent = useRecentGames();
   const featured = useMemo(() => getFeaturedGames(10), []);
   const newest = useMemo(() => getNewGames(6), []);
   const counts = useMemo(() => countByCategory(), []);
-  const collections = useMemo(() => activeCollections(getPlayableGames()), []);
   const challenge = useMemo(() => getTodaysChallenge(), []);
 
   const [favorites, setFavorites] = useState<GameDefinition[]>([]);
@@ -169,7 +167,7 @@ export default function HomePage() {
       )}
 
       {recent.length > 0 && (
-        <Section title="Recently Played" moreHref="/games?sort=recent">
+        <Section title="Recently Played" moreHref="/games/?sort=recent">
           <div className="game-grid">
             {recent.slice(0, 6).map((game) => (
               <GameCard key={game.id} game={game} />
@@ -178,7 +176,7 @@ export default function HomePage() {
         </Section>
       )}
 
-      <Section title="Featured Games" moreHref="/games">
+      <Section title="Featured Games" moreHref="/games/">
         {featured.length ? (
           <div className="game-grid">
             {featured.map((game) => (
@@ -194,7 +192,7 @@ export default function HomePage() {
       </Section>
 
       {popular.length > 0 && (
-        <Section title="Popular With You" moreHref="/games?sort=most-played">
+        <Section title="Popular With You" moreHref="/games/?sort=most-played">
           <div className="game-grid">
             {popular.map((game) => (
               <GameCard key={game.id} game={game} />
@@ -204,7 +202,7 @@ export default function HomePage() {
       )}
 
       {favorites.length > 0 && (
-        <Section title="Your Favorites" moreHref="/favorites">
+        <Section title="Your Favorites" moreHref="/favorites/">
           <div className="game-grid">
             {favorites.map((game) => (
               <GameCard key={game.id} game={game} />
@@ -214,7 +212,7 @@ export default function HomePage() {
       )}
 
       {newest.length > 0 && (
-        <Section title="New Games" moreHref="/games">
+        <Section title="New Games" moreHref="/games/">
           <div className="game-grid">
             {newest.map((game) => (
               <GameCard key={game.id} game={game} />
@@ -223,7 +221,7 @@ export default function HomePage() {
         </Section>
       )}
 
-      <Section title="Categories" moreHref="/categories">
+      <Section title="Categories" moreHref="/categories/">
         <div className="category-grid">
           {CATEGORIES.map((cat) => (
             <Link key={cat.id} to={`/categories/${cat.slug}/`} className="category-card">
@@ -241,11 +239,11 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section title="Popular Collections">
-        <CollectionLinks collections={collections} label="Popular collections" />
-      </Section>
+      <Suspense fallback={null}>
+        <HomeCollections />
+      </Suspense>
 
-      <Section title="Your Progress" moreHref="/statistics" moreLabel="Full statistics">
+      <Section title="Your Progress" moreHref="/statistics/" moreLabel="Full statistics">
         <div className="stat-grid">
           <div className="stat">
             <div className="stat-value">{formatNumber(profile.totalGamesPlayed)}</div>
