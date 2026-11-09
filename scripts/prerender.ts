@@ -168,6 +168,13 @@ function rich(text: string): string {
     .join('');
 }
 
+/** Copy with link markup as Markdown links to absolute URLs, for llms-full.txt. */
+function markdown(text: string): string {
+  return parseLinks(text)
+    .map((part) => (part.href ? `[${part.text}](${absoluteUrl(part.href)})` : part.text))
+    .join('');
+}
+
 function paragraphs(items: string[]): string {
   return items.map((p) => `<p>${rich(p)}</p>`).join('');
 }
@@ -825,7 +832,7 @@ function gameMarkdown(g: GameDefinition): string {
     `Play free: ${absoluteUrl(gamePath(g.id))}`,
     `Category: ${categoryOf(g).name}. Players: ${playersLabel(g)}. Difficulty: ${g.difficulty}. Typical game: about ${g.estimatedMinutes} minutes. Works on: desktop${g.supportsTouch ? ', phones and tablets' : ''}.`,
     '',
-    plainText(g.fullDescription),
+    markdown(g.fullDescription),
     '',
     `Objective: ${ins.objective}`,
     '',
@@ -846,10 +853,10 @@ write(
 
 ${about}
 
-${homeFaq.map((f) => `Q: ${f.q}\nA: ${f.a}`).join('\n\n')}
+${homeFaq.map((f) => `Q: ${f.q}\nA: ${markdown(f.a)}`).join('\n\n')}
 
 ${CATEGORIES.filter((c) => playableIn(c.id).length > 0)
-  .map((c) => `## ${categoryLabel(c)}\n\n${categoryIntro(c).join('\n\n')}\n\n${playableIn(c.id).map(gameMarkdown).join('\n\n')}`)
+  .map((c) => `## ${categoryLabel(c)}\n\n${categoryIntro(c).map(markdown).join('\n\n')}\n\n${playableIn(c.id).map(gameMarkdown).join('\n\n')}`)
   .join('\n\n')}
 `,
 );
