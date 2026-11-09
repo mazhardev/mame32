@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔨',
   tags: ['reflex', 'tap', 'timed', 'casual', 'kids'],
   short: 'Moles pop up for a moment — whack as many as you can in 45 seconds.',
-  full: 'A quick-reflex classic. Moles pop out of nine holes and duck back down a moment later. Whack them for points, chase golden moles for a big bonus, and build a combo for a score multiplier — but leave the moles in helmets alone.',
+  full: 'A quick-reflex classic. Moles pop out of nine holes and duck back down a moment later. Whack them for points, chase golden moles for a big bonus, and build a combo for a score multiplier — but leave the moles in helmets alone. Then measure your speed with the [Reaction Timer](game:reaction-timer) or more [reaction time games](hub:reaction-time-games).',
   minutes: 1,
   controls: {
     keyboard: ['Keys 1–9 whack the matching hole (1 is top-left, 9 bottom-right)'],

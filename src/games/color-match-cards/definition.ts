@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌈',
   tags: ['cards', 'shedding', 'colours', 'family', 'wild', 'ai', 'two to four players'],
   short: 'Match colours and symbols, play action cards, and be first to empty your hand.',
-  full: 'A fast family shedding game with its own colourful deck. Match the top card by colour or by symbol, use Skip, Reverse and +2 cards to trip up your opponents, and play Wild cards to change the colour. Remember to call “One!” when you are down to your last card. Play against one to three computer players.',
+  full: 'A fast family shedding game with its own colourful deck. Match the top card by colour or by symbol, use Skip, Reverse and +2 cards to trip up your opponents, and play Wild cards to change the colour. Remember to call “One!” when you are down to your last card. Play against one to three computer players. For the classic suit-and-rank version, try [Crazy Eights](game:crazy-eights), or see all [card games against the computer](hub:card-games-vs-computer).',
   minutes: 6,
   multiplayer: 'vs-ai',
   controls: {

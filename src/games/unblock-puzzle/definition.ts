@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚗',
   tags: ['sliding blocks', 'logic', 'levels', 'wooden', 'brain'],
   short: 'Slide the wooden blocks out of the way to free the red block through the exit.',
-  full: 'A sliding-block puzzle on a 6×6 wooden board. Blocks can only slide along their length — horizontal blocks left and right, vertical blocks up and down. Clear a path so the red block can slide out through the gap on the right. Sixty original levels, each with a known minimum number of moves to aim for.',
+  full: 'A sliding-block puzzle on a 6×6 wooden board. Blocks can only slide along their length — horizontal blocks left and right, vertical blocks up and down. Clear a path so the red block can slide out through the gap on the right. Sixty original levels, each with a known minimum number of moves to aim for. For a car-park version, try [Parking Puzzle](game:parking-puzzle), or push crates in [Sokoban](game:sokoban).',
   minutes: 4,
   hasLevels: true,
   hasSaveState: true,

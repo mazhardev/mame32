@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⌨️',
   tags: ['typing test', 'wpm', 'keyboard', 'speed'],
   short: 'A one-minute typing test: how many words per minute can you type?',
-  full: 'Measure your typing speed and accuracy. Type the words as they appear, pressing Space after each one. After 60 seconds you get your words per minute (WPM) and accuracy.',
+  full: 'Measure your typing speed and accuracy. Type the words as they appear, pressing Space after each one. After 60 seconds you get your words per minute (WPM) and accuracy. Learn the keys properly in [Typing Tutor](game:typing-tutor), or race falling words in [Typing Challenge](game:typing-challenge).',
   minutes: 1,
   touch: true,
   controls: {

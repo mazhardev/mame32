@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔡',
   tags: ['fill in the blanks', 'spelling', 'timed'],
   short: 'Some letters have gone missing — complete each word.',
-  full: 'Each word is shown with gaps. Type the complete word before the timer runs out. If more than one real word fits, any of them counts.',
+  full: 'Each word is shown with gaps. Type the complete word before the timer runs out. If more than one real word fits, any of them counts. For a word you build from the start, try [Finish the Word](game:finish-the-word), or see all [word guessing games](hub:word-guessing-games).',
   minutes: 4,
   controls: {
     keyboard: ['Type the full word and press Enter'],

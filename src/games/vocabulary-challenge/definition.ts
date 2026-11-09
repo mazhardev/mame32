@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '📖',
   tags: ['vocabulary', 'timed'],
   short: 'Timed synonyms and antonyms: find the same or opposite meaning fast.',
-  full: 'A fast-paced word challenge. For each word, pick a synonym or an antonym before time runs out — and don’t fall for the opposite!',
+  full: 'A fast-paced word challenge. For each word, pick a synonym or an antonym before time runs out — and don’t fall for the opposite! For definitions instead, try the [Vocabulary Quiz](game:vocabulary-quiz), or learn words in other languages with [Language Vocabulary](game:language-vocabulary).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

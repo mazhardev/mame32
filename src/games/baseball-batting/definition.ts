@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚾',
   tags: ['home run derby', 'timing', 'batting', 'sports', 'pitch'],
   short: 'A home run derby: read fastballs, curves and sliders and send them over the fence.',
-  full: 'Step into the box for a home run derby. The computer pitcher mixes fastballs, changeups, curveballs and sliders. Put the bat marker where the pitch will cross the plate and swing as it arrives — get just under the ball for lift, pull it with an early swing or go the other way with a late one. Every swing that is not a home run is an out, and so is a called strike. Ten outs and you are done.',
+  full: 'Step into the box for a home run derby. The computer pitcher mixes fastballs, changeups, curveballs and sliders. Put the bat marker where the pitch will cross the plate and swing as it arrives — get just under the ball for lift, pull it with an early swing or go the other way with a late one. Every swing that is not a home run is an out, and so is a called strike. Ten outs and you are done. Love batting? Chase a target in [Cricket Batting](game:cricket-batting), or play both innings in the [Cricket Super Over](game:cricket-super-over).',
   minutes: 4,
   controls: {
     keyboard: ['Arrow keys move the bat marker', 'Space swings'],

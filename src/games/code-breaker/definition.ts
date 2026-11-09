@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔓',
   tags: ['safe', 'numbers', 'deduction', 'code'],
   short: 'Crack the safe: each digit tells you higher, lower or correct.',
-  full: 'Open the safe by finding its secret code. After every attempt, each digit shows whether it is correct, or whether the real digit is higher or lower. Work out every digit before the alarm goes off.',
+  full: 'Open the safe by finding its secret code. After every attempt, each digit shows whether it is correct, or whether the real digit is higher or lower. Work out every digit before the alarm goes off. For a harder code with bulls and cows, try [Bulls and Cows](game:bulls-and-cows), or see all [code-breaking games](hub:code-breaking-games).',
   minutes: 3,
   controls: {
     keyboard: ['Type digits, Enter to try the code, Backspace to delete'],

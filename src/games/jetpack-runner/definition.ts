@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚀',
   tags: ['runner', 'jetpack', 'hold', 'coins', 'endless', 'one button'],
   short: 'Hold to fly, let go to fall — jetpack through a lab full of zappers and rockets.',
-  full: 'Strap on a jetpack and dash down an endless laboratory corridor. Hold to rise, release to drop, and thread your way between electric zappers. Rockets lock on to your height after a flashing warning, so keep moving. Grab coin trails for bonus points.',
+  full: 'Strap on a jetpack and dash down an endless laboratory corridor. Hold to rise, release to drop, and thread your way between electric zappers. Rockets lock on to your height after a flashing warning, so keep moving. Grab coin trails for bonus points. For one-button flying of a different kind, try [Sky Hopper](game:sky-hopper), or browse all [runner games](hub:runner-games).',
   minutes: 3,
   controls: {
     keyboard: ['Hold Space or ↑ to fly up; release to fall'],

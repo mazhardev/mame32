@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🏋️',
   tags: ['mixed', 'daily', 'drills'],
   short: 'A daily mix of drills: arithmetic, sequences, colour-word tests and more.',
-  full: 'A varied brain workout mixing quick maths, number sequences, a colour-word (Stroop) test, fraction comparisons and visual counting — fifteen questions against the clock.',
+  full: 'A varied brain workout mixing quick maths, number sequences, a colour-word (Stroop) test, fraction comparisons and visual counting — fifteen questions against the clock. For a single focused test, try the [IQ Challenge](game:iq-challenge) or the [memory games](hub:memory-games).',
   minutes: 5,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

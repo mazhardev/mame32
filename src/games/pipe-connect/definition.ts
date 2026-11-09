@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔧',
   tags: ['rotation', 'flow', 'logic', 'pipes', 'network', 'plumber'],
   short: 'Rotate the pipe tiles until water from the centre reaches every tile without a leak.',
-  full: 'A network puzzle. The tiles on the board make one connected system of pipes, but every tile has been turned. Rotate them so water from the source in the middle flows to every tile, with no open pipe ends. Lock the tiles you are sure of, and try to finish in the fewest turns.',
+  full: 'A network puzzle. The tiles on the board make one connected system of pipes, but every tile has been turned. Rotate them so water from the source in the middle flows to every tile, with no open pipe ends. Lock the tiles you are sure of, and try to finish in the fewest turns. For more connecting puzzles, try [Flow Connect](game:flow-connect) or [Connect the Dots](game:connect-the-dots).',
   minutes: 5,
   hasSaveState: true,
   controls: {

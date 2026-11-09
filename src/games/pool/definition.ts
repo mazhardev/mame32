@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎱',
   tags: ['8-ball', 'billiards', 'cue', 'physics', 'ai', 'sports'],
   short: 'Play 8-ball pool against the computer: pot your group, then sink the 8.',
-  full: 'A full frame of 8-ball pool against a computer opponent, with real ball physics. Break the rack, claim solids or stripes with your first pot, clear your group and then sink the black 8 to win. Fouls — scratching the cue ball, hitting the wrong ball first or missing everything — give your opponent ball in hand anywhere on the table.',
+  full: 'A full frame of 8-ball pool against a computer opponent, with real ball physics. Break the rack, claim solids or stripes with your first pot, clear your group and then sink the black 8 to win. Fouls — scratching the cue ball, hitting the wrong ball first or missing everything — give your opponent ball in hand anywhere on the table. For more cue and table games, try [Carrom](game:carrom) or [Air Hockey](game:air-hockey).',
   minutes: 8,
   multiplayer: 'vs-ai',
   controls: {

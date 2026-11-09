@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🥅',
   tags: ['physics', 'puck', 'ai', 'sports', 'reflex'],
   short: 'Slam the puck past the computer’s mallet on a frictionless air table.',
-  full: 'Classic table air hockey against a computer opponent. Your mallet follows your mouse or finger, and the puck flies off it with real momentum — swing fast through the puck for a blistering shot, or bank it off the side boards. Defend your goal at the bottom and score in the top goal. First to 7 goals wins.',
+  full: 'Classic table air hockey against a computer opponent. Your mallet follows your mouse or finger, and the puck flies off it with real momentum — swing fast through the puck for a blistering shot, or bank it off the side boards. Defend your goal at the bottom and score in the top goal. First to 7 goals wins. For another fast table game, play [Table Tennis](game:table-tennis), or rally against the computer in [Pong](game:pong).',
   minutes: 4,
   multiplayer: 'vs-ai',
   controls: {

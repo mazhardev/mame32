@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '💡',
   tags: ['reasoning', 'mixed'],
   short: 'Analogies, letter series, odd-one-out and number puzzles in one test.',
-  full: 'A mixed reasoning challenge: verbal analogies, letter and number sequences, classification puzzles and logic. Fifteen questions with explanations. Just for fun — not a real IQ test.',
+  full: 'A mixed reasoning challenge: verbal analogies, letter and number sequences, classification puzzles and logic. Fifteen questions with explanations. Just for fun — not a real IQ test. For a daily mix of drills, try [Brain Training](game:brain-training), or test your knowledge in more [quiz games](hub:quiz-games).',
   minutes: 6,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

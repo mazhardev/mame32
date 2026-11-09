@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '☁️',
   tags: ['jumping', 'platform', 'endless', 'climb', 'tilt'],
   short: 'Bounce from cloud to cloud and climb as high as the sky goes.',
-  full: 'An endless climb through the clouds. Your little jumper bounces all by itself — you just steer left and right. Drifting clouds, crumbling clouds and springy clouds keep you on your toes, and higher up grumpy storm monsters appear: stomp them from above, but don’t bump into them. Fly off one side of the screen to reappear on the other.',
+  full: 'An endless climb through the clouds. Your little jumper bounces all by itself — you just steer left and right. Drifting clouds, crumbling clouds and springy clouds keep you on your toes, and higher up grumpy storm monsters appear: stomp them from above, but don’t bump into them. Fly off one side of the screen to reappear on the other. Climb a different way in [Endless Jumper](game:endless-jumper), or run instead in the other [runner games](hub:runner-games).',
   minutes: 3,
   controls: {
     keyboard: ['← / → steer'],

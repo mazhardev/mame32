@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎯',
   tags: ['aim', 'precision', 'breathing', 'scoring', 'action'],
   short: 'Ten shots at a ringed target — steady your breathing and squeeze the trigger.',
-  full: 'A calm, precise rifle-range game. Your sight drifts gently with your breathing, so timing matters as much as aim. Hold your breath to steady the crosshair for a few seconds, but not for too long, or it starts to shake. Score each shot by the ring it lands in, from 10 in the centre to 1 at the edge, and aim for the tiny inner X. On Hard, a changing wind nudges every shot.',
+  full: 'A calm, precise rifle-range game. Your sight drifts gently with your breathing, so timing matters as much as aim. Hold your breath to steady the crosshair for a few seconds, but not for too long, or it starts to shake. Score each shot by the ring it lands in, from 10 in the centre to 1 at the edge, and aim for the tiny inner X. On Hard, a changing wind nudges every shot. For a moving challenge, try [Duck Target](game:duck-target), or browse all [target shooting games](hub:target-shooting-games).',
   minutes: 2,
   controls: {
     keyboard: ['Arrow keys move the sight', 'Hold Shift or X to hold your breath', 'Space fires'],

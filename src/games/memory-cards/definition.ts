@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🧠',
   tags: ['cards', 'memory', 'pairs', 'concentration', 'kids', 'brain'],
   short: 'Turn over playing cards two at a time and match pairs of the same rank and colour.',
-  full: 'The classic concentration game with a real deck. Every card has one partner of the same rank and colour — the 7♥ matches the 7♦, the K♠ matches the K♣. Flip two at a time, remember where everything is, and clear the table in as few moves as you can.',
+  full: 'The classic concentration game with a real deck. Every card has one partner of the same rank and colour — the 7♥ matches the 7♦, the K♠ matches the K♣. Flip two at a time, remember where everything is, and clear the table in as few moves as you can. For pictures instead of playing cards, try [Memory Match](game:memory-match), or browse all [memory games](hub:memory-games).',
   minutes: 4,
   multiplayer: 'single',
   hasLevels: true,

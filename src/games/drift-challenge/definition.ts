@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💨',
   tags: ['drift', 'score', 'physics', 'timed', 'racing'],
   short: 'Slide a loose rear-wheel-drive car through twisty bends and bank huge drift combos.',
-  full: 'A drift-scoring challenge against the clock. Your car has very little rear grip, so with some throttle and the handbrake it slides sideways through the bends of a twisty practice track. Points build up while you hold a drift, and the multiplier climbs the longer you keep it going. Straighten up cleanly to bank the points — touch the grass or the barrier and the pending points are lost.',
+  full: 'A drift-scoring challenge against the clock. Your car has very little rear grip, so with some throttle and the handbrake it slides sideways through the bends of a twisty practice track. Points build up while you hold a drift, and the multiplier climbs the longer you keep it going. Straighten up cleanly to bank the points — touch the grass or the barrier and the pending points are lost. For more car control, try [Hill Racer](game:hill-racer) or the [Parking Challenge](game:parking-challenge).',
   minutes: 2,
   controls: {
     keyboard: ['↑ throttle, ↓ brake', '← → steer', 'Hold Space or X for the handbrake'],

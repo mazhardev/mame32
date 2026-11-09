@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🗣️',
   tags: ['vocabulary', 'quiz'],
   short: 'Learn Spanish, French and German words with quick translation questions.',
-  full: 'Build vocabulary in three languages. Translate everyday words into English, and on harder levels, from English into Spanish, French and German.',
+  full: 'Build vocabulary in three languages. Translate everyday words into English, and on harder levels, from English into Spanish, French and German. For English synonyms and antonyms, try the [Vocabulary Challenge](game:vocabulary-challenge), or browse more [educational games](cat:educational).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

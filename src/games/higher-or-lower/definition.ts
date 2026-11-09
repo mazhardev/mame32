@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⬆️',
   tags: ['cards', 'guessing', 'streak', 'luck', 'odds', 'quick'],
   short: 'Guess whether the next card is higher or lower — how long can your streak last?',
-  full: 'A quick card-guessing game. Look at the face-up card and call whether the next one will be higher or lower. Bold calls against the odds score more points. Keep your streak going through the whole deck before you run out of lives.',
+  full: 'A quick card-guessing game. Look at the face-up card and call whether the next one will be higher or lower. Bold calls against the odds score more points. Keep your streak going through the whole deck before you run out of lives. For more quick card games, try [War](game:war-card) against the computer, or play [Golf Solitaire](game:golf-solitaire) with the same higher-or-lower idea.',
   minutes: 3,
   multiplayer: 'single',
   controls: {

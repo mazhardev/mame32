@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎡',
   tags: ['luck', 'virtual points', 'quick', 'casual'],
   short: 'Choose your stake and spin the prize wheel ten times — virtual points only.',
-  full: 'A light-hearted luck game with virtual points that have no real-world value. Start with 100 points and ten spins. Before each spin, choose how much to stake; the wheel’s multiplier decides how much comes back. The average return of the wheel is shown on screen, so you always know the odds. There is nothing to buy and nothing to win except bragging rights.',
+  full: 'A light-hearted luck game with virtual points that have no real-world value. Start with 100 points and ten spins. Before each spin, choose how much to stake; the wheel’s multiplier decides how much comes back. The average return of the wheel is shown on screen, so you always know the odds. There is nothing to buy and nothing to win except bragging rights. For another game of chance with virtual points, try [Higher or Lower](game:higher-or-lower) or [Coin Toss](game:coin-toss).',
   minutes: 2,
   controls: {
     keyboard: ['Tab to a stake and the Spin button, Enter to press'],

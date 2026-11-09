@@ -8,7 +8,7 @@ export const blackjackGame: GameDefinition = {
   title: 'Blackjack',
   shortDescription: 'Beat the dealer to 21 over five hands. Virtual points only.',
   fullDescription:
-    'A card-game simulation using virtual points only. No real money or purchases are involved. Play five hands against a local dealer and try to finish with at least 300 points.',
+    'A card-game simulation using virtual points only. No real money or purchases are involved. Play five hands against a local dealer and try to finish with at least 300 points. For more card games with virtual points, try [Higher or Lower](game:higher-or-lower), or play trick-taking [card games against the computer](hub:card-games-vs-computer).',
   category: 'card',
   difficulty: 'easy',
   tags: ['cards', 'casino-style', 'ai', 'virtual-points'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💣',
   tags: ['maze', 'bombs', 'arcade', 'battle', 'bosses', 'stages', 'power-ups', 'retro'],
   short: 'Drop bombs to blast through 40 maze stages and 5 bosses — or battle three bomb-happy bots.',
-  full: 'Dig the mole drops bombs to clear a path through the maze. Blast the soft blocks to uncover power-ups and the hidden exit, knock out every monster, then make for the exit before time runs out. Collect extra bombs, bigger blasts, speed, remote detonators, kicking boots and more across 40 stages in five areas, each ending in a boss fight. In Battle mode, take on three computer bombers in an arena packed with power-ups: last bomber standing wins the round, first to three rounds wins the match.',
+  full: 'Dig the mole drops bombs to clear a path through the maze. Blast the soft blocks to uncover power-ups and the hidden exit, knock out every monster, then make for the exit before time runs out. Collect extra bombs, bigger blasts, speed, remote detonators, kicking boots and more across 40 stages in five areas, each ending in a boss fight. In Battle mode, take on three computer bombers in an arena packed with power-ups: last bomber standing wins the round, first to three rounds wins the match. For a classic chase through a maze, try [Maze Muncher](game:maze-muncher), or browse all [maze games](hub:maze-games).',
   minutes: 15,
   hasLevels: true,
   controls: {

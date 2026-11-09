@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔢',
   tags: ['colouring', 'relaxing', 'numbers', 'pixel', 'creative', 'save'],
   short: 'Fill each numbered square with its colour and watch a pixel picture appear.',
-  full: 'A relaxing paint-by-number collection of twelve original pixel pictures — a fish, a rocket, a mushroom, a cat and more. Choose a numbered colour, then tap or drag across the squares with that number. Finished pictures go into your gallery, and an unfinished one is saved so you can come back to it.',
+  full: 'A relaxing paint-by-number collection of twelve original pixel pictures — a fish, a rocket, a mushroom, a cat and more. Choose a numbered colour, then tap or drag across the squares with that number. Finished pictures go into your gallery, and an unfinished one is saved so you can come back to it. To draw your own pixel pictures, try [Pixel Art](game:pixel-art), or see all [colouring games](hub:coloring-games).',
   minutes: 6,
   hasSaveState: true,
   controls: {

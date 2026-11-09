@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🥊',
   tags: ['timing', 'reflex', 'ai', 'fighting', 'sports', 'counter'],
   short: 'Slip, block and counter a computer boxer over three cartoon rounds.',
-  full: 'A cartoon boxing bout seen from your corner. Your opponent telegraphs every punch — the glowing glove shows a jab, a hook from either side or an uppercut — so slip the right way or cover up, then punish the opening with jabs and hooks. Land four in a row and your opponent is dazed. Three knockdowns end it; otherwise the judges score the rounds.',
+  full: 'A cartoon boxing bout seen from your corner. Your opponent telegraphs every punch — the glowing glove shows a jab, a hook from either side or an uppercut — so slip the right way or cover up, then punish the opening with jabs and hooks. Land four in a row and your opponent is dazed. Three knockdowns end it; otherwise the judges score the rounds. For more one-on-one fighting, try [Dojo Duel](game:dojo-duel), or go head to head in [Air Hockey](game:air-hockey).',
   minutes: 4,
   multiplayer: 'vs-ai',
   controls: {

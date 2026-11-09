@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🟦',
   tags: ['shapes', 'grid', 'placement', 'lines', 'endless', 'relaxing'],
   short: 'Drop block shapes onto the grid and clear full rows and columns. How long can you last?',
-  full: 'A calm, endless block-placing puzzle. Drag the three pieces from the tray onto the board; fill a whole row or column to clear it. Clear several lines at once for big combo points, and keep clearing turn after turn for a streak bonus. Pieces never rotate, and the game ends when nothing in the tray fits. Your game is saved between visits.',
+  full: 'A calm, endless block-placing puzzle. Drag the three pieces from the tray onto the board; fill a whole row or column to clear it. Clear several lines at once for big combo points, and keep clearing turn after turn for a streak bonus. Pieces never rotate, and the game ends when nothing in the tray fits. Your game is saved between visits. For falling pieces, play [Block Drop](game:block-drop), or browse all [block games](hub:block-games).',
   minutes: 6,
   hasSaveState: true,
   controls: {

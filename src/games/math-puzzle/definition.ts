@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '➗',
   tags: ['maths', 'logic'],
   short: 'Missing numbers and missing operators: complete each equation.',
-  full: 'Each puzzle is an equation with a gap. Find the missing number, or work out which operator (+, −, ×, ÷) makes it true.',
+  full: 'Each puzzle is an equation with a gap. Find the missing number, or work out which operator (+, −, ×, ÷) makes it true. For number logic on a grid, try [Kakuro](game:kakuro), or browse all [math games](hub:math-games).',
   minutes: 4,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

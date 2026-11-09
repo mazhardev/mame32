@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '👕',
   tags: ['dress up', 'fashion', 'outfits', 'kids', 'creative', 'style'],
   short: 'Dress a character for the beach, the snow, a party, sports day or a trip to space.',
-  full: 'Mix and match hats, tops, trousers, shoes and extras in any colour, then change the hairstyle and skin tone. In Style Challenge mode five clients each need an outfit for a different occasion — sun hats and flip-flops for the beach, parkas and snow boots for the snow, a space suit and jetpack for orbit — and some want a favourite colour too. Or switch to Free Play and just design. All drawings are original vector art.',
+  full: 'Mix and match hats, tops, trousers, shoes and extras in any colour, then change the hairstyle and skin tone. In Style Challenge mode five clients each need an outfit for a different occasion — sun hats and flip-flops for the beach, parkas and snow boots for the snow, a space suit and jetpack for orbit — and some want a favourite colour too. Or switch to Free Play and just design. All drawings are original vector art. For more creative play, colour a picture in the [Coloring Game](game:coloring-game), or browse more [creative games](cat:creative).',
   minutes: 5,
   controls: {
     keyboard: ['Tab to move between items', 'Enter or Space to choose'],

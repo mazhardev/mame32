@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🛸',
   tags: ['shooter', 'space', 'dogfight', 'physics', 'action'],
   short: 'Dogfight enemy fighters in zero gravity — master momentum, then out-turn them.',
-  full: 'A space dogfight with real momentum. Turning and thrusting are separate: your ship keeps drifting the way it was going, just like in space. Enemy fighters chase you, lead their shots and open fire when they line up. Your shield recharges slowly; your hull does not. The arena wraps around at the edges, so there is nowhere to hide.',
+  full: 'A space dogfight with real momentum. Turning and thrusting are separate: your ship keeps drifting the way it was going, just like in space. Enemy fighters chase you, lead their shots and open fire when they line up. Your shield recharges slowly; your hull does not. The arena wraps around at the edges, so there is nowhere to hide. For classic space shooting, try [Space Shooter](game:space-shooter), or see all [space shooter games](hub:space-shooter-games).',
   minutes: 5,
   controls: {
     keyboard: ['← → or A / D turn', '↑ or W thrusts', 'Space fires'],

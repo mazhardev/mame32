@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🫧',
   tags: ['platformer', 'arena', 'bubbles', 'stages', 'bosses', 'retro', 'combo'],
   short: 'Trap sea monsters in bubbles and pop them into fruit — 40 stages and 2 bosses.',
-  full: 'Fizz the axolotl defends the Bubble Lagoon with nothing but bubbles. Blow a bubble at a monster to trap it, then pop the bubble to turn the monster into fruit. Pop bubbles that touch each other for chain combos, bounce across floating bubbles to reach high ledges, and drop through the floor to fall in from the top of the screen. Lightning and fire bubbles appear on some stages, letter bubbles spell out SPLASH for an extra life, and two boss battles wait at stages 20 and 40.',
+  full: 'Fizz the axolotl defends the Bubble Lagoon with nothing but bubbles. Blow a bubble at a monster to trap it, then pop the bubble to turn the monster into fruit. Pop bubbles that touch each other for chain combos, bounce across floating bubbles to reach high ledges, and drop through the floor to fall in from the top of the screen. Lightning and fire bubbles appear on some stages, letter bubbles spell out SPLASH for an extra life, and two boss battles wait at stages 20 and 40. Prefer aiming to trapping? Try [Bubble Shooter](game:bubble-shooter), or see more [match 3 games](hub:match-3-games).',
   minutes: 12,
   hasLevels: true,
   controls: {

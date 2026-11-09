@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏃',
   tags: ['tapping', 'speed', 'athletics', 'quick', 'sports'],
   short: 'The 100 m dash: alternate two buttons as fast as you can and beat three rivals to the line.',
-  full: 'A frantic button-bashing 100 m sprint. Wait in the blocks for the gun, then alternate left and right as fast and as evenly as you can — hitting the same side twice does nothing, so rhythm counts. Go before the gun and you are held back for a second. Beat three rival sprinters for gold.',
+  full: 'A frantic button-bashing 100 m sprint. Wait in the blocks for the gun, then alternate left and right as fast and as evenly as you can — hitting the same side twice does nothing, so rhythm counts. Go before the gun and you are held back for a second. Beat three rival sprinters for gold. For a race you watch instead, try the [Horse Race Simulation](game:horse-race-sim), or ride a dirt bike in [Bike Race](game:bike-race).',
   minutes: 1,
   controls: {
     keyboard: ['Alternate ← and →, or Z and M, or A and L'],

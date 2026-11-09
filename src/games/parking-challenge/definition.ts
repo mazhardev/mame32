@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🅿️',
   tags: ['precision', 'levels', 'driving', 'puzzle', 'racing'],
   short: 'Ten tricky parking bays: nose in, reverse in and parallel park without a single scrape.',
-  full: 'A slow, precise driving puzzle. Each of the ten levels has a marked yellow bay to park in — straight in, round corners, between tightly packed cars, parallel to the kerb, into a garage, and several that must be reversed into. Come to a complete stop with the whole car inside the lines, facing the arrow. Touching another car, a cone or a wall costs a life.',
+  full: 'A slow, precise driving puzzle. Each of the ten levels has a marked yellow bay to park in — straight in, round corners, between tightly packed cars, parallel to the kerb, into a garage, and several that must be reversed into. Come to a complete stop with the whole car inside the lines, facing the arrow. Touching another car, a cone or a wall costs a life. For a car-park logic puzzle, try [Parking Puzzle](game:parking-puzzle), or see all [car driving games](hub:driving-games).',
   minutes: 6,
   hasLevels: true,
   controls: {

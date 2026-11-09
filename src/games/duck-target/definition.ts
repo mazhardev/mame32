@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🦆',
   tags: ['aim', 'reflex', 'classic', 'shooting gallery', 'action'],
   short: 'Two cartoon ducks per round, three shots — tag them before they fly away.',
-  full: 'A light-hearted marsh shooting gallery in the spirit of the arcade classics, with cartoon ducks that just tumble back into the reeds. Each round two ducks flap out of the reeds and zigzag around the sky. You have three shots to tag them both before they escape. Golden ducks are rare and worth triple. Get both ducks in a round for a perfect-round bonus.',
+  full: 'A light-hearted marsh shooting gallery in the spirit of the arcade classics, with cartoon ducks that just tumble back into the reeds. Each round two ducks flap out of the reeds and zigzag around the sky. You have three shots to tag them both before they escape. Golden ducks are rare and worth triple. Get both ducks in a round for a perfect-round bonus. Steady your aim on a ringed target in [Target Shooting](game:target-shooting), or see all [target shooting games](hub:target-shooting-games).',
   minutes: 3,
   controls: {
     keyboard: ['Arrow keys move the sight', 'Space fires'],

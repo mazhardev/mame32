@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎴',
   tags: ['cards', 'poker style', 'casino style', 'simulation', 'virtual points', 'vs dealer'],
   short: 'Three-card poker-style showdown against the dealer, with virtual points.',
-  full: 'A fast three-card poker-style simulation played with virtual points only. Place an ante, look at your three cards and decide: play on with a matching bet, or fold. The dealer needs queen-high to qualify. Straights and better earn an ante bonus whatever the dealer holds.',
+  full: 'A fast three-card poker-style simulation played with virtual points only. Place an ante, look at your three cards and decide: play on with a matching bet, or fold. The dealer needs queen-high to qualify. Straights and better earn an ante bonus whatever the dealer holds. For a full hand with bluffing, try [Poker vs Computer](game:poker-vs-computer), or see all [card games against the computer](hub:card-games-vs-computer).',
   minutes: 5,
   multiplayer: 'vs-ai',
   controls: {

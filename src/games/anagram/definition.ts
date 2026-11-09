@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔁',
   tags: ['letters', 'rearrange', 'timed'],
   short: 'Rearrange every letter of a word to make a brand-new word.',
-  full: 'Turn HEART into EARTH and LISTEN into SILENT. Each round shows a word; rearrange all of its letters into a different real word before time runs out.',
+  full: 'Turn HEART into EARTH and LISTEN into SILENT. Each round shows a word; rearrange all of its letters into a different real word before time runs out. For more letter shuffling, try [Word Scramble](game:word-scramble) or grow words in [Word Builder](game:word-builder).',
   minutes: 4,
   controls: {
     keyboard: ['Type your answer and press Enter'],

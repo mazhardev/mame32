@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🧟',
   tags: ['survival', 'waves', 'shooter', 'top-down', 'action'],
   short: 'Hold out against waves of cartoon zombies — and watch your ammo.',
-  full: 'A top-down survival shooter with a cartoon look. Waves of shambling zombies close in from every side. Your pistol holds twelve rounds and spare ammo is limited, so aim carefully and reload at the right moment. Fast runners join from wave 2 and hulking brutes from wave 3. Supply crates after each wave restock ammo or patch you up.',
+  full: 'A top-down survival shooter with a cartoon look. Waves of shambling zombies close in from every side. Your pistol holds twelve rounds and spare ammo is limited, so aim carefully and reload at the right moment. Fast runners join from wave 2 and hulking brutes from wave 3. Supply crates after each wave restock ammo or patch you up. More arena action: [Survival Arena](game:survival-arena) and [Robot Shooter](game:robot-shooter).',
   minutes: 5,
   controls: {
     keyboard: ['WASD or arrows move', 'Space fires in the direction you move', 'X or Shift reloads'],

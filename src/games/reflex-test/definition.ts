@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🖱️',
   tags: ['reflex', 'measurement', 'quick', 'casual'],
   short: 'A choice-reaction test: hit whichever of four pads lights up, as fast as you can.',
-  full: 'A harder cousin of the classic reaction test. After a random wait, one of four pads lights up and you must hit that exact pad — with a tap or the matching arrow key. Fifteen trials measure your average reaction time and accuracy. On Hard, some pads light red: those are traps and must be left alone.',
+  full: 'A harder cousin of the classic reaction test. After a random wait, one of four pads lights up and you must hit that exact pad — with a tap or the matching arrow key. Fifteen trials measure your average reaction time and accuracy. On Hard, some pads light red: those are traps and must be left alone. For a single-signal test, try the [Reaction Timer](game:reaction-timer), or see all [reaction time games](hub:reaction-time-games).',
   minutes: 1,
   controls: {
     keyboard: ['Arrow keys hit the matching pad (↑ ← → ↓)'],

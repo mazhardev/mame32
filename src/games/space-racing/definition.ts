@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚀',
   tags: ['tunnel', 'speed', 'endless', 'reflex', 'racing'],
   short: 'Rocket down an endless space tunnel — rotate to slip through the gaps at blistering speed.',
-  full: 'A high-speed tunnel racer with a 3D look. Your ship rides the inside wall of a neon tunnel and you rotate around it. Walls rush towards you with a gap somewhere in them: line up with the gap before the wall arrives. Speed keeps climbing, gaps get smaller, and blue boost rings make you even faster for a moment — great for points, terrible for reaction time.',
+  full: 'A high-speed tunnel racer with a 3D look. Your ship rides the inside wall of a neon tunnel and you rotate around it. Walls rush towards you with a gap somewhere in them: line up with the gap before the wall arrives. Speed keeps climbing, gaps get smaller, and blue boost rings make you even faster for a moment — great for points, terrible for reaction time. For racing back on Earth, try [Formula Racing](game:formula-racing), or blast through space in [Space Shooter](game:space-shooter).',
   minutes: 2,
   controls: {
     keyboard: ['← → rotate around the tunnel'],

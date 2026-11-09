@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌸',
   tags: ['colouring', 'relaxing', 'mandala', 'symmetry', 'creative', 'save'],
   short: 'Colour endlessly generated mandalas — symmetry fill paints every matching petal at once.',
-  full: 'A calm colouring game with a fresh mandala every time: rings of petals, arches, diamonds and dots arranged with perfect rotational symmetry. Tap any shape to colour it; with symmetry fill on, every matching shape around the ring changes together. Undo freely, download your finished mandala as a picture, and pick up an unfinished one later.',
+  full: 'A calm colouring game with a fresh mandala every time: rings of petals, arches, diamonds and dots arranged with perfect rotational symmetry. Tap any shape to colour it; with symmetry fill on, every matching shape around the ring changes together. Undo freely, download your finished mandala as a picture, and pick up an unfinished one later. For a guided picture, try [Paint by Number](game:paint-by-number), or see all [colouring games](hub:coloring-games).',
   minutes: 8,
   hasSaveState: true,
   controls: {

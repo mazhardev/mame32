@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⭐',
   tags: ['star', 'jumping', 'marbles', 'race', 'strategy', 'ai', 'two player', 'halma'],
   short: 'Hop your marbles across the star into the opposite point first.',
-  full: 'Race your ten marbles across a six-pointed star into the opposite point. Step to a neighbouring hole, or jump over any marble — and keep jumping in a chain for huge leaps. Play a local computer opponent or a friend on the same device.',
+  full: 'Race your ten marbles across a six-pointed star into the opposite point. Step to a neighbouring hole, or jump over any marble — and keep jumping in a chain for huge leaps. Play a local computer opponent or a friend on the same device. For jumping games on a square board, try [Checkers](game:checkers), or browse all [chess and checkers games](hub:chess-and-checkers-games).',
   minutes: 12,
   multiplayer: 'vs-ai',
   controls: {

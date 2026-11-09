@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '👆',
   tags: ['speed', 'measurement', 'quick', 'tap', 'casual'],
   short: 'How many clicks per second can you manage? A CPS test in 5, 10 or 30 seconds.',
-  full: 'The classic CPS test. Click or tap the big button as many times as you can before the timer runs out. Your clicks-per-second rate updates live and you get a rank at the end. Choose a quick 5-second sprint, the standard 10 seconds or a 30-second endurance test.',
+  full: 'The classic CPS test. Click or tap the big button as many times as you can before the timer runs out. Your clicks-per-second rate updates live and you get a rank at the end. Choose a quick 5-second sprint, the standard 10 seconds or a 30-second endurance test. Then test your reaction time in [Reaction Timer](game:reaction-timer), or try more [reaction time games](hub:reaction-time-games).',
   minutes: 1,
   controls: {
     keyboard: ['Focus the button with Tab, then press Space or Enter for each click (holding the key does not count)'],

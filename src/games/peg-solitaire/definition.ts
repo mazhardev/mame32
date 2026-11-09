@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔘',
   tags: ['pegs', 'jumping', 'single player', 'classic', 'puzzle', 'brain'],
   short: 'Jump pegs over each other until only one is left.',
-  full: 'The classic single-player board puzzle on a cross-shaped board. Jump one peg over a neighbour into an empty hole to remove it, and keep going until only one peg remains — ideally in the centre. Three starting layouts, unlimited undo and a solver-backed hint.',
+  full: 'The classic single-player board puzzle on a cross-shaped board. Jump one peg over a neighbour into an empty hole to remove it, and keep going until only one peg remains — ideally in the centre. Three starting layouts, unlimited undo and a solver-backed hint. For another solo puzzle with a perfect solution, try the [Tower of Hanoi](game:tower-of-hanoi), or match tiles in [Tile Solitaire](game:tile-solitaire).',
   minutes: 6,
   multiplayer: 'single',
   hasLevels: true,

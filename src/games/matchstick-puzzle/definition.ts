@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔥',
   tags: ['logic', 'visual', 'classic', 'maths', 'brain'],
   short: 'The equation is wrong — move exactly one matchstick to make it true.',
-  full: 'The classic matchstick riddle. An equation is laid out in matchsticks, and it is not true. Pick up one stick and put it somewhere else so that the sum works. You can change a digit, turn a plus into a minus, or borrow a stick from one number to complete another. Every puzzle is generated and checked, and any correct move counts — not just the one we had in mind.',
+  full: 'The classic matchstick riddle. An equation is laid out in matchsticks, and it is not true. Pick up one stick and put it somewhere else so that the sum works. You can change a digit, turn a plus into a minus, or borrow a stick from one number to complete another. Every puzzle is generated and checked, and any correct move counts — not just the one we had in mind. For more equation puzzles, try [Math Puzzle](game:math-puzzle) or the [Balance Puzzle](game:balance-puzzle).',
   minutes: 5,
   controls: {
     keyboard: ['Tab to a stick, Enter to pick it up; Tab to an empty slot, Enter to place'],

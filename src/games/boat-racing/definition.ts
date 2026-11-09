@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚤',
   tags: ['water', 'laps', 'ai', 'boats', 'racing'],
   short: 'Powerboat racing round a buoy-marked lagoon — slide through the turns and leave a wake.',
-  full: 'Race powerboats round a lagoon course marked by orange and yellow buoys. Boats do not grip like cars: they carry their momentum and slide wide through every turn, so you must start turning early and feather the throttle. Three laps against three rival boats.',
+  full: 'Race powerboats round a lagoon course marked by orange and yellow buoys. Boats do not grip like cars: they carry their momentum and slide wide through every turn, so you must start turning early and feather the throttle. Three laps against three rival boats. For more racing on water, try [Jet Ski Racing](game:jet-ski-racing), or browse all [racing games](cat:racing).',
   minutes: 4,
   multiplayer: 'vs-ai',
   controls: {

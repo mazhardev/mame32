@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎨',
   tags: ['colours', 'timing', 'tap', 'endless', 'reflex'],
   short: 'Hop a coloured ball through spinning obstacles — you may only pass your own colour.',
-  full: 'A fast timing game. Tap to hop your ball upwards through spinning rings and sliding bars, but only through the part that matches the ball’s colour. Collect the stars in the middle of each obstacle and grab the colour switchers, which give the ball a new colour.',
+  full: 'A fast timing game. Tap to hop your ball upwards through spinning rings and sliding bars, but only through the part that matches the ball’s colour. Collect the stars in the middle of each obstacle and grab the colour switchers, which give the ball a new colour. For another one-tap test of timing, try [Sky Hopper](game:sky-hopper) or [Circle Jump](game:circle-jump).',
   minutes: 2,
   controls: {
     keyboard: ['Space or ↑ to hop'],

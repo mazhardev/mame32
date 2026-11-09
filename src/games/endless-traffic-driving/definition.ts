@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚙',
   tags: ['endless', 'survival', 'coins', 'one tap', 'racing'],
   short: 'A relaxed endless drive: hop between three lanes, dodge slow traffic and collect coins.',
-  full: 'The friendliest driving game on the site. Your car drives itself down an endless country road; tap left or right to hop one lane at a time. Dodge the slower traffic ahead, scoop up lines of coins, and see how far you can go. You have three lives, with a moment of safety after every bump, and the speed creeps up gently as you go.',
+  full: 'The friendliest driving game on the site. Your car drives itself down an endless country road; tap left or right to hop one lane at a time. Dodge the slower traffic ahead, scoop up lines of coins, and see how far you can go. You have three lives, with a moment of safety after every bump, and the speed creeps up gently as you go. For more speed and near misses, try [Traffic Racer](game:traffic-racer), or see all [car driving games](hub:driving-games).',
   minutes: 3,
   controls: {
     keyboard: ['← → hop one lane'],

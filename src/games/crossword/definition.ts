@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '📰',
   tags: ['clues', 'puzzle', 'grid', 'saves progress'],
   short: 'Fresh mini crosswords every game, with friendly clues.',
-  full: 'Solve a newly generated crossword each game. Tap a square to pick a clue, type the answers, and use Check or Reveal when you’re stuck. Your puzzle saves automatically so you can finish it later.',
+  full: 'Solve a newly generated crossword each game. Tap a square to pick a clue, type the answers, and use Check or Reveal when you’re stuck. Your puzzle saves automatically so you can finish it later. For more word grids, try [Word Search](game:word-search) or climb a [Word Ladder](game:word-ladder).',
   minutes: 10,
   hasSaveState: true,
   controls: {

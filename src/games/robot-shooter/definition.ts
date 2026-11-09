@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🤖',
   tags: ['shooter', 'waves', 'cover', 'top-down', 'action'],
   short: 'Robots shoot back — use cover, let your shield recharge and pick them off.',
-  full: 'A tactical top-down shooter. Robots fire at you, so standing in the open is a bad idea. Duck behind the cover blocks, which stop every bullet, and your shield recharges after a few quiet seconds. Drones fire single shots, gunners keep their distance and fire bursts, and chargers rush straight at you.',
+  full: 'A tactical top-down shooter. Robots fire at you, so standing in the open is a bad idea. Duck behind the cover blocks, which stop every bullet, and your shield recharges after a few quiet seconds. Drones fire single shots, gunners keep their distance and fire bursts, and chargers rush straight at you. For a different fight, survive the horde in [Zombie Survival](game:zombie-survival) or clear the floors of [Dungeon Shooter](game:dungeon-shooter).',
   minutes: 5,
   controls: {
     keyboard: ['WASD or arrows move', 'Space fires in the direction you move'],

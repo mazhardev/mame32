@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏌️',
   tags: ['putting', 'aim', 'physics', 'course', 'sports', 'crazy golf'],
   short: 'Putt your way round nine crazy-golf holes with bumpers, sand, water and a windmill.',
-  full: 'A nine-hole crazy-golf course. Bank shots off the walls, thread the ball through the turning windmill, avoid the water and climb the uphill slope. Drag back from the ball like a slingshot and let go to putt — the further you pull, the harder you hit. The cup only catches a ball that is rolling gently, so judge the pace as well as the line.',
+  full: 'A nine-hole crazy-golf course. Bank shots off the walls, thread the ball through the turning windmill, avoid the water and climb the uphill slope. Drag back from the ball like a slingshot and let go to putt — the further you pull, the harder you hit. The cup only catches a ball that is rolling gently, so judge the pace as well as the line. For a full nine holes with wind and clubs, try [Golf](game:golf), or bowl a strike in [Bowling](game:bowling).',
   minutes: 6,
   hasLevels: true,
   controls: {

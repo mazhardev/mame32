@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔷',
   tags: ['pattern', 'logic', 'sliding', 'mosaic', 'rows and columns'],
   short: 'Slide rows and columns of tiles until your grid matches the target mosaic.',
-  full: 'Recreate the target mosaic by sliding whole rows left or right and whole columns up or down. Tiles that slide off one edge wrap round to the other, so every move shifts a full line. Each tile also carries a symbol, so colours are never the only clue. Every puzzle is scrambled from the target, so it can always be solved.',
+  full: 'Recreate the target mosaic by sliding whole rows left or right and whole columns up or down. Tiles that slide off one edge wrap round to the other, so every move shifts a full line. Each tile also carries a symbol, so colours are never the only clue. Every puzzle is scrambled from the target, so it can always be solved. For more rearranging puzzles, try the [Sliding Puzzle](game:sliding-puzzle) or [Pipe Connect](game:pipe-connect).',
   minutes: 4,
   controls: {
     keyboard: ['Tab to an arrow button beside a row or column and press Enter to slide it'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🛣️',
   tags: ['endless', 'traffic', 'speed', 'checkpoints', 'racing'],
   short: 'Beat the clock to each checkpoint on a busy four-lane motorway — day into night.',
-  full: 'An arcade checkpoint race on a four-lane motorway. The clock is always ticking down; reach the next checkpoint to add more time. Crashing does not end your run, but it knocks you down to a crawl and costs you seconds you cannot afford. Keep going long enough and the sun sets, leaving only your headlights to show the traffic ahead.',
+  full: 'An arcade checkpoint race on a four-lane motorway. The clock is always ticking down; reach the next checkpoint to add more time. Crashing does not end your run, but it knocks you down to a crawl and costs you seconds you cannot afford. Keep going long enough and the sun sets, leaving only your headlights to show the traffic ahead. For endless traffic and near-miss combos, try [Traffic Racer](game:traffic-racer), or see all [car driving games](hub:driving-games).',
   minutes: 4,
   controls: {
     keyboard: ['↑ accelerate, ↓ brake', '← → steer'],

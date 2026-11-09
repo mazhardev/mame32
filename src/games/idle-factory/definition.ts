@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏭',
   tags: ['idle', 'production chain', 'incremental', 'save', 'economy', 'factory'],
   short: 'Build a production line from ore to robots and keep every machine fed.',
-  full: 'An idle factory with a real production chain. Drills dig ore, smelters turn ore into ingots, presses stamp gears, assemblers build engines and robot labs put it all together. Each machine only works when it has inputs, so the trick is balancing the line — too few drills and your smelters stand idle. Whatever no machine uses is sold automatically. Progress saves, and the factory keeps running at half speed while you are away.',
+  full: 'An idle factory with a real production chain. Drills dig ore, smelters turn ore into ingots, presses stamp gears, assemblers build engines and robot labs put it all together. Each machine only works when it has inputs, so the trick is balancing the line — too few drills and your smelters stand idle. Whatever no machine uses is sold automatically. Progress saves, and the factory keeps running at half speed while you are away. For an idle game about the bottleneck, try [Idle Miner](game:idle-miner), or see all [idle and clicker games](hub:idle-games).',
   minutes: 20,
   hasSaveState: true,
   controls: {

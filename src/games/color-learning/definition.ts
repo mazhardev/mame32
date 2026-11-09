@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🎨',
   tags: ['kids', 'colors'],
   short: 'Name colours, find swatches and learn what paint colours mix to make.',
-  full: 'Learn colours by name, pick the right swatch from a row, and discover what you get when you mix paints. Harder levels add shades like teal, navy and coral.',
+  full: 'Learn colours by name, pick the right swatch from a row, and discover what you get when you mix paints. Harder levels add shades like teal, navy and coral. Next, learn shapes in [Shape Matching](game:shape-matching), or find more [games for kids](hub:games-for-kids).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

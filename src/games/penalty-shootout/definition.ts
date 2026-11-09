@@ -8,7 +8,7 @@ export const penaltyShootoutGame: GameDefinition = {
   title: 'Penalty Shootout',
   shortDescription: 'Take penalties and play in goal in a five-kick shootout against the computer.',
   fullDescription:
-    "A football shootout against a local computer opponent. Aim for the corners and time your strike on the power meter, then swap roles and dive to stop the computer's kicks. Level after five kicks each? It goes to sudden death.",
+    "A football shootout against a local computer opponent. Aim for the corners and time your strike on the power meter, then swap roles and dive to stop the computer's kicks. Level after five kicks each? It goes to sudden death. Then curl one around the wall in [Soccer Free Kick](game:soccer-free-kick), or browse more [sports games](cat:sports).",
   category: 'sports',
   difficulty: 'medium',
   tags: ['football', 'soccer', 'penalty', 'aim', 'keeper', 'ai'],

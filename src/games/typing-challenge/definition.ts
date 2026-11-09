@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌧️',
   tags: ['typing', 'arcade', 'falling words', 'keyboard'],
   short: 'Type the falling words before they hit the ground.',
-  full: 'An arcade typing game. Words rain down the screen — type each one to blast it before it reaches the red line. The more you clear, the faster and longer the words get.',
+  full: 'An arcade typing game. Words rain down the screen — type each one to blast it before it reaches the red line. The more you clear, the faster and longer the words get. Take a one-minute test in [Speed Typing](game:speed-typing), or build accuracy step by step in [Typing Tutor](game:typing-tutor).',
   minutes: 4,
   controls: {
     keyboard: ['Type any falling word — it disappears as soon as it is complete'],

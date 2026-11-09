@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌻',
   tags: ['lane defense', 'tower defense', 'plants', 'garden', 'strategy', 'levels', 'pests'],
   short: 'Plant a garden of defenders to stop snails, beetles and toads marching on your house — 15 levels.',
-  full: 'Garden pests are coming, row by row, and only your plants stand in their way. Grow Sunblooms for sunlight, then spend it on defenders: Seed Spitters that pelt pests in their row, Stone Shells that hold the line, Pop Berries that burst, Root Mines, Frost Ferns that slow pests down and Twin Spitters. Snails, armoured beetles, leaping hoppers and the Big Toad grow bolder over 15 levels in the Front Lawn, the Orchard and the Moonlit Garden. Every row has one garden roller to save you, but only once.',
+  full: 'Garden pests are coming, row by row, and only your plants stand in their way. Grow Sunblooms for sunlight, then spend it on defenders: Seed Spitters that pelt pests in their row, Stone Shells that hold the line, Pop Berries that burst, Root Mines, Frost Ferns that slow pests down and Twin Spitters. Snails, armoured beetles, leaping hoppers and the Big Toad grow bolder over 15 levels in the Front Lawn, the Orchard and the Moonlit Garden. Every row has one garden roller to save you, but only once. For classic towers and upgrades, try [Tower Defense](game:tower-defense), or see all [tower defense games](hub:tower-defense-games).',
   minutes: 6,
   hasLevels: true,
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🐲',
   tags: ['patterns', 'bullet hell', 'shooter', 'boss', 'action'],
   short: 'A bullet-hell duel with a three-phase dragon. Weave through the patterns and shoot it down.',
-  full: 'One ship, one boss. The dragon fills the screen with beautiful, deadly bullet patterns that change in each of its three phases: spiralling streams, expanding rings, aimed fans and a final storm of falling fire. Your ship fires on its own, so all you need to do is dodge. Only the tiny red dot in the middle of your ship can be hit. Hold focus to slow down for precise weaving, and save your bombs for emergencies.',
+  full: 'One ship, one boss. The dragon fills the screen with beautiful, deadly bullet patterns that change in each of its three phases: spiralling streams, expanding rings, aimed fans and a final storm of falling fire. Your ship fires on its own, so all you need to do is dodge. Only the tiny red dot in the middle of your ship can be hit. Hold focus to slow down for precise weaving, and save your bombs for emergencies. For more cartoon fights, try [Dojo Duel](game:dojo-duel) or work through the rooms of [Dungeon Shooter](game:dungeon-shooter).',
   minutes: 4,
   controls: {
     keyboard: ['Arrows or WASD move', 'Hold X or Shift to focus (slow movement)', 'Space drops a bomb'],

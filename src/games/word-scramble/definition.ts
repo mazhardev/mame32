@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔀',
   tags: ['unscramble', 'letters', 'timed', 'jumble'],
   short: 'Unscramble the jumbled letters to find the hidden word.',
-  full: 'Ten scrambled words, each against the clock. Type the word the letters spell. Any real word that uses all the letters counts. Use hints if you get stuck.',
+  full: 'Ten scrambled words, each against the clock. Type the word the letters spell. Any real word that uses all the letters counts. Use hints if you get stuck. For harder rearranging, try [Anagram](game:anagram), or trace words in [Letter Grid](game:letter-grid).',
   minutes: 4,
   controls: {
     keyboard: ['Type your answer and press Enter'],

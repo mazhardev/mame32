@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⚖️',
   tags: ['logic', 'weights', 'maths', 'deduction', 'brain'],
   short: 'Read the balanced scales, then work out how many shapes balance the last one.',
-  full: 'A classic brain teaser with weighing scales. A few balanced scales show how heavy the shapes are compared with one another — for example, one star weighs the same as three triangles. Use that information to work out how many of one shape will balance the question scale. Every puzzle is generated so that the clues lead to exactly one answer.',
+  full: 'A classic brain teaser with weighing scales. A few balanced scales show how heavy the shapes are compared with one another — for example, one star weighs the same as three triangles. Use that information to work out how many of one shape will balance the question scale. Every puzzle is generated so that the clues lead to exactly one answer. For more visual logic, try [Matchstick Puzzle](game:matchstick-puzzle) or browse [logic puzzles](hub:logic-puzzles).',
   minutes: 4,
   controls: {
     keyboard: ['Keys 1–4 choose an answer, Enter for the next scale'],

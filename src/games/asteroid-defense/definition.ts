@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '☄️',
   tags: ['defense', 'aim', 'waves', 'upgrades', 'action'],
   short: 'Spin an orbital cannon around your planet and shatter asteroids from every side.',
-  full: 'Asteroids are falling towards your little planet from every direction. Your cannon rides an orbit around it: rotate it to face the incoming rocks and blast them apart. Big asteroids split into smaller ones, so do not let them get close. Survive a wave and pick an upgrade — a faster fire rate, a twin cannon or shield repairs.',
+  full: 'Asteroids are falling towards your little planet from every direction. Your cannon rides an orbit around it: rotate it to face the incoming rocks and blast them apart. Big asteroids split into smaller ones, so do not let them get close. Survive a wave and pick an upgrade — a faster fire rate, a twin cannon or shield repairs. Prefer flying among the rocks? Try [Asteroid Blaster](game:asteroid-blaster); more planet-saving is in [tower defense games](hub:tower-defense-games).',
   minutes: 5,
   controls: {
     keyboard: ['← → rotate the cannon', 'Space fires', '1, 2, 3 choose an upgrade'],

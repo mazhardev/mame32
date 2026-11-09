@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '💠',
   tags: ['match', 'swap', 'chain', 'gems', 'timed', 'casual'],
   short: 'Swap gems to line up three or more — a fast, timed gem blitz with special combos.',
-  full: 'A timed gem-matching blitz. Swap neighbouring gems to make lines of three or more of the same kind. Longer lines and L or T shapes create special gems that clear rows, columns, blasts or every gem of one colour — and chain reactions multiply your points. Score as much as you can before the clock runs out. Every gem has its own shape as well as its colour.',
+  full: 'A timed gem-matching blitz. Swap neighbouring gems to make lines of three or more of the same kind. Longer lines and L or T shapes create special gems that clear rows, columns, blasts or every gem of one colour — and chain reactions multiply your points. Score as much as you can before the clock runs out. Every gem has its own shape as well as its colour. For 120 levels of sweets and boosters, try [Candy Match](game:candy-match), or see all [match 3 games](hub:match-3-games).',
   minutes: 2,
   controls: {
     keyboard: ['Arrow keys move the cursor', 'Enter picks up a gem, then an arrow key swaps it that way'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🐍',
   tags: ['snake', 'arena', 'grow', 'neon', 'io', 'boost', 'survival'],
   short: 'Slither around a neon arena, eat to grow longer, and make rival snakes crash into you.',
-  full: 'Guide a glowing serpent around a neon arena full of computer snakes. Eat pellets to grow longer and climb the leaderboard. Any snake whose head touches another snake’s body bursts into a shower of pellets, so cut in front of rivals, circle them, and feast on what they leave behind. Boost to dash ahead, but boosting sheds length as you go. Keep clear of the arena wall and other snakes’ bodies, and see how big you can get.',
+  full: 'Guide a glowing serpent around a neon arena full of computer snakes. Eat pellets to grow longer and climb the leaderboard. Any snake whose head touches another snake’s body bursts into a shower of pellets, so cut in front of rivals, circle them, and feast on what they leave behind. Boost to dash ahead, but boosting sheds length as you go. Keep clear of the arena wall and other snakes’ bodies, and see how big you can get. Prefer the classic? Play [Snake](game:snake) on a grid of your own.',
   minutes: 5,
   controls: {
     mouse: ['Your snake heads toward the mouse pointer', 'Hold the mouse button to boost'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🧮',
   tags: ['deduction', 'logic', 'constraints', 'einstein', 'brain'],
   short: 'Use the clues to work out who owns what — an Einstein-style deduction puzzle.',
-  full: 'A classic logic-grid puzzle. Each person has exactly one item from every category: a favourite colour, a pet, an age and so on. Read the clues, mark impossible pairs with a cross and certain ones with a tick, and deduce the full picture. Every puzzle is generated with exactly one solution and no unnecessary clues. Progress saves automatically.',
+  full: 'A classic logic-grid puzzle. Each person has exactly one item from every category: a favourite colour, a pet, an age and so on. Read the clues, mark impossible pairs with a cross and certain ones with a tick, and deduce the full picture. Every puzzle is generated with exactly one solution and no unnecessary clues. Progress saves automatically. For short reasoning puzzles, try [Logic Deduction](game:logic-deduction), or browse all [logic puzzles](hub:logic-puzzles).',
   minutes: 10,
   hasSaveState: true,
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '➕',
   tags: ['numbers', 'crossword', 'logic', 'sums', 'maths'],
   short: 'A number crossword: fill each run so it adds up to its clue, without repeating a digit.',
-  full: 'Kakuro is a crossword made of sums. Each clue gives the total of the run of white cells to its right or below it. Fill in digits 1 to 9 so every run adds up to its clue and no digit appears twice in a run. Every puzzle is generated fresh and has exactly one solution; a few digits are given to start you off. A built-in helper lists the combinations that still fit.',
+  full: 'Kakuro is a crossword made of sums. Each clue gives the total of the run of white cells to its right or below it. Fill in digits 1 to 9 so every run adds up to its clue and no digit appears twice in a run. Every puzzle is generated fresh and has exactly one solution; a few digits are given to start you off. A built-in helper lists the combinations that still fit. For the classic grid without sums, try [Sudoku](game:sudoku), or browse all [Sudoku and number puzzles](hub:number-puzzles).',
   minutes: 10,
   hasSaveState: true,
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🍬',
   tags: ['match', 'match 3', 'levels', 'saga', 'sweets', 'casual', 'boosters', 'jelly'],
   short: 'A 120-level sweet-matching saga with jelly, icing, chocolate, ingredients and boosters.',
-  full: 'Travel a candy trail of 120 levels across eight worlds — from Sugar Meadow to the Starlight Bakery. Swap neighbouring sweets to match three or more, build striped, wrapped and rainbow candies, and combine them for huge blasts. Each level has its own goal and move limit: collect sweets, clear jelly, break icing, stop spreading chocolate, or bring hazelnuts and cherries down to the bottom of the board. Finish with moves to spare to set off a Sugar Rush, earn up to three stars, and win boosters along the way.',
+  full: 'Travel a candy trail of 120 levels across eight worlds — from Sugar Meadow to the Starlight Bakery. Swap neighbouring sweets to match three or more, build striped, wrapped and rainbow candies, and combine them for huge blasts. Each level has its own goal and move limit: collect sweets, clear jelly, break icing, stop spreading chocolate, or bring hazelnuts and cherries down to the bottom of the board. Finish with moves to spare to set off a Sugar Rush, earn up to three stars, and win boosters along the way. For a quick timed round, try [Match Three](game:match-three), or browse all [match 3 games](hub:match-3-games).',
   minutes: 4,
   hasLevels: true,
   difficultyPicker: 'none',

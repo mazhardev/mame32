@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🗝️',
   tags: ['rooms', 'shooter', 'roguelite', 'top-down', 'action'],
   short: 'Fight room by room through randomly built dungeon floors and find the stairs down.',
-  full: 'A bite-sized roguelite shooter. Every floor is a freshly generated set of rooms. Step into a room and the doors lock until every monster inside is defeated. Explore with the minimap, grab the occasional potion, and find the stairs in the deepest room to descend. Your health carries over between floors, so each run gets more tense the deeper you go.',
+  full: 'A bite-sized roguelite shooter. Every floor is a freshly generated set of rooms. Step into a room and the doors lock until every monster inside is defeated. Explore with the minimap, grab the occasional potion, and find the stairs in the deepest room to descend. Your health carries over between floors, so each run gets more tense the deeper you go. For more room-by-room action, try [Robot Shooter](game:robot-shooter) or [Zombie Survival](game:zombie-survival).',
   minutes: 8,
   controls: {
     keyboard: ['WASD or arrows move', 'Space shoots in the direction you move'],

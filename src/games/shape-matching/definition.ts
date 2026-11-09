@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🔷',
   tags: ['kids', 'shapes'],
   short: 'Recognise shapes, count their sides and pick the right one.',
-  full: 'A shapes game: name each shape, find a named shape among four, and count the sides of polygons from triangles to octagons.',
+  full: 'A shapes game: name each shape, find a named shape among four, and count the sides of polygons from triangles to octagons. Next, learn colours in [Color Learning](game:color-learning), or find more [games for kids](hub:games-for-kids).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

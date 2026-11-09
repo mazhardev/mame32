@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🌍',
   tags: ['quiz', 'world'],
   short: 'Oceans, mountains, rivers, deserts and countries around the world.',
-  full: 'A world geography quiz covering oceans, mountain ranges, rivers, deserts, islands and famous landmarks.',
+  full: 'A world geography quiz covering oceans, mountain ranges, rivers, deserts, islands and famous landmarks. For flags and capitals, try the [Flag Quiz](game:flag-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

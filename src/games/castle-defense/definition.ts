@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏰',
   tags: ['defense', 'aim', 'waves', 'upgrade', 'ballista', 'strategy'],
   short: 'Man the ballista, shoot down the attackers and upgrade your castle between waves.',
-  full: 'Attackers march on your castle wall: footsoldiers, shield-bearers, battering rams, swooping bats and lumbering giants. Aim the ballista on your tower and fire — bolts drop as they fly, so lead your targets. Between waves, visit the armoury to repair and thicken the wall, fit heavier bolts, reload faster, hire archers and build catapults.',
+  full: 'Attackers march on your castle wall: footsoldiers, shield-bearers, battering rams, swooping bats and lumbering giants. Aim the ballista on your tower and fire — bolts drop as they fly, so lead your targets. Between waves, visit the armoury to repair and thicken the wall, fit heavier bolts, reload faster, hire archers and build catapults. For towers that fight on their own, try [Tower Defense](game:tower-defense), or see all [tower defense games](hub:tower-defense-games).',
   minutes: 10,
   controls: {
     keyboard: [

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🅿️',
   tags: ['sliding cars', 'logic', 'levels', 'parking', 'casual'],
   short: 'Clear the jammed car park — each car only drives forwards, so pick the right order.',
-  full: 'The car park is jammed. Every car faces one way and can only drive forwards: if the road ahead is clear it drives out, but if another car or a bollard is in the way it bumps it and picks up a dent. Work out the order that empties the lot without a scratch. Sixty levels across three packs, each with a star rating.',
+  full: 'The car park is jammed. Every car faces one way and can only drive forwards: if the road ahead is clear it drives out, but if another car or a bollard is in the way it bumps it and picks up a dent. Work out the order that empties the lot without a scratch. Sixty levels across three packs, each with a star rating. Drive the cars yourself in [Parking Challenge](game:parking-challenge), or slide blocks free in [Unblock Puzzle](game:unblock-puzzle).',
   minutes: 3,
   hasLevels: true,
   hasSaveState: true,

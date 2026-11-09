@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⭕',
   tags: ['timing', 'rotation', 'one button', 'endless', 'casual'],
   short: 'Orbit a ring, then fling yourself off at just the right moment to catch the next one.',
-  full: 'A hypnotic one-tap timing game. Your ball circles a ring. Tap and it flies off in a straight line along its orbit. If that line crosses the next ring, the ball is caught and starts orbiting again; if not, it drifts away into space. Rings get smaller and spin faster the higher you go, and some spin the other way.',
+  full: 'A hypnotic one-tap timing game. Your ball circles a ring. Tap and it flies off in a straight line along its orbit. If that line crosses the next ring, the ball is caught and starts orbiting again; if not, it drifts away into space. Rings get smaller and spin faster the higher you go, and some spin the other way. For more timing-based jumps, try [Endless Jumper](game:endless-jumper) or [Jumping Ball](game:jumping-ball).',
   minutes: 2,
   controls: {
     keyboard: ['Space or Enter launches the ball'],

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🌈',
   tags: ['reflex', 'colours', 'brain', 'quick', 'casual'],
   short: 'Read the colour word and tap the matching swatch — before the bar runs out.',
-  full: 'A fast colour-reflex game with a twist. A colour name flashes up; tap the swatch of that colour before the timer bar empties. Easy is straightforward, but on Normal the word is sometimes printed in the wrong colour, and on Hard it always is — your brain wants to tap the ink, not the word. That is the famous Stroop effect.',
+  full: 'A fast colour-reflex game with a twist. A colour name flashes up; tap the swatch of that colour before the timer bar empties. Easy is straightforward, but on Normal the word is sometimes printed in the wrong colour, and on Hard it always is — your brain wants to tap the ink, not the word. That is the famous Stroop effect. For a pure speed test, try the [Reflex Test](game:reflex-test), or see more [reaction time games](hub:reaction-time-games).',
   minutes: 2,
   controls: {
     keyboard: ['Number keys 1–6 pick a swatch (left to right, top to bottom)'],

@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🔰',
   tags: ['quiz', 'fictional-logos'],
   short: 'Match original fictional logos to the businesses they represent.',
-  full: 'A visual logo quiz with original, made-up brands. Read each logo’s symbol and colour to work out what kind of business it belongs to. No real logos are used.',
+  full: 'A visual logo quiz with original, made-up brands. Read each logo’s symbol and colour to work out what kind of business it belongs to. No real logos are used. For more picture quizzes, try the [Flag Quiz](game:flag-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

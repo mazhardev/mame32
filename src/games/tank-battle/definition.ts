@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🛡️',
   tags: ['tanks', 'shooter', 'two-player', 'duel', 'ricochet', 'ai'],
   short: 'Top-down tank duels with ricochet shells — against the computer or a friend.',
-  full: 'Two tanks face off across a walled arena. Blast through brick walls, bank shells off steel and the arena edge, and land the first hit to win the round. First to five rounds takes the match. Each round moves to a new arena, and every arena is perfectly balanced for both sides. Play against a local computer tank, or grab a friend and share the keyboard.',
+  full: 'Two tanks face off across a walled arena. Blast through brick walls, bank shells off steel and the arena edge, and land the first hit to win the round. First to five rounds takes the match. Each round moves to a new arena, and every arena is perfectly balanced for both sides. Play against a local computer tank, or grab a friend and share the keyboard. Prefer a free-aiming turret? Try [Tank Shooter](game:tank-shooter), or play a friend at [Pong](game:pong) for another two-player duel.',
   minutes: 5,
   multiplayer: 'local-multiplayer',
   controls: {

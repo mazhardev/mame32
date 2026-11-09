@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏹',
   tags: ['bow', 'target', 'wind', 'aim', 'ai', 'sports'],
   short: 'Shoot four ends at 30–90 m against a computer archer, allowing for wind and drop.',
-  full: 'A target archery match on a ten-ring face. Shoot three arrows at each of 30, 50, 70 and 90 metres while a computer archer shoots the same ends. Your arrows fall further at long range and drift with the wind, so you must aim above and into it. Your bow arm wobbles as you draw, settles for a few seconds, then starts to tire — release while it is steady.',
+  full: 'A target archery match on a ten-ring face. Shoot three arrows at each of 30, 50, 70 and 90 metres while a computer archer shoots the same ends. Your arrows fall further at long range and drift with the wind, so you must aim above and into it. Your bow arm wobbles as you draw, settles for a few seconds, then starts to tire — release while it is steady. For a timed shooting gallery, try [Archery Challenge](game:archery-challenge), or browse all [target shooting games](hub:target-shooting-games).',
   minutes: 5,
   multiplayer: 'vs-ai',
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔢',
   tags: ['memory', 'recall', 'span', 'numbers', 'brain'],
   short: 'Digits flash one by one — type them back. How long a sequence can you remember?',
-  full: 'A digit-span memory test, the same idea psychologists use to measure working memory. Digits appear one at a time; when they stop, type the sequence back. Every correct answer adds another digit. Two misses at the same length end the test. On Hard you must type the digits backwards, which is much harder than it sounds.',
+  full: 'A digit-span memory test, the same idea psychologists use to measure working memory. Digits appear one at a time; when they stop, type the sequence back. Every correct answer adds another digit. Two misses at the same length end the test. On Hard you must type the digits backwards, which is much harder than it sounds. For colours instead of digits, try [Simon Memory](game:simon-memory), or see all [memory games](hub:memory-games).',
   minutes: 3,
   controls: {
     keyboard: ['Number keys type digits, Backspace deletes, Enter continues'],

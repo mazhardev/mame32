@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🍪',
   tags: ['idle', 'clicker', 'incremental', 'save', 'economy'],
   short: 'Click the cookie, build bakeries and sugar mines, and bake your way to a cookie empire.',
-  full: 'An incremental baking game. Click the big cookie to bake by hand, then spend your cookies on rolling pins, ovens, bakeries, wheat fields, factory lines and more — each one bakes cookies every second, even while you are away. Upgrades double your buildings, golden cookies bring frenzies, and your progress saves automatically.',
+  full: 'An incremental baking game. Click the big cookie to bake by hand, then spend your cookies on rolling pins, ovens, bakeries, wheat fields, factory lines and more — each one bakes cookies every second, even while you are away. Upgrades double your buildings, golden cookies bring frenzies, and your progress saves automatically. For an idle game with a real production chain, try [Idle Factory](game:idle-factory), or see all [idle and clicker games](hub:idle-games).',
   minutes: 20,
   hasSaveState: true,
   controls: {

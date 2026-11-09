@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⛏️',
   tags: ['idle', 'mining', 'bottleneck', 'incremental', 'save', 'economy'],
   short: 'Dig deeper shafts, upgrade the elevator and warehouse, and always fix the bottleneck.',
-  full: 'Run a mine from a single stone shaft down to diamond seams. Shafts dig ore, the elevator lifts it to the surface and the warehouse trucks it to market — and your income is only as fast as the slowest of the three. Watch for the red outline, upgrade the bottleneck, and dig deeper for richer ore. The mine saves automatically and keeps working while you are away.',
+  full: 'Run a mine from a single stone shaft down to diamond seams. Shafts dig ore, the elevator lifts it to the surface and the warehouse trucks it to market — and your income is only as fast as the slowest of the three. Watch for the red outline, upgrade the bottleneck, and dig deeper for richer ore. The mine saves automatically and keeps working while you are away. For a full production line, try [Idle Factory](game:idle-factory), or browse all [idle and clicker games](hub:idle-games).',
   minutes: 20,
   hasSaveState: true,
   controls: {

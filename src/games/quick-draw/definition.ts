@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🤠',
   tags: ['reaction', 'duel', 'two player', 'ai', 'action'],
   short: 'A western reaction duel: wait for “DRAW!”, then fire first — but never too early.',
-  full: 'High noon. Two cowboys face each other. “Steady…” — then, after a random pause, “DRAW!”. The first to fire wins the round, but firing before the signal is a foul that hands the round to your opponent. First to three wins. Duel the computer, whose reflexes sharpen every round, or challenge a friend on the same keyboard or screen.',
+  full: 'High noon. Two cowboys face each other. “Steady…” — then, after a random pause, “DRAW!”. The first to fire wins the round, but firing before the signal is a foul that hands the round to your opponent. First to three wins. Duel the computer, whose reflexes sharpen every round, or challenge a friend on the same keyboard or screen. Measure your reactions precisely with [Reaction Test Pro](game:reaction-test-pro), or try more [reaction time games](hub:reaction-time-games).',
   minutes: 2,
   multiplayer: 'vs-ai',
   controls: {

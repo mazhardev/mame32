@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '📍',
   tags: ['path drawing', 'casual', 'one line', 'logic', 'numbers'],
   short: 'Draw one line through every square, passing the numbered dots in order.',
-  full: 'A one-line path puzzle. Starting at dot 1, draw a single continuous line that passes through every square of the grid exactly once, reaching the numbered dots in order and finishing on the last one. Harder grids add walls you cannot cross. Every puzzle is generated from a real solution, so there is always a way through.',
+  full: 'A one-line path puzzle. Starting at dot 1, draw a single continuous line that passes through every square of the grid exactly once, reaching the numbered dots in order and finishing on the last one. Harder grids add walls you cannot cross. Every puzzle is generated from a real solution, so there is always a way through. For more path puzzles, try [Flow Connect](game:flow-connect) or [Pipe Connect](game:pipe-connect).',
   minutes: 3,
   controls: {
     keyboard: ['Arrow keys extend the line from its end', 'Backspace takes the line back one square'],

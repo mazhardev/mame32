@@ -9,7 +9,7 @@ export const game = defineGame({
   tags: ['drawing', 'pixel', 'creative', 'save', 'art', 'sprites'],
   short:
     'Draw pixel art with pencil, fill and mirror tools — or copy sprites as accurately as you can.',
-  full: 'A pixel-art studio with two ways to play. In the Copy challenge, recreate three original sprites cell by cell and see how accurate you were. In Free drawing, paint on a 16×16 or 32×32 canvas with pencil, eraser, fill bucket, colour picker and a mirror mode for symmetrical designs, then save your work to a local gallery or download it as a PNG.',
+  full: 'A pixel-art studio with two ways to play. In the Copy challenge, recreate three original sprites cell by cell and see how accurate you were. In Free drawing, paint on a 16×16 or 32×32 canvas with pencil, eraser, fill bucket, colour picker and a mirror mode for symmetrical designs, then save your work to a local gallery or download it as a PNG. For a guided pixel picture, try [Paint by Number](game:paint-by-number), or see all [colouring games](hub:coloring-games).',
   minutes: 8,
   hasSaveState: true,
   controls: {

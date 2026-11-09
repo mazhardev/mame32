@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🚩',
   tags: ['quiz', 'world', 'flags'],
   short: 'Recognise world flags — name the flag or pick the flag for a country.',
-  full: 'Identify national flags, drawn in their official colours. Watch out for look-alikes: several tricolours differ only in order or shade.',
+  full: 'Identify national flags, drawn in their official colours. Watch out for look-alikes: several tricolours differ only in order or shade. For capitals of the same countries, try the [Capital City Quiz](game:capital-city-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

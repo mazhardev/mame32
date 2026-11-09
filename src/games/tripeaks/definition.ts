@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⛰️',
   tags: ['solitaire', 'patience', 'cards', 'streaks', 'single player', 'relaxing'],
   short: 'Clear three peaks of cards by playing one higher or one lower.',
-  full: 'A fast, streaky solitaire. Three peaks of cards sit above a waste pile. Play any uncovered card that is one rank higher or lower than the waste card, and chain as many as you can for bigger streak bonuses. When you run dry, flip from the stock. Clear all three peaks to win.',
+  full: 'A fast, streaky solitaire. Three peaks of cards sit above a waste pile. Play any uncovered card that is one rank higher or lower than the waste card, and chain as many as you can for bigger streak bonuses. When you run dry, flip from the stock. Clear all three peaks to win. For more solitaire, try [Pyramid Solitaire](game:pyramid-solitaire) or [Golf Solitaire](game:golf-solitaire), or see all [solitaire games](hub:solitaire-games).',
   minutes: 5,
   multiplayer: 'single',
   controls: {

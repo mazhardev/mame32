@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏍️',
   tags: ['endless', 'traffic', 'bike', 'wheelie', 'racing'],
   short: 'Split lanes on a two-way road, ride the oncoming lanes for double points and pull wheelies.',
-  full: 'A fast, risky motorbike run on a two-way road. Your bike is slim enough to squeeze between cars in neighbouring lanes. The two left lanes carry oncoming traffic: ride there for double points if you dare. Hold the wheelie button for a burst of extra speed — but while the front wheel is in the air you cannot steer.',
+  full: 'A fast, risky motorbike run on a two-way road. Your bike is slim enough to squeeze between cars in neighbouring lanes. The two left lanes carry oncoming traffic: ride there for double points if you dare. Hold the wheelie button for a burst of extra speed — but while the front wheel is in the air you cannot steer. For four wheels in heavy traffic, try [Traffic Racer](game:traffic-racer), or go off-road in [Bike Race](game:bike-race).',
   minutes: 3,
   controls: {
     keyboard: ['← → steer', '↑ throttle, ↓ brake', 'Hold Space or X to wheelie'],

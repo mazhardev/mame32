@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🦊',
   tags: ['platformer', 'adventure', 'side-scroller', 'jump', 'levels', 'bosses', 'worlds', 'retro'],
   short: 'A side-scrolling platform adventure: 20 levels, 5 worlds, power-ups and bosses.',
-  full: 'Help Pip the fox run, jump and stomp across five worlds — Mossy Meadow, Glimmer Caves, Cloudtop Isles, Frostpine Peaks and Ember Keep. Bump lucky blocks for coins and power-ups, grow big with golden acorns, throw fire berries, grab a shooting star for invincibility, ride moving ledges over lava and slide down the flag pole at the end of every level. Each world ends in a keep guarded by a boss. Twenty levels, checkpoints, secrets and 1-ups to find.',
+  full: 'Help Pip the fox run, jump and stomp across five worlds — Mossy Meadow, Glimmer Caves, Cloudtop Isles, Frostpine Peaks and Ember Keep. Bump lucky blocks for coins and power-ups, grow big with golden acorns, throw fire berries, grab a shooting star for invincibility, ride moving ledges over lava and slide down the flag pole at the end of every level. Each world ends in a keep guarded by a boss. Twenty levels, checkpoints, secrets and 1-ups to find. More stage-by-stage adventures: [Snow Rollers](game:snow-rollers) and [Bubble Buddies](game:bubble-buddies).',
   minutes: 15,
   hasLevels: true,
   controls: {

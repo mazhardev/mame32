@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🔤',
   tags: ['kids', 'letters'],
   short: 'Learn letters with pictures: first sounds, capitals and alphabet order.',
-  full: 'A picture alphabet game for early readers. Match pictures to their first letter, pair capital and small letters, and find which letter comes before or after.',
+  full: 'A picture alphabet game for early readers. Match pictures to their first letter, pair capital and small letters, and find which letter comes before or after. Next, count with [Kids Counting](game:kids-counting), or find more [games for kids](hub:games-for-kids).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

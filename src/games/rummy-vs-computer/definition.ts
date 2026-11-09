@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎴',
   tags: ['cards', 'rummy', 'gin', 'melds', 'sets', 'runs', 'ai'],
   short: 'Gin-style rummy: form sets and runs, then knock before the computer.',
-  full: 'Two-player gin-style rummy against a computer opponent. Draw and discard to build sets (three or four of a kind) and runs (three or more in a row of one suit). When your leftover “deadwood” is 10 or less you can knock; get it to zero for gin. First to 60 points wins.',
+  full: 'Two-player gin-style rummy against a computer opponent. Draw and discard to build sets (three or four of a kind) and runs (three or more in a row of one suit). When your leftover “deadwood” is 10 or less you can knock; get it to zero for gin. First to 60 points wins. For more card games against the computer, try [Hearts](game:hearts) or the rest of the [card games against the computer](hub:card-games-vs-computer).',
   minutes: 12,
   multiplayer: 'vs-ai',
   controls: {

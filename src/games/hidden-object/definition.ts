@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔎',
   tags: ['observation', 'search', 'seek and find', 'timed', 'relaxing'],
   short: 'Search a cluttered room for every item on your list before time runs out.',
-  full: 'A classic seek-and-find game. A room is scattered with dozens of everyday things — keys, socks, shells, trumpets and more — at different sizes and angles. Find every item on your list, each hidden exactly once among the clutter. Every room is arranged fresh, so no two games are the same.',
+  full: 'A classic seek-and-find game. A room is scattered with dozens of everyday things — keys, socks, shells, trumpets and more — at different sizes and angles. Find every item on your list, each hidden exactly once among the clutter. Every room is arranged fresh, so no two games are the same. For another test of sharp eyes, try [Spot the Difference](game:spot-the-difference).',
   minutes: 3,
   controls: {
     mouse: ['Click an item from the list when you spot it'],

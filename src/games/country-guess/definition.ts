@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🗺️',
   tags: ['quiz', 'world', 'shapes'],
   short: 'Guess the country from clues about its landmarks, nature and culture.',
-  full: 'Each round gives you clues about a mystery country. On Easy you get three clues; on Hard, only the most cryptic one.',
+  full: 'Each round gives you clues about a mystery country. On Easy you get three clues; on Hard, only the most cryptic one. For capitals and flags, try the [Capital City Quiz](game:capital-city-quiz), or browse all [quiz games](hub:quiz-games).',
   minutes: 4,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

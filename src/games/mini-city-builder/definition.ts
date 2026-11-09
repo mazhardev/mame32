@@ -9,7 +9,7 @@ export const game = defineGame({
   tags: ['city builder', 'simulation', 'economy', 'planning', 'save', 'zoning'],
   short:
     'Zone homes, shops and factories, keep the lights on and grow a town before time runs out.',
-  full: 'Turn an empty valley into a thriving town, one month at a time. Lay roads, power everything, and balance homes against jobs: people only move in when there is work, and homes only grow into apartment blocks when the neighbourhood is pleasant — parks and shops nearby, factory smoke far away. Upgrade shops and factories as you grow, keep an eye on upkeep, and reach the population goal within four years. Progress saves automatically.',
+  full: 'Turn an empty valley into a thriving town, one month at a time. Lay roads, power everything, and balance homes against jobs: people only move in when there is work, and homes only grow into apartment blocks when the neighbourhood is pleasant — parks and shops nearby, factory smoke far away. Upgrade shops and factories as you grow, keep an eye on upkeep, and reach the population goal within four years. Progress saves automatically. For more building and planning, try [Kingdom Builder](game:kingdom-builder) or [Mini Civilization](game:mini-civilization).',
   minutes: 20,
   hasSaveState: true,
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🎯',
   tags: ['aim', 'accuracy', 'precision', 'mouse', 'action'],
   short: 'Accuracy over speed: hit each drifting, shrinking target as close to dead centre as you can.',
-  full: 'A pure accuracy challenge. Twenty targets appear one by one, drifting along smooth paths and shrinking while a timer ring runs down. You get one click per target, scored by how close it lands to the bullseye: 100 % for dead centre, falling to 1 % at the rim. Take your time — but not too much.',
+  full: 'A pure accuracy challenge. Twenty targets appear one by one, drifting along smooth paths and shrinking while a timer ring runs down. You get one click per target, scored by how close it lands to the bullseye: 100 % for dead centre, falling to 1 % at the rim. Take your time — but not too much. For speed instead of accuracy, try [Aim Trainer](game:aim-trainer); more aiming games are in [target shooting games](hub:target-shooting-games).',
   minutes: 2,
   keyboard: false,
   controls: {

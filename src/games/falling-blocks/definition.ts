@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⬇️',
   tags: ['falling', 'dodge', 'survival', 'climb', 'platformer', 'blocks'],
   short: 'Dodge the blocks raining into the well, then climb them to escape the rising tide.',
-  full: 'Blocks of every size tumble into a narrow well and pile up where they land. Don’t let one land on your head — but you’ll need them, because the tide is rising. Hop up the growing stack to stay above the water, and watch the shadows on the walls to see where the next blocks will fall. How high can you climb?',
+  full: 'Blocks of every size tumble into a narrow well and pile up where they land. Don’t let one land on your head — but you’ll need them, because the tide is rising. Hop up the growing stack to stay above the water, and watch the shadows on the walls to see where the next blocks will fall. How high can you climb? To clear rows instead of dodging them, play [Block Drop](game:block-drop); more stacking is in [block games](hub:block-games).',
   minutes: 4,
   controls: {
     keyboard: ['← / → or A / D run', '↑, W or Space jump'],

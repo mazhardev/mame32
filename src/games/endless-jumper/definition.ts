@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🦘',
   tags: ['one button', 'jump', 'endless', 'timing', 'casual'],
   short: 'Wall-jump up an endless shaft — leap between the walls to dodge the spikes.',
-  full: 'A one-tap climbing game. Your kangaroo clings to a wall and climbs automatically. Tap to leap across to the opposite wall. Spikes jut out of both walls: jump away before you climb into one, and make sure the other side is clear before you land. Grab gems for bonus points as the climb speeds up.',
+  full: 'A one-tap climbing game. Your kangaroo clings to a wall and climbs automatically. Tap to leap across to the opposite wall. Spikes jut out of both walls: jump away before you climb into one, and make sure the other side is clear before you land. Grab gems for bonus points as the climb speeds up. For more endless climbing, bounce up through [Cloud Jumper](game:cloud-jumper), or browse all [runner games](hub:runner-games).',
   minutes: 2,
   controls: {
     keyboard: ['Space, Enter or ← / → leaps to the other wall'],

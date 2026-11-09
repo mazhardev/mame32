@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏁',
   tags: ['laps', 'track', 'speed', 'ai', 'racing'],
   short: 'Five laps of a grand prix in a fast single-seater — use the slipstream to overtake.',
-  full: 'High-speed single-seater racing against five rivals on a long grand-prix circuit. These cars are fast and grippy, with brakes to match, so carry speed through the sweepers and brake hard and late for the hairpins. Tuck in close behind a rival on the straights to catch their slipstream for an extra burst of speed.',
+  full: 'High-speed single-seater racing against five rivals on a long grand-prix circuit. These cars are fast and grippy, with brakes to match, so carry speed through the sweepers and brake hard and late for the hairpins. Tuck in close behind a rival on the straights to catch their slipstream for an extra burst of speed. For sports cars on technical tracks, try [Circuit Racing](game:circuit-racing), or browse all [racing games](cat:racing).',
   minutes: 6,
   multiplayer: 'vs-ai',
   controls: {

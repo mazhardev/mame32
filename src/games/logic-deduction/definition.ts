@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '🕵️',
   tags: ['deduction', 'reasoning'],
   short: 'Syllogisms, orderings and truth-teller puzzles: what must be true?',
-  full: 'Test your reasoning with deduction puzzles. Decide what must follow from a set of statements — and learn when the honest answer is “cannot be determined”.',
+  full: 'Test your reasoning with deduction puzzles. Decide what must follow from a set of statements — and learn when the honest answer is “cannot be determined”. For grid-based deduction, try the [Logic Grid](game:logic-grid), or browse all [logic puzzles](hub:logic-puzzles).',
   minutes: 5,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

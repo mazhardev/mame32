@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚜',
   tags: ['farming', 'crops', 'seasons', 'economy', 'save', 'relaxing'],
   short: 'Plant, water and harvest through spring, summer and autumn to earn your farm’s target.',
-  full: 'Run a small farm for one year of three ten-day seasons. Each day you have a limited amount of energy for planting, watering and harvesting; crops only grow overnight if they were watered or it rained. Radishes and lettuce in spring, tomatoes and corn in summer, pumpkins and grapes in autumn — but anything still growing when its season ends will wither. Buy sprinklers, expand your fields and sell when prices are good.',
+  full: 'Run a small farm for one year of three ten-day seasons. Each day you have a limited amount of energy for planting, watering and harvesting; crops only grow overnight if they were watered or it rained. Radishes and lettuce in spring, tomatoes and corn in summer, pumpkins and grapes in autumn — but anything still growing when its season ends will wither. Buy sprinklers, expand your fields and sell when prices are good. For another business to run, try [Shop Simulator](game:shop-simulator), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 15,
   hasSaveState: true,
   controls: {

@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '8️⃣',
   tags: ['cards', 'shedding', 'family', 'wild cards', 'ai', 'two to four players'],
   short: 'Match suit or rank, play wild eights, and be first to empty your hand.',
-  full: 'The classic family shedding game against one to three computer players. Match the top card of the discard pile by suit or by rank. Eights are wild — play one any time and name the next suit. Can’t go? Draw a card. First to get rid of every card wins the points left in everyone else’s hands.',
+  full: 'The classic family shedding game against one to three computer players. Match the top card of the discard pile by suit or by rank. Eights are wild — play one any time and name the next suit. Can’t go? Draw a card. First to get rid of every card wins the points left in everyone else’s hands. For a colour-and-symbol version with action cards, try [Color Match Cards](game:color-match-cards), or see all [card games against the computer](hub:card-games-vs-computer).',
   minutes: 6,
   multiplayer: 'vs-ai',
   controls: {

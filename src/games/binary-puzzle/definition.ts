@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '0️⃣',
   tags: ['logic', 'grid', 'binary', 'takuzu', 'brain'],
   short: 'Fill the grid with 0s and 1s — no three in a row, balanced lines, no repeats.',
-  full: 'Also known as Takuzu or Binairo. Fill every empty cell with a 0 or a 1. No row or column may contain three of the same digit next to each other, every row and column needs as many 0s as 1s, and no two rows (or columns) can be identical. Every generated puzzle has exactly one solution that can be found by logic. Your progress is saved automatically.',
+  full: 'Also known as Takuzu or Binairo. Fill every empty cell with a 0 or a 1. No row or column may contain three of the same digit next to each other, every row and column needs as many 0s as 1s, and no two rows (or columns) can be identical. Every generated puzzle has exactly one solution that can be found by logic. Your progress is saved automatically. For a picture puzzle with the same kind of logic, try [Nonogram](game:nonogram), or browse [Sudoku and number puzzles](hub:number-puzzles).',
   minutes: 8,
   hasSaveState: true,
   controls: {

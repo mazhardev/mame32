@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '✖️',
   tags: ['maths', 'tables', 'drill'],
   short: 'Master your times tables with fifteen fast multiplication questions.',
-  full: 'A timed times-tables drill. Wrong answers come from neighbouring rows of the table, so you have to really know it. Hard goes up to 15 × 15.',
+  full: 'A timed times-tables drill. Wrong answers come from neighbouring rows of the table, so you have to really know it. Hard goes up to 15 × 15. Then race the computer car in [Math Racing](game:math-racing), or browse all [math games](hub:math-games).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

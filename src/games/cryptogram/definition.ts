@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🔐',
   tags: ['cipher', 'code', 'quotes', 'decode', 'logic'],
   short: 'Crack a secret code to reveal a famous saying.',
-  full: 'A classic substitution cipher: every letter in a famous proverb or quotation has been swapped for a different letter. Use letter patterns and short words to work out the code and reveal the message.',
+  full: 'A classic substitution cipher: every letter in a famous proverb or quotation has been swapped for a different letter. Use letter patterns and short words to work out the code and reveal the message. For codes made of numbers and colours, try [Code Breaker](game:code-breaker) or the other [code-breaking games](hub:code-breaking-games).',
   minutes: 8,
   controls: {
     keyboard: ['Type a letter to decode the selected code letter', 'Backspace clears it'],

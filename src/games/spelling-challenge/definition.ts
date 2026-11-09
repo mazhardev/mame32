@@ -9,7 +9,7 @@ export const game = defineGame({
   icon: '✏️',
   tags: ['spelling', 'quiz'],
   short: 'Pick the correctly spelled word from four look-alikes.',
-  full: 'Tackle the most commonly misspelled English words. Each question shows four versions — only one is right. A short meaning is given as a hint.',
+  full: 'Tackle the most commonly misspelled English words. Each question shows four versions — only one is right. A short meaning is given as a hint. For more spelling practice, try [Missing Letters](game:missing-letters) or a mini [Crossword](game:crossword).',
   minutes: 3,
   controls: QUIZ_CONTROLS,
   difficultyPicker: 'in-game',

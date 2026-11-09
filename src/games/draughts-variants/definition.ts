@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '⛂',
   tags: ['international draughts', 'flying kings', 'checkers', 'ai', 'two player'],
   short: 'International 10×10 and Brazilian draughts with flying kings.',
-  full: 'Play the international rules of draughts: men capture backwards, kings fly across the board, and you must take the sequence that captures the most pieces. Choose the full 10×10 International game or the 8×8 Brazilian version.',
+  full: 'Play the international rules of draughts: men capture backwards, kings fly across the board, and you must take the sequence that captures the most pieces. Choose the full 10×10 International game or the 8×8 Brazilian version. For the classic 8×8 rules, play [Checkers](game:checkers), or see all [chess and checkers games](hub:chess-and-checkers-games).',
   minutes: 15,
   multiplayer: 'vs-ai',
   controls: {

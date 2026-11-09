@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🧩',
   tags: ['memory', 'visual', 'grid', 'brain'],
   short: 'Squares light up for a moment — tap the same ones. Each level adds another.',
-  full: 'A visual memory test. A few squares on the grid light up briefly; when they go dark, tap the squares that were lit. Every level adds one more square to remember, and the grid itself grows as you progress. Three wrong taps in a level cost a life, and you have three lives.',
+  full: 'A visual memory test. A few squares on the grid light up briefly; when they go dark, tap the squares that were lit. Every level adds one more square to remember, and the grid itself grows as you progress. Three wrong taps in a level cost a life, and you have three lives. For sequences of digits, try [Memory Sequence](game:memory-sequence), or browse all [memory games](hub:memory-games).',
   minutes: 3,
   controls: {
     keyboard: ['Tab to a square, Enter or Space to choose it'],

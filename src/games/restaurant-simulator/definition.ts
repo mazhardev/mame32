@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🍽️',
   tags: ['restaurant', 'cooking', 'time management', 'serving', 'simulation', 'upgrades'],
   short: 'Cook, juggle and serve hungry customers before they walk out — five busy days.',
-  full: 'Run a little restaurant for a busy week. Customers sit down with an order; start each dish at its station — grill, blender, prep board, soup pot, pizza oven — pick it up when it is ready, and carry it to the table. You only have two hands, hot food burns if you leave it, and every customer’s patience is running out. Tips reward quick service. Spend your takings on faster stoves, comfy chairs, an extra table or a second grill, and hit each day’s goal to stay open.',
+  full: 'Run a little restaurant for a busy week. Customers sit down with an order; start each dish at its station — grill, blender, prep board, soup pot, pizza oven — pick it up when it is ready, and carry it to the table. You only have two hands, hot food burns if you leave it, and every customer’s patience is running out. Tips reward quick service. Spend your takings on faster stoves, comfy chairs, an extra table or a second grill, and hit each day’s goal to stay open. For another busy service, try [Hotel Manager](game:hotel-manager), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 10,
   hasSaveState: true,
   hasLevels: true,

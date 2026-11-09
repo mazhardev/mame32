@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🏹',
   tags: ['archery', 'bow', 'aim', 'balloons', 'target', 'wind', 'timed'],
   short: 'A timed shooting gallery: pop balloons and hit the moving target before time runs out.',
-  full: 'Take your bow to the shooting gallery. Balloons float up across the field and a target board glides up and down. Arrows fly in a real arc and drift with the wind, so read the wind sock and lead your shots. Hits in a row build a score multiplier, golden balloons add time to the clock, and one well-placed arrow can pop a whole line of balloons.',
+  full: 'Take your bow to the shooting gallery. Balloons float up across the field and a target board glides up and down. Arrows fly in a real arc and drift with the wind, so read the wind sock and lead your shots. Hits in a row build a score multiplier, golden balloons add time to the clock, and one well-placed arrow can pop a whole line of balloons. For full-distance archery against a computer archer, try [Archery](game:archery); more aiming games are in [target shooting games](hub:target-shooting-games).',
   minutes: 2,
   controls: {
     keyboard: ['↑ / ↓ raise and lower the bow', 'Hold Space to draw, release to shoot'],

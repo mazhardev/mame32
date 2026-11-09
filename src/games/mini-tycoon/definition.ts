@@ -9,7 +9,7 @@ export const game = defineGame({
   tags: ['idle', 'tycoon', 'business', 'managers', 'save', 'economy'],
   short:
     'Run a lemonade cart, then car washes, cafés and theme parks — and hire managers to run them for you.',
-  full: 'Start with a single lemonade cart and grow a business empire. Each business pays out when its cycle finishes; tap it to start the next one, or hire a manager to keep it running automatically, even while you are away. Owning 25, 50, 100 and 200 of a business doubles its speed each time. Progress saves automatically.',
+  full: 'Start with a single lemonade cart and grow a business empire. Each business pays out when its cycle finishes; tap it to start the next one, or hire a manager to keep it running automatically, even while you are away. Owning 25, 50, 100 and 200 of a business doubles its speed each time. Progress saves automatically. For an idle take on empire building, try [Clicker Empire](game:clicker-empire), or browse all [tycoon and management games](hub:tycoon-games).',
   minutes: 20,
   hasSaveState: true,
   controls: {

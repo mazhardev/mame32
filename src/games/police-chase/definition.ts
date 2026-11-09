@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🚓',
   tags: ['chase', 'pursuit', 'endless', 'traffic', 'racing'],
   short: 'Sirens on! Chase a fleeing suspect through traffic and ram them to make the arrest.',
-  full: 'You are the patrol car. A suspect is fleeing down a busy four-lane road, swerving between lanes to lose you. Close the gap, line up behind them and ram their car four times to make the arrest — all before the clock runs out. Each arrest earns more time, but the next suspect drives faster. Careful: crashing into civilians damages your car, and three knocks take you off the case.',
+  full: 'You are the patrol car. A suspect is fleeing down a busy four-lane road, swerving between lanes to lose you. Close the gap, line up behind them and ram their car four times to make the arrest — all before the clock runs out. Each arrest earns more time, but the next suspect drives faster. Careful: crashing into civilians damages your car, and three knocks take you off the case. For more high-speed driving, try [Highway Racer](game:highway-racer), or see all [car driving games](hub:driving-games).',
   minutes: 4,
   controls: {
     keyboard: ['↑ accelerate, ↓ brake', '← → steer'],

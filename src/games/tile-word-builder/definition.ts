@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '🀄',
   tags: ['letter tiles', 'rack', 'points', 'strategy'],
   short: 'Score big words from a rack of seven letter tiles over eight turns.',
-  full: 'A tile-scoring word game. Each turn, spell a word from your seven letter tiles. Rare letters are worth more, longer words get multipliers and using all seven tiles earns a bonus. Reach the target score in eight turns.',
+  full: 'A tile-scoring word game. Each turn, spell a word from your seven letter tiles. Rare letters are worth more, longer words get multipliers and using all seven tiles earns a bonus. Reach the target score in eight turns. For more word building, try [Word Builder](game:word-builder) or [Anagram](game:anagram).',
   minutes: 6,
   controls: {
     keyboard: ['Type letters to pick tiles', 'Enter to play, Backspace to undo a tile'],

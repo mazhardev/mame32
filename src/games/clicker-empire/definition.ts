@@ -8,7 +8,7 @@ export const game = defineGame({
   icon: '👆',
   tags: ['idle', 'clicker', 'incremental', 'prestige', 'save', 'empire'],
   short: 'Grow a village into an empire of castles and wonders — then start over for crowns.',
-  full: 'An incremental empire builder. Collect taxes by hand, then fund peasants, farmsteads, quarries, market towns, guild halls, harbours, castles and grand wonders that fill your treasury every second. When growth slows, start a new dynasty: you keep your Crowns, and every Crown makes everything you earn 50% bigger. Progress saves automatically.',
+  full: 'An incremental empire builder. Collect taxes by hand, then fund peasants, farmsteads, quarries, market towns, guild halls, harbours, castles and grand wonders that fill your treasury every second. When growth slows, start a new dynasty: you keep your Crowns, and every Crown makes everything you earn 50% bigger. Progress saves automatically. For a sweeter idle game, try [Cookie Factory](game:cookie-factory), or browse all [idle and clicker games](hub:idle-games).',
   minutes: 25,
   hasSaveState: true,
   controls: {
