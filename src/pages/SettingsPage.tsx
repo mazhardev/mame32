@@ -284,7 +284,7 @@ export default function SettingsPage() {
         <div className="settings-row">
           <div>
             <div className="label">Usage analytics</div>
-            <div className="desc">Lets Google Analytics use cookies to count visits and popular games. Your game data never leaves this browser.</div>
+            <div className="desc">Helps us see which games are played so we can improve them. On by default; turn it off any time. Your game data never leaves this browser.</div>
           </div>
           <Toggle
             label="Usage analytics"

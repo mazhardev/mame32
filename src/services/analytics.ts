@@ -1,41 +1,39 @@
 import { site } from '@/config/site';
 
 /**
- * Thin wrapper around the Google tag loaded in index.html. Consent Mode keeps
- * analytics cookies off until the visitor agrees; choosing "No thanks" turns
- * reporting off completely. Every call is a no-op when the tag is missing
- * (offline, blocked, tests, local development).
+ * Thin wrapper around the Google tag loaded in index.html. Analytics is on by
+ * default on the live site; a visitor can turn it off in Settings -> Privacy,
+ * which is remembered in this browser. Every call is a no-op when the tag is
+ * missing (offline, blocked, tests, local development).
  */
-export type AnalyticsConsent = 'granted' | 'denied' | null;
+export type AnalyticsChoice = 'granted' | 'denied';
 
-const CONSENT_KEY = `${site.storagePrefix}.analyticsConsent`;
-const DISABLE_FLAG = `ga-disable-${site.gaMeasurementId}`;
+const CHOICE_KEY = `${site.storagePrefix}.analyticsConsent`;
 const CHANGE_EVENT = 'analytics-consent-change';
 
 type Gtag = (...args: unknown[]) => void;
-type AnalyticsWindow = Window & { gtag?: Gtag } & Record<string, unknown>;
+type AnalyticsWindow = Window & { gtag?: Gtag };
 const win = () => (typeof window === 'undefined' ? null : (window as unknown as AnalyticsWindow));
+const isLiveSite = () => /(^|\.)gamesplayland\.online$/.test(win()?.location.hostname ?? '');
 
-export function getConsent(): AnalyticsConsent {
+/** 'denied' only when the visitor turned analytics off; otherwise it is on. */
+export function getConsent(): AnalyticsChoice {
   try {
-    const v = localStorage.getItem(CONSENT_KEY);
-    return v === 'granted' || v === 'denied' ? v : null;
+    return localStorage.getItem(CHOICE_KEY) === 'denied' ? 'denied' : 'granted';
   } catch {
-    return null;
+    return 'granted';
   }
 }
 
-export function setConsent(choice: 'granted' | 'denied'): void {
+export function setConsent(choice: AnalyticsChoice): void {
   try {
-    localStorage.setItem(CONSENT_KEY, choice);
+    localStorage.setItem(CHOICE_KEY, choice);
   } catch {
     // Private mode: the choice still applies for this visit.
   }
   const w = win();
   if (!w) return;
-  const liveSite = /(^|\.)gamesplayland\.online$/.test(w.location.hostname);
-  w[DISABLE_FLAG] = choice === 'denied' || !liveSite;
-  w.gtag?.('consent', 'update', { analytics_storage: choice });
+  if (isLiveSite()) w.gtag?.('consent', 'update', { analytics_storage: choice });
   w.dispatchEvent(new Event(CHANGE_EVENT));
 }
 
@@ -49,7 +47,7 @@ export function onConsentChange(fn: () => void): () => void {
 /** Sends a custom event, e.g. track('game_start', { game_id: 'chess' }). */
 export function track(event: string, params: Record<string, string | number | boolean | undefined> = {}): void {
   const w = win();
-  if (!w?.gtag || w[DISABLE_FLAG]) return;
+  if (!w?.gtag || !isLiveSite() || getConsent() === 'denied') return;
   try {
     w.gtag('event', event, params);
   } catch {

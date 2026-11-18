@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { ConsentBanner } from '@/components/ConsentBanner';
 import { SearchBox } from '@/components/SearchBox';
 import { site } from '@/config/site';
 import { getProfile, subscribe } from '@/storage/StorageService';
@@ -161,7 +160,6 @@ export default function SiteLayout() {
           </nav>
         </div>
       </footer>
-      <ConsentBanner />
     </div>
   );
 }

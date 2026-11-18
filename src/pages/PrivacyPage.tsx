@@ -6,7 +6,7 @@ export default function PrivacyPage() {
     <div className="container stack" style={{ maxWidth: 780 }}>
       <PageMeta
         title="Privacy"
-        description="How GamesPlayLand handles your data: game progress stays in your browser, with no account and no server. Optional Google Analytics counts visits."
+        description="How GamesPlayLand handles your data: game progress stays in your browser, with no account and no server. Google Analytics counts visits; you can turn it off in Settings."
       />
       <h1 style={{ fontSize: '1.6rem' }}>Privacy</h1>
 
@@ -50,11 +50,10 @@ export default function PrivacyPage() {
             your nickname, saves or other stored data.
           </p>
           <p className="muted small">
-            Analytics cookies are only set if you choose <strong>Allow</strong>. Until you choose,
-            Google may receive cookieless measurements under its Consent Mode. If you choose{' '}
-            <strong>No thanks</strong>, nothing is sent at all. You can change your choice at any
-            time in Settings → Privacy. Advertising features are always off. See Google’s privacy
-            policy at policies.google.com/privacy.
+            Analytics is on by default and uses Google Analytics cookies. You can turn it off at
+            any time in Settings → Privacy; after that, no analytics cookies are set and no game
+            events are sent from this browser. Advertising features are always off. See Google’s
+            privacy policy at policies.google.com/privacy.
           </p>
         </div>
         <div>

@@ -658,7 +658,7 @@ pages.push({
   description: `How ${site.siteName} stores your data: game progress, scores, achievements and preferences stay in your own browser. No account is required.`,
   body: `<h1>Privacy</h1>
 <p>Game progress, scores, achievements and preferences are stored locally in your browser. This website does not require an account.</p>
-<p>This site uses Google Analytics to count visits and popular games. Analytics cookies are set only if you choose Allow; choosing No thanks turns reporting off. You can change this in Settings.</p>
+<p>This site uses Google Analytics to count visits and popular games. Analytics is on by default; you can turn it off at any time in Settings → Privacy.</p>
 <p>Clearing your browser or site storage may remove scores, progress, achievements, coins and preferences. Use Export Save Data in Settings to keep a backup.</p>`,
   schema: [organization],
   lastmod: latest(fileDates.get('src/pages/PrivacyPage.tsx'), seoDate),

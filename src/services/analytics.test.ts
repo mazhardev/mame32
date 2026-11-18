@@ -9,23 +9,19 @@ describe('analytics', () => {
     delete w().gtag;
   });
 
-  it('remembers the visitor’s choice and updates consent mode', () => {
-    const gtag = vi.fn();
-    w().gtag = gtag;
-    expect(getConsent()).toBeNull();
+  it('is on by default and remembers when the visitor turns it off', () => {
+    expect(getConsent()).toBe('granted');
+    setConsent('denied');
+    expect(getConsent()).toBe('denied');
     setConsent('granted');
     expect(getConsent()).toBe('granted');
-    expect(gtag).toHaveBeenCalledWith('consent', 'update', { analytics_storage: 'granted' });
   });
 
-  it('never sends events off the live site or after "No thanks"', () => {
+  it('never sends events off the live site', () => {
     const gtag = vi.fn();
     w().gtag = gtag;
-    setConsent('granted'); // jsdom's hostname is not the production domain
-    track('game_start', { game_id: 'chess' });
-    setConsent('denied');
-    track('game_start', { game_id: 'chess' });
-    expect(gtag.mock.calls.filter(([kind]) => kind === 'event')).toHaveLength(0);
+    track('game_start', { game_id: 'chess' }); // jsdom's hostname is not the production domain
+    expect(gtag).not.toHaveBeenCalled();
   });
 
   it('is a harmless no-op when the Google tag is missing', () => {

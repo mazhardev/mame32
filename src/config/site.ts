@@ -30,8 +30,8 @@ export const site = {
   indexNowKey: 'ad2a080a448bb330f00359072e697d17',
   /** Where players report bugs, request games and send other enquiries. */
   supportEmail: 'mazharchdev@gmail.com',
-  /** Google Analytics 4 measurement ID. The tag itself lives in index.html. */
-  gaMeasurementId: 'G-9Z9RT2YH5X',
+  /** Google tag (Google Tag Manager container) loaded in index.html. */
+  googleTagId: 'GTM-N8FLPJRB',
   theme: {
     defaultTheme: 'system' as const,
     brand: '#6366f1',

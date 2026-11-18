@@ -274,6 +274,6 @@ Some games are inspired by classic arcade mechanics, but every name, graphic, so
 
 ## Privacy
 
-Game progress, scores, achievements and preferences are stored locally in your browser. This website does not require an account, and game data is never sent anywhere. The live site uses Google Analytics (measurement ID in `src/config/site.ts`, tag in `index.html`) with Consent Mode: analytics cookies are set only after the visitor clicks Allow, and "No thanks" (or Settings → Privacy) turns reporting off entirely. Analytics only reports on the production hostname, never from local development. See the in-app Privacy page.
+Game progress, scores, achievements and preferences are stored locally in your browser. This website does not require an account, and game data is never sent anywhere. The live site uses Google Analytics through the Google tag `GTM-N8FLPJRB` (in `index.html`, ID also in `src/config/site.ts`). Analytics is on by default with no consent prompt; Settings → Privacy turns it off for that browser. Analytics only reports on the production hostname, never from local development. See the in-app Privacy page.
 
 Clearing browser or site storage will delete your data — export a backup first.
