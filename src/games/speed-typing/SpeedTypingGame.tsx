@@ -86,7 +86,7 @@ export default function SpeedTypingGame() {
     setResults((r) => [...r, ok]);
     setIndex((i) => i + 1);
     setTyped('');
-    if (!ok) shell.play('failure');
+    shell.play(ok ? 'tick' : 'failure');
   };
 
   const onChange = (value: string) => {

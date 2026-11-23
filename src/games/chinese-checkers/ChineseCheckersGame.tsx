@@ -142,6 +142,8 @@ export default function ChineseCheckersGame() {
               onKeyDown={(e) => onKey(e, i)}
               style={{ cursor: p === human || isTarget ? 'pointer' : 'default', outline: 'none' }}
             >
+              {/* A larger invisible target so holes are easy to tap on a phone. */}
+              <circle cx={px(i)} cy={py(i)} r={0.85} fill="transparent" />
               <circle cx={px(i)} cy={py(i)} r={0.62} fill={p ? COLORS[p as 1 | 2] : 'var(--surface-2)'} stroke={sel === i ? '#facc15' : p ? 'rgba(0,0,0,0.45)' : 'var(--border)'} strokeWidth={sel === i ? 0.2 : 0.07} />
               {isTarget && <circle cx={px(i)} cy={py(i)} r={0.26} fill="#facc15" />}
             </g>

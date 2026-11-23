@@ -275,6 +275,8 @@ export default function LudoGame() {
               style={{ cursor: active ? 'pointer' : 'default', outline: 'none', transition: 'transform 0.3s ease' }}
               transform={`translate(${(pos[0] + shift).toFixed(3)} ${(pos[1] - shift).toFixed(3)})`}
             >
+              {/* A finger-sized target around a token that can move. */}
+              {active && <circle r={0.62} fill="transparent" />}
               {active && <circle r={0.48} fill="none" stroke="#111827" strokeWidth={0.07} strokeDasharray="0.15 0.1" />}
               <circle r={p === HOME ? 0.2 : 0.36} fill={HEX[c]} stroke="#1f2937" strokeWidth={0.06} />
               <circle r={p === HOME ? 0.08 : 0.14} fill="rgba(255,255,255,0.7)" />

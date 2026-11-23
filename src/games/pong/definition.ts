@@ -8,15 +8,15 @@ export const pongGame: GameDefinition = {
   title: 'Pong',
   shortDescription: 'Classic paddle duel against a local computer opponent.',
   fullDescription:
-    'Bounce the ball past the computer paddle. The first side to seven points wins. The computer paddle moves faster on higher difficulties. For a full match with rallies and spin, try [Table Tennis](game:table-tennis), or break bricks in [Brick Breaker](game:brick-breaker).',
+    'Bounce the ball past the computer paddle. The first side to seven points wins. Your paddle is at the bottom of the court, so it plays well on a phone held upright: drag with a finger or the mouse. The ball speeds up with every return, and the computer paddle gets quicker and sharper on higher difficulties. For a full match with rallies and spin, try [Table Tennis](game:table-tennis), or break bricks in [Brick Breaker](game:brick-breaker).',
   category: 'arcade',
   difficulty: 'easy',
   tags: ['classic', 'retro', 'paddle', 'ai'],
   icon: '🏓',
   controls: {
-    keyboard: ['Arrow Up / Arrow Down to move the paddle', 'P to pause, R to restart'],
+    keyboard: ['Arrow Left / Right (or A, D) to move the paddle', 'P to pause, R to restart'],
     mouse: ['Move the pointer over the court to steer the paddle'],
-    touch: ['Drag across the court or hold the Up/Down buttons'],
+    touch: ['Drag across the court or hold the ◀ ▶ buttons'],
   },
   supportsTouch: true,
   supportsKeyboard: true,

@@ -269,6 +269,22 @@ describe('GameShell full-screen play', () => {
     expect(request.mock.contexts[0]).toBe(shellEl(view));
   });
 
+  it('skips browser fullscreen on phones and tablets, so Android shows no exit notice', async () => {
+    const request = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(document, 'fullscreenEnabled', { configurable: true, value: true });
+    (Element.prototype as Partial<Element>).requestFullscreen = request;
+    const original = window.matchMedia;
+    window.matchMedia = ((query: string) => ({ ...original(query), matches: query === '(pointer: coarse)' })) as typeof window.matchMedia;
+    try {
+      const view = await mount();
+      act(() => fireEvent.click(expandButton()));
+      expect(shellEl(view)).toHaveClass('expanded');
+      expect(request).not.toHaveBeenCalled();
+    } finally {
+      window.matchMedia = original;
+    }
+  });
+
   it('exits with Escape, the F key and the browser Back button', async () => {
     const view = await mount();
     act(() => fireEvent.keyDown(window, { key: 'f' }));

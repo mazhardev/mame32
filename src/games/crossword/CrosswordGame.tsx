@@ -174,6 +174,7 @@ export default function CrosswordGame() {
     const next = [...letters];
     next[cursor] = key;
     setLetters(next);
+    shell.play('tick');
     setWrong((w) => {
       const copy = new Set(w);
       copy.delete(cursor);
@@ -254,6 +255,7 @@ export default function CrosswordGame() {
     });
     setWrong(bad);
     setChecks((c) => c + 1);
+    shell.play(bad.size ? 'failure' : 'success');
     setMessage(
       bad.size
         ? `${bad.size} letter${bad.size === 1 ? ' is' : 's are'} wrong`
@@ -272,6 +274,7 @@ export default function CrosswordGame() {
     }
     setLetters(next);
     setReveals((r) => r + n);
+    if (n) shell.play('pop');
     finishIfDone(next, n);
   };
 

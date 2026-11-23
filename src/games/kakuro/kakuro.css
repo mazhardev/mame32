@@ -1,6 +1,6 @@
 .kk-grid {
   --n: 8;
-  --cell: min(calc((100vw - 44px) / var(--n)), 50px);
+  --cell: min(calc((var(--stage-w, 100vw) - 28px - (var(--n) - 1) * 1px) / var(--n)), 50px);
   display: grid;
   grid-template-columns: repeat(var(--n), var(--cell));
   grid-auto-rows: var(--cell);

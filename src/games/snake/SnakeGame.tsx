@@ -245,9 +245,11 @@ export default function SnakeGame() {
         }}
         style={{
           position: 'relative',
-          flex: 1,
-          minHeight: 0,
-          width: '100%',
+          // On the page the square board takes the full width (up to 60% of
+          // the screen height); in full screen it fills whatever space is left.
+          ...(shell.isFullscreen
+            ? { flex: 1, minHeight: 0, width: '100%' }
+            : { flex: 'none', width: '100%', maxWidth: 'min(560px, 60vh)', aspectRatio: '1 / 1', alignSelf: 'center' }),
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

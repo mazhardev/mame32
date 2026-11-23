@@ -1204,6 +1204,23 @@ html.game-expanded body {
   height: 100%;
 }
 
+/* On the page: a game wider than the stage (narrow phones) is shrunk to fit. */
+.game-shell:not(.expanded) .game-fit[data-fit='width'] {
+  display: block;
+  position: relative;
+  flex: none;
+}
+
+.game-shell:not(.expanded) .game-fit[data-fit='width'] .game-fit-inner {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+
 .game-shell.expanded .game-fit[data-fit='scale'] .game-fit-inner {
   position: absolute;
   top: 0;
@@ -1746,7 +1763,8 @@ html.game-expanded body {
 
 @media (max-width: 1000px) {
   .detail-layout {
-    grid-template-columns: 1fr;
+    /* minmax(0, …): a wide game must never widen the page on a phone. */
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

@@ -31,7 +31,8 @@
 
 .pp-frame {
   --n: 4;
-  --tile: min(calc((100vw - 120px) / var(--n)), calc(320px / var(--n)));
+  /* Two 34px arrow columns and the gaps between n + 2 columns. */
+  --tile: min(calc((var(--stage-w, 100vw) - 24px - 68px - (var(--n) + 1) * 4px) / var(--n)), calc(320px / var(--n)));
   display: grid;
   grid-template-columns: 34px repeat(var(--n), var(--tile)) 34px;
   grid-template-rows: 34px repeat(var(--n), var(--tile)) 34px;

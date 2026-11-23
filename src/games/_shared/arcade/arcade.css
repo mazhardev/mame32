@@ -164,3 +164,17 @@
     align-items: center;
   }
 }
+
+/* Narrow phones: three or more action buttons stack two by two beside the pad. */
+@media (max-width: 420px) {
+  .arcade-buttons:has(> :nth-child(3)) {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 8px;
+  }
+
+  .arcade-buttons:has(> :nth-child(3)) .action-btn {
+    width: 58px;
+    height: 58px;
+  }
+}

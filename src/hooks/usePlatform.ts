@@ -55,9 +55,21 @@ function nativeFullscreenElement(): Element | null {
   return document.fullscreenElement ?? doc.webkitFullscreenElement ?? null;
 }
 
-/** True where an element can enter the browser's own fullscreen (not iPhone Safari). */
+/** Phones and tablets: the primary pointer is a finger. */
+function isTouchFirst(): boolean {
+  return typeof window !== 'undefined' && !!window.matchMedia?.('(pointer: coarse)').matches;
+}
+
+/**
+ * True where the shell should also enter the browser's own fullscreen. Not on
+ * phones and tablets: there the expanded layout already fills the screen, and
+ * the browser's fullscreen makes Android cover the game with a "Drag from top
+ * … to exit full screen" notice every time (iPhone Safari has no element
+ * fullscreen at all).
+ */
 export function canUseNativeFullscreen(): boolean {
   if (typeof document === 'undefined' || typeof Element === 'undefined') return false;
+  if (isTouchFirst()) return false;
   const doc = document as FullscreenDocument;
   const enabled = document.fullscreenEnabled ?? doc.webkitFullscreenEnabled ?? false;
   return (

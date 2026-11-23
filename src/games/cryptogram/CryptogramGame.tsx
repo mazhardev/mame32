@@ -91,6 +91,7 @@ export default function CryptogramGame() {
     if (plainLetter) next[selected] = plainLetter.toUpperCase();
     else delete next[selected];
     setGuesses(next);
+    shell.play('tick');
     // Move to the next undecoded cipher letter.
     const i = letters.indexOf(selected);
     const after = [...letters.slice(i + 1), ...letters.slice(0, i)].find((c) => !next[c]);
@@ -115,6 +116,7 @@ export default function CryptogramGame() {
     setGuesses(next);
     setLocked((l) => new Set(l).add(target));
     setHints((h) => h + 1);
+    shell.play('pop');
     setMessage(`${target} decodes to ${next[target]}`);
     finishCheck(next, hints + 1);
   };

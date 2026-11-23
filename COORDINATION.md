@@ -1,5 +1,19 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-11-24 (phones, tablets and sound)
+
+The user asked Claude to check every game on phones and tablets, fix missing sounds and remove Android's full-screen notice.
+
+- **Device sweep.** Every game was opened at 320×640, 390×844, 768×1024 and 1024×768 with touch, started, played with random taps and keys, measured and screenshotted. Before: 27 games widened the page on a 320px phone (15 still at 360px, hearts/spades also on tablets). After: none.
+- **No page overflow, ever.** `.detail-layout` is `minmax(0, 1fr)` on narrow screens, so a wide game can no longer widen the page. `FitToStage` now also works outside full screen: a game wider than the stage is shrunk as a whole (`data-fit='width'`), and it publishes `--stage-w` on `.game-stage` so games size boards against the stage instead of `100vw`.
+- **Native fixes:** grids in Sea Battle, Block Puzzle, Kakuro, Lights Out/Binary (`pz-grid`, new `--pz-pad`), Pattern Puzzle, Snakes and Ladders and every `sq-board` game now use `--stage-w`; card sizes (`useCardWidth`, `Hand`) measure the stage; Minesweeper Normal fits a phone; Snake's board uses the full width (was 135px on a small phone); three or more arcade buttons stack two by two on phones.
+- **Arcade games on touch screens** size the canvas so the HUD, canvas and touch pad fit on one screen, and scroll the game into view when a round starts.
+- **Block Drop, Pong and Brick Breaker** were rebuilt on the arcade kit (`spec.ts`, `engine.ts`, `draw.ts`); `_shared/arcade/CanvasRunner` is gone. Block Drop: portrait well, 7-bag, ghost, next preview, lock delay, wall kicks, levels, drag/tap/flick controls, difficulty sets the start level. Pong: upright court, your paddle at the bottom, angle by contact point, computer with reaction time and aim error. Brick Breaker: launch from the paddle, proper circle–brick collision, speed-up and combos, difficulty sets paddle width and speed. Achievement ids are unchanged.
+- **Sound:** the three rebuilt games had none; now they do. Added sounds to Click Speed Test, Crossword, Cryptogram, Speed Typing, Typing Tutor, Spin the Wheel (clicks as it slows), Blackjack, Avoid Obstacles and Balance Game. Simon Memory pads now have their own notes (`pad0`–`pad3`) and a mistake buzzes. `audio.ts` wakes the audio context on every tap or key press once a game has used sound (phones block audio that was never started from a gesture, and iOS suspends it after calls).
+- **Full screen on phones and tablets** no longer uses the browser's Fullscreen API (`canUseNativeFullscreen` returns false for a coarse pointer), so Android stops showing "Drag from top… to exit full screen". The in-page full-screen layout is unchanged; desktops still get true full screen.
+- **Tap targets:** bigger invisible hit areas on Ludo tokens and Chinese Checkers holes.
+- Gates: typecheck, lint, 2,227 tests in 260 files and the build pass; a final sweep at 360×740 and 768×1024 found no page overflow and no script errors.
+
 ## Claude update — 2026-11-23 (Cricket Fielding and a cricket hub)
 
 The user asked Claude to carry on with the internal linking plan. Cricket was the biggest topic without a hub (three games, a hub needs four), so Claude added a fourth cricket game and the hub.

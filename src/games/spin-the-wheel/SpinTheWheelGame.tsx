@@ -57,6 +57,25 @@ export default function SpinTheWheelGame() {
   useEffect(() => restart(), [level, restart]);
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
+  // The wheel clicks as each segment passes the pointer, slowing with it.
+  const ticks = useRef<number[]>([]);
+  const clearTicks = () => {
+    ticks.current.forEach((id) => window.clearTimeout(id));
+    ticks.current = [];
+  };
+  useEffect(() => clearTicks, []);
+  const scheduleTicks = (segments: number) => {
+    clearTicks();
+    let last = -Infinity;
+    for (let k = 1; k <= Math.floor(segments); k++) {
+      // Roughly the ease-out of the spin: progress p(t) = 1 - (1 - t)^3.
+      const ms = 2600 * (1 - Math.cbrt(1 - k / segments));
+      if (ms - last < 70) continue;
+      last = ms;
+      ticks.current.push(window.setTimeout(() => shell.play('tick'), ms));
+    }
+  };
+
   const go = () => {
     if (spinning || finished(state) || shell.paused) return;
     if (state.log.length === 0) shell.startRound();
@@ -69,6 +88,7 @@ export default function SpinTheWheelGame() {
     setSpinning(!reduced);
     setMessage('Spinning…');
     shell.play('whoosh');
+    if (!reduced) scheduleTicks(target / step);
     timer.current = window.setTimeout(
       () => {
         const next = spin(state, level, stake, seg);

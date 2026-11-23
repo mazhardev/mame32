@@ -108,7 +108,10 @@ export function update(s: State, dt: number, input: Input, random: () => number)
   if (s.nextHazard <= 0) {
     addHazard(s, random);
     s.nextHazard = s.every;
+    s.events.push('whoosh');
   }
+  // A chime for every ten seconds survived.
+  if (Math.floor(s.time / 10) > Math.floor((s.time - dt) / 10)) s.events.push('coin');
   s.pickupIn -= dt;
   if (!s.pickup && s.pickupIn <= 0) s.pickup = { x: 30 + random() * (W - 60), y: 30 + random() * (H - 60) };
   if (s.pickup && circleHit(s.x, s.y, R, s.pickup.x, s.pickup.y, 10)) {

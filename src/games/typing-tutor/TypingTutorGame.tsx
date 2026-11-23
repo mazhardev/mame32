@@ -118,6 +118,8 @@ export default function TypingTutorGame() {
     }
     setPos(p);
     setErrors(e);
+    // A soft key click for each correct letter, a short buzz for a wrong key.
+    shell.play(e > errors ? 'blip' : 'tick');
     // Keep the input short so it never scrolls on phones.
     if (value.length > 30 && inputRef.current) {
       inputRef.current.value = '';

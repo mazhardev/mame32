@@ -71,6 +71,7 @@ export default function ClickSpeedTestGame() {
     }
     clicksRef.current += 1;
     setClicks(clicksRef.current);
+    shell.play('tick');
   };
 
   const elapsed = seconds - left;
