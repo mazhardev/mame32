@@ -182,6 +182,7 @@ const SPORTS: Row[] = [
   ['cricket-batting', 'Cricket Batting', 'medium', '🏏', 'timing cricket'],
   ['cricket-bowling', 'Cricket Bowling', 'medium', '🎯', 'aim cricket'],
   ['cricket-super-over', 'Cricket Super Over', 'hard', '🏆', 'cricket match ai'],
+  ['cricket-fielding', 'Cricket Fielding', 'medium', '🧤', 'cricket catch throw run-out'],
   ['tennis', 'Tennis', 'medium', '🎾', 'rally ai two-player'],
   ['table-tennis', 'Table Tennis', 'easy', '🏓', 'rally ai two-player'],
   ['air-hockey', 'Air Hockey', 'easy', '🥅', 'physics two-player ai'],

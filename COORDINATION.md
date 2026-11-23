@@ -1,5 +1,14 @@
 # Claude / ChatGPT work split
 
+## Claude update — 2026-11-23 (Cricket Fielding and a cricket hub)
+
+The user asked Claude to carry on with the internal linking plan. Cricket was the biggest topic without a hub (three games, a hub needs four), so Claude added a fourth cricket game and the hub.
+
+- **Cricket Fielding** (`src/games/cricket-fielding/`, Sports): the computer bats 12 balls with 3 wickets and you field. Top-down ground in metres (`engine.ts`), ball flight with bounce and roll, gap-seeking computer shots, catches (sometimes dropped at full stretch), batters who judge each run from the expected return, and throws to either end for run-outs. You control the fielder best placed to reach the ball; left alone, your fielder only walks to a ball that has nearly stopped. `bot.ts` plays at any skill; `npx tsx scripts/check-cricket-fielding.ts 1,0,-1` reports win rates for a skilled, beginner and idle fielder (about 93/84/47 % on Easy, 81/64/21 % on Normal, 56/31/3 % on Hard).
+- **Cricket hub:** `cricket-games` in `src/data/topicIndex.ts` (parent Sports) with copy in `src/data/clusters.ts`; Cricket removed from `src/data/smallTopics.ts`. The sports category intro and the Cricket Batting and Super Over descriptions link to the new game or hub. New OG images for the game and hub.
+- `PROJECT_STATUS.md` regenerated: 266 of 266 playable.
+- Gates: typecheck, lint, 2,207 tests in 260 files and the build pass.
+
 ## Claude update — 2026-11-09 (internal linking for SEO)
 
 The user asked for an internal linking plan for topical authority, then asked Claude to build it.

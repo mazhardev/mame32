@@ -171,8 +171,8 @@ const CATEGORY_INTROS: Record<string, string[]> = {
     'Want to know how fast you are? Try the [reaction time games](hub:reaction-time-games), or browse [quick games](hub:quick-games) you can finish in a few minutes.',
   ],
   sports: [
-    'Sports games that test aim, power and timing: football free kicks and [penalties](game:penalty-shootout), [cricket batting](game:cricket-batting), bowling and a super over, tennis, table tennis, golf, ten-pin bowling, [pool](game:pool), darts, archery and more.',
-    'Line up the shot, pick your moment and chase a new personal best – most sports games also have a computer opponent. Aiming games are in [target shooting games](hub:target-shooting-games).',
+    'Sports games that test aim, power and timing: football free kicks and [penalties](game:penalty-shootout), [cricket batting](game:cricket-batting), bowling, fielding and a super over, tennis, table tennis, golf, ten-pin bowling, [pool](game:pool), darts, archery and more.',
+    'Line up the shot, pick your moment and chase a new personal best – most sports games also have a computer opponent. Bat, bowl and field in [cricket games](hub:cricket-games); aiming games are in [target shooting games](hub:target-shooting-games).',
   ],
   racing: [
     'Racing games for quick sessions: [top-down circuits](game:top-down-racing), [formula cars](game:formula-racing), drifting, traffic dodging, motorbikes, boats and even space racing.',

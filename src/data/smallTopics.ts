@@ -4,7 +4,6 @@
  * games always link to each other from their "Related games" section.
  */
 export const SMALL_TOPICS: { name: string; ids: string[] }[] = [
-  { name: 'Cricket', ids: ['cricket-batting', 'cricket-bowling', 'cricket-super-over'] },
   { name: 'Typing', ids: ['typing-tutor', 'typing-challenge', 'speed-typing'] },
   { name: 'Parking', ids: ['parking-challenge', 'parking-puzzle', 'unblock-puzzle'] },
   { name: 'Football', ids: ['penalty-shootout', 'soccer-free-kick'] },
