@@ -2,6 +2,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameShell } from '@/game-engine/context';
 import { GameHud } from '@/components/game/GameHud';
 import { reportProgress } from '@/achievements/AchievementService';
+
+/** Each pad has its own note, the same when the game plays it and when you press it. */
+const PAD_SOUNDS = ['pad0', 'pad1', 'pad2', 'pad3'] as const;
 import { checkInput, extend } from './engine';
 const COLORS = ['#166534', '#991b1b', '#854d0e', '#1e40af'];
 const NAMES = ['Green', 'Red', 'Gold', 'Blue'];
@@ -36,9 +39,7 @@ export default function SimonMemoryGame() {
           () => {
             if (document.visibilityState === 'hidden') return;
             setFlash(pad);
-            live.current.play(
-              ['blip', 'pop', 'select', 'tick'][pad] as 'blip' | 'pop' | 'select' | 'tick',
-            );
+            live.current.play(PAD_SOUNDS[pad]);
           },
           500 + i * speed,
         ),
@@ -60,7 +61,7 @@ export default function SimonMemoryGame() {
     (pad: number) => {
       if (phase !== 'input' || shell.paused) return;
       const outcome = checkInput(sequence, input, pad);
-      shell.play('blip');
+      shell.play(outcome === 'wrong' ? 'failure' : PAD_SOUNDS[pad]);
       if (outcome === 'wrong') {
         setPhase('finished');
         shell.endRound({

@@ -18,7 +18,11 @@ export type SoundName =
   | 'achievement'
   | 'shoot'
   | 'card'
-  | 'tick';
+  | 'tick'
+  | 'pad0'
+  | 'pad1'
+  | 'pad2'
+  | 'pad3';
 
 let ctx: AudioContext | null = null;
 let master: GainNode | null = null;
@@ -34,6 +38,45 @@ function syncPrefs() {
 
 let subscribed = false;
 
+/** Resumes a context the browser has paused; never throws. */
+function wakeContext(context: AudioContext) {
+  // 'interrupted' is iOS after a phone call or switching apps.
+  if (context.state !== 'running') void context.resume().catch(() => undefined);
+}
+
+let gesturesHooked = false;
+let primed = false;
+
+/**
+ * Phones only let a page start audio from a tap or key press. A game that plays
+ * its sounds from the animation loop or a timer (a bounce, the computer's move)
+ * would stay silent if nothing had woken the audio in a gesture, and iOS pauses
+ * it again after a call or an app switch. So once a game has used sound, every
+ * tap or key press wakes it; the first one also plays a silent sample, which
+ * older iOS versions need before any sound is heard.
+ */
+function hookGestures() {
+  if (gesturesHooked || typeof window === 'undefined') return;
+  gesturesHooked = true;
+  const wake = () => {
+    if (!enabled || !ctx) return;
+    wakeContext(ctx);
+    if (primed) return;
+    primed = true;
+    try {
+      const source = ctx.createBufferSource();
+      source.buffer = ctx.createBuffer(1, 1, 22050);
+      source.connect(ctx.destination);
+      source.start(0);
+    } catch {
+      // Decorative only.
+    }
+  };
+  for (const type of ['pointerdown', 'touchend', 'keydown']) {
+    window.addEventListener(type, wake, { capture: true, passive: true });
+  }
+}
+
 function ensureContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
   if (!subscribed) {
@@ -41,8 +84,10 @@ function ensureContext(): AudioContext | null {
     syncPrefs();
     subscribe('preferences', syncPrefs);
   }
+  hookGestures();
+  if (ctx && ctx.state === 'closed') ctx = null;
   if (ctx) {
-    if (ctx.state === 'suspended') void ctx.resume();
+    wakeContext(ctx);
     return ctx;
   }
   const Ctor =
@@ -166,6 +211,11 @@ const RECIPES: Record<SoundName, () => void> = {
   },
   shoot: () => playTone({ type: 'square', freq: 1200, freqEnd: 300, duration: 0.09, gain: 0.09 }),
   card: () => playNoise(0.1, 0.08, 2400),
+  // Four musical notes for memory pads (G4, C5, E5, G5), the same on playback and press.
+  pad0: () => playTone({ type: 'triangle', freq: 392, duration: 0.32, gain: 0.16 }),
+  pad1: () => playTone({ type: 'triangle', freq: 523, duration: 0.32, gain: 0.16 }),
+  pad2: () => playTone({ type: 'triangle', freq: 659, duration: 0.32, gain: 0.16 }),
+  pad3: () => playTone({ type: 'triangle', freq: 784, duration: 0.32, gain: 0.16 }),
 };
 
 export function playSound(name: SoundName) {
@@ -191,8 +241,7 @@ export function vibrate(pattern: number | number[]) {
 
 /** Browsers require a user gesture before audio can start. */
 export function unlockAudio() {
-  const context = ensureContext();
-  if (context?.state === 'suspended') void context.resume();
+  ensureContext();
 }
 
 export function setAudioEnabled(next: boolean) {

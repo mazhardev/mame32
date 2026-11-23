@@ -527,6 +527,32 @@ export const CLUSTERS: CollectionMeta[] = [
     ],
   }),
   cluster({
+    slug: 'cricket-games',
+    icon: '🏏',
+    heading: 'Cricket games',
+    title: 'Cricket Games – Play Free Online',
+    description:
+      'Play {count} free cricket games online: bat, bowl and field against the computer, then settle it in a super over. No download, works on mobile.',
+    intro: [
+      'Take guard and chase a target in [Cricket Batting](game:cricket-batting), timing each shot as the ball arrives. Then swap ends: set your line and length and defend a total in [Cricket Bowling](game:cricket-bowling).',
+      'In [Cricket Fielding](game:cricket-fielding) the computer bats and you hold the catches and throw down the stumps. When you want the whole match in six balls each, play the [Cricket Super Over](game:cricket-super-over). More ball games are in [sports games](cat:sports).',
+    ],
+    faqs: [
+      {
+        q: 'Can I play cricket on my phone?',
+        a: 'Yes. Every cricket game works in a mobile browser with tap or drag controls, and with the keyboard on a computer.',
+      },
+      {
+        q: 'Is there a cricket game where I field?',
+        a: 'Yes. In [Cricket Fielding](game:cricket-fielding) you control the fielder nearest the ball: catch skiers, stop boundaries and run batters out.',
+      },
+      {
+        q: 'Which cricket game is a full match?',
+        a: 'The [Cricket Super Over](game:cricket-super-over): you bat an over and then bowl one against the computer, with ties settled on boundaries.',
+      },
+    ],
+  }),
+  cluster({
     slug: 'coloring-games',
     icon: '🎨',
     heading: 'Colouring games',

@@ -13,7 +13,7 @@
 }
 
 .sea-grid {
-  --c: min(calc((100vw - 48px) / 10), 32px);
+  --c: min(calc((var(--stage-w, 100vw) - 50px) / 10), 32px);
   display: grid;
   grid-template-columns: repeat(10, var(--c));
   gap: 2px;

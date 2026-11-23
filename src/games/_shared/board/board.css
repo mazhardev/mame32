@@ -43,7 +43,7 @@
 /* Square-grid boards (draughts, reversi, gomoku, go…) */
 .sq-board {
   --cells: 8;
-  --cell: min(calc((100vw - 48px) / var(--cells)), calc(560px / var(--cells)));
+  --cell: min(calc((var(--stage-w, 100vw) - 24px) / var(--cells)), calc(560px / var(--cells)));
   display: grid;
   grid-template-columns: repeat(var(--cells), var(--cell));
   border-radius: 8px;

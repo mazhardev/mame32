@@ -12,6 +12,9 @@ import './arcade.css';
 
 type Phase = 'ready' | 'playing' | 'over';
 
+/** Height of the sticky site header (--header-height). */
+const SITE_HEADER = 60;
+
 /** Letter keys are delivered lower-case so Shift or Caps Lock do not matter. */
 const normKey = (key: string) => (key.length === 1 ? key.toLowerCase() : key);
 
@@ -50,7 +53,15 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
     setPhaseBoth('playing');
     shell.startRound();
     shell.play('select');
-  }, [shell]);
+    // On a phone, bring the whole game (HUD to touch controls) into view.
+    const wrap = wrapRef.current;
+    if (coarse && !shell.isFullscreen && wrap) {
+      const r = wrap.getBoundingClientRect();
+      if (r.top < SITE_HEADER || r.bottom > window.innerHeight) {
+        window.scrollTo({ top: Math.max(0, r.top + window.scrollY - SITE_HEADER - 6), behavior: 'smooth' });
+      }
+    }
+  }, [shell, coarse]);
 
   const restart = useCallback(() => {
     stateRef.current = specRef.current.create(shell.difficulty, Math.random);
@@ -81,6 +92,13 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
         avail = wrap.getBoundingClientRect().width;
         if (!avail) return;
         maxH = Math.max(240, window.innerHeight * maxHeight);
+        if (coarse) {
+          // Touch screens: keep the HUD, the canvas and the touch controls on
+          // one screen below the site header, so nothing needs scrolling mid-game.
+          const hud = wrap.querySelector('.hud')?.getBoundingClientRect().height ?? 0;
+          const pad = wrap.querySelector('.touch-controls')?.getBoundingClientRect().height ?? 0;
+          maxH = Math.max(240, Math.min(maxH, window.innerHeight - SITE_HEADER - hud - pad - 48));
+        }
       }
       let cssW = avail;
       let cssH = (cssW * spec.height) / spec.width;
@@ -102,7 +120,7 @@ export function ArcadeGame<S extends BaseState>({ spec, maxHeight = 0.72 }: { sp
     ro.observe(stage);
     return () => ro.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [spec.width, spec.height, maxHeight, expanded]);
+  }, [spec.width, spec.height, maxHeight, expanded, coarse]);
 
   const draw = () => {
     const ctx = canvasRef.current?.getContext('2d');

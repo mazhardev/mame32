@@ -76,7 +76,10 @@ export function update(s: State, dt: number, input: Input, random: () => number)
   if (s.gustIn <= 0) {
     s.gust = (random() < 0.5 ? -1 : 1) * s.gustStrength * (0.6 + random() * 0.8) * Math.min(2, 1 + s.time / 60);
     s.gustIn = 1.5 + random() * 2.5;
+    s.events.push('whoosh');
   }
+  // A chime for every ten seconds balanced.
+  if (Math.floor(s.time / 10) > Math.floor((s.time - dt) / 10)) s.events.push('coin');
   s.gust *= 1 - 1.8 * dt;
 
   // Sub-steps keep the pendulum stable at low frame rates.

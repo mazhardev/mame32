@@ -167,7 +167,9 @@ export default function MinesweeperGame() {
     [shell],
   );
 
-  const cellSize = `clamp(20px, ${Math.floor(80 / config.cols)}vw, 38px)`;
+  // Fit the board to the stage (less the 10px wrap and 6px board padding on
+  // each side and the 2px gaps); only Hard's 24 columns scroll on a phone.
+  const cellSize = `clamp(16px, calc((var(--stage-w, 100vw) - ${32 + (config.cols - 1) * 2}px) / ${config.cols}), 38px)`;
 
   return (
     <div className="game-canvas-wrap" style={{ flexDirection: 'column', gap: 12, padding: 10 }}>

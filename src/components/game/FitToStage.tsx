@@ -26,6 +26,18 @@ export function FitToStage({ active, children }: { active: boolean; children: Re
   const [hint, setHint] = useState<Hint>(null);
   const hintShownRef = useRef(false);
 
+  // Publish the stage's width as --stage-w, so games can size boards and cells
+  // to the space they really have rather than to the whole viewport.
+  useLayoutEffect(() => {
+    const stage = outerRef.current?.closest<HTMLElement>('.game-stage');
+    if (!stage) return;
+    const publish = () => stage.style.setProperty('--stage-w', `${stage.clientWidth}px`);
+    publish();
+    const ro = new ResizeObserver(publish);
+    ro.observe(stage);
+    return () => ro.disconnect();
+  }, []);
+
   useLayoutEffect(() => {
     const outer = outerRef.current;
     const inner = innerRef.current;
@@ -42,7 +54,7 @@ export function FitToStage({ active, children }: { active: boolean; children: Re
 
     if (!active) {
       reset();
-      return;
+      return fitWidthOnPage(outer, inner, reset);
     }
 
     let frame = 0;
@@ -164,4 +176,65 @@ export function FitToStage({ active, children }: { active: boolean; children: Re
       )}
     </>
   );
+}
+
+/**
+ * On the page (not full screen) a game keeps its natural layout. Only when it
+ * is wider than the stage, which can happen on the narrowest phones, is it
+ * shrunk as a whole so nothing is cut off at the sides. Returns a cleanup.
+ */
+function fitWidthOnPage(outer: HTMLDivElement, inner: HTMLDivElement, reset: () => void) {
+  const stage = outer.closest<HTMLElement>('.game-stage');
+  if (!stage) return undefined;
+  let frame = 0;
+
+  const apply = () => {
+    reset();
+    const avail = stage.clientWidth;
+    if (!avail) return;
+    let natural = 0;
+    let height = 0;
+    for (const child of Array.from(inner.children) as HTMLElement[]) {
+      natural = Math.max(natural, child.offsetWidth, child.scrollWidth);
+      height = Math.max(height, child.offsetHeight);
+    }
+    if (natural <= avail + 1) return;
+    outer.dataset.fit = 'width';
+    inner.style.width = `${natural}px`;
+    // At its natural width a game can still spill over by a few pixels; measure again.
+    for (const child of Array.from(inner.children) as HTMLElement[]) {
+      natural = Math.max(natural, child.scrollWidth);
+      height = Math.max(height, child.offsetHeight);
+    }
+    inner.style.width = `${natural}px`;
+    const scale = Math.max(MIN_SCALE, avail / natural);
+    inner.style.transform = `scale(${scale})`;
+    outer.style.width = `${Math.floor(natural * scale)}px`;
+    outer.style.height = `${Math.ceil(height * scale)}px`;
+  };
+
+  const schedule = () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(apply);
+  };
+
+  apply();
+  const ro = new ResizeObserver(schedule);
+  ro.observe(stage);
+  const watchChildren = () => {
+    for (const child of Array.from(inner.children)) ro.observe(child);
+  };
+  watchChildren();
+  const mo = new MutationObserver(() => {
+    watchChildren();
+    schedule();
+  });
+  mo.observe(inner, { childList: true });
+
+  return () => {
+    cancelAnimationFrame(frame);
+    ro.disconnect();
+    mo.disconnect();
+    reset();
+  };
 }

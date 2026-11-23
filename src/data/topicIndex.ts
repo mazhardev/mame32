@@ -251,6 +251,13 @@ export const TOPICS: TopicEntry[] = [
     related: ['runner-games', 'quick-games', 'mobile-games'],
   },
   {
+    slug: 'cricket-games',
+    name: 'Cricket Games',
+    parent: 'sports',
+    ids: ['cricket-batting', 'cricket-bowling', 'cricket-fielding', 'cricket-super-over'],
+    related: ['target-shooting-games', 'games-against-computer', 'quick-games'],
+  },
+  {
     slug: 'coloring-games',
     name: 'Coloring Games',
     parent: 'creative',

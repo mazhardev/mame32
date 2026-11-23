@@ -1,5 +1,5 @@
 .snl-board-wrap {
-  --cell: min(calc((100vw - 40px) / 10), 54px);
+  --cell: min(calc((var(--stage-w, 100vw) - 24px) / 10), 54px);
   position: relative;
   width: calc(var(--cell) * 10);
   height: calc(var(--cell) * 11);

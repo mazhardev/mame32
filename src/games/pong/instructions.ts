@@ -3,16 +3,17 @@ import type { GameInstructions } from '@/types';
 export const instructions: GameInstructions = {
   objective: 'Score seven points before the computer does.',
   howToPlay: [
-    'Press Start game.',
-    'Move your paddle (left, blue) to return the ball.',
-    'Where the ball hits the paddle changes its angle; long rallies speed the ball up.',
-    'You score when the ball passes the computer paddle.',
+    'Your paddle is at the bottom (blue); the computer plays from the top.',
+    'Return the ball past the computer paddle to score.',
+    'Where the ball meets your paddle sets its angle: hit it with the edge for a steep return.',
+    'Every return speeds the ball up a little. After each point the ball is served again from the middle.',
   ],
-  scoring: '100 points for every goal you score. First to seven ends the match.',
-  difficultyNotes: 'The computer paddle tracks at 170 px/s on Easy, 230 on Normal and 300 on Hard.',
+  scoring: '100 points for every point you win. First to seven wins the match.',
+  difficultyNotes:
+    'The computer paddle moves faster, reacts sooner and aims better on Normal and Hard. On Easy it is slow and often a little off.',
   tips: [
-    'Hit with the edge of the paddle for steep angles.',
-    'Drift back to the centre after each return.',
+    'Angled returns are hard for the computer to reach.',
+    'Drift back to the middle after each return.',
   ],
-  touchNotes: ['Drag across the court or hold the Up/Down buttons'],
+  touchNotes: ['Drag anywhere on the court and your paddle follows your finger, or hold the ◀ ▶ buttons.'],
 };

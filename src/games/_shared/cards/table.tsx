@@ -4,21 +4,41 @@ import type { Card } from './deck';
 import { PlayingCard } from './PlayingCard';
 import './table.css';
 
-/** Card width that lets `columns` cards (plus gaps) fit the current viewport. */
-export function useCardWidth(columns: number, max = 72, min = 30): number {
-  const calc = () => {
-    const vw = typeof window === 'undefined' ? 1024 : Math.min(window.innerWidth, 1100);
-    return Math.max(min, Math.min(max, Math.floor((vw - 40 - columns * 6) / columns)));
-  };
-  const [w, setW] = useState(calc);
+/**
+ * Width available for cards on the felt: the game stage, less the board
+ * layout's padding (24px) and the felt's own padding (up to 32px). Measuring
+ * the stage, not the window, keeps a full hand on screen on a phone, where the
+ * page around the game takes its own margins.
+ */
+export function feltWidth(): number {
+  if (typeof window === 'undefined') return 1024;
+  const stage = document.querySelector<HTMLElement>('.game-stage');
+  const outer = stage?.clientWidth || window.innerWidth - 34;
+  return Math.min(outer, 1100) - 56;
+}
+
+/** Re-renders when the game stage changes width (rotation, full screen). */
+function useFeltWidth(): number {
+  const [w, setW] = useState(feltWidth);
   useEffect(() => {
-    const on = () => setW(calc());
+    const on = () => setW(feltWidth());
+    on();
+    const stage = document.querySelector<HTMLElement>('.game-stage');
+    const ro = stage && typeof ResizeObserver !== 'undefined' ? new ResizeObserver(on) : null;
+    if (stage) ro?.observe(stage);
     window.addEventListener('resize', on);
-    return () => window.removeEventListener('resize', on);
-    // calc only depends on these inputs
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columns, max, min]);
+    return () => {
+      ro?.disconnect();
+      window.removeEventListener('resize', on);
+    };
+  }, []);
   return w;
+}
+
+/** Card width that lets `columns` cards (plus gaps) fit the felt. */
+export function useCardWidth(columns: number, max = 72, min = 30): number {
+  const avail = useFeltWidth();
+  return Math.max(min, Math.min(max, Math.floor((avail - columns * 6) / columns)));
 }
 
 /** Green baize panel that card games sit on. */
@@ -39,7 +59,8 @@ interface HandProps {
 
 /** A row of overlapping cards, e.g. a player's hand. */
 export function Hand({ cards, width, step, selected, playable, onPick, label }: HandProps) {
-  const gap = step ?? Math.max(width * 0.42, Math.min(width + 6, (Math.min(typeof window === 'undefined' ? 900 : window.innerWidth, 900) - 40 - width) / Math.max(1, cards.length - 1)));
+  const avail = Math.min(useFeltWidth(), 860);
+  const gap = step ?? Math.max(width * 0.42, Math.min(width + 6, (avail - width) / Math.max(1, cards.length - 1)));
   const total = cards.length ? width + gap * (cards.length - 1) : width;
   return (
     <div className="card-hand" style={{ width: total, height: Math.round(width * 1.45) + 12 }} aria-label={label}>

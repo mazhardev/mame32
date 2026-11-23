@@ -5,8 +5,10 @@
   --n: 5;
   --gap: 3px;
   --max: 520px;
+  /* Padding of the grid itself (Lights Out has a frame). */
+  --pz-pad: 0px;
   --cell: min(
-    calc((100vw - 56px - (var(--n) - 1) * var(--gap)) / var(--n)),
+    calc((var(--stage-w, 100vw) - 24px - 2 * var(--pz-pad) - (var(--n) - 1) * var(--gap)) / var(--n)),
     calc((var(--max) - (var(--n) - 1) * var(--gap)) / var(--n))
   );
   display: grid;

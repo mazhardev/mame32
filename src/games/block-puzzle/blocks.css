@@ -1,6 +1,6 @@
 .bp-board {
   --n: 10;
-  --cell: min(calc((100vw - 52px) / var(--n)), calc(440px / var(--n)));
+  --cell: min(calc((var(--stage-w, 100vw) - 36px - (var(--n) - 1) * 2px) / var(--n)), calc(440px / var(--n)));
   display: grid;
   grid-template-columns: repeat(var(--n), var(--cell));
   grid-auto-rows: var(--cell);
@@ -55,7 +55,7 @@
 }
 
 .bp-tray {
-  --cell: min(calc((100vw - 52px) / 18), 22px);
+  --cell: min(calc((var(--stage-w, 100vw) - 60px) / 18), 22px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;

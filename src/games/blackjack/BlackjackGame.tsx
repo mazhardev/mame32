@@ -26,7 +26,7 @@ export default function BlackjackGame() {
     counted.current = true;
     const next = score + current.points;
     setScore(next);
-    shell.play(current.result === 'win' ? 'success' : 'card');
+    shell.play(current.result === 'win' ? 'success' : current.result === 'push' ? 'blip' : 'failure');
     if (current.result === 'win') void reportProgress('blackjack.win', 1);
     if (current.points === 150) void reportProgress('blackjack.natural', 1);
     if (number === 5) {
@@ -46,6 +46,7 @@ export default function BlackjackGame() {
     counted.current = false;
     setHand(next);
     setRound(round + 1);
+    shell.play('card');
     finish(next, round + 1);
   }
   return (
@@ -98,6 +99,7 @@ export default function BlackjackGame() {
               disabled={shell.paused}
               onClick={() => {
                 hand.hit();
+                shell.play('card');
                 paint((n) => n + 1);
                 finish(hand, round);
               }}
@@ -109,6 +111,7 @@ export default function BlackjackGame() {
               disabled={shell.paused}
               onClick={() => {
                 hand.stand();
+                shell.play('card');
                 paint((n) => n + 1);
                 finish(hand, round);
               }}
