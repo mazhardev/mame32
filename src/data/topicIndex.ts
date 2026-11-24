@@ -75,14 +75,14 @@ export const TOPICS: TopicEntry[] = [
     slug: 'code-breaking-games',
     name: 'Code-Breaking Games',
     parent: 'brain',
-    ids: ['mastermind', 'code-breaker', 'bulls-and-cows', 'guess-the-number', 'cryptogram'],
+    ids: ['mastermind', 'code-breaker', 'bulls-and-cows', 'guess-the-number', 'cryptogram', 'equation-guess'],
     related: ['memory-games', 'number-puzzles', 'logic-puzzles'],
   },
   {
     slug: 'number-puzzles',
     name: 'Sudoku & Number Puzzles',
     parent: 'puzzle',
-    ids: ['sudoku', 'kakuro', 'nonogram', 'binary-puzzle', 'math-puzzle'],
+    ids: ['sudoku', 'kakuro', 'nonogram', 'binary-puzzle', 'math-puzzle', 'number-path'],
     related: ['logic-puzzles', 'code-breaking-games', 'math-games'],
   },
   {

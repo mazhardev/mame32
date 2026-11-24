@@ -70,6 +70,8 @@ const ARCADE: Row[] = [
   ['bubble-buddies', 'Bubble Buddies', 'medium', '🫧', 'platformer arena bubbles stages bosses'],
   ['blast-maze', 'Blast Maze', 'medium', '💣', 'maze bombs battle bosses stages'],
   ['nebula-pinball', 'Nebula Pinball', 'medium', '🪐', 'pinball flippers multiball space'],
+  ['fruit-fusion', 'Fruit Fusion', 'easy', '🍉', 'merge physics fruit drop'],
+  ['turf-painter', 'Turf Painter', 'medium', '🎨', 'territory io bots trail'],
   ['lane-rush', 'Lane Rush', 'medium', '🏃', 'runner endless swipe trains coins'],
   ['neon-serpents', 'Neon Serpents', 'medium', '🐍', 'snake arena grow neon io'],
 ];
@@ -105,6 +107,10 @@ const PUZZLE: Row[] = [
   ['pattern-puzzle', 'Pattern Puzzle', 'medium', '🔷', 'pattern logic sequence'],
   ['marble-chain', 'Marble Chain', 'medium', '🔮', 'marbles match-three shooter chain temple'],
   ['snip-snack', 'Snip Snack', 'medium', '🍬', 'physics rope cut candy stars'],
+  ['crown-regions', 'Crown Regions', 'medium', '👑', 'logic queens regions grid'],
+  ['number-path', 'Number Path', 'medium', '🔢', 'logic path numbers grid'],
+  ['hexa-sort', 'Hexa Sort', 'easy', '⬢', 'sort stack hexagon merge'],
+  ['arrow-escape', 'Arrow Escape', 'easy', '➡️', 'arrows order tap logic'],
 ];
 
 const WORD: Row[] = [
@@ -128,6 +134,8 @@ const WORD: Row[] = [
   ['word-builder', 'Word Builder', 'medium', '🏗️', 'letters combine'],
   ['letter-grid', 'Letter Grid', 'medium', '🔲', 'grid words timed'],
   ['guess-the-phrase', 'Guess the Phrase', 'medium', '💬', 'guessing phrases'],
+  ['hive-words', 'Hive Words', 'medium', '🐝', 'spelling honeycomb daily'],
+  ['word-groups', 'Word Groups', 'medium', '🧩', 'groups connections daily'],
 ];
 
 const BOARD: Row[] = [
@@ -303,6 +311,7 @@ const CASUAL: Row[] = [
   ['circle-jump', 'Circle Jump', 'hard', '⭕', 'timing rotation'],
   ['color-tap', 'Color Tap', 'easy', '🌈', 'reflex colors'],
   ['slingshot-siege', 'Slingshot Siege', 'easy', '🪨', 'slingshot physics levels stars destruction'],
+  ['alchemy-lab', 'Alchemy Lab', 'easy', '⚗️', 'discovery combine elements'],
 ];
 
 const CREATIVE: Row[] = [
@@ -338,6 +347,7 @@ const BRAIN: Row[] = [
   ['memory-test', 'Memory Test', 'medium', '🧠', 'memory grid recall'],
   ['iq-challenge', 'IQ Challenge', 'hard', '💡', 'reasoning mixed'],
   ['brain-training', 'Brain Training Collection', 'medium', '🏋️', 'mixed daily drills'],
+  ['equation-guess', 'Equation Guess', 'medium', '🧮', 'maths deduction daily'],
 ];
 
 export const PLANNED_GAMES: GameDefinition[] = [

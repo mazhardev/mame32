@@ -7,7 +7,7 @@ _Last updated: 2026-11-24_
 | Area | Status |
 | --- | --- |
 | Platform (Phase 1) | ✅ complete |
-| Games playable | 266 of 266 catalogued |
+| Games playable | 276 of 276 catalogued |
 | Current phase | Full catalog complete — polish, balance and bug fixes |
 
 Games are only marked complete when they genuinely launch and play. Anything
@@ -69,16 +69,16 @@ agreement and the running handoff log.
 
 ### Tests
 
-2,227 passing across 260 files: storage, achievements, seeded randomness, the game loop, the game shell (including the difficulty picker and result actions), the shared puzzle and match-three engines, a mount-and-click smoke test for every registered game, and rule tests for the game engines. Generated level packs (Unblock, Sokoban) are re-verified against their solvers in the tests, and the simulation and strategy games include scripted-player balance tests that check every difficulty can be won. Pip Quest's 20 levels are proved finishable by a jump-reachability search, Snow Rollers and Bubble Buddies check every stage layout the same way and test that each boss can be beaten, and Candy Match's 120 saga levels are calibrated by a bot (`scripts/calibrate-candy.ts`) and a test replays a sample of them within their move limits. Carrom tests its disc physics, the queen and foul rules and the computer's shot choice; Blast Maze tests blasts, chain reactions, power-ups, stage generation and bosses, and plays bot matches to check bots rarely blow themselves up and every match finishes. Slingshot Siege replays a recorded winning set of shots for each of its 30 levels (`scripts/solve-slingshot.ts`) and checks every fort stands still when left alone; Dojo Duel tests hits, high/low blocking, throws, projectiles, combos and supers, and that computer fights always finish; Nebula Pinball keeps balls on the table through long random play and tests locks, multiball, ball save and tilt; Lane Rush has a track-reading bot run 3 km on every difficulty without crashing. Marble Chain has a bot clear all 15 levels on Normal while a careless one loses the later ones, and tests matching, combos, gap closing and power marbles; Garden Guard has a planning bot win every level on Easy (and on Normal at least some of the time) while an idle gardener loses, and tests each defender and pest; Neon Serpents tests growth, boosting, head-on and body collisions, and that computer snakes forage, dodge and respawn; Snip Snack replays a stored three-star solution for each of its 15 levels (`scripts/check-snip-snack.ts` reports the timing slack) and checks each step still works a frame early or late. Cricket Fielding tests boundaries, catches and dropped catches, run-outs and safe runs, and plays full innings with a fielding bot to check the rules hold and that a good fielder defends the target on Easy and Normal (`scripts/check-cricket-fielding.ts` reports win rates for a skilled, a beginner and an idle fielder). `src/data/linking.test.ts` checks the internal linking: every game has at least four inbound related links, every topic hub is valid, and every link in page copy points to a real page.
+2,315 passing across 270 files: storage, achievements, seeded randomness, the game loop, the game shell (including the difficulty picker and result actions), the shared puzzle and match-three engines, a mount-and-click smoke test for every registered game, and rule tests for the game engines. Generated level packs (Unblock, Sokoban) are re-verified against their solvers in the tests, and the simulation and strategy games include scripted-player balance tests that check every difficulty can be won. Pip Quest's 20 levels are proved finishable by a jump-reachability search, Snow Rollers and Bubble Buddies check every stage layout the same way and test that each boss can be beaten, and Candy Match's 120 saga levels are calibrated by a bot (`scripts/calibrate-candy.ts`) and a test replays a sample of them within their move limits. Carrom tests its disc physics, the queen and foul rules and the computer's shot choice; Blast Maze tests blasts, chain reactions, power-ups, stage generation and bosses, and plays bot matches to check bots rarely blow themselves up and every match finishes. Slingshot Siege replays a recorded winning set of shots for each of its 30 levels (`scripts/solve-slingshot.ts`) and checks every fort stands still when left alone; Dojo Duel tests hits, high/low blocking, throws, projectiles, combos and supers, and that computer fights always finish; Nebula Pinball keeps balls on the table through long random play and tests locks, multiball, ball save and tilt; Lane Rush has a track-reading bot run 3 km on every difficulty without crashing. Marble Chain has a bot clear all 15 levels on Normal while a careless one loses the later ones, and tests matching, combos, gap closing and power marbles; Garden Guard has a planning bot win every level on Easy (and on Normal at least some of the time) while an idle gardener loses, and tests each defender and pest; Neon Serpents tests growth, boosting, head-on and body collisions, and that computer snakes forage, dodge and respawn; Snip Snack replays a stored three-star solution for each of its 15 levels (`scripts/check-snip-snack.ts` reports the timing slack) and checks each step still works a frame early or late. Cricket Fielding tests boundaries, catches and dropped catches, run-outs and safe runs, and plays full innings with a fielding bot to check the rules hold and that a good fielder defends the target on Easy and Normal (`scripts/check-cricket-fielding.ts` reports win rates for a skilled, a beginner and an idle fielder). The ten newest games test their rules and generators: Crown Regions checks generated grids have exactly one solution and connected regions; Number Path checks its 90 stored levels and the uniqueness of the small ones; Arrow Escape checks boards can always be cleared and spots deadlocks; Alchemy Lab checks every element is reachable and that following hints finishes the book; Word Groups checks its 30 puzzles; Equation Guess checks evaluation, validity and repeated-symbol marking; Hexa Sort checks slides, clears and chains; Fruit Fusion checks resting, fusing, pushing apart and the overflow line; Turf Painter checks trails, claims, knockouts and the goal. `src/data/linking.test.ts` checks the internal linking: every game has at least four inbound related links, every topic hub is valid, and every link in page copy points to a real page.
 
 ---
 
 ## Games
 
 <!-- games:start -->
-**266 of 266 games playable.** Generated by `node scripts/update-status.mjs`; a game is ticked only when its folder registers a playable definition.
+**276 of 276 games playable.** Generated by `node scripts/update-status.mjs`; a game is ticked only when its folder registers a playable definition.
 
-### Arcade (37/37)
+### Arcade (39/39)
 
 - [x] Snake
 - [x] Block Drop
@@ -115,10 +115,12 @@ agreement and the running handoff log.
 - [x] Bubble Buddies
 - [x] Blast Maze
 - [x] Nebula Pinball
+- [x] Fruit Fusion
+- [x] Turf Painter
 - [x] Lane Rush
 - [x] Neon Serpents
 
-### Puzzle (30/30)
+### Puzzle (34/34)
 
 - [x] Sudoku
 - [x] Number Merge 2048
@@ -150,8 +152,12 @@ agreement and the running handoff log.
 - [x] Pattern Puzzle
 - [x] Marble Chain
 - [x] Snip Snack
+- [x] Crown Regions
+- [x] Number Path
+- [x] Hexa Sort
+- [x] Arrow Escape
 
-### Word (20/20)
+### Word (22/22)
 
 - [x] Five Letter Word
 - [x] Hangman
@@ -173,6 +179,8 @@ agreement and the running handoff log.
 - [x] Word Builder
 - [x] Letter Grid
 - [x] Guess the Phrase
+- [x] Hive Words
+- [x] Word Groups
 
 ### Board (20/20)
 
@@ -325,7 +333,7 @@ agreement and the running handoff log.
 - [x] Shape Matching
 - [x] Color Learning
 
-### Casual (20/20)
+### Casual (21/21)
 
 - [x] Jumping Ball
 - [x] Falling Ball
@@ -347,6 +355,7 @@ agreement and the running handoff log.
 - [x] Circle Jump
 - [x] Color Tap
 - [x] Slingshot Siege
+- [x] Alchemy Lab
 
 ### Creative (10/10)
 
@@ -361,7 +370,7 @@ agreement and the running handoff log.
 - [x] Mandala Coloring
 - [x] Character Dress-Up
 
-### Brain / Logic (19/19)
+### Brain / Logic (20/20)
 
 - [x] Simon Memory
 - [x] Memory Sequence
@@ -382,6 +391,7 @@ agreement and the running handoff log.
 - [x] Memory Test
 - [x] IQ Challenge
 - [x] Brain Training Collection
+- [x] Equation Guess
 <!-- games:end -->
 
 ---

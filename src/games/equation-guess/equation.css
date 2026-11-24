@@ -1,0 +1,86 @@
+.eq-hint {
+  margin: 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.eq-board {
+  --tile: min(calc((var(--stage-w, 100vw) - 40px - (var(--len) - 1) * 6px) / var(--len)), 52px);
+  display: grid;
+  gap: 6px;
+  margin: 0 auto;
+}
+
+.eq-row {
+  display: grid;
+  grid-template-columns: repeat(var(--len), var(--tile));
+  gap: 6px;
+}
+
+.eq-row.shake {
+  animation: eq-shake 0.36s;
+}
+
+.eq-tile {
+  display: grid;
+  place-items: center;
+  height: var(--tile);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: calc(var(--tile) * 0.5);
+  font-weight: 800;
+  background: var(--surface);
+}
+
+.eq-tile.pending { border-color: var(--text-muted); }
+.eq-tile.correct { background: #16a34a; border-color: #16a34a; color: #fff; }
+.eq-tile.present { background: #d97706; border-color: #d97706; color: #fff; }
+.eq-tile.absent { background: #475569; border-color: #475569; color: #fff; }
+
+.eq-keys {
+  display: grid;
+  /* Five keys a row: 1–5, 6–0, the operators, then delete and enter. */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  width: min(100%, 420px);
+  margin: 0 auto;
+}
+
+.eq-key {
+  min-height: 48px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.15rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.eq-key.op { background: color-mix(in srgb, #6366f1 18%, var(--surface-2)); }
+.eq-key.wide { grid-column: span 2; font-size: 1rem; }
+.eq-key.enter { grid-column: span 3; background: #4f46e5; color: #fff; }
+
+@media (min-width: 700px) {
+  .eq-keys { grid-template-columns: repeat(10, minmax(0, 1fr)); width: min(100%, 560px); }
+}
+.eq-key.correct { background: #16a34a; color: #fff; }
+.eq-key.present { background: #d97706; color: #fff; }
+.eq-key.absent { background: #475569; color: #cbd5e1; }
+
+.eq-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@keyframes eq-shake {
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq-row.shake { animation: none; }
+}

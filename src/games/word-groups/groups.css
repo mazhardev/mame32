@@ -1,0 +1,109 @@
+.wg-pick {
+  display: flex;
+  justify-content: center;
+}
+
+.wg-hint {
+  margin: 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.wg-solved,
+.wg-grid {
+  width: min(100%, 520px);
+  margin: 0 auto;
+}
+
+.wg-solved {
+  display: grid;
+  gap: 8px;
+}
+
+.wg-group {
+  display: grid;
+  gap: 2px;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  color: #111827;
+  animation: wg-in 0.3s ease-out;
+}
+
+.wg-group strong {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+}
+
+.wg-group span {
+  font-size: 0.9rem;
+}
+
+.wg-group.l0 { background: #fde68a; }
+.wg-group.l1 { background: #86efac; }
+.wg-group.l2 { background: #93c5fd; }
+.wg-group.l3 { background: #d8b4fe; }
+
+.wg-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.wg-grid.shake {
+  animation: wg-shake 0.38s;
+}
+
+.wg-tile {
+  min-height: 64px;
+  padding: 4px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.12s, transform 0.12s;
+  /* The word shrinks to fit its tile instead of breaking in two. */
+  container-type: inline-size;
+}
+
+.wg-tile span {
+  display: block;
+  white-space: nowrap;
+  font-size: min(1rem, calc(88cqi / (var(--len) * 0.7)));
+}
+
+.wg-tile.on {
+  background: #4b5563;
+  color: #fff;
+  transform: scale(0.97);
+}
+
+.wg-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.wg-actions .btn {
+  min-height: 44px;
+  border-radius: 999px;
+}
+
+@keyframes wg-shake {
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@keyframes wg-in {
+  from { transform: scale(0.96); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wg-grid.shake, .wg-group { animation: none; }
+}
