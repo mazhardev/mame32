@@ -1,0 +1,71 @@
+.cr-board {
+  /* Fit the stage: board-layout padding (24px) and the 4px frame. */
+  --cell: min(calc((var(--stage-w, 100vw) - 32px) / var(--n)), calc(480px / var(--n)));
+  display: grid;
+  grid-template-columns: repeat(var(--n), var(--cell));
+  grid-auto-rows: var(--cell);
+  border: 2px solid #1f2937;
+  border-radius: 10px;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  outline-offset: 4px;
+  margin: 0 auto;
+}
+
+.cr-cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 0.5px rgba(15, 23, 42, 0.25);
+  cursor: pointer;
+}
+
+.cr-cell.bt { border-top: 2px solid #1f2937; }
+.cr-cell.br { border-right: 2px solid #1f2937; }
+.cr-cell.bb { border-bottom: 2px solid #1f2937; }
+.cr-cell.bl { border-left: 2px solid #1f2937; }
+
+.cr-board:focus-visible .cr-cell.cursor { box-shadow: inset 0 0 0 3px #2563eb; }
+
+.cr-crown {
+  font-size: calc(var(--cell) * 0.58);
+  line-height: 1;
+}
+
+.cr-mark {
+  font-size: calc(var(--cell) * 0.34);
+  color: rgba(15, 23, 42, 0.55);
+  font-weight: 700;
+}
+
+.cr-cell.bad::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 6px;
+  background: repeating-linear-gradient(45deg, rgba(220, 38, 38, 0.32) 0 4px, transparent 4px 8px);
+}
+
+.cr-cell.hinted { animation: cr-glow 0.9s ease-in-out 2; }
+
+@keyframes cr-glow {
+  50% { box-shadow: inset 0 0 0 4px #f59e0b; }
+}
+
+.cr-auto input {
+  width: 20px;
+  height: 20px;
+}
+
+.cr-auto {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cr-cell.hinted { animation: none; box-shadow: inset 0 0 0 4px #f59e0b; }
+}

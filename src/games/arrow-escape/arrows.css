@@ -1,0 +1,61 @@
+.ae-board {
+  width: min(calc(var(--stage-w, 100vw) - 28px), 480px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 16px;
+  background: var(--surface-2);
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+.ae-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ae-dot {
+  fill: var(--border);
+}
+
+.ae-arrow {
+  cursor: pointer;
+  transition: transform 0.3s ease-in;
+}
+
+.ae-arrow:focus-visible {
+  outline: none;
+}
+
+.ae-arrow:focus-visible rect:last-of-type,
+.ae-arrow:focus-visible polygon {
+  stroke: #111827;
+  stroke-width: 0.06;
+}
+
+.ae-arrow.out {
+  transform: translate(var(--tx), var(--ty));
+  opacity: 0.2;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+.ae-arrow.bump {
+  animation: ae-bump 0.34s ease-in-out;
+}
+
+.ae-arrow.hint {
+  animation: ae-hint 0.8s ease-in-out 3;
+}
+
+@keyframes ae-bump {
+  50% { transform: translate(var(--tx), var(--ty)); }
+}
+
+@keyframes ae-hint {
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ae-arrow, .ae-arrow.out { transition: none; }
+  .ae-arrow.bump, .ae-arrow.hint { animation: none; }
+}
